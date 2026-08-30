@@ -532,11 +532,7 @@ function SceneTranslate({
   reduced: boolean;
 }) {
   if (reduced) {
-    return (
-      <StaticLabel color={color}>
-        {from} → {to}
-      </StaticLabel>
-    );
+    return <StaticLabel color={color}>{`${from} → ${to}`}</StaticLabel>;
   }
 
   return (
