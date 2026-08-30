@@ -7,6 +7,7 @@ import { GitCategoryView } from "@/components/git/git-category-view";
 import { HardwareCategoryView } from "@/components/hardware/hardware-category-view";
 import { CliCategoryView } from "@/components/cli/cli-category-view";
 import { ConceptCard } from "@/components/concept/concept-card";
+import { ProtocolPulseGrid } from "@/components/network/protocol-pulse-grid";
 import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   getAllCategories,
@@ -17,7 +18,7 @@ import {
   groupGitConceptsBySubcategory,
   groupHardwareConceptsBySubcategory,
 } from "@/lib/content/get-concepts";
-import { getNetworkVisualizations, getProgrammingVisualizations } from "@/lib/visualization/get-visualizations";
+import { getProgrammingVisualizations } from "@/lib/visualization/get-visualizations";
 
 interface CategoryPageProps {
   params: Promise<{ category: string }>;
@@ -56,11 +57,7 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const gitGroups = categorySlug === "git-github" ? groupGitConceptsBySubcategory() : [];
   const hardwareGroups = categorySlug === "hardware" ? groupHardwareConceptsBySubcategory() : [];
   const categoryFlows =
-    categorySlug === "network"
-      ? getNetworkVisualizations()
-      : categorySlug === "programming"
-        ? getProgrammingVisualizations()
-        : [];
+    categorySlug === "programming" ? getProgrammingVisualizations() : [];
 
   return (
     <div className="container px-4 py-10">
@@ -99,11 +96,11 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         )}
       </div>
 
+      {categorySlug === "network" && <ProtocolPulseGrid />}
+
       {categoryFlows.length > 0 && (
         <section className="mb-10">
-          <h2 className="mb-4 text-lg font-semibold">
-            {categorySlug === "network" ? "🎬 Protocol Animations" : "🎬 Concept Animations"}
-          </h2>
+          <h2 className="mb-4 text-lg font-semibold">🎬 Concept Animations</h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {categoryFlows.map((viz) => (
               <Link key={viz.slug} href={`/visualize/${viz.slug}`}>
