@@ -35,6 +35,7 @@ import grepFlow from "@/data/visualizations/grep-flow.json";
 import hashTableFlow from "@/data/visualizations/hash-table-flow.json";
 import httpFlow from "@/data/visualizations/http-flow.json";
 import httpsFlow from "@/data/visualizations/https-flow.json";
+import imapFlow from "@/data/visualizations/imap-flow.json";
 import iotGatewayFlow from "@/data/visualizations/iot-gateway-flow.json";
 import ipConfigFlow from "@/data/visualizations/ip-config-flow.json";
 import ipFlow from "@/data/visualizations/ip-flow.json";
@@ -121,6 +122,7 @@ const visualizations: Visualization[] = [
   hashTableFlow,
   httpFlow,
   httpsFlow,
+  imapFlow,
   iotGatewayFlow,
   ipConfigFlow,
   ipFlow,
@@ -197,19 +199,7 @@ export function groupVisualizationsByCategory(): Array<{
   category: string;
   visualizations: Visualization[];
 }> {
-  const order = [
-    "network",
-    "programming",
-    "security",
-    "database",
-    "devops",
-    "cloud",
-    "ai",
-    "iot",
-    "cli",
-    "git-github",
-    "hardware",
-  ];
+  const order = ["network", "programming", "security", "database", "devops", "iot", "cloud"];
   const grouped = new Map<string, Visualization[]>();
 
   for (const viz of visualizations) {

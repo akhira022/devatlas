@@ -1,0 +1,55 @@
+{
+  "slug": "imap",
+  "title": "IMAP",
+  "fullName": "Internet Message Access Protocol",
+  "summary": "protocol ซิงค์และอ่านอีเมลบน server — เปิด mailbox จากหลายอุปกรณ์ได้",
+  "difficulty": "intermediate",
+  "category": "network",
+  "tags": [
+    "email",
+    "mail",
+    "protocol"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "IMAP ใช้ดึงและจัดการอีเมลที่เก็บบน mail server\n\nคู่กับ SMTP:\n- SMTP — ส่งอีเมลออก\n- IMAP — อ่าน/ซิงค์ mailbox (port 143/993)"
+    },
+    {
+      "type": "why",
+      "content": "อีเมลอยู่บน server — เปิดจากโทรศัพท์และคอมได้สถานะเดียวกัน (อ่านแล้ว, โฟลเดอร์, draft)"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Mail client เชื่อม IMAP server (มักผ่าน TLS ที่ port 993)\n2. Login แล้วเลือก mailbox เช่น INBOX\n3. ดึง headers / body ตามที่ต้องการ\n4. อัปเดต flags (Seen, Deleted) กลับขึ้น server\n5. Idle/push แจ้งเมื่อมีเมลใหม่"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Mail Client — อ่านอีเมล (Gmail app, Outlook)",
+        "IMAP Server — เก็บ mailbox บนเซิร์ฟเวอร์",
+        "Folders — INBOX, Sent, Drafts",
+        "Flags — Seen, Answered, Deleted",
+        "Port 993 — IMAP over TLS"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เปิด Gmail บนมือถือแล้วทำเครื่องหมายอ่านแล้ว:\n\n1. แอปเชื่อม imap.gmail.com:993\n2. ดึงรายการข้อความใน INBOX\n3. ตั้ง flag \\Seen บน server\n4. เปิดบนคอม → ข้อความนั้นขึ้นว่าอ่านแล้วด้วย"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "IMAP vs POP3 — IMAP ซิงค์บน server, POP3 มักดาวน์โหลดแล้วลบออกจาก server",
+        "IMAP vs SMTP — IMAP อ่าน/ซิงค์, SMTP ส่งออก"
+      ]
+    }
+  ],
+  "related": [
+    "smtp",
+    "tcp",
+    "tls",
+    "dns"
+  ],
+  "visualization": "imap-flow"
+}

@@ -1,7 +1,7 @@
 import cliNetworkDebug from "@/data/scenarios/cli-network-debug.json";
 import computerBoot from "@/data/scenarios/computer-boot.json";
-import databaseCrud from "@/data/scenarios/database-crud.json";
 import dataStructureBasics from "@/data/scenarios/data-structure-basics.json";
+import databaseCrud from "@/data/scenarios/database-crud.json";
 import deployApp from "@/data/scenarios/deploy-app.json";
 import dnsLookup from "@/data/scenarios/dns-lookup.json";
 import gitFeatureBranch from "@/data/scenarios/git-feature-branch.json";
@@ -20,8 +20,8 @@ import type { Scenario } from "@/types/scenario";
 const scenarios: Scenario[] = [
   cliNetworkDebug,
   computerBoot,
-  databaseCrud,
   dataStructureBasics,
+  databaseCrud,
   deployApp,
   dnsLookup,
   gitFeatureBranch,

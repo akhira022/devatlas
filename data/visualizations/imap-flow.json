@@ -1,0 +1,77 @@
+{
+  "slug": "imap-flow",
+  "title": "IMAP Mailbox Sync",
+  "description": "ดู mail client ซิงค์ข้อความกับ IMAP server สองทาง",
+  "conceptSlug": "imap",
+  "protocol": "IMAP",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Mail Client",
+      "description": "แอปอีเมลบนมือถือหรือเดสก์ท็อป",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "imap",
+      "label": "IMAP Server",
+      "description": "เก็บ mailbox และ flags ของข้อความ",
+      "type": "server",
+      "position": {
+        "x": 360,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "imap-1",
+      "from": "client",
+      "to": "imap",
+      "label": "LOGIN",
+      "packet": "AUTH / TLS",
+      "description": "Client เปิด connection (มัก port 993) แล้ว authenticate",
+      "duration": 1100
+    },
+    {
+      "id": "imap-2",
+      "from": "client",
+      "to": "imap",
+      "label": "SELECT",
+      "packet": "SELECT INBOX",
+      "description": "เลือก mailbox ที่จะซิงค์ เช่น INBOX",
+      "duration": 1000
+    },
+    {
+      "id": "imap-3",
+      "from": "imap",
+      "to": "client",
+      "label": "FETCH",
+      "packet": "headers + body",
+      "description": "Server ส่งรายการข้อความและเนื้อหาที่ client ขอ",
+      "duration": 1200
+    },
+    {
+      "id": "imap-4",
+      "from": "client",
+      "to": "imap",
+      "label": "STORE",
+      "packet": "\\Seen",
+      "description": "Client อัปเดต flags กลับขึ้น server — อ่านแล้วซิงค์ทุกเครื่อง",
+      "duration": 1100
+    },
+    {
+      "id": "imap-5",
+      "from": "imap",
+      "to": "client",
+      "label": "IDLE",
+      "packet": "EXISTS 42",
+      "description": "Server แจ้งเมื่อมีเมลใหม่ — client ดึงข้อความเพิ่มได้ทันที",
+      "duration": 1200
+    }
+  ]
+}

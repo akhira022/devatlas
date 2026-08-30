@@ -82,7 +82,7 @@ export const PROTOCOL_PULSES: ProtocolPulse[] = [
     title: "IMAP",
     subtitle: "Sync mailbox messages",
     accent: "blue",
-    href: "/visualize/smtp-flow",
+    href: "/visualize/imap-flow",
     durationMs: 3000,
   },
 ];

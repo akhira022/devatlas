@@ -18,7 +18,8 @@ import {
   groupGitConceptsBySubcategory,
   groupHardwareConceptsBySubcategory,
 } from "@/lib/content/get-concepts";
-import { getProgrammingVisualizations } from "@/lib/visualization/get-visualizations";
+import { getNetworkVisualizations, getProgrammingVisualizations } from "@/lib/visualization/get-visualizations";
+import { PROTOCOL_PULSES } from "@/lib/network/protocol-pulses";
 
 interface CategoryPageProps {
   params: Promise<{ category: string }>;
@@ -56,8 +57,15 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
   const cliPlatforms = categorySlug === "cli" ? groupCliConceptsByPlatform(categorySlug) : [];
   const gitGroups = categorySlug === "git-github" ? groupGitConceptsBySubcategory() : [];
   const hardwareGroups = categorySlug === "hardware" ? groupHardwareConceptsBySubcategory() : [];
+  const pulseHrefs = new Set(PROTOCOL_PULSES.map((pulse) => pulse.href));
   const categoryFlows =
-    categorySlug === "programming" ? getProgrammingVisualizations() : [];
+    categorySlug === "network"
+      ? getNetworkVisualizations().filter(
+          (viz) => !pulseHrefs.has(`/visualize/${viz.slug}`),
+        )
+      : categorySlug === "programming"
+        ? getProgrammingVisualizations()
+        : [];
 
   return (
     <div className="container px-4 py-10">
@@ -100,7 +108,9 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
 
       {categoryFlows.length > 0 && (
         <section className="mb-10">
-          <h2 className="mb-4 text-lg font-semibold">🎬 Concept Animations</h2>
+          <h2 className="mb-4 text-lg font-semibold">
+            {categorySlug === "network" ? "More Protocol Flows" : "🎬 Concept Animations"}
+          </h2>
           <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {categoryFlows.map((viz) => (
               <Link key={viz.slug} href={`/visualize/${viz.slug}`}>

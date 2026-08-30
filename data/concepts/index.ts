@@ -38,6 +38,7 @@ import firewall from "./firewall.json";
 import fpga from "./fpga.json";
 import frontend from "./frontend.json";
 import ghCli from "./gh-cli.json";
+import git from "./git.json";
 import gitAdd from "./git-add.json";
 import gitBranch from "./git-branch.json";
 import gitCheckout from "./git-checkout.json";
@@ -54,7 +55,6 @@ import gitRebase from "./git-rebase.json";
 import gitRemote from "./git-remote.json";
 import gitStash from "./git-stash.json";
 import gitStatus from "./git-status.json";
-import git from "./git.json";
 import githubPr from "./github-pr.json";
 import gpu from "./gpu.json";
 import graphStructure from "./graph-structure.json";
@@ -68,6 +68,7 @@ import http from "./http.json";
 import https from "./https.json";
 import hypervisorHost from "./hypervisor-host.json";
 import ifconfig from "./ifconfig.json";
+import imap from "./imap.json";
 import iotGateway from "./iot-gateway.json";
 import ip from "./ip.json";
 import json from "./json.json";
@@ -198,6 +199,7 @@ export const concepts: Concept[] = [
   fpga,
   frontend,
   ghCli,
+  git,
   gitAdd,
   gitBranch,
   gitCheckout,
@@ -214,7 +216,6 @@ export const concepts: Concept[] = [
   gitRemote,
   gitStash,
   gitStatus,
-  git,
   githubPr,
   gpu,
   graphStructure,
@@ -228,6 +229,7 @@ export const concepts: Concept[] = [
   https,
   hypervisorHost,
   ifconfig,
+  imap,
   iotGateway,
   ip,
   json,

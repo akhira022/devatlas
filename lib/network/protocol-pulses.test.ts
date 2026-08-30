@@ -25,4 +25,9 @@ describe("PROTOCOL_PULSES", () => {
       expect(pulse.subtitle.length).toBeGreaterThan(0);
     }
   });
+
+  it("does not point IMAP at the SMTP flow", () => {
+    const imap = PROTOCOL_PULSES.find((pulse) => pulse.id === "imap");
+    expect(imap?.href).toBe("/visualize/imap-flow");
+  });
 });

@@ -10,6 +10,71 @@ function toCamelCase(slug) {
   return slug.replace(/-([a-z0-9])/g, (_, char) => char.toUpperCase());
 }
 
+/** Reserved JS identifiers that cannot be used as import binding names. */
+const RESERVED_IMPORT_NAMES = new Set([
+  "break",
+  "case",
+  "catch",
+  "class",
+  "const",
+  "continue",
+  "debugger",
+  "default",
+  "delete",
+  "do",
+  "else",
+  "export",
+  "extends",
+  "false",
+  "finally",
+  "for",
+  "function",
+  "if",
+  "import",
+  "in",
+  "instanceof",
+  "new",
+  "null",
+  "return",
+  "super",
+  "switch",
+  "this",
+  "throw",
+  "true",
+  "try",
+  "typeof",
+  "var",
+  "void",
+  "while",
+  "with",
+  "enum",
+  "await",
+  "let",
+  "static",
+  "yield",
+  "implements",
+  "interface",
+  "package",
+  "private",
+  "protected",
+  "public",
+]);
+
+const IMPORT_NAME_ALIASES = {
+  switch: "networkSwitch",
+};
+
+function toImportName(slug) {
+  if (IMPORT_NAME_ALIASES[slug]) {
+    return IMPORT_NAME_ALIASES[slug];
+  }
+  const camel = toCamelCase(slug);
+  if (RESERVED_IMPORT_NAMES.has(camel)) {
+    return `concept${camel.charAt(0).toUpperCase()}${camel.slice(1)}`;
+  }
+  return camel;
+}
+
 function loadJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
 }
@@ -31,7 +96,7 @@ function generateConceptIndex() {
     if (concept.slug !== slug) {
       console.warn(`Warning: ${file} slug "${concept.slug}" != filename "${slug}"`);
     }
-    return { slug, varName: toCamelCase(slug), file };
+    return { slug, varName: toImportName(slug), file };
   });
 
   entries.sort((a, b) => a.slug.localeCompare(b.slug));

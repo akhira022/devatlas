@@ -81,7 +81,7 @@ function SceneHttp({ color, glow, reduced }: { color: string; glow: string; redu
         className="absolute top-[18%] left-[58%] text-[10px] font-bold"
         style={{ color }}
         animate={{ opacity: [0, 0, 1, 1, 0] }}
-        transition={{ duration: 2.6, repeat: Infinity, times: [0, 0.42, 0.5, 0.72, 0.9] }}
+        transition={{ duration: 2.6, repeat: Infinity, times: [0, 0.42, 0.5, 0.72, 1] }}
       >
         200 OK
       </motion.span>
@@ -109,7 +109,7 @@ function SceneTcp({ color, glow, reduced }: { color: string; glow: string; reduc
           duration: 3.2,
           repeat: Infinity,
           ease: "easeInOut",
-          times: [0, 0.22, 0.44, 0.66, 0.88],
+          times: [0, 0.25, 0.5, 0.75, 1],
         }}
       >
         <Dot color={color} glow={glow} />
