@@ -1,0 +1,54 @@
+{
+  "slug": "graph-structure",
+  "title": "Graph",
+  "summary": "โหนด (vertex) เชื่อมด้วยเส้น (edge) — แบบจำลองเครือข่ายและความสัมพันธ์",
+  "difficulty": "intermediate",
+  "category": "programming",
+  "subcategory": "data-structure",
+  "tags": [
+    "non-linear",
+    "network"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "**Graph** G = (V, E) — ชุด vertices และ edges\n\n- **Directed** — ทางเดียว (follow graph)\n- **Undirected** — สองทาง (friendship)\n- **Weighted** — edge มี cost (ระยะทาง)\n\nแทนด้วย **Adjacency List** (list ของเพื่อนบ้าน) หรือ **Adjacency Matrix**"
+    },
+    {
+      "type": "why",
+      "content": "- Social network, maps/navigation\n- Dependency graph (npm, build system)\n- Knowledge graph (Dev Atlas!)\n- Recommendation \"people you may know\""
+    },
+    {
+      "type": "how_it_works",
+      "content": "**BFS** — shortest path (unweighted), ใช้ queue\n**DFS** — explore ลึก, ใช้ stack/recursion\n**Dijkstra** — shortest path weighted\n\n```\ngraph = {\n  A: [\"B\", \"C\"],\n  B: [\"A\", \"D\"],\n  ...\n}\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Vertex / Edge",
+        "Directed vs Undirected",
+        "Adjacency list/matrix",
+        "Weighted edges",
+        "Cycle detection"
+      ]
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Tree เป็น graph พิเศษ (connected, no cycle)",
+        "Graph ใน Dev Atlas (/graph) คือ knowledge graph UI",
+        "Cycle detection สำคัญใน dependency resolution"
+      ]
+    }
+  ],
+  "related": [
+    "data-structure",
+    "tree",
+    "queue",
+    "stack"
+  ],
+  "visualization": "tree-flow",
+  "prerequisites": [
+    "tree"
+  ]
+}

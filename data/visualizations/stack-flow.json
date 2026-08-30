@@ -1,0 +1,18 @@
+{
+  "slug": "stack-flow",
+  "title": "Stack Push & Pop",
+  "description": "ดู LIFO — push เข้ากองบน, pop ออกจากกองบน",
+  "conceptSlug": "stack",
+  "protocol": "Data Structure",
+  "category": "programming",
+  "nodes": [
+    { "id": "caller", "label": "Function Call", "description": "โค้ดที่เรียก push/pop", "type": "client", "position": { "x": 0, "y": 120 } },
+    { "id": "stack", "label": "Stack", "description": "กองข้อมูล LIFO", "type": "service", "position": { "x": 320, "y": 120 } }
+  ],
+  "steps": [
+    { "id": "stk-1", "from": "caller", "to": "stack", "label": "push(A)", "packet": "A → top", "description": "ใส่ A บนสุดของ stack", "duration": 1100 },
+    { "id": "stk-2", "from": "caller", "to": "stack", "label": "push(B)", "packet": "B → top", "description": "ใส่ B ทับ A — B อยู่บนสุด", "duration": 1100 },
+    { "id": "stk-3", "from": "stack", "to": "caller", "label": "pop()", "packet": "return B", "description": "เอาตัวบนสุด (B) ออก — LIFO", "duration": 1200 },
+    { "id": "stk-4", "from": "stack", "to": "caller", "label": "pop()", "packet": "return A", "description": "pop อีกครั้งได้ A", "duration": 1100 }
+  ]
+}

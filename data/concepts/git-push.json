@@ -1,0 +1,56 @@
+{
+  "slug": "git-push",
+  "title": "push",
+  "summary": "ส่ง commits จาก local ไปยัง remote repository",
+  "difficulty": "beginner",
+  "category": "git-github",
+  "subcategory": "sync",
+  "tags": [
+    "git",
+    "remote",
+    "github"
+  ],
+  "sections": [
+    {
+      "type": "why",
+      "content": "ส่ง commit ขึ้น remote — backup และให้ทีม/CI เห็นงาน"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ngit push\ngit push origin main\ngit push -u origin feature/login    # ครั้งแรก ตั้ง upstream\ngit push --force-with-lease         # force ปลอดภัยกว่า --force\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "git push origin <branch>",
+        "git push -u origin branch — ตั้ง upstream",
+        "--force-with-lease — push หลัง rebase",
+        "rejected — ต้อง pull ก่อน",
+        "protected branch — ห้าม push ตรง"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\ngit push -u origin feature/dashboard\n# เปิด PR บน GitHub\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "push ถูก reject — มักต้อง pull/rebase ก่อน (remote มี commit ใหม่กว่า)",
+        "อย่า force push บน main/master",
+        "-u ตั้งครั้งเดียว ครั้งถัดไปใช้แค่ git push"
+      ]
+    }
+  ],
+  "related": [
+    "git-pull",
+    "git-remote",
+    "git-commit",
+    "github-pr"
+  ],
+  "visualization": "git-push-flow",
+  "prerequisites": [
+    "git-commit",
+    "git-remote"
+  ]
+}

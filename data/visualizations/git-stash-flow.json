@@ -1,0 +1,88 @@
+{
+  "slug": "git-stash-flow",
+  "title": "Git Stash",
+  "description": "เก็บงานค้างชั่วคราวแล้วกลับมาใช้ทีหลัง",
+  "conceptSlug": "git-stash",
+  "protocol": "Git",
+  "category": "git-github",
+  "nodes": [
+    {
+      "id": "dev",
+      "label": "Developer",
+      "description": "ต้องสลับ branch ด่วน",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "working",
+      "label": "Working Tree",
+      "description": "มีการแก้ค้าง",
+      "type": "service",
+      "position": {
+        "x": 280,
+        "y": 60
+      }
+    },
+    {
+      "id": "stash",
+      "label": "Stash Stack",
+      "description": "เก็บงานชั่วคราว",
+      "type": "database",
+      "position": {
+        "x": 280,
+        "y": 180
+      }
+    },
+    {
+      "id": "branch",
+      "label": "Other Branch",
+      "description": "switch ไปทำงานอื่น",
+      "type": "service",
+      "position": {
+        "x": 560,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "gs-1",
+      "from": "dev",
+      "to": "stash",
+      "label": "git stash",
+      "packet": "git stash push",
+      "description": "เก็บการแก้ไขลง stash stack",
+      "duration": 1100
+    },
+    {
+      "id": "gs-2",
+      "from": "working",
+      "to": "stash",
+      "label": "Save",
+      "packet": "WIP on main",
+      "description": "working tree สะอาด — พร้อม switch branch",
+      "duration": 1100
+    },
+    {
+      "id": "gs-3",
+      "from": "dev",
+      "to": "branch",
+      "label": "switch",
+      "packet": "git switch hotfix",
+      "description": "ทำงานอื่นโดยไม่ commit งานค้าง",
+      "duration": 1100
+    },
+    {
+      "id": "gs-4",
+      "from": "stash",
+      "to": "working",
+      "label": "git stash pop",
+      "packet": "restore changes",
+      "description": "นำงานจาก stash กลับมา apply",
+      "duration": 1000
+    }
+  ]
+}

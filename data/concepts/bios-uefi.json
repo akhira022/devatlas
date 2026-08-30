@@ -1,0 +1,60 @@
+{
+  "slug": "bios-uefi",
+  "title": "BIOS / UEFI",
+  "summary": "Firmware บน motherboard — ตั้งค่า hardware ก่อน OS โหลด",
+  "difficulty": "intermediate",
+  "category": "hardware",
+  "subcategory": "boot-and-firmware",
+  "tags": [
+    "firmware",
+    "boot",
+    "uefi"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "BIOS/UEFI คือ firmware ที่รันก่อน OS — ตรวจ hardware, เลือก boot device, ตั้งค่า CPU/RAM"
+    },
+    {
+      "type": "why",
+      "content": "Boot order, enable virtualization (VT-x/AMD-V), Secure Boot, XMP profile สำหรับ RAM"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. กด power → CPU รัน firmware\n2. POST ตรวจ hardware\n3. อ่าน boot loader จาก storage\n4. ส่งต่อให้ OS"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "POST",
+        "Boot Order",
+        "Secure Boot toggle",
+        "Virtualization (VT-x)",
+        "XMP/EXPO RAM profile"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "รัน Docker/KVM: เปิด VT-x ใน UEFI, เปลี่ยน boot order เป็น USB สำหรับ install OS"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "BIOS (legacy) vs UEFI (modern GPT)",
+        "UEFI ไม่ใช่ OS",
+        "Reset CMOS เมื่อตั้งค่าผิดจน boot ไม่ได้"
+      ]
+    }
+  ],
+  "related": [
+    "boot-process",
+    "motherboard",
+    "secure-boot",
+    "tpm",
+    "storage"
+  ],
+  "visualization": "boot-process-flow",
+  "prerequisites": [
+    "boot-process"
+  ]
+}

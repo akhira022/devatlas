@@ -1,0 +1,47 @@
+{
+  "slug": "win-where",
+  "title": "where",
+  "fullName": "Locate Executables (CMD / PowerShell)",
+  "summary": "หาว่า executable อยู่ path ไหนใน PATH — แก้ปัญหา command not found",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "files",
+  "platform": "windows",
+  "tags": [
+    "cmd",
+    "powershell",
+    "path"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`where` (CMD) หรือ `Get-Command` (PowerShell) แสดงตำแหน่งของ executable ใน PATH — ใช้เมื่อพิมพ์คำสั่งแล้วไม่เจอ หรือมีหลายเวอร์ชัน"
+    },
+    {
+      "type": "why",
+      "content": "where หา path ของ executable ใน PATH — ตรวจว่าติดตั้ง Node, Python หรือ Git แล้วหรือยัง\n\nเทียบเท่า `which` บน Unix"
+    },
+    {
+      "type": "how_it_works",
+      "content": "**CMD:**\n```\nwhere node\nwhere npm\nwhere /r C:\\Users\\dev node.exe    # ค้นหา recursive\n```\n\n**PowerShell:**\n```\nGet-Command node\nGet-Command npm | Format-List\n(Get-Command node).Source\n```"
+    },
+    {
+      "type": "real_world_example",
+      "content": "npm ไม่ทำงานหลังติดตั้ง Node:\n```\nwhere node\nwhere npm\n# ตรวจว่า PATH มี C:\\Program Files\\nodejs\\\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "where หา .exe ใน PATH ไม่ใช่ค้นหาไฟล์ทั่วไป — ใช้ dir /s หรือ Get-ChildItem -Recurse",
+        "PowerShell alias อาจซ่อน executable จริง — ดู CommandType",
+        "where.exe vs where — ใน PowerShell where เป็น alias ของ Where-Object ใช้ where.exe แทน"
+      ]
+    }
+  ],
+  "related": [
+    "win-npm",
+    "win-dir",
+    "npm"
+  ],
+  "visualization": "file-search-flow"
+}

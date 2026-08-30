@@ -1,0 +1,96 @@
+{
+  "slug": "cdn-flow",
+  "title": "CDN Content Delivery",
+  "description": "ดู CDN ส่งไฟล์จาก edge server ใกล้ user แทน origin ไกล ๆ",
+  "conceptSlug": "cdn",
+  "protocol": "CDN / HTTP",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "user",
+      "label": "User (Thailand)",
+      "description": "ผู้ใช้ในกรุงเทพ ต้องการโหลด image.jpg",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "edge",
+      "label": "CDN Edge (Singapore)",
+      "description": "Edge server ใกล้ user — เก็บ cache ของ static files",
+      "type": "network",
+      "position": {
+        "x": 300,
+        "y": 120
+      }
+    },
+    {
+      "id": "origin",
+      "label": "Origin Server (US)",
+      "description": "Server ต้นทางจริง — เก็บไฟล์ต้นฉบับ",
+      "type": "server",
+      "position": {
+        "x": 620,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "cdn-1",
+      "from": "user",
+      "to": "edge",
+      "label": "Request",
+      "packet": "GET /image.jpg",
+      "description": "User request ไฟล์จาก CDN URL (cdn.example.com/image.jpg)",
+      "duration": 1100
+    },
+    {
+      "id": "cdn-2",
+      "from": "edge",
+      "to": "origin",
+      "label": "Cache MISS",
+      "packet": "Fetch from Origin",
+      "description": "Edge ตรวจ cache — ยังไม่มีไฟล์ (cache miss) ต้องดึงจาก Origin Server ใน US",
+      "duration": 1400
+    },
+    {
+      "id": "cdn-3",
+      "from": "origin",
+      "to": "edge",
+      "label": "File Data",
+      "packet": "image.jpg (2MB)",
+      "description": "Origin ส่งไฟล์กลับ — Edge เก็บ cache ไว้ที่ Singapore node",
+      "duration": 1300
+    },
+    {
+      "id": "cdn-4",
+      "from": "edge",
+      "to": "user",
+      "label": "Deliver",
+      "packet": "image.jpg",
+      "description": "Edge ส่งไฟล์ให้ user — ครั้งแรกช้ากว่าเพราะต้อง fetch origin",
+      "duration": 1100
+    },
+    {
+      "id": "cdn-5",
+      "from": "user",
+      "to": "edge",
+      "label": "2nd Request",
+      "packet": "GET /image.jpg",
+      "description": "User คนอื่นในไทย request ไฟล์เดิมอีกครั้ง",
+      "duration": 900
+    },
+    {
+      "id": "cdn-6",
+      "from": "edge",
+      "to": "user",
+      "label": "Cache HIT",
+      "packet": "image.jpg ⚡",
+      "description": "Cache HIT! ส่งจาก Singapore ทันที — ไม่ต้องไป US, เร็วกว่า 10-50 เท่า",
+      "duration": 1200
+    }
+  ]
+}

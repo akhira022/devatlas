@@ -1,0 +1,63 @@
+{
+  "slug": "oop",
+  "title": "OOP",
+  "fullName": "Object-Oriented Programming",
+  "summary": "แนวคิดจัดระเบียบโค้ดด้วย object — รวมข้อมูลและพฤติกรรมไว้ใน class เพื่อ reuse และบำรุงรักษาง่าย",
+  "difficulty": "beginner",
+  "category": "programming",
+  "tags": [
+    "paradigm",
+    "class",
+    "design"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "OOP (Object-Oriented Programming) คือ paradigm ที่จัดโค้ดเป็น **object** — แต่ละ object มี **state** (ข้อมูล) และ **behavior** (method)\n\n**Class** คือแม่แบบ (template) สำหรับสร้าง object\n**Object** คือ instance ที่สร้างจาก class\n\n```\nclass User {\n  name: string\n  email: string\n\n  login() { ... }\n  updateProfile(data) { ... }\n}\n\nconst user = new User()   // object (instance)\n```\n\nภาษาที่นิยม OOP: Java, C#, Python, TypeScript, Kotlin, Swift"
+    },
+    {
+      "type": "why",
+      "content": "OOP ช่วยให้โค้ดขนาดใหญ่จัดการได้:\n\n- **Reusability** — สร้าง class ครั้งเดียว ใช้ซ้ำหลาย object\n- **Maintainability** — แก้ logic ใน class เดียว มีผลทุก instance\n- **Modeling** — แมป concept จริงเป็น object (User, Order, Payment)\n- **Encapsulation** — ซ่อนรายละเอียดภายใน เปิดเฉพาะ interface ที่จำเป็น\n- **Team work** — แบ่ง module ตาม class/domain ชัดเจน"
+    },
+    {
+      "type": "how_it_works",
+      "content": "OOP มีหลักการ 4 ข้อ (Four Pillars):\n\n**1. Encapsulation (การห่อหุ้ม)**\nซ่อน state ภายใน class เปิดผ่าน method เท่านั้น\n```\nclass BankAccount {\n  private balance = 0\n  deposit(amount) { this.balance += amount }\n  getBalance() { return this.balance }\n}\n```\n\n**2. Abstraction (การทำให้เรียบง่าย)**\nแสดงเฉพาะสิ่งที่ user ต้องรู้ — ซ่อนความซับซ้อนภายใน\n```\nuser.sendEmail(to, subject)  // ไม่ต้องรู้ SMTP protocol\n```\n\n**3. Inheritance (การสืบทอด)**\nclass ลูกรับ property/method จาก class แม่\n```\nclass Animal { speak() { ... } }\nclass Dog extends Animal { speak() { return \"Woof\" } }\n```\n\n**4. Polymorphism (พหุรูป)**\nobject หลาย type ตอบสนอง method เดียวกันต่างกัน\n```\nshapes.forEach(s => s.area())  // Circle, Rectangle คำนวณต่างกัน\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Class — แม่แบบของ object",
+        "Object / Instance — ตัวจริงที่สร้างจาก class",
+        "Property / Field — ข้อมูลใน object",
+        "Method — function ที่ผูกกับ object",
+        "Constructor — method สร้าง object ตอน new",
+        "Interface — สัญญาว่า class ต้องมี method อะไร (TypeScript/Java)",
+        "Access Modifier — public, private, protected"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ระบบ e-commerce แบ่งเป็น class:\n\n```\nclass Product {\n  constructor(name, price) { ... }\n  getPriceWithTax() { ... }\n}\n\nclass Cart {\n  items = []\n  add(product) { ... }\n  total() { ... }\n}\n\nclass Order extends Cart {\n  checkout(payment) { ... }\n  sendConfirmation() { ... }\n}\n```\n\n- `Product` — encapsulate ราคาและ logic ภาษี\n- `Cart` — จัดการรายการสินค้า\n- `Order` — inherit จาก Cart แล้วเพิ่ม checkout\n- `PaymentGateway.charge()` — polymorphism รองรับ CreditCard, PromptPay"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Class ≠ Object — class คือแบบพิมพ์, object คือตัวที่สร้างแล้ว",
+        "OOP ≠ ภาษาเฉพาะ — JavaScript รองรับ OOP และ functional พร้อมกัน",
+        "Inheritance มากเกินไปทำให้ coupling สูง — นิยม composition over inheritance",
+        "OOP vs Functional — ไม่ใช่ขัดแย้ง; React ใช้ component (OOP-like) + hooks (functional)",
+        "Getter/Setter ไม่ใช่ encapsulation จริงถ้า expose ทุก field — ออกแบบ API ของ class ให้ดี"
+      ]
+    }
+  ],
+  "related": [
+    "backend",
+    "frontend",
+    "api",
+    "orm"
+  ],
+  "visualization": "oop-flow",
+  "prerequisites": [
+    "data-structure"
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "slug": "iot-gateway-flow",
+  "title": "IoT Gateway Flow",
+  "description": "อุปกรณ์ IoT ส่งข้อมูลผ่าน gateway ไปยัง cloud platform",
+  "conceptSlug": "iot-gateway",
+  "protocol": "IoT Gateway",
+  "category": "iot",
+  "nodes": [
+    {
+      "id": "sensor",
+      "label": "IoT Sensor",
+      "description": "อุปกรณ์วัดค่า เช่น อุณหภูมิ ความชื้น หรือ motion",
+      "type": "device",
+      "position": { "x": 0, "y": 120 }
+    },
+    {
+      "id": "gateway",
+      "label": "IoT Gateway",
+      "description": "ตัวกลางรวบรวมข้อมูลจากอุปกรณ์หลายตัวและแปลง protocol",
+      "type": "network",
+      "position": { "x": 240, "y": 120 }
+    },
+    {
+      "id": "cloud",
+      "label": "Cloud Platform",
+      "description": "IoT hub ที่รับ ingest, เก็บ และประมวลผล telemetry",
+      "type": "server",
+      "position": { "x": 480, "y": 120 }
+    },
+    {
+      "id": "dashboard",
+      "label": "Dashboard",
+      "description": "หน้าจอแสดงข้อมูล real-time และ alert",
+      "type": "client",
+      "position": { "x": 720, "y": 120 }
+    }
+  ],
+  "steps": [
+    {
+      "id": "iot-1",
+      "from": "sensor",
+      "to": "gateway",
+      "label": "Telemetry",
+      "packet": "MQTT / Zigbee",
+      "description": "Sensor ส่งข้อมูลวัดค่าไปยัง Gateway ผ่าน local protocol",
+      "duration": 1200
+    },
+    {
+      "id": "iot-2",
+      "from": "gateway",
+      "to": "gateway",
+      "label": "Aggregate",
+      "packet": "buffer + filter",
+      "description": "Gateway รวบรวมและกรองข้อมูลก่อนส่งขึ้น cloud",
+      "duration": 1100
+    },
+    {
+      "id": "iot-3",
+      "from": "gateway",
+      "to": "cloud",
+      "label": "Upload",
+      "packet": "HTTPS / MQTT TLS",
+      "description": "Gateway ส่ง telemetry ขึ้น cloud platform อย่างปลอดภัย",
+      "duration": 1300
+    },
+    {
+      "id": "iot-4",
+      "from": "cloud",
+      "to": "dashboard",
+      "label": "Stream",
+      "packet": "WebSocket / SSE",
+      "description": "Cloud ส่งข้อมูล real-time ไปยัง Dashboard",
+      "duration": 1200
+    },
+    {
+      "id": "iot-5",
+      "from": "cloud",
+      "to": "gateway",
+      "label": "Command",
+      "packet": "device config",
+      "description": "Cloud ส่งคำสั่งกลับผ่าน Gateway ไปยัง Sensor (เช่น ปรับ threshold)",
+      "duration": 1200
+    }
+  ]
+}

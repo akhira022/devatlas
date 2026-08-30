@@ -1,0 +1,58 @@
+{
+  "slug": "serverless",
+  "title": "Serverless",
+  "summary": "รันโค้ดโดยไม่ต้องจัดการ server — provider ดูแล infrastructure ให้ทั้งหมด",
+  "difficulty": "intermediate",
+  "category": "cloud",
+  "tags": [
+    "lambda",
+    "functions",
+    "faas"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Serverless ไม่ได้แปลว่าไม่มี server — แปลว่าคุณไม่ต้องจัดการ server เอง\n\nเขียน function → deploy → รันเมื่อมี event → จ่ายตาม execution time\n\nตัวอย่าง: AWS Lambda, Vercel Functions, Cloudflare Workers"
+    },
+    {
+      "type": "why",
+      "content": "- ไม่ต้อง provision server ล่วงหน้า\n- Auto-scale จาก 0 ถึง millions\n- จ่ายเฉพาะตอนรัน (per millisecond)\n- เหมาะกับ event-driven workloads\n- ลด DevOps overhead"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. เขียน function (เช่น AWS Lambda handler)\n2. Upload ไป cloud provider\n3. กำหนด trigger (HTTP, queue, schedule)\n4. เมื่อมี event → provider spin up container รัน function\n5. จ่ายตาม execution time (ms) และ memory\n6. Scale อัตโนมัติ — 0 ถึง thousands concurrent"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Function — โค้ดที่รันเมื่อมี event",
+        "Trigger — HTTP, S3 upload, cron, queue message",
+        "Cold Start — delay ครั้งแรกหลัง idle",
+        "Pay-per-use — จ่ายตาม invocation + duration",
+        "AWS Lambda, Cloudflare Workers — ตัวอย่าง platform"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Upload รูป → trigger Lambda function → resize รูป → บันทึก S3 → ส่ง notification\n\nFunction รันแค่ตอนมี upload ไม่ต้องจ่าย server ค้าง 24/7"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Serverless มี cold start — ครั้งแรกอาจช้า",
+        "ไม่เหมาะกับ long-running processes",
+        "Vendor lock-in กับ cloud provider"
+      ]
+    }
+  ],
+  "related": [
+    "cloud-computing",
+    "api",
+    "deployment"
+  ],
+  "visualization": "serverless-flow",
+  "prerequisites": [
+    "cloud-computing",
+    "api"
+  ]
+}

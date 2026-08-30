@@ -1,0 +1,58 @@
+{
+  "slug": "tcp",
+  "title": "TCP",
+  "fullName": "Transmission Control Protocol",
+  "summary": "โปรโตคอลชั้น Transport ที่ส่งข้อมูลอย่างน่าเชื่อถือ — รับประกันว่าข้อมูลถึงครบและถูกต้อง",
+  "difficulty": "intermediate",
+  "category": "network",
+  "tags": [
+    "protocol",
+    "transport",
+    "reliable"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "TCP เป็นโปรโตคอลที่อยู่ระหว่าง Application (HTTP) กับ Network (IP) — สร้าง connection ที่น่าเชื่อถือก่อนส่งข้อมูล"
+    },
+    {
+      "type": "analogy",
+      "content": "TCP เหมือนโทรศัพท์ — โทรก่อน (handshake) คุยจบก่อนวางสาย มั่นใจว่าคู่สนทนาได้ยิน"
+    },
+    {
+      "type": "why",
+      "content": "HTTP ต้องการข้อมูลที่ส่งครบถ้วน — TCP รับประกันด้วย handshake, acknowledgment และ retransmission"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Three-way handshake (SYN → SYN-ACK → ACK)\n2. ส่งข้อมูลเป็น packets พร้อม sequence number\n3. รับ ACK ยืนยันการรับ\n4. Four-way handshake ปิด connection"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Three-Way Handshake — SYN, SYN-ACK, ACK",
+        "Sequence Number — เรียงลำดับ packet",
+        "Acknowledgment — ยืนยันการรับ",
+        "Port — แยก service (80 HTTP, 443 HTTPS)",
+        "Connection State — ESTABLISHED, CLOSE_WAIT"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ดาวน์โหลดไฟล์ 100MB:\n\n1. TCP handshake สร้าง connection\n2. Server แบ่งไฟล์เป็น packets ส่งทีละส่วน\n3. Client ACK ทุก packet ที่รับถูก\n4. Packet หาย → TCP retransmit\n5. ครบทุก packet → ประกอบไฟล์สมบูรณ์\n6. FIN handshake ปิด connection"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "TCP vs UDP — TCP น่าเชื่อถือแต่ช้ากว่า, UDP เร็วแต่อาจสูญหาย",
+        "HTTP ทำงานบน TCP — ไม่ใช่แทน TCP"
+      ]
+    }
+  ],
+  "related": [
+    "http",
+    "dns",
+    "https"
+  ],
+  "visualization": "tcp-flow"
+}

@@ -1,0 +1,58 @@
+{
+  "slug": "fpga",
+  "title": "FPGA",
+  "fullName": "Field-Programmable Gate Array",
+  "summary": "ชิปที่ reprogram logic ได้ — ใช้เมื่อต้องการ custom hardware acceleration",
+  "difficulty": "advanced",
+  "category": "hardware",
+  "subcategory": "advanced",
+  "tags": [
+    "chip",
+    "reconfigurable",
+    "acceleration",
+    "hardware"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "FPGA (Field-Programmable Gate Array) คือชิปที่ปรับ logic gate ได้หลังผลิต — โหลด bitstream จาก HDL (Verilog/VHDL) แทนการผลิต ASIC ใหม่"
+    },
+    {
+      "type": "why",
+      "content": "FPGA เหมาะ prototype และ workload ที่เปลี่ยนบ่อย:\n\n- ทดสอบ circuit ก่อน tape-out ASIC\n- Signal processing, networking pipeline\n- ช้ากว่า ASIC แต่ยืดหยุ่นกว่า\n- ใช้ใน data center acceleration (Microsoft Catapult)"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. เขียน HDL อธิบาย logic\n2. Synthesis แปลงเป็น netlist\n3. Place & route ลง FPGA fabric\n4. โหลด bitstream — ชิปทำงานตาม design\n5. เปลี่ยน design ได้โดย reflash ไม่ต้องผลิตชิปใหม่"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "LUT (Look-Up Table)",
+        "CLB",
+        "Bitstream",
+        "HDL",
+        "Partial reconfiguration"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "CDN edge: FPGA accelerate TLS handshake, Microsoft ใช้ FPGA ใน Bing search ranking บางส่วน"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "FPGA ≠ GPU — FPGA reconfigurable, GPU fixed architecture",
+        "FPGA dev ยากกว่า software มาก",
+        "Power efficiency ดีสำหรับ specific workload"
+      ]
+    }
+  ],
+  "related": [
+    "asic",
+    "cpu",
+    "gpu",
+    "edge-device-hardware"
+  ],
+  "visualization": "specialized-chip-flow"
+}

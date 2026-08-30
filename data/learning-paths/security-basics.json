@@ -1,0 +1,18 @@
+{
+  "slug": "security-basics",
+  "title": "ความปลอดภัยพื้นฐาน",
+  "description": "Authentication, Authorization, JWT และ OAuth — เข้าใจก่อนสร้างระบบ login",
+  "difficulty": "intermediate",
+  "icon": "shield",
+  "estimatedMinutes": 55,
+  "category": "security",
+  "steps": [
+    { "order": 1, "conceptSlug": "authentication", "note": "พิสูจน์ว่าคุณคือใคร" },
+    { "order": 2, "conceptSlug": "authorization", "note": "คุณทำอะไรได้บ้าง" },
+    { "order": 3, "conceptSlug": "jwt", "note": "token แบบ stateless" },
+    { "order": 4, "conceptSlug": "oauth", "note": "login ด้วย Google/GitHub" },
+    { "order": 5, "conceptSlug": "https", "note": "เข้ารหัสข้อมูลระหว่างทาง" },
+    { "order": 6, "conceptSlug": "encryption", "note": "ปกป้องข้อมูลที่เก็บ" }
+  ],
+  "scenarioSlug": "oauth-social-login"
+}

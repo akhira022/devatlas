@@ -1,0 +1,23 @@
+{
+  "slug": "cloud-vs-edge",
+  "title": "Cloud vs Edge Computing",
+  "description": "ประมวลผลที่ศูนย์กลาง vs ใกล้แหล่งข้อมูล — มักใช้ร่วมกันไม่ใช่เลือกอย่างใดอย่างหนึ่ง",
+  "icon": "cloud",
+  "items": [
+    { "conceptSlug": "cloud-computing", "name": "Cloud", "tagline": "compute ที่ data center กลาง" },
+    { "conceptSlug": "edge-computing", "name": "Edge", "tagline": "compute ใกล้ device/sensor" }
+  ],
+  "rows": [
+    { "label": "ตำแหน่ง", "values": ["Data center ไกล user", "Gateway ใกล้ sensor/device"] },
+    { "label": "Latency", "values": ["สูงกว่า (round-trip)", "ต่ำ — ตอบสนอง local"] },
+    { "label": "Bandwidth", "values": ["ส่ง raw data ทั้งหมด", "ส่งเฉพาะผลลัพธ์"] },
+    { "label": "Compute power", "values": ["เกือบไม่จำกัด", "จำกัด — MCU/edge box"] },
+    { "label": "Offline", "values": ["ต้องมี internet", "ทำงานได้บางส่วนเมื่อ offline"] }
+  ],
+  "whenToUse": [
+    { "label": "Analytics ระยะยาว, ML training", "pick": "Cloud" },
+    { "label": "Real-time alert, autonomous device", "pick": "Edge" },
+    { "label": "Web app / SaaS", "pick": "Cloud" },
+    { "label": "CCTV analytics, smart factory", "pick": "Edge + Cloud sync" }
+  ]
+}

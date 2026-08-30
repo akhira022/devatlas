@@ -1,0 +1,56 @@
+{
+  "slug": "win-ping",
+  "title": "ping",
+  "summary": "ทดสอบการเชื่อมต่อไป host บน Windows — ส่ง ICMP echo และวัด latency",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "windows",
+  "tags": [
+    "network",
+    "icmp",
+    "windows"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`ping` บน Windows ทดสอบการเชื่อมต่อ ICMP — syntax ต่างจาก Linux ตรงที่ใช้ `-n` แทน `-c` สำหรับจำนวนครั้ง"
+    },
+    {
+      "type": "why",
+      "content": "ทดสอบ connectivity บน Windows — ขั้นแรกเมื่อเน็ตมีปัญหา"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nping google.com\nping 8.8.8.8\nping -n 4 google.com         # ส่ง 4 ครั้ง (Windows ใช้ -n ไม่ใช่ -c)\nping -t google.com           # ping ต่อเนื่อง (หยุด Ctrl+C)\nping -6 google.com           # IPv6\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "-n count — จำนวนครั้ง",
+        "-t — ping ต่อเนื่อง",
+        "time=ms — latency",
+        "TTL — Time To Live",
+        "Request timed out — ไม่ได้รับตอบ"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\nping -n 4 google.com\nping -t 8.8.8.8\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Windows ใช้ ping -n 4, Linux/macOS ใช้ ping -c 4",
+        "ping สำเร็จไม่ได้แปลว่า port เปิด — ใช้ Test-NetConnection",
+        "firewall อาจบล็อก ICMP"
+      ]
+    }
+  ],
+  "related": [
+    "ping",
+    "win-tracert",
+    "win-ipconfig"
+  ],
+  "visualization": "ping-test-flow"
+}

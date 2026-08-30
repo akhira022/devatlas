@@ -1,0 +1,62 @@
+{
+  "slug": "logging",
+  "title": "Logging",
+  "fullName": "Centralized Logging",
+  "summary": "การเก็บ log จากทุก service ไว้ที่เดียว — ค้นหา debug และ audit ได้เมื่อ production มีปัญหา",
+  "difficulty": "beginner",
+  "category": "devops",
+  "tags": [
+    "logs",
+    "elk",
+    "observability"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Logging (ในบริบท DevOps) คือการบันทึกเหตุการณ์ของ application และ infrastructure เป็น **log lines** — timestamp, level, message, context — แล้วรวมไว้ที่ **centralized log system** เพื่อค้นหาและวิเคราะห์\n\nStack ยอดนิยม:\n- **ELK/Elastic Stack** — Elasticsearch, Logstash, Kibana\n- **EFK** — Fluentd/Fluent Bit แทน Logstash\n- **Loki + Grafana** — label-based, ประหยัดกว่า full-text index\n- Managed: CloudWatch Logs, Datadog, Splunk\n\nต่างจาก monitoring ที่เน้นตัวเลข aggregate"
+    },
+    {
+      "type": "why",
+      "content": "Microservice 10 ตัว — SSH ดู log ทีละเครื่องไม่ไหว\n\nCentralized logging ช่วย:\n- Debug production incident — filter ด้วย request_id ข้าม service\n- Audit trail — ใครทำอะไรเมื่อไหร่ (compliance)\n- หา root cause จาก stack trace และ error message\n- Correlate กับ deploy time และ user report\n- เก็บ retention ตาม policy (30 วัน hot, 1 ปี archive)"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. App เขียน structured log (JSON) — level, message, trace_id, user_id\n2. Agent (Fluent Bit, Filebeat) ship log จาก stdout/file ไป collector\n3. Aggregator parse, enrich (hostname, k8s pod labels)\n4. เก็บใน log store — Elasticsearch index หรือ Loki stream\n5. UI (Kibana/Grafana) query — full-text หรือ label filter\n6. ตั้ง alert จาก log pattern — error spike, specific exception\n7. Archive เก่าไป S3/Glacier ลด cost"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Log Level — DEBUG, INFO, WARN, ERROR (ควบคุม verbosity)",
+        "Structured Logging — JSON field แทนข้อความล้วน ๆ",
+        "Correlation ID — trace_id/request_id ไล่ request ข้าม service",
+        "Log Shipper — Fluent Bit, Filebeat, Vector",
+        "Log Storage — Elasticsearch, Loki, CloudWatch",
+        "Retention & Index — lifecycle ลบหรือ archive log เก่า"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "API คืน 500 หลัง deploy:\n\n1. User แจ้ง error — support ได้ request_id จาก response header\n2. Kibana ค้น `request_id:\"abc-123\"` — เห็น log จาก gateway, auth, payment service\n3. Payment service log: `NullPointerException at InvoiceService.java:87`\n4. เปรียบ deploy log — release v2.3 เปลี่ยน invoice schema\n5. Rollback + hotfix — เก็บ log incident ไว้ postmortem\n6. เพิ่ม ERROR alert เมื่อ `NullPointerException` > 10/min"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Log มาก ≠ ดี — DEBUG ทุกที่ใน prod ทำให้ cost พุ่งและหาข้อมูลยาก",
+        "อย่า log secret — password, token, PII ต้อง redact",
+        "Logging ≠ Monitoring — log บอก \"เกิดอะไร\"; metric บอก \"เกิดบ่อยแค่ไหน\"",
+        "Unstructured `console.log('here')` — ค้นหาและ parse ยากใน scale"
+      ]
+    }
+  ],
+  "related": [
+    "deployment",
+    "kubernetes",
+    "docker",
+    "api",
+    "database"
+  ],
+  "visualization": "monitoring-flow",
+  "prerequisites": [
+    "deployment"
+  ]
+}

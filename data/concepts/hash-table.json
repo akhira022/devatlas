@@ -1,0 +1,59 @@
+{
+  "slug": "hash-table",
+  "title": "Hash Table",
+  "summary": "เก็บ key-value — ค้นหา เพิ่ม ลบ เฉลี่ย O(1) ด้วย hash function",
+  "difficulty": "intermediate",
+  "category": "programming",
+  "subcategory": "data-structure",
+  "tags": [
+    "hash",
+    "map",
+    "dictionary"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "**Hash Table** แปลง **key** เป็นตำแหน่งใน array ด้วย **hash function**\n\n```\nhash(\"name\") → index 3\nbucket[3] = \"John\"\n```\n\nJavaScript: `Map`, `Object` (key เป็น string)\nPython: `dict`"
+    },
+    {
+      "type": "why",
+      "content": "- ค้นหา/แทรก/ลบเร็ว O(1) เฉลี่ย\n- นับความถี่ (frequency counter)\n- Cache, memoization\n- Database index ใช้แนวคิดคล้ายกัน"
+    },
+    {
+      "type": "how_it_works",
+      "content": "**Collision** เมื่อ hash ซ้ำ:\n- **Chaining** — linked list ใน bucket เดียวกัน\n- **Open Addressing** — หา slot ถัดไป\n\n```\nconst map = new Map()\nmap.set(\"user:1\", { name: \"Ann\" })\nmap.get(\"user:1\")   // O(1)\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Hash function",
+        "Bucket / slot",
+        "Collision handling",
+        "O(1) average lookup",
+        "Load factor & rehash"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "นับ vote: `counts[ candidate ]++`\nTwo Sum problem — เก็บ complement ใน hash map\nRedis เป็น key-value store แบบ in-memory"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Worst case O(n) เมื่อ collision เยอะ",
+        "Object key ใน JS แปลงเป็น string — Map รองรับ object key ได้",
+        "Hash Table ≠ Hashing (security) — คนละจุดประสงค์"
+      ]
+    }
+  ],
+  "related": [
+    "data-structure",
+    "array",
+    "hashing",
+    "database"
+  ],
+  "visualization": "hash-table-flow",
+  "prerequisites": [
+    "array"
+  ]
+}

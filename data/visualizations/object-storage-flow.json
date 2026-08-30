@@ -1,0 +1,78 @@
+{
+  "slug": "object-storage-flow",
+  "title": "Object Storage Upload",
+  "description": "อัปโหลดไฟล์ไปยัง S3-compatible object storage ผ่าน presigned URL",
+  "conceptSlug": "object-storage",
+  "protocol": "S3",
+  "category": "cloud",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Client",
+      "description": "Browser หรือ mobile app ที่ต้องการอัปโหลดไฟล์",
+      "type": "client",
+      "position": { "x": 0, "y": 120 }
+    },
+    {
+      "id": "api",
+      "label": "API Server",
+      "description": "Backend ที่ออก presigned URL สำหรับ upload",
+      "type": "server",
+      "position": { "x": 240, "y": 120 }
+    },
+    {
+      "id": "storage",
+      "label": "Object Storage",
+      "description": "S3, GCS หรือ MinIO ที่เก็บไฟล์เป็น objects ใน bucket",
+      "type": "database",
+      "position": { "x": 480, "y": 120 }
+    }
+  ],
+  "steps": [
+    {
+      "id": "s3-1",
+      "from": "client",
+      "to": "api",
+      "label": "Request URL",
+      "packet": "POST /upload/presign",
+      "description": "Client ขอ presigned URL สำหรับอัปโหลดไฟล์",
+      "duration": 1200
+    },
+    {
+      "id": "s3-2",
+      "from": "api",
+      "to": "client",
+      "label": "Presigned URL",
+      "packet": "PUT https://bucket.s3…/file.jpg",
+      "description": "API สร้าง signed URL ที่มี permission และ expiry",
+      "duration": 1100
+    },
+    {
+      "id": "s3-3",
+      "from": "client",
+      "to": "storage",
+      "label": "Upload",
+      "packet": "PUT + file bytes",
+      "description": "Client อัปโหลดไฟล์ตรงไปยัง object storage โดยไม่ผ่าน API",
+      "duration": 1300
+    },
+    {
+      "id": "s3-4",
+      "from": "storage",
+      "to": "client",
+      "label": "Confirm",
+      "packet": "200 OK + ETag",
+      "description": "Storage ยืนยันการอัปโหลดสำเร็จ",
+      "duration": 1200
+    },
+    {
+      "id": "s3-5",
+      "from": "client",
+      "to": "api",
+      "label": "Notify",
+      "packet": "POST /upload/complete",
+      "description": "Client แจ้ง API ว่าอัปโหลดเสร็จ — API บันทึก metadata",
+      "duration": 1100
+    }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "slug": "open-website-flow",
+  "title": "Open Website Flow",
+  "description": "What happens when you type a URL and press Enter",
+  "conceptSlug": "http",
+  "nodes": [
+    {
+      "id": "user",
+      "label": "User",
+      "description": "พิมพ์ google.com ใน address bar",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 100
+      }
+    },
+    {
+      "id": "browser",
+      "label": "Browser",
+      "description": "แปลง URL และเริ่มกระบวนการ",
+      "type": "client",
+      "position": {
+        "x": 180,
+        "y": 100
+      }
+    },
+    {
+      "id": "dns",
+      "label": "DNS",
+      "description": "แปลง google.com เป็น IP address",
+      "type": "network",
+      "position": {
+        "x": 360,
+        "y": 100
+      }
+    },
+    {
+      "id": "server",
+      "label": "Web Server",
+      "description": "รับ HTTP request และส่ง HTML กลับ",
+      "type": "server",
+      "position": {
+        "x": 540,
+        "y": 100
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "step-1",
+      "from": "user",
+      "to": "browser",
+      "label": "Enter URL",
+      "description": "User พิมพ์ URL และกด Enter",
+      "duration": 1000
+    },
+    {
+      "id": "step-2",
+      "from": "browser",
+      "to": "dns",
+      "label": "DNS Lookup",
+      "description": "Browser ถาม DNS ว่า google.com คือ IP อะไร",
+      "duration": 1200
+    },
+    {
+      "id": "step-3",
+      "from": "dns",
+      "to": "browser",
+      "label": "IP Resolved",
+      "description": "DNS ส่ง IP address กลับมา",
+      "duration": 1000
+    },
+    {
+      "id": "step-4",
+      "from": "browser",
+      "to": "server",
+      "label": "HTTP GET",
+      "description": "Browser ส่ง HTTP GET request ไปยัง server",
+      "duration": 1200
+    },
+    {
+      "id": "step-5",
+      "from": "server",
+      "to": "browser",
+      "label": "HTML Response",
+      "description": "Server ส่ง HTML, CSS, JS กลับมา — Browser แสดงหน้าเว็บ",
+      "duration": 1200
+    },
+    {
+      "id": "step-6",
+      "from": "browser",
+      "to": "user",
+      "label": "Render Page",
+      "description": "User เห็นหน้าเว็บ google.com",
+      "duration": 1000
+    }
+  ]
+}

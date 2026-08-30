@@ -1,0 +1,104 @@
+{
+  "slug": "tcp-flow",
+  "title": "TCP Three-Way Handshake",
+  "description": "ดูการสร้าง TCP connection ที่น่าเชื่อถือก่อนส่ง HTTP",
+  "conceptSlug": "tcp",
+  "protocol": "TCP",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Client",
+      "description": "ต้องการส่งข้อมูล — เริ่มด้วย TCP connection",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "server",
+      "label": "Server",
+      "description": "รอรับ connection ที่ port (เช่น 443)",
+      "type": "server",
+      "position": {
+        "x": 400,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "tcp-1",
+      "from": "client",
+      "to": "server",
+      "label": "SYN",
+      "packet": "SYN seq=100",
+      "description": "Client ส่ง SYN packet — 'ขอเปิด connection' พร้อม sequence number เริ่มต้น",
+      "duration": 1400
+    },
+    {
+      "id": "tcp-2",
+      "from": "server",
+      "to": "client",
+      "label": "SYN-ACK",
+      "packet": "SYN-ACK seq=300 ack=101",
+      "description": "Server ตอบ SYN-ACK — 'รับทราบ, ขอเปิดด้วย' + acknowledge SYN ของ client",
+      "duration": 1400
+    },
+    {
+      "id": "tcp-3",
+      "from": "client",
+      "to": "server",
+      "label": "ACK",
+      "packet": "ACK ack=301",
+      "description": "Client ส่ง ACK — connection สำเร็จ! พร้อมส่งข้อมูล (HTTP, TLS)",
+      "duration": 1300
+    },
+    {
+      "id": "tcp-4",
+      "from": "client",
+      "to": "server",
+      "label": "Data",
+      "packet": "HTTP Request",
+      "description": "Client ส่งข้อมูลเป็น packets — แต่ละ packet มี sequence number",
+      "duration": 1200
+    },
+    {
+      "id": "tcp-5",
+      "from": "server",
+      "to": "client",
+      "label": "ACK",
+      "packet": "ACK ack=450",
+      "description": "Server ยืนยันรับข้อมูลครบ — ถ้า packet หาย TCP จะส่งใหม่",
+      "duration": 1200
+    },
+    {
+      "id": "tcp-6",
+      "from": "server",
+      "to": "client",
+      "label": "Response",
+      "packet": "HTTP Response",
+      "description": "Server ส่ง response กลับเป็น packets — client ACK ทุก packet",
+      "duration": 1200
+    },
+    {
+      "id": "tcp-7",
+      "from": "client",
+      "to": "server",
+      "label": "FIN",
+      "packet": "FIN",
+      "description": "Client ส่ง FIN — 'ขอปิด connection' (Four-way teardown เริ่ม)",
+      "duration": 1100
+    },
+    {
+      "id": "tcp-8",
+      "from": "server",
+      "to": "client",
+      "label": "FIN-ACK",
+      "packet": "FIN-ACK",
+      "description": "Server ยืนยันปิด — TCP connection ปิดสมบูรณ์",
+      "duration": 1100
+    }
+  ]
+}

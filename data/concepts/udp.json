@@ -1,0 +1,60 @@
+{
+  "slug": "udp",
+  "title": "UDP",
+  "fullName": "User Datagram Protocol",
+  "summary": "โปรโตคอลส่งข้อมูลแบบไม่รับประกัน — เร็วกว่า TCP แต่อาจสูญหาย",
+  "difficulty": "intermediate",
+  "category": "network",
+  "tags": [
+    "transport",
+    "protocol",
+    "fast"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "UDP เป็น transport protocol ที่ส่ง datagram โดยไม่สร้าง connection และไม่รับประกันว่าข้อมูลจะถึงหรือเรียงลำดับถูกต้อง\n\nใช้เมื่อความเร็วสำคัญกว่าความน่าเชื่อถือ"
+    },
+    {
+      "type": "analogy",
+      "content": "UDP เหมือนส่งจดหมายเปล่า — โยนเข้าตู้ไปเลย เร็วแต่ไม่รู้ว่าถึงหรือเปล่า"
+    },
+    {
+      "type": "why",
+      "content": "เหมาะกับ:\n- Video streaming / VoIP (สูญหายนิดหน่อยยอมรับได้)\n- Online games (ต้องการ latency ต่ำ)\n- DNS queries (ข้อความสั้น)\n- MQTT (บน UDP ในบางกรณี)"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Application ส่ง datagram พร้อม port ปลายทาง\n2. UDP เพิ่ม header (source port, dest port, length, checksum)\n3. ส่งทันที — ไม่มี handshake\n4. ปลายทางรับได้หรือไม่ก็ได้ — ไม่มี ACK\n5. Application ต้องจัดการ reliability เองถ้าต้องการ"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Datagram — หน่วยส่งอิสระ ไม่เชื่อมต่อ",
+        "Port — แยก application (53 DNS, 53 UDP)",
+        "Checksum — ตรวจ error (optional ใน IPv4)",
+        "No Connection State — ไม่ติดตาม session",
+        "Low Latency — ไม่มี handshake overhead"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Video call (Zoom/Meet):\n\n- เสียง/ภาพส่ง UDP — สูญหาย frame นึงยอมรับได้\n- ความล่าช้าต่ำสำคัญกว่าความครบถ้วน\n- ถ้าใช้ TCP: packet หายต้องรอ retransmit → ภาพค้าง\n- DNS query ก็ใช้ UDP — ข้อความสั้น, ต้องการความเร็ว"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "UDP ≠ TCP — UDP ไม่มี handshake, TCP มี",
+        "UDP ไม่ได้แย่เสมอ — เลือกตาม use case",
+        "QUIC (HTTP/3) ใช้ UDP เป็นฐาน"
+      ]
+    }
+  ],
+  "related": [
+    "tcp",
+    "ip",
+    "dns",
+    "mqtt"
+  ],
+  "visualization": "udp-flow"
+}

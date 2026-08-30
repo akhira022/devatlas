@@ -1,0 +1,55 @@
+{
+  "slug": "ifconfig",
+  "title": "ifconfig",
+  "fullName": "Interface Configuration",
+  "summary": "ดูและตั้งค่า network interface — IP, netmask, MAC address",
+  "difficulty": "intermediate",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "unix",
+  "tags": [
+    "network",
+    "ip",
+    "interface"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`ifconfig` (interface configuration) แสดงและตั้งค่า network interface — IP address, subnet mask, MAC address, สถานะ up/down\n\nบน Linux สมัยใหม่ใช้คำสั่ง `ip` จาก iproute2 แทน แต่ `ifconfig` ยังใช้บน macOS และเครื่องเก่า"
+    },
+    {
+      "type": "how_it_works",
+      "content": "**ifconfig (macOS / legacy):**\n```\nifconfig                          # ทุก interface\nifconfig en0                      # interface เฉพาะ (WiFi มักเป็น en0)\nifconfig en0 inet 192.168.1.100 netmask 255.255.255.0  # ตั้ง IP (ต้อง sudo)\nifconfig en0 up / down            # เปิด/ปิด interface\n```\n\n**ip (Linux สมัยใหม่):**\n```\nip addr show                      # เทียบเท่า ifconfig\nip addr show eth0\nip link set eth0 up\nip route show                     # routing table\nip neigh show                     # ARP table\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "inet — IPv4 address",
+        "netmask / prefix — subnet mask",
+        "ether — MAC address",
+        "lo — loopback (127.0.0.1)",
+        "en0/eth0 — physical interface",
+        "ip addr — คำสั่งทดแทนบน Linux"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "หา IP ของเครื่องใน LAN:\n```\nifconfig | grep \"inet \"\n# หรือ Linux\nip -4 addr show | grep inet\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "ifconfig vs ip — Linux ใช้ ip, macOS ใช้ ifconfig",
+        "127.0.0.1 (lo) ไม่ใช่ IP ใน LAN — ดู inet ของ en0/eth0/wlan0",
+        "ตั้ง IP เอง (static) vs DHCP — ifconfig/ip สำหรับ static, DHCP แจกอัตโนมัติ"
+      ]
+    }
+  ],
+  "related": [
+    "ip",
+    "subnetting",
+    "dhcp",
+    "arp"
+  ],
+  "visualization": "ip-config-flow"
+}

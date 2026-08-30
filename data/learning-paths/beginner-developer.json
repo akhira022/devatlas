@@ -1,0 +1,19 @@
+{
+  "slug": "beginner-developer",
+  "title": "เริ่มต้นเป็น Developer",
+  "description": "เส้นทางสำหรับมือใหม่ — จาก HTTP พื้นฐาน ไปจนถึง Git, CLI และ Database",
+  "difficulty": "beginner",
+  "icon": "graduation-cap",
+  "estimatedMinutes": 90,
+  "steps": [
+    { "order": 1, "conceptSlug": "client", "note": "เข้าใจว่า client กับ server คืออะไร" },
+    { "order": 2, "conceptSlug": "http", "note": "พื้นฐานการสื่อสารบนเว็บ" },
+    { "order": 3, "conceptSlug": "api", "note": "API คือสะพานระหว่าง frontend กับ backend" },
+    { "order": 4, "conceptSlug": "json", "note": "รูปแบบข้อมูลที่ใช้บ่อยที่สุด" },
+    { "order": 5, "conceptSlug": "git", "note": "version control — skill ที่ต้องมี" },
+    { "order": 6, "conceptSlug": "git-commit", "note": "ฝึก commit workflow" },
+    { "order": 7, "conceptSlug": "cd", "note": "คำสั่ง terminal พื้นฐาน" },
+    { "order": 8, "conceptSlug": "sql", "note": "เก็บข้อมูลอย่างไร" }
+  ],
+  "scenarioSlug": "open-website"
+}

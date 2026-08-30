@@ -1,0 +1,19 @@
+{
+  "slug": "hash-table-flow",
+  "title": "Hash Table Lookup",
+  "description": "ดู hash function แปลง key เป็น index แล้วค้นหา value",
+  "conceptSlug": "hash-table",
+  "protocol": "Data Structure",
+  "category": "programming",
+  "nodes": [
+    { "id": "key", "label": "Key", "description": "\"email\" → lookup", "type": "client", "position": { "x": 0, "y": 120 } },
+    { "id": "hash", "label": "Hash Function", "description": "แปลง key เป็น index", "type": "service", "position": { "x": 280, "y": 120 } },
+    { "id": "bucket", "label": "Bucket", "description": "ช่องเก็บ key-value", "type": "database", "position": { "x": 560, "y": 120 } }
+  ],
+  "steps": [
+    { "id": "ht-1", "from": "key", "to": "hash", "label": "Hash", "packet": "hash(\"email\")", "description": "ส่ง key เข้า hash function", "duration": 1100 },
+    { "id": "ht-2", "from": "hash", "to": "bucket", "label": "Index", "packet": "index = 7", "description": "ได้ bucket index — O(1) โดยเฉลี่ย", "duration": 1100 },
+    { "id": "ht-3", "from": "bucket", "to": "key", "label": "Value", "packet": "user@mail.com", "description": "อ่าน value จาก bucket — collision ใช้ chaining", "duration": 1200 },
+    { "id": "ht-4", "from": "key", "to": "key", "label": "Use", "packet": "return value", "description": "นำ value ไปใช้ในโปรแกรม", "duration": 1000 }
+  ]
+}

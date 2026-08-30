@@ -1,0 +1,116 @@
+{
+  "slug": "login-flow",
+  "title": "Login Authentication Flow",
+  "description": "Complete flow from login form to dashboard",
+  "conceptSlug": "authentication",
+  "nodes": [
+    {
+      "id": "user",
+      "label": "User",
+      "description": "ผู้ใช้กรอก email และ password",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "frontend",
+      "label": "Frontend",
+      "description": "หน้า Login ส่ง credentials ไป API",
+      "type": "client",
+      "position": {
+        "x": 160,
+        "y": 120
+      }
+    },
+    {
+      "id": "api",
+      "label": "API Server",
+      "description": "รับ request และส่งต่อไป auth service",
+      "type": "server",
+      "position": {
+        "x": 320,
+        "y": 120
+      }
+    },
+    {
+      "id": "database",
+      "label": "Database",
+      "description": "ตรวจสอบ user record และ password hash",
+      "type": "database",
+      "position": {
+        "x": 480,
+        "y": 120
+      }
+    },
+    {
+      "id": "jwt",
+      "label": "JWT Token",
+      "description": "Token ที่สร้างหลัง login สำเร็จ",
+      "type": "service",
+      "position": {
+        "x": 640,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "step-1",
+      "from": "user",
+      "to": "frontend",
+      "label": "Enter Credentials",
+      "description": "User กรอก email และ password ในฟอร์ม login",
+      "duration": 1200
+    },
+    {
+      "id": "step-2",
+      "from": "frontend",
+      "to": "api",
+      "label": "POST /login",
+      "description": "Frontend ส่ง credentials ไป API endpoint",
+      "duration": 1200
+    },
+    {
+      "id": "step-3",
+      "from": "api",
+      "to": "database",
+      "label": "Verify User",
+      "description": "API ค้นหา user ใน Database และตรวจสอบ password",
+      "duration": 1200
+    },
+    {
+      "id": "step-4",
+      "from": "database",
+      "to": "api",
+      "label": "User Found",
+      "description": "Database ยืนยันว่า credentials ถูกต้อง",
+      "duration": 1200
+    },
+    {
+      "id": "step-5",
+      "from": "api",
+      "to": "jwt",
+      "label": "Generate JWT",
+      "description": "Server สร้าง JWT token พร้อม user info และ expiry",
+      "duration": 1200
+    },
+    {
+      "id": "step-6",
+      "from": "jwt",
+      "to": "frontend",
+      "label": "Return Token",
+      "description": "API ส่ง JWT กลับไป Frontend เก็บใน cookie/storage",
+      "duration": 1200
+    },
+    {
+      "id": "step-7",
+      "from": "frontend",
+      "to": "user",
+      "label": "Redirect",
+      "description": "Frontend redirect ไป Dashboard — user login สำเร็จ",
+      "duration": 1200
+    }
+  ]
+}

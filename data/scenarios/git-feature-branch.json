@@ -1,0 +1,16 @@
+{
+  "slug": "git-feature-branch",
+  "title": "สร้าง feature branch แล้ว merge อย่างไร?",
+  "description": "ติดตาม Git workflow ตั้งแต่ branch ใหม่จน merge เข้า main",
+  "difficulty": "intermediate",
+  "icon": "git-branch",
+  "concepts": ["git-branch", "git-commit", "git-push", "git-merge", "github-pr"],
+  "visualization": "git-merge-flow",
+  "steps": [
+    { "order": 1, "title": "สร้าง branch", "description": "git checkout -b feature/login จาก main", "conceptSlug": "git-branch" },
+    { "order": 2, "title": "Commit งาน", "description": "แก้โค้ด → git add → git commit", "conceptSlug": "git-commit" },
+    { "order": 3, "title": "Push ขึ้น GitHub", "description": "git push -u origin feature/login", "conceptSlug": "git-push" },
+    { "order": 4, "title": "เปิด Pull Request", "description": "สร้าง PR บน GitHub ให้ทีม review", "conceptSlug": "github-pr" },
+    { "order": 5, "title": "Merge เข้า main", "description": "หลัง approve → git merge หรือ merge บน GitHub", "conceptSlug": "git-merge" }
+  ]
+}

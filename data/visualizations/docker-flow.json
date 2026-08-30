@@ -1,0 +1,78 @@
+{
+  "slug": "docker-flow",
+  "title": "Docker Container Flow",
+  "description": "Build image จาก Dockerfile แล้วรัน container แยกจาก host OS",
+  "conceptSlug": "docker",
+  "protocol": "Docker",
+  "category": "cloud",
+  "nodes": [
+    {
+      "id": "dev",
+      "label": "Developer",
+      "description": "เขียน Dockerfile และรันคำสั่ง docker",
+      "type": "client",
+      "position": { "x": 0, "y": 120 }
+    },
+    {
+      "id": "daemon",
+      "label": "Docker Daemon",
+      "description": "จัดการ image, container และ network บน host",
+      "type": "service",
+      "position": { "x": 240, "y": 120 }
+    },
+    {
+      "id": "container",
+      "label": "Container",
+      "description": "process ที่รันใน isolated namespace พร้อม filesystem ของตัวเอง",
+      "type": "server",
+      "position": { "x": 480, "y": 120 }
+    }
+  ],
+  "steps": [
+    {
+      "id": "docker-1",
+      "from": "dev",
+      "to": "daemon",
+      "label": "Build",
+      "packet": "docker build -t app .",
+      "description": "Developer สั่ง build image จาก Dockerfile",
+      "duration": 1300
+    },
+    {
+      "id": "docker-2",
+      "from": "daemon",
+      "to": "daemon",
+      "label": "Layer Cache",
+      "packet": "COPY, RUN layers",
+      "description": "Daemon สร้าง image layers และ cache แต่ละ step",
+      "duration": 1200
+    },
+    {
+      "id": "docker-3",
+      "from": "dev",
+      "to": "daemon",
+      "label": "Run",
+      "packet": "docker run -p 3000:3000 app",
+      "description": "Developer สั่งรัน container จาก image ที่ build แล้ว",
+      "duration": 1200
+    },
+    {
+      "id": "docker-4",
+      "from": "daemon",
+      "to": "container",
+      "label": "Create",
+      "packet": "namespace + cgroups",
+      "description": "Daemon สร้าง isolated environment และ start process",
+      "duration": 1300
+    },
+    {
+      "id": "docker-5",
+      "from": "container",
+      "to": "dev",
+      "label": "Serving",
+      "packet": "localhost:3000",
+      "description": "Container รันแอป — Developer เข้าถึงผ่าน mapped port",
+      "duration": 1100
+    }
+  ]
+}

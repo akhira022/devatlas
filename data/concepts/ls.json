@@ -1,0 +1,59 @@
+{
+  "slug": "ls",
+  "title": "ls",
+  "fullName": "List Directory",
+  "summary": "แสดงรายการไฟล์และโฟลเดอร์ใน directory ปัจจุบันหรือที่ระบุ",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "navigation",
+  "platform": "unix",
+  "tags": [
+    "shell",
+    "files",
+    "directory"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`ls` (list) แสดงชื่อไฟล์และโฟลเดอร์ — เป็นคำสั่งแรก ๆ ที่ใช้เมื่อเปิด terminal ในโฟลเดอร์ใหม่"
+    },
+    {
+      "type": "why",
+      "content": "ต้องรู้ว่ามีไฟล์อะไรในโฟลเดอร์ก่อนแก้ไขหรือรันโปรเจกต์:\n\n- ตรวจว่า clone repo ครบหรือไม่\n- หาไฟล์ config (package.json, .env)\n- ดู permission และขนาดไฟล์ก่อน deploy"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nls                   # รายการในโฟลเดอร์ปัจจุบัน\nls src               # รายการในโฟลเดอร์ src\nls -l                # แบบ long (permission, size, date)\nls -la               # รวม hidden files (ขึ้นต้นด้วย .)\nls -lh               # ขนาดไฟล์อ่านง่าย (K, M, G)\nls -lt               # เรียงตามเวลาแก้ไขล่าสุด\nls -R                # แสดงแบบ recursive ทุก subfolder\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "-l — long format",
+        "-a — all files รวม hidden",
+        "-h — human-readable size",
+        "-t — sort by time",
+        "-R — recursive",
+        "path — ls /var/log"
+      ]
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "ls ไม่แสดง path ปัจจุบัน — ใช้ pwd",
+        "hidden files ขึ้นต้นด้วย . — ต้องใช้ ls -a",
+        "สีใน terminal (ถ้ามี) มักแยก folder กับไฟล์ — ขึ้นกับ shell config"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เปิดโปรเจกต์ Node.js ใหม่:\n\n```\nls\n# package.json  src/  node_modules/\n\nls -la\n# ดู .env.example และ .gitignore\n\nls -lh src/\n# ดูขนาดไฟล์ใน src\n```"
+    }
+  ],
+  "related": [
+    "cd",
+    "pwd",
+    "mkdir",
+    "grep"
+  ],
+  "visualization": "cli-navigation-flow"
+}

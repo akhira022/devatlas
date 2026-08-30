@@ -1,0 +1,88 @@
+{
+  "slug": "git-diff-flow",
+  "title": "Git Diff",
+  "description": "เปรียบเทียบการเปลี่ยนแปลงระหว่าง working tree, staging และ commits",
+  "conceptSlug": "git-diff",
+  "protocol": "Git",
+  "category": "git-github",
+  "nodes": [
+    {
+      "id": "dev",
+      "label": "Developer",
+      "description": "review ก่อน commit",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "working",
+      "label": "Working Tree",
+      "description": "ไฟล์ที่แก้แล้ว",
+      "type": "service",
+      "position": {
+        "x": 260,
+        "y": 60
+      }
+    },
+    {
+      "id": "staging",
+      "label": "Staging",
+      "description": "git add แล้ว",
+      "type": "service",
+      "position": {
+        "x": 260,
+        "y": 180
+      }
+    },
+    {
+      "id": "head",
+      "label": "HEAD",
+      "description": "commit ล่าสุด",
+      "type": "database",
+      "position": {
+        "x": 520,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "gd-1",
+      "from": "dev",
+      "to": "working",
+      "label": "git diff",
+      "packet": "unstaged",
+      "description": "เปรียบ working tree กับ staging",
+      "duration": 1100
+    },
+    {
+      "id": "gd-2",
+      "from": "working",
+      "to": "dev",
+      "label": "- / + lines",
+      "packet": "diff output",
+      "description": "แสดงบรรทัดที่เพิ่ม/ลบ",
+      "duration": 1100
+    },
+    {
+      "id": "gd-3",
+      "from": "dev",
+      "to": "staging",
+      "label": "--staged",
+      "packet": "staged diff",
+      "description": "เปรียบ staging กับ HEAD",
+      "duration": 1100
+    },
+    {
+      "id": "gd-4",
+      "from": "staging",
+      "to": "head",
+      "label": "Compare",
+      "packet": "git diff HEAD",
+      "description": "ดูทุกการเปลี่ยนแปลงที่จะ commit",
+      "duration": 1000
+    }
+  ]
+}

@@ -1,0 +1,63 @@
+{
+  "slug": "embedding",
+  "title": "Embedding",
+  "fullName": "Vector Embedding",
+  "summary": "การแปลงข้อความ รูป หรือข้อมูลให้เป็น vector ตัวเลข — ใช้ค้นหาและเปรียบเทียบความคล้ายใน AI",
+  "difficulty": "intermediate",
+  "category": "ai",
+  "tags": [
+    "vector",
+    "semantic-search",
+    "rag"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Embedding คือการแปลงข้อมูล (เช่น ประโยค, รูป, เอกสาร) เป็น vector ของตัวเลขในพื้นที่หลายมิติ (เช่น 768 หรือ 1536 dimensions) โดยข้อมูลที่ความหมายใกล้เคียงกันจะอยู่ใกล้กันใน vector space\n\nตัวอย่าง model: OpenAI text-embedding-3, Cohere embed, sentence-transformers\n\nใช้เป็นพื้นฐานของ semantic search, recommendation และ RAG"
+    },
+    {
+      "type": "why",
+      "content": "Keyword search หาแค่คำตรง ๆ — embedding หาได้แม้ใช้คนละคำแต่ความหมายเดียวกัน\n\nDeveloper ใช้ embedding เพื่อ:\n- สร้าง RAG — ดึง chunk เอกสารที่เกี่ยวข้องก่อนส่งให้ LLM\n- Semantic search ใน knowledge base\n- จัดกลุ่ม ticket, review หรือ log ที่คล้ายกัน\n- ตรวจจับ duplicate content\n- Recommendation (สินค้า, บทความ, user คล้ายกัน)"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. เลือก embedding model ที่เหมาะกับภาษาและ domain\n2. แบ่งเอกสารเป็น chunks (ย่อหน้า, 500 token ฯลฯ)\n3. ส่งแต่ละ chunk ผ่าน model → ได้ vector (array ของ float)\n4. เก็บ vector ใน vector database (Pinecone, pgvector, Qdrant)\n5. เมื่อ user ถาม — embed คำถาม → ค้นหา nearest neighbors (cosine similarity)\n6. ส่ง chunks ที่ใกล้ที่สุดเป็น context ให้ LLM ตอบ"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Embedding Model — แปลง text/data เป็น vector",
+        "Vector Dimension — จำนวนมิติ (ยิ่งมากไม่ได้ดีเสมอ ต้อง balance กับ storage)",
+        "Similarity Metric — cosine, dot product, Euclidean distance",
+        "Vector Database — เก็บและค้นหา vector แบบ ANN",
+        "Chunking Strategy — ขนาดและ overlap ของเอกสารที่แบ่ง",
+        "Metadata — filter ตาม user, วันที่, หมวดหมู่"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Startup สร้าง internal docs chatbot:\n\n1. แบ่ง Confluence/Notion เป็น chunks 500 คำ overlap 50 คำ\n2. Embed ด้วย text-embedding-3-small → เก็บใน pgvector บน PostgreSQL\n3. User ถาม \"วิธี reset password SSO\"\n4. Embed คำถาม → top-5 chunks ที่ cosine similarity สูงสุด\n5. ส่ง chunks + คำถามให้ GPT-4 ตอบพร้อมอ้างอิงหน้าเอกสาร\n6. ถ้าคำตอบผิด — ตรวจ chunk ที่ retrieve ได้ก่อน blame model"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Embedding ≠ LLM — embedding model สร้าง vector ไม่ได้สนทนา",
+        "Vector ใกล้ ≠ ความจริงเดียวกัน — ต้อง validate ด้วย RAG guardrails",
+        "Model ภาษาอังกฤษอาจ embed ภาษาไทยได้ไม่ดี — เลือก multilingual model",
+        "Chunk ใหญ่เกิน → context กว้างแต่ imprecise; เล็กเกิน → ขาดบริบท"
+      ]
+    }
+  ],
+  "related": [
+    "llm",
+    "rag",
+    "machine-learning",
+    "neural-network",
+    "database"
+  ],
+  "visualization": "llm-flow",
+  "prerequisites": [
+    "llm",
+    "neural-network"
+  ]
+}

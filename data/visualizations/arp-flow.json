@@ -1,0 +1,59 @@
+{
+  "slug": "arp-flow",
+  "title": "ARP Resolution",
+  "description": "ดูการแปลง IP เป็น MAC address ใน LAN",
+  "conceptSlug": "arp",
+  "protocol": "ARP",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "host",
+      "label": "Host A",
+      "description": "192.168.1.5 ต้องการส่งไป 192.168.1.1",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "gateway",
+      "label": "Gateway",
+      "description": "Router 192.168.1.1",
+      "type": "network",
+      "position": {
+        "x": 400,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "arp-1",
+      "from": "host",
+      "to": "gateway",
+      "label": "ARP Request",
+      "packet": "Who has 192.168.1.1?",
+      "description": "Host broadcast ARP: ใครมี IP 192.168.1.1? (ยังไม่รู้ MAC)",
+      "duration": 1300
+    },
+    {
+      "id": "arp-2",
+      "from": "gateway",
+      "to": "host",
+      "label": "ARP Reply",
+      "packet": "MAC: AA:BB:CC:DD:EE:FF",
+      "description": "Gateway ตอบ MAC address ของตัวเอง",
+      "duration": 1300
+    },
+    {
+      "id": "arp-3",
+      "from": "host",
+      "to": "gateway",
+      "label": "Ethernet Frame",
+      "packet": "IP Packet → MAC",
+      "description": "Host ส่ง Ethernet frame ไป MAC ที่ได้ — เก็บใน ARP cache",
+      "duration": 1200
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "slug": "rest",
+  "title": "REST",
+  "fullName": "Representational State Transfer",
+  "summary": "รูปแบบการออกแบบ API ที่ใช้ HTTP methods และ URL เป็นหลัก — มาตรฐาน de facto ของ Web API",
+  "difficulty": "beginner",
+  "category": "network",
+  "tags": [
+    "api",
+    "architecture",
+    "http"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "REST คือ architectural style สำหรับออกแบบ API — ใช้ HTTP methods (GET, POST, PUT, DELETE) กับ resources ที่ระบุด้วย URL\n\nตัวอย่าง:\n- GET /users → ดึงรายการ users\n- POST /users → สร้าง user ใหม่\n- GET /users/123 → ดึง user id 123\n- DELETE /users/123 → ลบ user"
+    },
+    {
+      "type": "why",
+      "content": "REST ทำให้ API predictable และเข้าใจง่าย:\n- ใช้ HTTP ที่มีอยู่แล้ว ไม่ต้อง protocol ใหม่\n- Stateless — แต่ละ request เป็นอิสระ\n- Resource-based — ทุกอย่างเป็น noun (users, posts)"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Resource แต่ละอย่างมี URI (เช่น /users/1)\n2. HTTP method กำหนด action: GET อ่าน, POST สร้าง, PUT/PATCH แก้, DELETE ลบ\n3. Stateless — ทุก request มีข้อมูลครบ ไม่พึ่ง session บน server\n4. Response มักเป็น JSON + status code\n5. HATEOAS (optional) — response มี links ไป resource ที่เกี่ยวข้อง"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Resources (nouns)",
+        "HTTP Methods (verbs)",
+        "Status Codes",
+        "JSON Body",
+        "Stateless"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "REST API สำหรับ blog:\n\n- GET /posts — รายการโพสต์\n- GET /posts/42 — โพสต์ id 42\n- POST /posts — สร้างโพสต์ใหม่\n- PUT /posts/42 — แก้โพสต์\n- DELETE /posts/42 — ลบโพสต์\n\nStatus: 200 OK, 201 Created, 404 Not Found"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "REST ≠ HTTP — REST เป็น style, HTTP เป็น protocol",
+        "API ที่ใช้ JSON ไม่ได้แปลว่าเป็น REST เสมอ",
+        "GraphQL เป็น alternative ที่ยืดหยุ่นกว่าแต่ซับซ้อนกว่า"
+      ]
+    }
+  ],
+  "related": [
+    "api",
+    "http",
+    "json"
+  ],
+  "visualization": "rest-flow",
+  "prerequisites": [
+    "api",
+    "http"
+  ]
+}

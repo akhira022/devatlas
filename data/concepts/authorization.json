@@ -1,0 +1,59 @@
+{
+  "slug": "authorization",
+  "title": "Authorization",
+  "fullName": "AuthZ",
+  "summary": "กระบวนการตรวจสอบว่า 'คุณทำอะไรได้บ้าง' — กำหนดสิทธิ์การเข้าถึง",
+  "difficulty": "beginner",
+  "category": "security",
+  "tags": [
+    "auth",
+    "permissions",
+    "security"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Authorization (AuthZ) เกิดขึ้นหลัง Authentication สำเร็จ — ระบบตรวจสอบว่าผู้ใช้มีสิทธิ์ทำ action นั้นหรือไม่"
+    },
+    {
+      "type": "why",
+      "content": "Authentication บอกว่า user คือใคร แต่ไม่บอกว่าทำอะไรได้ — Authorization ป้องกัน:\n\n- User ธรรมดาเข้าถึง admin panel\n- ลบข้อมูลของคนอื่น\n- ดูข้อมูลที่ไม่มีสิทธิ์\n\nทุกระบบที่มี role ต่างกัน (admin, editor, viewer) ต้องมี authorization"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. หลัง authentication สำเร็จ — ระบบรู้ user identity\n2. ตรวจสอบ role/permission ของ user (จาก Database หรือ token claims)\n3. เปรียบเทียบกับ action ที่ขอ (เช่น DELETE /users/123)\n4. อนุญาต (200) หรือปฏิเสธ (403 Forbidden)\n\nรูปแบบยอดนิยม: RBAC (Role-Based), ABAC (Attribute-Based), ACL (Access Control List)"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Role — ชุดสิทธิ์ (admin, editor, viewer)",
+        "Permission — สิทธิ์เฉพาะ action (read, write, delete)",
+        "Policy — กฎตัดสินว่าใครทำอะไรได้",
+        "Scope — ขอบเขตสิทธิ์ (OAuth scope: read:profile)",
+        "403 Forbidden — response เมื่อไม่มีสิทธิ์"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ระบบจัดการโปรเจกต์:\n\n- Admin: สร้าง/ลบ project, จัดการสมาชิก, ดู billing\n- Editor: แก้ไข task และ comment ได้ แต่ลบ project ไม่ได้\n- Viewer: อ่าน task ได้อย่างเดียว\n\nเมื่อ viewer พยายาม DELETE /projects/1 → server ตรวจ role → ตอบ 403 Forbidden แม้ login ถูกต้อง"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Authentication ≠ Authorization — login สำเร็จไม่ได้แปลว่าทำทุกอย่างได้",
+        "401 Unauthorized มักหมายถึงยังไม่ login, 403 Forbidden หมายถึง login แล้วแต่ไม่มีสิทธิ์",
+        "JWT อาจมี claims สำหรับ authorization (role, permissions)"
+      ]
+    }
+  ],
+  "related": [
+    "authentication",
+    "jwt",
+    "api",
+    "oauth"
+  ],
+  "visualization": "jwt-flow",
+  "prerequisites": [
+    "authentication"
+  ]
+}

@@ -1,0 +1,96 @@
+{
+  "slug": "https-flow",
+  "title": "HTTPS + TLS Handshake",
+  "description": "ดูว่า HTTPS เข้ารหัสข้อมูลยังไง — TLS handshake ก่อนส่ง HTTP",
+  "conceptSlug": "https",
+  "protocol": "HTTPS / TLS",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "browser",
+      "label": "Browser",
+      "description": "เริ่ม HTTPS connection — ต้องการ secure channel",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "server",
+      "label": "Web Server",
+      "description": "มี SSL Certificate — พร้อม negotiate encryption",
+      "type": "server",
+      "position": {
+        "x": 320,
+        "y": 120
+      }
+    },
+    {
+      "id": "ca",
+      "label": "Certificate",
+      "description": "SSL/TLS Certificate จาก Certificate Authority — ยืนยันตัวตน server",
+      "type": "service",
+      "position": {
+        "x": 320,
+        "y": 0
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "tls-1",
+      "from": "browser",
+      "to": "server",
+      "label": "Client Hello",
+      "packet": "TLS ClientHello",
+      "description": "Browser ส่ง supported cipher suites และ random number เริ่ม TLS handshake",
+      "duration": 1300
+    },
+    {
+      "id": "tls-2",
+      "from": "server",
+      "to": "browser",
+      "label": "Server Hello",
+      "packet": "TLS ServerHello",
+      "description": "Server เลือก cipher suite และส่ง certificate ของตัวเอง",
+      "duration": 1300
+    },
+    {
+      "id": "tls-3",
+      "from": "server",
+      "to": "ca",
+      "label": "Verify Cert",
+      "packet": "Certificate Chain",
+      "description": "Browser ตรวจ certificate กับ CA — ยืนยันว่า server เป็นตัวจริง ไม่ใช่ attacker",
+      "duration": 1100
+    },
+    {
+      "id": "tls-4",
+      "from": "browser",
+      "to": "server",
+      "label": "Key Exchange",
+      "packet": "Pre-Master Secret",
+      "description": "Browser และ Server สร้าง session key ร่วมกัน — ใช้เข้ารหัสต่อไป",
+      "duration": 1300
+    },
+    {
+      "id": "tls-5",
+      "from": "browser",
+      "to": "server",
+      "label": "Encrypted Request",
+      "packet": "🔒 HTTP Request",
+      "description": "HTTP Request ถูกเข้ารหัสด้วย session key — คนกลางอ่านไม่ได้",
+      "duration": 1400
+    },
+    {
+      "id": "tls-6",
+      "from": "server",
+      "to": "browser",
+      "label": "Encrypted Response",
+      "packet": "🔒 HTTP Response",
+      "description": "Server ส่ง encrypted response กลับ — Browser ถอดรหัสและแสดงหน้าเว็บ",
+      "duration": 1400
+    }
+  ]
+}

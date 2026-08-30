@@ -1,0 +1,63 @@
+{
+  "slug": "subnetting",
+  "title": "Subnetting",
+  "fullName": "IP Subnetting & CIDR",
+  "summary": "หลักการแบ่งเครือข่ายด้วย Subnet Mask และ CIDR — คำนวณ network, broadcast และจำนวน host",
+  "difficulty": "intermediate",
+  "category": "network",
+  "tags": [
+    "ip",
+    "cidr",
+    "routing",
+    "addressing"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Subnetting คือการแบ่งเครือข่าย IP ออกเป็นวงย่อย (subnet) ด้วย Subnet Mask หรือ CIDR prefix\n\nIPv4 address 32-bit แบ่งเป็น 4 octet:\n```\n192.168.1.100 = 11000000.10101000.00000001.01100100\n```\n\nSubnet Mask บอกว่า bit ไหนเป็น \"ส่วนเครือข่าย\" (network) และ bit ไหนเป็น \"ส่วน host\":\n```\n255.255.255.0 (/24) = 11111111.11111111.11111111.00000000\n                      └──── network ────┘└── host ──┘\n```\n\nCIDR notation เขียน prefix length ต่อท้าย IP — เช่น 192.168.1.0/24 หมายถึง 24 bit แรกเป็น network"
+    },
+    {
+      "type": "why",
+      "content": "Subnetting จำเป็นสำหรับการออกแบบเครือข่าย:\n\n- แยก VLAN/แผนก — HR อยู่ subnet หนึ่ง, Dev อยู่อีก subnet\n- ลด broadcast domain — traffic ไม่กระจายทั้งเครือข่าย\n- ประหยัด IP — จัดสรรเฉพาะจำนวน host ที่ต้องใช้\n- Security — จำกัดการเข้าถึงระหว่าง subnet ด้วย firewall/router\n- Routing — router ใช้ network address ตัดสินใจเส้นทาง"
+    },
+    {
+      "type": "how_it_works",
+      "content": "การคำนวณ subnet จาก IP + prefix (เช่น 192.168.1.100/26):\n\n**1. หา Subnet Mask จาก prefix**\n/26 → 26 bit เป็น 1 → 255.255.255.192\n\n**2. หา Block Size (ขนาดแต่ละ subnet)**\nBlock = 256 - octet สุดท้ายของ mask = 256 - 192 = 64\nSubnet เริ่มที่ 0, 64, 128, 192 ใน octet สุดท้าย\n\n**3. หา Network Address**\n192.168.1.100 อยู่ในช่วง 64–127 → Network = 192.168.1.64\n\nวิธี AND: IP AND Mask = Network\n```\n100 AND 192 = 64  (01100100 AND 11000000 = 01000000)\n```\n\n**4. หา Broadcast Address**\nBroadcast = Network + Block Size - 1 = 64 + 64 - 1 = 192.168.1.127\n\n**5. หา Host Range ที่ใช้ได้**\nFirst host = Network + 1 = 192.168.1.65\nLast host = Broadcast - 1 = 192.168.1.126\nUsable hosts = 2^(32-prefix) - 2 = 2^6 - 2 = 62\n\n**ตาราง CIDR ที่ใช้บ่อย:**\n```\nPrefix  Mask              Usable Hosts  ใช้เมื่อ\n/32    255.255.255.255   1             single host\n/30    255.255.255.252   2             WAN point-to-point\n/29    255.255.255.248   6             small subnet\n/28    255.255.255.240   14\n/27    255.255.255.224   30\n/26    255.255.255.192   62\n/25    255.255.255.128   126\n/24    255.255.255.0     254           home/office LAN\n```\n\n**สูตรสรุป:**\n- Usable hosts = 2^(32 - prefix) - 2\n- Block size (octet สุดท้าย) = 256 - mask octet\n- Magic number สำหรับ /25–/30: 128, 64, 32, 16, 8, 4"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Network Address — ที่อยู่แรกของ subnet (host bit เป็น 0 ทั้งหมด)",
+        "Broadcast Address — ที่อยู่สุดท้ายของ subnet (host bit เป็น 1 ทั้งหมด)",
+        "Usable Host Range — ระหว่าง network+1 ถึง broadcast-1",
+        "Subnet Mask — 255.255.255.0 หรือ /24",
+        "CIDR Prefix — จำนวน bit ของ network (/8 ถึง /30)",
+        "Default Gateway — มักเป็น host แรกของ subnet (เช่น .1)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เครือข่ายบ้านทั่วไป:\n```\nIP:       192.168.1.50\nMask:     255.255.255.0 (/24)\nGateway:  192.168.1.1  (router)\nDNS:      8.8.8.8\n```\n\nNetwork: 192.168.1.0\nBroadcast: 192.168.1.255\nUsable: 192.168.1.1 – 192.168.1.254 (254 เครื่อง)\n\n---\n\nOffice แบ่ง 3 subnet จาก 10.0.0.0/8:\n```\n10.0.1.0/24  → Dev team    (254 hosts)\n10.0.2.0/24  → HR          (254 hosts)\n10.0.3.0/24  → Guest WiFi  (254 hosts)\n```\n\n---\n\nPrivate IP ที่ใช้ใน LAN (ไม่ออกอินเทอร์เน็ตโดยตรง):\n- 10.0.0.0 – 10.255.255.255 (/8)\n- 172.16.0.0 – 172.31.255.255 (/12)\n- 192.168.0.0 – 192.168.255.255 (/16)"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "/24 ≠ 24 hosts — /24 มี usable host 254 เครื่อง (2^8 - 2)",
+        "Network (.0) และ Broadcast (.255) ใช้เป็น host ไม่ได้",
+        "/31 และ /32 มีกรณีพิเศษ — /31 ใช้ point-to-point link ได้ (RFC 3021)",
+        "Subnet Mask ≠ Gateway — mask บอกขอบเขตเครือข่าย, gateway คือ router ทางออก",
+        "192.168.x.x เป็น private IP — NAT แปลงเป็น public IP ตอนออกเน็ต"
+      ]
+    }
+  ],
+  "related": [
+    "ip",
+    "dhcp",
+    "nat",
+    "arp"
+  ],
+  "visualization": "subnet-flow",
+  "prerequisites": [
+    "ip"
+  ]
+}

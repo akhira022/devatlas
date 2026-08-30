@@ -1,0 +1,56 @@
+{
+  "slug": "nc",
+  "title": "nc",
+  "fullName": "netcat",
+  "summary": "ทดสอบ TCP/UDP port — Swiss army knife ของ network debugging",
+  "difficulty": "intermediate",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "unix",
+  "tags": [
+    "network",
+    "port",
+    "tcp",
+    "debug"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`nc` (netcat) เชื่อมต่อ TCP/UDP port โดยตรง — ใช้ทดสอบว่า port เปิดอยู่, ส่งข้อความดิบ, หรือสร้าง listener ชั่วคราว เรียกว่า \"Swiss army knife\" ของ network"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\n# ทดสอบว่า port เปิด (เช่น web server)\nnc -zv google.com 80\nnc -zv localhost 3000\nnc -zv host.com 20-25          # scan ช่วง port\n\n# เชื่อมต่อ interactive (ส่งข้อความดิบ)\nnc google.com 80\nGET / HTTP/1.0\\n\\n              # พิมพ์แล้ว Enter 2 ครั้ง\n\n# สร้าง listener (server ชั่วคราว)\nnc -l 8080                     # รอ connection port 8080\n\n# ส่งไฟล์\nnc -l 9999 > received.txt      # ฝั่งรับ\nnc host 9999 < file.txt          # ฝั่งส่ง\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "-z — scan mode (ไม่ส่งข้อมูล)",
+        "-v — verbose",
+        "-l — listen mode",
+        "-u — UDP",
+        "host port — เชื่อมต่อ",
+        "port scan — ตรวจ port เปิด/ปิด"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "API ไม่ตอบ — ตรวจว่า port ฟังอยู่จริงหรือไม่:\n```\nnc -zv localhost 8080\n# Connection to localhost 8080 port [tcp/*] succeeded!\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "nc vs telnet — nc รองรับ UDP และ scan, telnet เน้น interactive TCP",
+        "nc vs curl — nc ส่ง raw TCP, curl เป็น HTTP client",
+        "macOS nc กับ GNU nc syntax ต่างกันเล็กน้อย — ดู man nc"
+      ]
+    }
+  ],
+  "related": [
+    "tcp",
+    "http",
+    "netstat",
+    "ssh"
+  ],
+  "visualization": "network-connect-flow"
+}

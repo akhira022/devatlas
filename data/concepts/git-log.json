@@ -1,0 +1,49 @@
+{
+  "slug": "git-log",
+  "title": "log",
+  "summary": "ดูประวัติ commits — ใคร ทำอะไร เมื่อไหร่",
+  "difficulty": "beginner",
+  "category": "git-github",
+  "subcategory": "history",
+  "tags": [
+    "git",
+    "history"
+  ],
+  "sections": [
+    {
+      "type": "why",
+      "content": "ดู history ว่าใครแก้อะไรเมื่อไหร่ — debug regression และเข้าใจ evolution ของโปรเจกต์"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ngit log\ngit log --oneline -10\ngit log --graph --oneline --all\ngit log -p file.ts                 # history + diff ของไฟล์\ngit show abc1234                   # รายละเอียด commit เดียว\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "git log --oneline",
+        "git log -p — พร้อม diff",
+        "git log --graph --all",
+        "--author, --since",
+        "git show <hash> — รายละเอียด commit"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\ngit log --oneline -10\ngit log --grep=\"fix login\" --oneline\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "กด q ออกจาก log pager",
+        "--oneline อ่านง่ายสำหรับ scan history"
+      ]
+    }
+  ],
+  "related": [
+    "git-commit",
+    "git-diff",
+    "git-rebase"
+  ],
+  "visualization": "git-log-flow"
+}

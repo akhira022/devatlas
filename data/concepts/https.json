@@ -1,0 +1,60 @@
+{
+  "slug": "https",
+  "title": "HTTPS",
+  "fullName": "HTTP Secure",
+  "summary": "HTTP ที่เข้ารหัสด้วย TLS — ข้อมูลถูกปกป้องระหว่างส่ง",
+  "difficulty": "beginner",
+  "category": "network",
+  "tags": [
+    "protocol",
+    "security",
+    "tls"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "HTTPS คือ HTTP + TLS encryption — ข้อมูลถูกเข้ารหัสระหว่าง Client กับ Server ทำให้คนกลางแทรกอ่านไม่ได้"
+    },
+    {
+      "type": "why",
+      "content": "ป้องกัน man-in-the-middle attack, ปกป้อง password และข้อมูลส่วนตัว — ทุกเว็บสมัยใหม่ควรใช้ HTTPS"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Client ส่ง ClientHello (TLS version, cipher suites)\n2. Server ตอบ ServerHello + Certificate\n3. Client ตรวจ certificate กับ CA\n4. แลก session key (encrypted)\n5. ส่ง HTTP request ผ่าน encrypted channel\n6. Server ตอบ encrypted HTTP response"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "TLS Handshake — ตั้ง encrypted connection",
+        "SSL Certificate — ยืนยันตัวตน server",
+        "Port 443 — default สำหรับ HTTPS",
+        "Padlock Icon — browser แสดงเมื่อ connection ปลอดภัย",
+        "HSTS — บังคับใช้ HTTPS ต่อเนื่อง"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Login ธนาคารออนไลน์:\n\n1. พิมพ์ https://bank.com — browser ตรวจ certificate\n2. TLS handshake สร้าง encrypted tunnel\n3. กรอก username/password — ส่งผ่าน encrypted HTTP POST\n4. คนแทรกกลางอ่าน packet ไม่ได้ (เห็นแค่ encrypted data)\n5. Server ตอบ session cookie ผ่าน encrypted channel"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "HTTPS ≠ ปลอดภัย 100% — ยังโดน phishing site ที่มี certificate ได้",
+        "Self-signed certificate — browser แจ้งเตือน, ไม่เหมาะ production",
+        "HTTP redirect ไป HTTPS — ควรใช้ 301 + HSTS"
+      ]
+    }
+  ],
+  "related": [
+    "http",
+    "encryption",
+    "tcp",
+    "authentication"
+  ],
+  "visualization": "https-flow",
+  "prerequisites": [
+    "http",
+    "tcp"
+  ]
+}

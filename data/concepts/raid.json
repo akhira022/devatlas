@@ -1,0 +1,61 @@
+{
+  "slug": "raid",
+  "title": "RAID",
+  "summary": "รวม disk หลายตัวเพื่อ redundancy หรือ performance — RAID 0/1/5/10",
+  "difficulty": "intermediate",
+  "category": "hardware",
+  "subcategory": "server-hardware",
+  "tags": [
+    "storage",
+    "redundancy",
+    "server",
+    "disk"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "RAID (Redundant Array of Independent Disks) รวมหลาย disk ทำงานเป็นชุดเดียว — เพิ่มความเร็ว (striping) หรือ redundancy (mirroring/parity) ตาม level (RAID 0/1/5/6/10)"
+    },
+    {
+      "type": "why",
+      "content": "Disk เสียได้ — RAID ลด downtime และ data loss:\n\n- RAID 1 mirror — disk หนึ่งเสียยัง boot ได้\n- RAID 5/6 — parity ชดเชย disk ที่เสีย\n- RAID 10 — performance + redundancy สำหรับ database"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. RAID controller (hardware หรือ software) จัดการ disk array\n2. Striping แบ่งข้อมูลข้าม disk — อ่านเร็วขึ้น\n3. Mirroring คัดลอกข้อมูลไป disk คู่\n4. เมื่อ disk เสีย — rebuild จาก parity หรือ mirror\n5. ไม่แทน backup offsite — RAID กับ backup ต่างกัน"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "RAID 0/1/5/6/10",
+        "Hardware vs software RAID",
+        "Hot spare",
+        "Rebuild time",
+        "BBU (battery backup)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Production DB: RAID 10 (4 disks) = striping + mirror, 1 disk fail ยังรันได้ แต่ต้อง replace ทันที"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "RAID ≠ backup — fire/ransomware ยังเสียหายได้",
+        "RAID 0 เร็วแต่ไม่มี redundancy",
+        "Rebuild ระหว่าง degraded ช้าและเสี่ยง disk 2 fail"
+      ]
+    }
+  ],
+  "related": [
+    "storage",
+    "data-center",
+    "rack-server",
+    "database",
+    "hypervisor-host"
+  ],
+  "visualization": "server-infra-flow",
+  "prerequisites": [
+    "storage"
+  ]
+}

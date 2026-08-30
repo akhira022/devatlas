@@ -1,0 +1,55 @@
+{
+  "slug": "authentication",
+  "title": "Authentication",
+  "fullName": "AuthN",
+  "summary": "กระบวนการยืนยันว่า 'คุณคือใคร' — ตรวจสอบตัวตนผู้ใช้",
+  "difficulty": "beginner",
+  "category": "security",
+  "tags": [
+    "auth",
+    "login",
+    "security"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Authentication (AuthN) คือการยืนยันตัวตน — ระบบตรวจสอบว่าผู้ใช้เป็นใครจริง ๆ\n\nตัวอย่าง: Login ด้วย email/password, Google OAuth, fingerprint"
+    },
+    {
+      "type": "why",
+      "content": "ป้องกันไม่ให้คนอื่นเข้าถึงข้อมูลของคุณ — ทุกระบบที่มี user account ต้องมี authentication"
+    },
+    {
+      "type": "how_it_works",
+      "content": "ลำดับทั่วไปเมื่อ user login:\n\n1. User ส่ง credentials (email/password, OAuth token, biometric)\n2. Server ตรวจสอบกับ Database หรือ Identity Provider\n3. ถ้าถูกต้อง — สร้าง session หรือ JWT token\n4. Client เก็บ token/session และส่งไปกับ request ถัดไป\n5. Server ตรวจสอบ token ก่อนประมวลผลทุก request"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Credentials — สิ่งที่พิสูจน์ตัวตน (password, token, certificate)",
+        "Identity Provider (IdP) — ระบบยืนยันตัวตน (Google, Auth0, Keycloak)",
+        "Session / Token — หลักฐานว่า login แล้ว (JWT, session cookie)",
+        "Multi-Factor Authentication (MFA) — ยืนยันหลายชั้น",
+        "Password Hashing — เก็บ password แบบ hash ไม่เก็บ plain text"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Login ด้วย Google บนเว็บ e-commerce:\n\n1. กด \"Sign in with Google\" → redirect ไป Google\n2. Google ยืนยันตัวตน (password + 2FA ถ้ามี)\n3. Google ส่ง authorization code กลับมาเว็บ\n4. Backend แลก code เป็น access token และดึง profile\n5. สร้าง JWT ของเว็บเอง → user login สำเร็จ"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Authentication ≠ Authorization",
+        "Authentication = คุณคือใคร (Who are you?)",
+        "Authorization = คุณทำอะไรได้บ้าง (What can you do?)"
+      ]
+    }
+  ],
+  "related": [
+    "jwt",
+    "authorization",
+    "api"
+  ],
+  "visualization": "login-flow"
+}

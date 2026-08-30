@@ -1,0 +1,18 @@
+{
+  "slug": "curl-request-flow",
+  "title": "curl API Request",
+  "description": "ทดสอบ HTTP API จาก terminal ด้วย curl",
+  "conceptSlug": "curl",
+  "protocol": "HTTP",
+  "category": "cli",
+  "nodes": [
+    { "id": "terminal", "label": "Terminal", "description": "รัน curl command", "type": "client", "position": { "x": 0, "y": 120 } },
+    { "id": "api", "label": "API Server", "description": "REST endpoint", "type": "server", "position": { "x": 400, "y": 120 } }
+  ],
+  "steps": [
+    { "id": "curl-1", "from": "terminal", "to": "api", "label": "GET", "packet": "curl https://api.example.com/users", "description": "ส่ง HTTP GET request", "duration": 1200 },
+    { "id": "curl-2", "from": "api", "to": "terminal", "label": "200 OK", "packet": "[{...}]", "description": "รับ JSON response แสดงใน terminal", "duration": 1100 },
+    { "id": "curl-3", "from": "terminal", "to": "api", "label": "POST", "packet": "curl -X POST -d '{...}'", "description": "ทดสอบสร้างข้อมูลด้วย POST", "duration": 1200 },
+    { "id": "curl-4", "from": "api", "to": "terminal", "label": "201", "packet": "{id: 1}", "description": "ตรวจ status code และ body — debug API ได้เร็ว", "duration": 1100 }
+  ]
+}

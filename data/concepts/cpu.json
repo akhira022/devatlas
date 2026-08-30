@@ -1,0 +1,58 @@
+{
+  "slug": "cpu",
+  "title": "CPU",
+  "fullName": "Central Processing Unit",
+  "summary": "หน่วยประมวลผลกลาง — สมองของคอมพิวเตอร์ที่รันคำสั่งและโปรแกรม",
+  "difficulty": "beginner",
+  "category": "hardware",
+  "subcategory": "computer-components",
+  "tags": [
+    "processor",
+    "cores",
+    "performance"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "CPU (Central Processing Unit) คือชิปที่ execute คำสั่งของโปรแกรม — ทุก operation ใน code สุดท้ายถูกแปลงเป็นคำสั่งที่ CPU ประมวลผล\n\nCPU ประกอบด้วย:\n- **Cores** — หน่วยประมวลผลย่อย (4-core, 8-core)\n- **Clock Speed** — ความเร็ว GHz\n- **Cache** — L1/L2/L3 ใกล้ CPU\n- **Architecture** — x86-64, ARM"
+    },
+    {
+      "type": "why",
+      "content": "Developer ควรเข้าใจ CPU เพราะ performance tuning, concurrency, cloud instance sizing และปัญหา Docker emulation บน ARM vs x86"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Program โหลดจาก Storage เข้า RAM\n2. CPU fetch คำสั่งจาก RAM\n3. Decode และ execute ใน core\n4. เขียนผลลัพธ์กลับ RAM\n5. วนซ้ำตาม clock cycles"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Cores & Threads",
+        "Clock Speed (GHz)",
+        "Cache L1/L2/L3",
+        "ISA (x86, ARM)",
+        "TDP / Power"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Deploy API บน AWS: t3.micro สำหรับ dev, c6i สำหรับ CPU-heavy, monitor CloudWatch ถ้า CPU >80% ต้อง scale"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Core มาก ≠ เร็วเสมอ — architecture และ clock สำคัญ",
+        "vCPU บน cloud มี hypervisor overhead",
+        "CPU 100% อาจเป็น single-thread bottleneck"
+      ]
+    }
+  ],
+  "related": [
+    "ram",
+    "motherboard",
+    "gpu",
+    "server",
+    "docker"
+  ],
+  "visualization": "cpu-memory-flow"
+}

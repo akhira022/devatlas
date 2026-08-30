@@ -1,0 +1,59 @@
+{
+  "slug": "data-center",
+  "title": "Data Center",
+  "summary": "อาคาร/ facility ที่รวม server, network และ power cooling สำหรับ cloud",
+  "difficulty": "advanced",
+  "category": "hardware",
+  "subcategory": "server-hardware",
+  "tags": [
+    "datacenter",
+    "cloud",
+    "facility",
+    "cooling"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Data Center คือ facility ที่มี rack server หลายพัน, network backbone, UPS, cooling (HVAC), physical security"
+    },
+    {
+      "type": "why",
+      "content": "Cloud และ enterprise ต้องการ infrastructure ที่เชื่อถือได้:\n\n- Redundant power และ network\n- PUE (Power Usage Effectiveness) วัดประสิทธิภาพพลังงาน\n- Compliance (SOC2, ISO 27001) สำหรับข้อมูลสำคัญ\n- Scale เป็น rack หรือหลายพัน rack"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Rack จัด server เป็นแถว (hot/cold aisle)\n2. PDU จ่ายไฟ, UPS สำรองเมื่อไฟดับ\n3. CRAC/HVAC ระบายความร้อน\n4. Spine-leaf network เชื่อมทุก rack\n5. Remote hands และ monitoring 24/7"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Availability Zone",
+        "Region",
+        "Colocation",
+        "UPS & Generator",
+        "Cooling (hot/cold aisle)",
+        "Physical security"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Deploy app: เลือก AWS ap-southeast-1 (Singapore), multi-AZ RDS สำหรับ HA, edge CDN ใกล้ user"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Region ≠ AZ — AZ ใน region เดียวกัน",
+        "Data center ≠ cloud — cloud ใช้ DC เป็นพื้นฐาน",
+        "Latency ขึ้นกับ geographic distance"
+      ]
+    }
+  ],
+  "related": [
+    "rack-server",
+    "psu",
+    "raid",
+    "cloud-computing",
+    "edge-device-hardware"
+  ],
+  "visualization": "server-infra-flow"
+}

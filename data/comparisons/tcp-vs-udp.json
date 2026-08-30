@@ -1,0 +1,23 @@
+{
+  "slug": "tcp-vs-udp",
+  "title": "TCP vs UDP",
+  "description": "โปรโตคอล transport สองแบบที่ใช้บ่อยที่สุด — เลือกตามความต้องการ reliability หรือความเร็ว",
+  "icon": "arrow-left-right",
+  "items": [
+    { "conceptSlug": "tcp", "name": "TCP", "tagline": "เชื่อถือได้ เรียงลำดับ ช้ากว่าเล็กน้อย" },
+    { "conceptSlug": "udp", "name": "UDP", "tagline": "เร็ว ไม่รับประกัน ไม่เรียงลำดับ" }
+  ],
+  "rows": [
+    { "label": "การเชื่อมต่อ", "values": ["Connection-oriented (handshake ก่อน)", "Connectionless (ส่งเลย)"] },
+    { "label": "ความน่าเชื่อถือ", "values": ["รับประกันว่าข้อมูลถึงและถูกต้อง", "อาจสูญหายหรือมาไม่ครบ"] },
+    { "label": "ลำดับข้อมูล", "values": ["เรียงลำดับอัตโนมัติ", "ไม่รับประกันลำดับ"] },
+    { "label": "Overhead", "values": ["สูงกว่า (ACK, retransmit)", "ต่ำ — header เล็ก"] },
+    { "label": "ตัวอย่างการใช้", "values": ["HTTP, HTTPS, SSH, email", "DNS, video stream, game, VoIP"] }
+  ],
+  "whenToUse": [
+    { "label": "ต้องการข้อมูลครบถ้วน", "pick": "TCP" },
+    { "label": "ต้องการ latency ต่ำ ยอมเสียบาง packet", "pick": "UDP" },
+    { "label": "ดาวน์โหลดไฟล์ / API", "pick": "TCP" },
+    { "label": "live video / online game", "pick": "UDP" }
+  ]
+}

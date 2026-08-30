@@ -1,0 +1,61 @@
+{
+  "slug": "npm",
+  "title": "npm",
+  "fullName": "Node Package Manager",
+  "summary": "จัดการ JavaScript packages — ติดตั้ง dependency รัน script publish โปรเจกต์ Node.js",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "npm",
+  "platform": "unix",
+  "tags": [
+    "nodejs",
+    "package",
+    "javascript"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`npm` เป็น package manager ของ Node.js — ติดตั้ง library จาก npm registry, รัน script ใน package.json, และจัดการเวอร์ชัน dependency\n\nทำงานร่วมกับ `package.json` และ `package-lock.json` (หรือ `npm-shrinkwrap`)"
+    },
+    {
+      "type": "why",
+      "content": "Node.js ecosystem พึ่ง packages จากชุมชนมหาศาล:\n\n- ไม่ต้องเขียนทุกอย่างเอง (express, react, lodash)\n- lock เวอร์ชันให้ทีมใช้ dependency เดียวกัน\n- script มาตรฐาน (dev, build, test) ในทุกโปรเจกต์"
+    },
+    {
+      "type": "how_it_works",
+      "content": "**เริ่มโปรเจกต์:**\n```\nnpm init -y                    # สร้าง package.json\nnpm install                    # ติดตั้งจาก package.json\nnpm install express            # เพิ่ม dependency\nnpm install -D typescript      # devDependency (-D)\nnpm install -g pm2             # global package (-g)\n```\n\n**รัน script:**\n```\nnpm run dev\nnpm run build\nnpm test                       # npm run test shorthand\nnpm start\n```\n\n**จัดการ packages:**\n```\nnpm uninstall lodash\nnpm update\nnpm outdated\nnpm list --depth=0\nnpx create-next-app@latest     # รัน package โดยไม่ติดตั้ง global\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "install / i — ติดตั้ง package",
+        "run — รัน script ใน package.json",
+        "init — สร้าง package.json",
+        "-D / --save-dev — dev dependency",
+        "-g — global install",
+        "npx — รัน binary จาก package ชั่วคราว",
+        "package-lock.json — lock เวอร์ชันแน่นอน"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "clone โปรเจกต์แล้วรัน:\n```\ncd my-app\nnpm install\nnpm run dev\n# เปิด http://localhost:3000\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "npm vs npx — npm ติดตั้ง, npx รันครั้งเดียว (เช่น create-react-app)",
+        "npm vs yarn vs pnpm — package manager คนละตัว ใช้ lock file ต่างกัน",
+        "อย่า commit node_modules — ใช้ npm install จาก lock file แทน",
+        "permission error ตอน npm install -g — ใช้ nvm หรือ fix npm prefix"
+      ]
+    }
+  ],
+  "related": [
+    "json",
+    "git",
+    "deployment",
+    "docker"
+  ],
+  "visualization": "npm-flow"
+}

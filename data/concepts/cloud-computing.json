@@ -1,0 +1,56 @@
+{
+  "slug": "cloud-computing",
+  "title": "Cloud Computing",
+  "summary": "ใช้ทรัพยากรคอมพิวเตอร์ผ่านอินเทอร์เน็ต — ไม่ต้องซื้อ server เอง จ่ายตามใช้",
+  "difficulty": "beginner",
+  "category": "cloud",
+  "tags": [
+    "aws",
+    "infrastructure",
+    "scalable"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Cloud Computing คือการใช้ computing resources (server, storage, database) ผ่าน internet จาก cloud provider\n\nProviders หลัก: AWS, Google Cloud (GCP), Microsoft Azure, Vercel, Railway"
+    },
+    {
+      "type": "why",
+      "content": "- ไม่ต้องซื้อ hardware เอง\n- Scale ได้ทันที (10 users → 10 million)\n- จ่ายตามใช้ (pay-as-you-go)\n- Global infrastructure พร้อมใช้\n- Managed services ลดงาน ops"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. ผู้ใช้สมัครบัญชีกับ Cloud Provider (AWS, GCP, Azure)\n2. สร้าง resource ผ่าน Console, CLI หรือ API (VM, database, storage)\n3. Provider จัดสรร resource จาก data center กลาง\n4. จ่ายตามการใช้งาน (pay-as-you-go) — ชั่วโมง, GB, request\n5. Scale up/down ได้ทันทีโดยไม่ต้องซื้อ hardware"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "IaaS (Infrastructure)",
+        "PaaS (Platform)",
+        "SaaS (Software)",
+        "Compute (EC2, Lambda)",
+        "Storage (S3)",
+        "Database (RDS)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Startup เปิดตัวแอปใหม่:\n\n- เริ่มด้วย AWS EC2 instance เล็ก ๆ ($10/เดือน)\n- ใช้ RDS สำหรับ PostgreSQL แทนติดตั้งเอง\n- เก็บรูป user บน S3\n- เมื่อ user เพิ่ม → เพิ่ม instance หรือใช้ auto-scaling\n- ไม่ต้องซื้อ server หรือจ้างทีมดูแล data center"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Cloud ≠ ไม่มี server — มี server แต่อยู่ที่ provider",
+        "Vercel/Netlify เป็น PaaS สำหรับ frontend",
+        "On-premise vs Cloud — trade-off เรื่อง control vs convenience"
+      ]
+    }
+  ],
+  "related": [
+    "server",
+    "saas",
+    "serverless",
+    "docker"
+  ],
+  "visualization": "cloud-vm-flow"
+}

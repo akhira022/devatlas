@@ -1,0 +1,88 @@
+{
+  "slug": "security-hardware-flow",
+  "title": "Hardware Security Boot",
+  "description": "Secure Boot + TPM — ยืนยัน firmware และเก็บ keys",
+  "conceptSlug": "secure-boot",
+  "protocol": "UEFI",
+  "category": "hardware",
+  "nodes": [
+    {
+      "id": "uefi",
+      "label": "UEFI Firmware",
+      "description": "boot firmware",
+      "type": "service",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "tpm",
+      "label": "TPM Chip",
+      "description": "Trusted Platform Module",
+      "type": "device",
+      "position": {
+        "x": 280,
+        "y": 60
+      }
+    },
+    {
+      "id": "bootloader",
+      "label": "Bootloader",
+      "description": "signed binary",
+      "type": "service",
+      "position": {
+        "x": 280,
+        "y": 180
+      }
+    },
+    {
+      "id": "os",
+      "label": "OS Kernel",
+      "description": "Windows / Linux",
+      "type": "server",
+      "position": {
+        "x": 560,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "sh-1",
+      "from": "uefi",
+      "to": "bootloader",
+      "label": "Verify",
+      "packet": "signature check",
+      "description": "Secure Boot ตรวจลายเซ็น bootloader",
+      "duration": 1100
+    },
+    {
+      "id": "sh-2",
+      "from": "uefi",
+      "to": "tpm",
+      "label": "PCR extend",
+      "packet": "measurement",
+      "description": "บันทึก hash ของ firmware ลง TPM",
+      "duration": 1100
+    },
+    {
+      "id": "sh-3",
+      "from": "bootloader",
+      "to": "os",
+      "label": "Load",
+      "packet": "kernel.img",
+      "description": "bootloader โหลด OS kernel ที่เชื่อถือได้",
+      "duration": 1100
+    },
+    {
+      "id": "sh-4",
+      "from": "tpm",
+      "to": "os",
+      "label": "Seal keys",
+      "packet": "BitLocker",
+      "description": "TPM เก็บ encryption keys — ปลดล็อกเมื่อ boot ถูกต้อง",
+      "duration": 1000
+    }
+  ]
+}

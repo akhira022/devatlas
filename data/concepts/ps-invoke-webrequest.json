@@ -1,0 +1,58 @@
+{
+  "slug": "ps-invoke-webrequest",
+  "title": "Invoke-WebRequest",
+  "summary": "ส่ง HTTP/HTTPS request จาก PowerShell — ทดสอบ API (alias curl/iwr)",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "windows",
+  "tags": [
+    "powershell",
+    "http",
+    "api"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`Invoke-WebRequest` (alias `iwr`, และ PowerShell 7+ มี alias `curl`) ส่ง HTTP request จาก PowerShell — ทดสอบ API, ดาวน์โหลดหน้าเว็บ, ตรวจ status code"
+    },
+    {
+      "type": "why",
+      "content": "ทดสอบ HTTP API จาก PowerShell — แทน curl บน Windows"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nInvoke-WebRequest https://api.example.com/users\niwr https://google.com -Method Head\n\nInvoke-RestMethod https://api.example.com/users    # parse JSON อัตโนมัติ\nirm https://api.example.com/health\n\nInvoke-WebRequest -Uri https://api.example.com/login `\n  -Method POST `\n  -ContentType \"application/json\" `\n  -Body '{\"email\":\"test@test.com\"}'\n\n# ดาวน์โหลดไฟล์\nInvoke-WebRequest -Uri https://example.com/file.zip -OutFile file.zip\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "-Method — GET, POST, PUT, DELETE",
+        "-Headers — custom headers",
+        "-Body — request body",
+        "-OutFile — save เป็นไฟล์",
+        "Invoke-RestMethod (irm) — คืน object จาก JSON",
+        "StatusCode — ใน response object"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```powershell\nInvoke-RestMethod -Uri https://api.example.com/health\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "PowerShell curl ไม่ใช่ Unix curl — syntax ต่างกัน ใช้ curl.exe ถ้าต้องการตัวจริง",
+        "Invoke-RestMethod ดีกว่าสำหรับ JSON API — parse ให้อัตโนมัติ",
+        "Windows PowerShell 5 vs PowerShell 7 — behavior บางอย่างต่างกัน"
+      ]
+    }
+  ],
+  "related": [
+    "curl",
+    "http",
+    "api",
+    "wget"
+  ],
+  "visualization": "curl-request-flow"
+}

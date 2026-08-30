@@ -1,0 +1,23 @@
+{
+  "slug": "git-merge-vs-rebase",
+  "title": "Git Merge vs Rebase",
+  "description": "สองวิธีรวม branch — merge เก็บ history, rebase ทำให้เป็นเส้นตรง",
+  "icon": "git-branch",
+  "items": [
+    { "conceptSlug": "git-merge", "name": "Merge", "tagline": "รวม branch สร้าง merge commit" },
+    { "conceptSlug": "git-rebase", "name": "Rebase", "tagline": "ย้าย commit ไปต่อท้าย branch ปลายทาง" }
+  ],
+  "rows": [
+    { "label": "History", "values": ["เก็บ branch history ครบ", "History เป็นเส้นตรง"] },
+    { "label": "Merge commit", "values": ["มี (ยกเว้น fast-forward)", "ไม่มี"] },
+    { "label": "ความปลอดภัย", "values": ["ปลอดภัยกว่า — ไม่ rewrite history", "อันตรายถ้า rebase public branch"] },
+    { "label": "Conflict", "values": ["แก้ครั้งเดียวตอน merge", "อาจแก้หลายครั้งตาม commit"] },
+    { "label": "ใช้เมื่อ", "values": ["รวม feature เข้า main", "ทำ history สะอาดก่อน PR"] }
+  ],
+  "whenToUse": [
+    { "label": "รวม feature branch เข้า main", "pick": "Merge" },
+    { "label": "ทำ PR history สะอาด", "pick": "Rebase" },
+    { "label": "ทีมหลายคนใช้ branch เดียวกัน", "pick": "Merge" },
+    { "label": "branch ส่วนตัว ยังไม่ push", "pick": "Rebase" }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "slug": "git-commit",
+  "title": "commit",
+  "summary": "บันทึก snapshot ของ staged changes พร้อม message",
+  "difficulty": "beginner",
+  "category": "git-github",
+  "subcategory": "workflow",
+  "tags": [
+    "git",
+    "workflow"
+  ],
+  "sections": [
+    {
+      "type": "why",
+      "content": "commit คือ snapshot ของโปรเจกต์ — ย้อนกลับได้ เปรียบเทียบได้ audit ได้"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ngit commit -m \"feat: add login page\"\ngit commit -am \"fix typo\"          # add + commit (เฉพาะไฟล์ tracked)\ngit commit --amend -m \"new msg\"    # แก้ commit ล่าสุด (ยังไม่ push)\n```\n\n**Conventional Commits:**\n```\nfeat: ฟีเจอร์ใหม่\nfix: แก้บั๊ก\ndocs: เอกสาร\nchore: งาน maintenance\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "git commit -m \"message\"",
+        "commit hash (SHA)",
+        "git commit --amend — แก้ commit ล่าสุด",
+        "Conventional Commits — feat:, fix:",
+        "Author & timestamp"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\ngit add src/login.tsx\ngit commit -m \"feat(auth): add email login form\"\ngit push origin feature/login\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "commit message ควรบอกว่าทำอะไร ไม่ใช่แค่ \"update\"",
+        "amend หลัง push แล้วต้อง force push — ระวังในทีม",
+        "commit ว่าง — ไม่มี staged changes"
+      ]
+    }
+  ],
+  "related": [
+    "git-add",
+    "git-push",
+    "git-log"
+  ],
+  "visualization": "git-commit-flow",
+  "prerequisites": [
+    "git-add",
+    "git"
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "slug": "rag-chat",
+  "title": "แชท AI ที่อ่านเอกสารบริษัทได้อย่างไร?",
+  "description": "ติดตาม RAG ตั้งแต่คำถาม user จนถึงคำตอบจากเอกสารจริง",
+  "difficulty": "intermediate",
+  "icon": "brain",
+  "concepts": ["llm", "rag", "embedding", "database", "api"],
+  "visualization": "rag-flow",
+  "steps": [
+    { "order": 1, "title": "User ถามคำถาม", "description": "พนักงานถาม \"นโยบายลาป่วยกี่วัน?\" ในแชทบอท", "conceptSlug": "api" },
+    { "order": 2, "title": "แปลงเป็น embedding", "description": "ระบบแปลงคำถามเป็น vector เพื่อค้นหาเอกสารที่ใกล้เคียง", "conceptSlug": "embedding" },
+    { "order": 3, "title": "ค้นหาใน Vector DB", "description": "ดึง chunk จากคู่มือ HR ที่เกี่ยวข้องที่สุด", "conceptSlug": "database" },
+    { "order": 4, "title": "ส่ง context + prompt", "description": "รวมเอกสารที่ค้นได้กับคำถาม ส่งให้ LLM", "conceptSlug": "rag" },
+    { "order": 5, "title": "LLM สร้างคำตอบ", "description": "Model ตอบจาก context จริง ลดการ hallucinate", "conceptSlug": "llm" },
+    { "order": 6, "title": "แสดงผลให้ user", "description": "แชทบอทตอบพร้อมอ้างอิงเอกสารต้นทาง", "conceptSlug": "api" }
+  ]
+}

@@ -1,0 +1,86 @@
+{
+  "slug": "websocket-flow",
+  "title": "WebSocket Upgrade",
+  "description": "ดูการ upgrade จาก HTTP เป็น WebSocket connection แบบ real-time",
+  "conceptSlug": "websocket",
+  "protocol": "WebSocket",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "browser",
+      "label": "Browser",
+      "description": "ต้องการ real-time chat — เริ่มจาก HTTP",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "server",
+      "label": "WebSocket Server",
+      "description": "รองรับ HTTP Upgrade และ WebSocket protocol",
+      "type": "server",
+      "position": {
+        "x": 380,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "ws-1",
+      "from": "browser",
+      "to": "server",
+      "label": "Upgrade Request",
+      "packet": "GET + Upgrade: ws",
+      "description": "Browser ส่ง HTTP Request พร้อม header Upgrade: websocket และ Connection: Upgrade",
+      "duration": 1300
+    },
+    {
+      "id": "ws-2",
+      "from": "server",
+      "to": "browser",
+      "label": "101 Switching",
+      "packet": "101 Switching Protocols",
+      "description": "Server ตอบ 101 — ยอม upgrade connection จาก HTTP เป็น WebSocket",
+      "duration": 1300
+    },
+    {
+      "id": "ws-3",
+      "from": "browser",
+      "to": "server",
+      "label": "Message",
+      "packet": "{\"type\":\"chat\",\"msg\":\"Hi\"}",
+      "description": "Client ส่ง WebSocket frame — ไม่ต้อง HTTP header ทุกครั้ง เร็วกว่า polling",
+      "duration": 1200
+    },
+    {
+      "id": "ws-4",
+      "from": "server",
+      "to": "browser",
+      "label": "Broadcast",
+      "packet": "{\"type\":\"chat\",\"msg\":\"Hello!\"}",
+      "description": "Server ส่ง message กลับทันที — push ไม่ต้องรอ client ถาม",
+      "duration": 1200
+    },
+    {
+      "id": "ws-5",
+      "from": "browser",
+      "to": "server",
+      "label": "Message",
+      "packet": "{\"type\":\"chat\",\"msg\":\"How are you?\"}",
+      "description": "Connection ค้างไว้ — ส่ง message ได้ทั้งสองทางตลอดเวลา",
+      "duration": 1200
+    },
+    {
+      "id": "ws-6",
+      "from": "server",
+      "to": "browser",
+      "label": "Close",
+      "packet": "Close Frame",
+      "description": "เมื่อเสร็จ — ฝ่ายใดฝ่ายหนึ่งส่ง close frame ปิด WebSocket connection",
+      "duration": 1100
+    }
+  ]
+}

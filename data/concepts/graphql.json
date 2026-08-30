@@ -1,0 +1,60 @@
+{
+  "slug": "graphql",
+  "title": "GraphQL",
+  "summary": "ภาษา query API ที่ client เลือกได้ว่าต้องการ field ไหน — แทน REST หลาย endpoint",
+  "difficulty": "intermediate",
+  "category": "network",
+  "tags": [
+    "api",
+    "query",
+    "schema"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "GraphQL ให้ client ส่ง query ระบุข้อมูลที่ต้องการใน request เดียว\n\n```graphql\nquery {\n  user(id: 1) { name, email, posts { title } }\n}\n```"
+    },
+    {
+      "type": "why",
+      "content": "- ลด over-fetching (ได้ข้อมูลเกิน) และ under-fetching (ต้องเรียกหลายครั้ง)\n- Single endpoint (/graphql)\n- Strongly typed schema"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Client ส่ง POST /graphql พร้อม query ระบุ fields ที่ต้องการ\n2. GraphQL server parse query\n3. Resolver แต่ละ field ดึงข้อมูลจาก database/service\n4. Server รวมผลลัพธ์เป็น JSON ตรงตาม query\n5. Client ได้เฉพาะ fields ที่ขอ — ไม่ over-fetch หรือ under-fetch"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Query — อ่านข้อมูล",
+        "Mutation — เขียน/แก้ไขข้อมูล",
+        "Schema — กำหนด type และ fields",
+        "Resolver — function ดึงข้อมูลแต่ละ field",
+        "Single Endpoint — มักใช้ POST /graphql เดียว"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Mobile app ต้องการ user name และ posts:\n\nREST: GET /users/1 แล้ว GET /users/1/posts — 2 requests, ได้ข้อมูลเกิน\n\nGraphQL:\n```\nquery { user(id: 1) { name posts { title } } }\n```\n→ 1 request, ได้เฉพาะ name และ posts.title"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "GraphQL ≠ database — เป็น API layer",
+        "GraphQL ใช้ HTTP POST เป็นหลัก",
+        "REST ยังเหมาะกับ simple CRUD และ caching"
+      ]
+    }
+  ],
+  "related": [
+    "api",
+    "rest",
+    "http",
+    "json"
+  ],
+  "visualization": "graphql-flow",
+  "prerequisites": [
+    "api",
+    "http",
+    "json"
+  ]
+}

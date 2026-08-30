@@ -1,0 +1,116 @@
+{
+  "slug": "dns-flow",
+  "title": "DNS Resolution",
+  "description": "ดูการแปลง domain name เป็น IP address ก่อนเชื่อมต่อ server",
+  "conceptSlug": "dns",
+  "protocol": "DNS",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "browser",
+      "label": "Browser",
+      "description": "ต้องการเข้า google.com — แต่เครื่องเข้าใจแค่ IP address",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "resolver",
+      "label": "DNS Resolver",
+      "description": "ตัวกลางค้นหา IP — มักเป็น ISP DNS หรือ 8.8.8.8 (Google)",
+      "type": "network",
+      "position": {
+        "x": 240,
+        "y": 120
+      }
+    },
+    {
+      "id": "root",
+      "label": "Root DNS",
+      "description": "DNS ระดับบนสุด — รู้ว่า .com อยู่ที่ไหน",
+      "type": "network",
+      "position": {
+        "x": 480,
+        "y": 40
+      }
+    },
+    {
+      "id": "tld",
+      "label": "TLD DNS (.com)",
+      "description": "Top-Level Domain server — รู้ authoritative server ของ google.com",
+      "type": "network",
+      "position": {
+        "x": 480,
+        "y": 120
+      }
+    },
+    {
+      "id": "authoritative",
+      "label": "Authoritative DNS",
+      "description": "Server ที่เก็บ IP จริงของ google.com",
+      "type": "server",
+      "position": {
+        "x": 480,
+        "y": 200
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "dns-1",
+      "from": "browser",
+      "to": "resolver",
+      "label": "Query",
+      "packet": "google.com?",
+      "description": "Browser ถาม DNS Resolver: google.com คือ IP อะไร?",
+      "duration": 1100
+    },
+    {
+      "id": "dns-2",
+      "from": "resolver",
+      "to": "root",
+      "label": "Root Lookup",
+      "packet": "Where is .com?",
+      "description": "Resolver ถาม Root DNS ว่า .com TLD server อยู่ที่ไหน",
+      "duration": 1100
+    },
+    {
+      "id": "dns-3",
+      "from": "resolver",
+      "to": "tld",
+      "label": "TLD Lookup",
+      "packet": "Where is google.com?",
+      "description": "Resolver ถาม .com TLD ว่า authoritative server ของ google.com คือใคร",
+      "duration": 1100
+    },
+    {
+      "id": "dns-4",
+      "from": "resolver",
+      "to": "authoritative",
+      "label": "Auth Lookup",
+      "packet": "IP of google.com?",
+      "description": "Resolver ถาม Authoritative DNS โดยตรง — ได้ IP address จริง",
+      "duration": 1100
+    },
+    {
+      "id": "dns-5",
+      "from": "authoritative",
+      "to": "resolver",
+      "label": "A Record",
+      "packet": "142.250.x.x",
+      "description": "Authoritative DNS ตอบ A Record — IP address ของ google.com",
+      "duration": 1000
+    },
+    {
+      "id": "dns-6",
+      "from": "resolver",
+      "to": "browser",
+      "label": "Response",
+      "packet": "142.250.x.x",
+      "description": "Resolver ส่ง IP กลับ Browser และ cache ไว้ — ครั้งหน้าไม่ต้องถามใหม่",
+      "duration": 1100
+    }
+  ]
+}

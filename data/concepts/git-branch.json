@@ -1,0 +1,53 @@
+{
+  "slug": "git-branch",
+  "title": "branch",
+  "summary": "สร้างและจัดการ branch — แยก feature ออกจาก main",
+  "difficulty": "beginner",
+  "category": "git-github",
+  "subcategory": "branching",
+  "tags": [
+    "git",
+    "branch"
+  ],
+  "sections": [
+    {
+      "type": "analogy",
+      "content": "Git branch เหมือนสำเนาเอกสาร — แก้สำเนาโดยไม่กระทบต้นฉบับ จนกว่าจะ merge กลับ"
+    },
+    {
+      "type": "why",
+      "content": "แยกงาน feature ออกจาก main — ทีมทำงานคู่ขนานโดยไม่ชนกัน"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ngit branch                        # รายการ branch\ngit branch feature/login          # สร้าง branch\ngit branch -d feature/old         # ลบ (merge แล้ว)\ngit branch -D feature/wip           # ลบบังคับ\ngit branch -m old-name new-name     # เปลี่ยนชื่อ\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "git branch feature/x",
+        "git branch -a — ทุก branch",
+        "main/master — production branch",
+        "git branch -d — ลบ branch",
+        "HEAD — ชี้ commit ปัจจุบัน"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\ngit checkout -b feature/payment   # สร้าง + สลับ branch\n# เขียนโค้ด, commit\ngit push -u origin feature/payment\n# เปิด PR บน GitHub\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "branch เป็นแค่ pointer — สร้าง/ลบเร็ว ไม่ก็อปไฟล์",
+        "ลบ branch local ไม่ลบบน remote — ใช้ push origin --delete"
+      ]
+    }
+  ],
+  "related": [
+    "git-checkout",
+    "git-merge",
+    "github-pr"
+  ],
+  "visualization": "git-branch-flow"
+}

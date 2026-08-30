@@ -1,0 +1,18 @@
+{
+  "slug": "coap-flow",
+  "title": "CoAP Device Request",
+  "description": "อุปกรณ์ IoT ส่ง CoAP request ไป server แบบเบาและประหยัดพลังงาน",
+  "conceptSlug": "coap",
+  "protocol": "CoAP / UDP",
+  "category": "iot",
+  "nodes": [
+    { "id": "sensor", "label": "IoT Sensor", "description": "อุปกรณ์ constrained", "type": "device", "position": { "x": 0, "y": 120 } },
+    { "id": "server", "label": "CoAP Server", "description": "รับ GET/POST resource", "type": "server", "position": { "x": 320, "y": 120 } }
+  ],
+  "steps": [
+    { "id": "coap-1", "from": "sensor", "to": "server", "label": "GET", "packet": "GET /temp", "description": "Sensor ส่ง CoAP GET ขอค่าอุณหภูมิ", "duration": 1200 },
+    { "id": "coap-2", "from": "server", "to": "sensor", "label": "2.05 OK", "packet": "22.5°C", "description": "Server ตอบ payload สั้น ๆ ผ่าน UDP", "duration": 1100 },
+    { "id": "coap-3", "from": "sensor", "to": "server", "label": "POST", "packet": "POST /alert", "description": "Sensor แจ้งเหตุการณ์เมื่อเกิน threshold", "duration": 1200 },
+    { "id": "coap-4", "from": "server", "to": "sensor", "label": "ACK", "packet": "2.01 Created", "description": "Server ยืนยันรับ event", "duration": 1100 }
+  ]
+}

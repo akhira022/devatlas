@@ -1,0 +1,94 @@
+{
+  "slug": "rag-flow",
+  "title": "RAG Flow",
+  "description": "ค้นหาเอกสารที่เกี่ยวข้องจาก vector DB แล้วส่ง context ให้ LLM ตอบคำถาม",
+  "conceptSlug": "rag",
+  "protocol": "RAG",
+  "category": "ai",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Client",
+      "description": "ผู้ใช้ถามคำถามผ่าน chat interface",
+      "type": "client",
+      "position": { "x": 0, "y": 120 }
+    },
+    {
+      "id": "api",
+      "label": "RAG API",
+      "description": "Orchestrator จัดการ embedding, retrieval และ generation",
+      "type": "server",
+      "position": { "x": 240, "y": 120 }
+    },
+    {
+      "id": "vectordb",
+      "label": "Vector DB",
+      "description": "เก็บ document embeddings สำหรับ similarity search",
+      "type": "database",
+      "position": { "x": 480, "y": 120 }
+    },
+    {
+      "id": "llm",
+      "label": "LLM",
+      "description": "สร้างคำตอบจาก context ที่ดึงมาได้",
+      "type": "service",
+      "position": { "x": 720, "y": 120 }
+    }
+  ],
+  "steps": [
+    {
+      "id": "rag-1",
+      "from": "client",
+      "to": "api",
+      "label": "Query",
+      "packet": "POST /ask",
+      "description": "Client ส่งคำถามไปยัง RAG API",
+      "duration": 1200
+    },
+    {
+      "id": "rag-2",
+      "from": "api",
+      "to": "vectordb",
+      "label": "Embed & Search",
+      "packet": "query embedding",
+      "description": "API แปลงคำถามเป็น vector แล้วค้นหาเอกสารที่ใกล้เคียงที่สุด",
+      "duration": 1300
+    },
+    {
+      "id": "rag-3",
+      "from": "vectordb",
+      "to": "api",
+      "label": "Top-K Docs",
+      "packet": "chunks + scores",
+      "description": "Vector DB ส่งเอกสารที่เกี่ยวข้องกลับมา",
+      "duration": 1100
+    },
+    {
+      "id": "rag-4",
+      "from": "api",
+      "to": "llm",
+      "label": "Augment",
+      "packet": "prompt + context",
+      "description": "API รวม context จากเอกสารเข้ากับคำถามแล้วส่งให้ LLM",
+      "duration": 1200
+    },
+    {
+      "id": "rag-5",
+      "from": "llm",
+      "to": "api",
+      "label": "Generate",
+      "packet": "answer text",
+      "description": "LLM สร้างคำตอบจาก context ที่ได้รับ",
+      "duration": 1300
+    },
+    {
+      "id": "rag-6",
+      "from": "api",
+      "to": "client",
+      "label": "Response",
+      "packet": "200 OK + answer",
+      "description": "API ส่งคำตอบพร้อม source references กลับให้ Client",
+      "duration": 1200
+    }
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "git-checkout",
+  "title": "checkout / switch",
+  "summary": "สลับ branch หรือ restore ไฟล์ — Git 2.23+ ใช้ switch แยกชัด",
+  "difficulty": "beginner",
+  "category": "git-github",
+  "subcategory": "branching",
+  "tags": [
+    "git",
+    "branch"
+  ],
+  "sections": [
+    {
+      "type": "why",
+      "content": "สลับ branch หรือย้อนไฟล์ — จำเป็นสำหรับ workflow หลาย feature"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ngit checkout main\ngit checkout -b feature/api       # สร้าง + สลับ\ngit switch main                   # แนะนำแทน checkout (branch)\ngit switch -c feature/api\ngit restore file.ts               # ทิ้งการแก้ในไฟล์ (ระวัง!)\ngit restore --staged file.ts      # unstage\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "git checkout <branch>",
+        "git switch <branch> — คำสั่งใหม่",
+        "git checkout -- <file> — ทิ้งการแก้",
+        "git checkout <hash> — detached HEAD",
+        "git restore — แทน checkout ไฟล์"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\ngit switch main\ngit pull\ngit switch -c hotfix/typo\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "checkout ทำได้ทั้งสลับ branch และ restore ไฟล์ — สับสน, ใช้ switch/restore แทน",
+        "สลับ branch มี uncommitted changes — stash หรือ commit ก่อน"
+      ]
+    }
+  ],
+  "related": [
+    "git-branch",
+    "git-stash",
+    "git-merge"
+  ],
+  "visualization": "git-branch-flow",
+  "prerequisites": [
+    "git-branch"
+  ]
+}

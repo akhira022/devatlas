@@ -1,0 +1,114 @@
+{
+  "slug": "rest-flow",
+  "title": "REST API Operations",
+  "description": "ดู REST ใช้ HTTP methods กับ resources ยังไง — GET, POST, DELETE",
+  "conceptSlug": "rest",
+  "protocol": "REST / HTTP",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Client App",
+      "description": "Mobile/Web app ที่เรียก REST API",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "api",
+      "label": "REST API",
+      "description": "Resource-based endpoints — /users, /posts",
+      "type": "server",
+      "position": {
+        "x": 340,
+        "y": 120
+      }
+    },
+    {
+      "id": "database",
+      "label": "Database",
+      "description": "เก็บ resources จริง — users, posts tables",
+      "type": "database",
+      "position": {
+        "x": 680,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "rest-1",
+      "from": "client",
+      "to": "api",
+      "label": "GET",
+      "packet": "GET /users",
+      "description": "Client ขอรายการ users ทั้งหมด — READ operation, ไม่แก้ข้อมูล",
+      "duration": 1200
+    },
+    {
+      "id": "rest-2",
+      "from": "api",
+      "to": "database",
+      "label": "SELECT",
+      "packet": "SELECT * FROM users",
+      "description": "API แปลง GET เป็น database query",
+      "duration": 1000
+    },
+    {
+      "id": "rest-3",
+      "from": "api",
+      "to": "client",
+      "label": "200 OK",
+      "packet": "[{id:1,name:'John'}]",
+      "description": "API ส่ง JSON array ของ users กลับ — Status 200",
+      "duration": 1200
+    },
+    {
+      "id": "rest-4",
+      "from": "client",
+      "to": "api",
+      "label": "POST",
+      "packet": "POST /users {name:'Jane'}",
+      "description": "Client สร้าง user ใหม่ — CREATE operation พร้อม JSON body",
+      "duration": 1200
+    },
+    {
+      "id": "rest-5",
+      "from": "api",
+      "to": "database",
+      "label": "INSERT",
+      "packet": "INSERT INTO users...",
+      "description": "API บันทึก user ใหม่ลง database",
+      "duration": 1000
+    },
+    {
+      "id": "rest-6",
+      "from": "api",
+      "to": "client",
+      "label": "201 Created",
+      "packet": "{id:2,name:'Jane'}",
+      "description": "API ตอบ 201 Created พร้อม resource ที่สร้างใหม่",
+      "duration": 1200
+    },
+    {
+      "id": "rest-7",
+      "from": "client",
+      "to": "api",
+      "label": "DELETE",
+      "packet": "DELETE /users/2",
+      "description": "Client ลบ user id=2 — DELETE operation ระบุ resource ใน URL",
+      "duration": 1200
+    },
+    {
+      "id": "rest-8",
+      "from": "api",
+      "to": "client",
+      "label": "204 No Content",
+      "packet": "204",
+      "description": "API ลบสำเร็จ — ตอบ 204 ไม่มี body (REST convention)",
+      "duration": 1100
+    }
+  ]
+}

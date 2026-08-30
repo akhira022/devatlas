@@ -1,0 +1,61 @@
+{
+  "slug": "tpm",
+  "title": "TPM",
+  "fullName": "Trusted Platform Module",
+  "summary": "ชิป security บน motherboard — เก็บ cryptographic keys และ attestation",
+  "difficulty": "advanced",
+  "category": "hardware",
+  "subcategory": "advanced",
+  "tags": [
+    "security",
+    "chip",
+    "encryption",
+    "windows"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "TPM (Trusted Platform Module) คือชิปฮาร์ดแวร์ที่เก็บ cryptographic keys และบันทึก measurement ของ boot process — อาจเป็น discrete chip หรือ firmware TPM (fTPM) บน CPU"
+    },
+    {
+      "type": "why",
+      "content": "TPM ทำให้ encryption key ไม่ถูกดึงออกจากเครื่องง่าย ๆ:\n\n- BitLocker, LUKS disk encryption ผูกกับ TPM\n- Windows Hello และ enterprise attestation\n- ตรวจจับการเปลี่ยน firmware/bootloader (PCR values)"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. แต่ละ boot stage ส่ง hash ไป TPM (PCR extend)\n2. OS ขอ unwrap encryption key — TPM ตรวจ PCR ตรงกับตอน seal หรือไม่\n3. ถ้า boot chain ถูกแก้ — key ไม่ถูกปล่อย\n4. Remote attestation พิสูจน์ว่าเครื่อง boot ถูกต้อง"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "TPM 2.0",
+        "Platform Configuration Registers (PCR)",
+        "Key sealing",
+        "fTPM (firmware TPM)",
+        "Discrete vs integrated TPM"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "BitLocker: TPM เก็บ encryption key — ขโมย disk ไปใส่เครื่องอื่นเปิดไม่ได้"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "TPM ≠ HSM — scale และ use case ต่างกัน",
+        "Clear TPM ใน Windows ทำให้ BitLocker ต้อง recovery key",
+        "fTPM บน CPU หลายรุ่น — ไม่ต้อง chip แยก"
+      ]
+    }
+  ],
+  "related": [
+    "secure-boot",
+    "encryption",
+    "authentication",
+    "bios-uefi"
+  ],
+  "visualization": "security-hardware-flow",
+  "prerequisites": [
+    "bios-uefi"
+  ]
+}

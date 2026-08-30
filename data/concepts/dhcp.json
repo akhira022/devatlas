@@ -1,0 +1,64 @@
+{
+  "slug": "dhcp",
+  "title": "DHCP",
+  "fullName": "Dynamic Host Configuration Protocol",
+  "summary": "protocol ที่แจก IP address ให้อุปกรณ์อัตโนมัติ — ไม่ต้องตั้ง IP เองทุกเครื่อง",
+  "difficulty": "beginner",
+  "category": "network",
+  "tags": [
+    "ip",
+    "lan",
+    "configuration"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "DHCP คือ protocol ที่ให้ server แจก IP address, subnet mask, gateway และ DNS ให้อุปกรณ์ในเครือข่ายโดยอัตโนมัติ\n\nทุกครั้งที่มือถือหรือ laptop เชื่อม WiFi มักได้ IP จาก DHCP server (router)"
+    },
+    {
+      "type": "analogy",
+      "content": "DHCP เหมือนพนักงานรับแขกที่โรงแรม — แจกหมายเลขห้อง (IP) ให้อัตโนมัติเมื่อเช็คอิน"
+    },
+    {
+      "type": "why",
+      "content": "ถ้าไม่มี DHCP ต้องตั้ง IP เองทุกเครื่อง:\n- ง่ายต่อการชน IP (conflict)\n- ยุ่งยากในเครือข่ายใหญ่\n- DHCP จัดการ lease time และคืน IP เมื่ออุปกรณ์ออกจากเครือข่าย"
+    },
+    {
+      "type": "how_it_works",
+      "content": "DORA process:\n1. Discover — client broadcast หา DHCP server\n2. Offer — server เสนอ IP\n3. Request — client ขอใช้ IP นั้น\n4. Acknowledge — server ยืนยันและส่ง config"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "IP Address",
+        "Subnet Mask",
+        "Default Gateway",
+        "DNS Server",
+        "Lease Time"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เชื่อมมือถือ WiFi ที่บ้าน:\n\n1. มือถือส่ง DHCP Discover (broadcast)\n2. Router (DHCP server) ตอบ Offer: 192.168.1.105, mask /24, gateway 192.168.1.1, DNS 8.8.8.8\n3. มือถือส่ง Request ยืนยันใช้ IP นั้น\n4. Router ส่ง Acknowledge — lease 24 ชม.\n5. มือถือออกเน็ตได้ทันทีโดยไม่ต้องตั้ง IP เอง"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "DHCP ≠ DNS — DHCP แจก IP, DNS แปลง domain เป็น IP",
+        "Static IP คือตั้งเอง ไม่ผ่าน DHCP",
+        "Router บ้านมักเป็น DHCP server และ gateway พร้อมกัน"
+      ]
+    }
+  ],
+  "related": [
+    "ip",
+    "subnetting",
+    "dns",
+    "tcp",
+    "nat"
+  ],
+  "visualization": "dhcp-flow",
+  "prerequisites": [
+    "ip"
+  ]
+}

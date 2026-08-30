@@ -1,0 +1,57 @@
+{
+  "slug": "traceroute",
+  "title": "traceroute",
+  "summary": "ตามเส้นทาง packet ไปยังปลายทาง — ดู router แต่ละ hop และ latency",
+  "difficulty": "intermediate",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "unix",
+  "tags": [
+    "network",
+    "routing",
+    "debug"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`traceroute` (หรือ `traceroute` บน macOS, `tracepath` บน Linux) แสดง router ทุกตัวที่ packet ผ่านจากเครื่องคุณไปยัง destination — ใช้หา bottleneck หรือจุดที่ packet หาย"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ntraceroute google.com\ntraceroute 8.8.8.8\ntraceroute -n google.com           # ไม่ resolve hostname (เร็วขึ้น)\ntraceroute -m 15 google.com        # จำกัด max hops\n\n# Linux ทางเลือก\ntracepath google.com\nmtr google.com                     # real-time (ต้องติดตั้ง mtr)\n```\n\nOutput ตัวอย่าง:\n```\n 1  192.168.1.1    1.2 ms\n 2  10.0.0.1       5.4 ms\n 3  * * *                          # hop ไม่ตอบ\n 4  142.250.x.x   12.1 ms\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "hop — แต่ละ router ระหว่างทาง",
+        "* * * — ไม่ได้รับ response (อาจบล็อก ICMP)",
+        "-n — แสดง IP ไม่ resolve ชื่อ",
+        "TTL — ใช้เพิ่มทีละ hop",
+        "latency (ms) — เวลา round-trip ต่อ hop"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เว็บช้าแต่ ping ผ่าน — ดูว่า packet ค้าง hop ไหน:\n```\ntraceroute -n slow-site.com\n```\nถ้า `* * *` ต่อเนื่องหลาย hop อาจเป็น firewall บล็อก ICMP (ไม่จำเป็นว่า HTTP จะล้ม)"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "traceroute vs ping — ping วัดปลายทาง, traceroute ดูเส้นทาง",
+        "* ไม่ได้แปลว่า network พัง — หลาย router ไม่ตอบ ICMP โดยเจตนา",
+        "macOS ใช้ UDP, Linux ใช้ UDP/ICMP — ผลอาจต่างกันเล็กน้อย"
+      ]
+    }
+  ],
+  "related": [
+    "ip",
+    "ping",
+    "tcp",
+    "dns"
+  ],
+  "visualization": "traceroute-flow",
+  "prerequisites": [
+    "ip",
+    "ping"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "slug": "cat",
+  "title": "cat",
+  "fullName": "Concatenate",
+  "summary": "แสดงเนื้อหาไฟล์หรือรวมหลายไฟล์ — อ่าน config และ log จาก terminal",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "files",
+  "platform": "unix",
+  "tags": [
+    "shell",
+    "files",
+    "text"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`cat` อ่านไฟล์แล้วพิมพ์ออก stdout — ใช้ดูเนื้อหาไฟล์สั้น ๆ เช่น package.json, .env.example, หรือรวมไฟล์หลายตัว"
+    },
+    {
+      "type": "why",
+      "content": "ดูเนื้อหาไฟล์จาก terminal โดยไม่เปิด editor:\n\n- ตรวจ config บน server ผ่าน SSH\n- ดู log สั้น ๆ หรือ error message\n- รวมไฟล์หลายตัวเป็นไฟล์เดียว"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ncat package.json\ncat .env.example\ncat file1.txt file2.txt > merged.txt   # รวมไฟล์\ncat -n app.log                         # แสดงพร้อมเลขบรรทัด\ncat << EOF > hello.txt                 # heredoc สร้างไฟล์\nHello World\nEOF\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "-n — แสดงเลขบรรทัด",
+        "> — redirect ไปไฟล์",
+        ">> — append",
+        "heredoc — สร้างไฟล์จาก stdin"
+      ]
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "ไฟล์ใหญ่ใช้ less หรือ head/tail แทน cat — cat log 10GB จะ flood terminal",
+        "cat file > file ทำลายไฟล์ — redirect ทับตัวเอง",
+        "ดู binary file ด้วย cat จะแสดง garbage — ใช้ file เพื่อตรวจประเภท"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ตรวจ package.json บน server:\n\n```\ncat package.json | grep version\ncat .env.example          # ดูตัวแปรที่ต้องตั้ง\ncat app.log | tail -20    # ดู log 20 บรรทัดล่าสุด\n```"
+    }
+  ],
+  "related": [
+    "grep",
+    "ls",
+    "chmod"
+  ],
+  "visualization": "file-read-flow"
+}

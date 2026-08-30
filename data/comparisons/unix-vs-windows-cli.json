@@ -1,0 +1,27 @@
+{
+  "slug": "unix-vs-windows-cli",
+  "title": "Unix vs Windows CLI",
+  "description": "คำสั่งเทียบกันระหว่าง Linux/macOS กับ Windows — งานเดียวกัน คำสั่งต่างกัน",
+  "icon": "terminal",
+  "items": [
+    { "conceptSlug": "ls", "name": "Unix / Linux", "tagline": "bash, zsh — ใช้บน server และ macOS" },
+    { "conceptSlug": "win-dir", "name": "Windows", "tagline": "CMD และ PowerShell" }
+  ],
+  "rows": [
+    { "label": "ดูไฟล์ในโฟลเดอร์", "values": ["ls", "dir / Get-ChildItem"] },
+    { "label": "เปลี่ยนโฟลเดอร์", "values": ["cd", "cd / Set-Location"] },
+    { "label": "ดู path ปัจจุบัน", "values": ["pwd", "cd (CMD) / Get-Location"] },
+    { "label": "อ่านไฟล์", "values": ["cat", "type / Get-Content"] },
+    { "label": "ค้นหาข้อความ", "values": ["grep", "findstr / Select-String"] },
+    { "label": "ทดสอบเครือข่าย", "values": ["ping", "ping / Test-NetConnection"] },
+    { "label": "ดู IP", "values": ["ifconfig / ip addr", "ipconfig"] },
+    { "label": "DNS lookup", "values": ["nslookup / dig", "nslookup / Resolve-DnsName"] },
+    { "label": "HTTP request", "values": ["curl", "curl / Invoke-WebRequest"] },
+    { "label": "ติดตั้ง package", "values": ["npm (เหมือนกัน)", "npm (เหมือนกัน)"] }
+  ],
+  "whenToUse": [
+    { "label": "Deploy บน Linux server", "pick": "Unix commands" },
+    { "label": "ทำงานบน Windows เครื่องตัวเอง", "pick": "Windows commands" },
+    { "label": "เขียน script ข้าม platform", "pick": "PowerShell Core หรือ Node.js" }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "slug": "cd",
+  "title": "cd",
+  "fullName": "Change Directory",
+  "summary": "เปลี่ยน working directory ปัจจุบันใน terminal — ย้ายไปโฟลเดอร์อื่น",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "navigation",
+  "platform": "unix",
+  "tags": [
+    "shell",
+    "directory",
+    "navigation"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`cd` (change directory) เปลี่ยนโฟลเดอร์ที่ terminal ทำงานอยู่ — คำสั่งอื่น ๆ เช่น `ls` หรือ `npm install` จะอ้างอิง path จากตำแหน่งปัจจุบัน"
+    },
+    {
+      "type": "why",
+      "content": "terminal ทำงาน relative กับโฟลเดอร์ปัจจุบัน — ต้อง cd ไปตำแหน่งที่ถูกก่อนรันคำสั่ง:\n\n- npm install ต้องอยู่ในโฟลเดอร์ที่มี package.json\n- git commands ทำงานใน repo root\n- รัน script ต้อง cd ไป path ที่ถูกต้อง"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ncd projects          # เข้าโฟลเดอร์ projects (relative)\ncd /var/log          # ไป absolute path\ncd ..                # ขึ้นไป 1 ระดับ\ncd ../..             # ขึ้นไป 2 ระดับ\ncd ~                 # กลับ home directory\ncd -                 # กลับโฟลเดอร์ก่อนหน้า (toggle)\ncd                   # เหมือน cd ~\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "relative path — cd src/components",
+        "absolute path — cd /home/user",
+        ".. — parent directory",
+        "~ — home directory",
+        "- — previous directory",
+        "ชื่อมีช่องว่าง — cd \"My Folder\""
+      ]
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "cd ไม่แสดง path ปัจจุบัน — ใช้ pwd",
+        "Windows ใช้ cd ต่างกัน (drive letter, backslash) — ดู win-cd",
+        "cd ไม่สร้างโฟลเดอร์ — ใช้ mkdir ก่อน"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ทำงานกับ monorepo:\n\n```\ncd ~/projects/my-app\ncd packages/web\nnpm run dev\n\ncd ../../          # กลับ root\ncd apps/api\nnpm test\n\ncd -               # กลับ packages/web\n```"
+    }
+  ],
+  "related": [
+    "pwd",
+    "ls",
+    "mkdir"
+  ],
+  "visualization": "cli-navigation-flow"
+}

@@ -1,0 +1,55 @@
+{
+  "slug": "http",
+  "title": "HTTP",
+  "fullName": "HyperText Transfer Protocol",
+  "summary": "โปรโตคอลสำหรับส่งข้อมูลระหว่าง Client กับ Server บนอินเทอร์เน็ต",
+  "difficulty": "beginner",
+  "category": "network",
+  "tags": [
+    "protocol",
+    "web",
+    "request",
+    "response"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "HTTP (HyperText Transfer Protocol) คือโปรโตคอลมาตรฐานที่ใช้สื่อสารระหว่าง Client (เช่น Browser) กับ Server บน World Wide Web\n\nทุกครั้งที่คุณเปิดเว็บไซต์ ดู YouTube หรือใช้ App ที่เชื่อมอินเทอร์เน็ต ข้อมูลถูกส่งผ่าน HTTP"
+    },
+    {
+      "type": "why",
+      "content": "HTTP เป็น foundation ของเว็บสมัยใหม่:\n\n- กำหนดรูปแบบ Request/Response ที่ทุกคนเข้าใจตรงกัน\n- Stateless — แต่ละ request เป็นอิสระ ทำให้ scale ง่าย\n- รองรับหลาย content type (HTML, JSON, images)"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Browser สร้าง HTTP Request (URL, method, headers)\n2. Request ถูกส่งไปยัง Server\n3. Server ประมวลผลและสร้าง HTTP Response\n4. Browser รับ Response และแสดงผล"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Request (Method, URL, Headers, Body)",
+        "Response (Status Code, Headers, Body)",
+        "Methods: GET, POST, PUT, DELETE, PATCH",
+        "Status Codes: 200, 404, 500"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เปิดหน้าข่าว bbc.com:\n\n1. Browser ส่ง GET https://bbc.com/news HTTP/1.1\n2. Headers: Host, User-Agent, Accept, Cookie\n3. Server ตอบ 200 OK + HTML\n4. Browser parse HTML → พบ <link> CSS และ <script> JS\n5. ส่ง GET requests เพิ่มสำหรับ assets ทั้งหมด\n6. Render หน้าข่าวที่เห็นบนหน้าจอ"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "HTTP ≠ HTTPS — HTTP ไม่เข้ารหัส, HTTPS เข้ารหัสด้วย TLS",
+        "GET ใช้ดึงข้อมูล, POST ใช้ส่งข้อมูล — ไม่ใช่แค่ชื่อ แต่มีความหมายตาม semantics"
+      ]
+    }
+  ],
+  "related": [
+    "https",
+    "api",
+    "dns",
+    "tcp"
+  ],
+  "visualization": "http-flow"
+}

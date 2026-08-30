@@ -1,0 +1,48 @@
+{
+  "slug": "host",
+  "title": "host",
+  "summary": "ค้นหา DNS แบบสั้น — แปลง domain เป็น IP หรือ IP เป็น hostname",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "unix",
+  "tags": [
+    "dns",
+    "network",
+    "lookup"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`host` เป็นเครื่องมือ DNS lookup แบบง่าย — แสดงผลสั้นกว่า `dig` เหมาะเมื่อต้องการแค่ IP หรือ hostname โดยไม่ต้องดู TTL/authority section"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nhost google.com\nhost 8.8.8.8                        # reverse DNS\nhost -t MX gmail.com                # ระบุ record type\nhost -t NS example.com\nhost -a google.com                    # ทุก record (verbose)\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "-t TYPE — A, AAAA, MX, NS, CNAME, TXT",
+        "reverse lookup — host IP",
+        "-a — all records",
+        "output สั้น — เหมาะ pipe ใน script"
+      ]
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "host vs dig — host สั้น, dig ละเอียดกว่า",
+        "host vs nslookup — ทั้งคู่ง่าย, host output กระชับกว่า",
+        "ไม่มี host บน Windows — ใช้ nslookup หรือ Resolve-DnsName"
+      ]
+    }
+  ],
+  "related": [
+    "dns",
+    "dig",
+    "nslookup",
+    "ip"
+  ],
+  "visualization": "dns-flow"
+}

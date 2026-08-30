@@ -1,0 +1,63 @@
+{
+  "slug": "api",
+  "title": "API",
+  "fullName": "Application Programming Interface",
+  "summary": "ชุดกฎที่ให้โปรแกรมสื่อสารกัน — กำหนดวิธีขอและส่งข้อมูลระหว่างระบบ",
+  "difficulty": "beginner",
+  "category": "programming",
+  "tags": [
+    "backend",
+    "interface",
+    "communication"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "API (Application Programming Interface) คือชุดของกฎและข้อตกลงที่ให้โปรแกรมหนึ่งสื่อสารกับอีกโปรแกรมหนึ่งได้ โดยไม่ต้องรู้รายละเอียดภายในทั้งหมด\n\nAPI กำหนด:\n- Endpoint ไหนใช้ทำอะไร (เช่น GET /users)\n- ส่งข้อมูลอะไรไป (request body, headers)\n- จะได้ข้อมูลอะไรกลับ (response format)\n\nตัวอย่างง่าย ๆ: แอปพยากรณ์อากาศไม่ได้วัดอุณหภูมิเอง แต่เรียก API ของบริการพยากรณ์อากาศเพื่อขอข้อมูลมาแสดง"
+    },
+    {
+      "type": "analogy",
+      "content": "API เหมือนเมนูอาหาร — บอกว่าสั่งอะไรได้ (endpoints) โดยไม่ต้องเข้าไปในครัว (backend)"
+    },
+    {
+      "type": "why",
+      "content": "API ทำให้ระบบต่าง ๆ ทำงานร่วมกันได้โดยไม่ผูกติดกันแน่น (loose coupling):\n\n- Frontend เรียก Backend ผ่าน API โดยไม่ต้องรู้ว่า Database เป็นอะไร\n- Mobile App ใช้ API เดียวกับ Web App ได้\n- Third-party services (Google Login, Stripe Payment) เชื่อมต่อผ่าน API\n- ทีมต่าง ๆ พัฒนาแยกกันได้ — แค่ตกลง API contract"
+    },
+    {
+      "type": "how_it_works",
+      "content": "Client ส่ง Request ไปยัง API Server → Server ประมวลผล (อาจดึงข้อมูลจาก Database) → Server ส่ง Response กลับมา (มักเป็น JSON)\n\nลำดับทั่วไป:\n1. Client สร้าง HTTP Request (method, URL, headers, body)\n2. API Server รับและ validate request\n3. Server รัน business logic และ query Database\n4. Server สร้าง Response (status code + JSON body)\n5. Client รับ response และอัปเดต UI"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Endpoint (URL path)",
+        "HTTP Methods (GET, POST, PUT, DELETE, PATCH)",
+        "Request Headers (Authorization, Content-Type)",
+        "Request Body (JSON)",
+        "Response Status Codes (200, 404, 500)",
+        "Response Body (JSON)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เมื่อคุณ scroll social media feed:\n\n1. App ส่ง GET /api/feed พร้อม Authorization header\n2. Server ตรวจสอบ token, ดึงโพสต์จาก Database\n3. Server ส่ง 200 OK พร้อม JSON array ของโพสต์\n4. App แปลง JSON แล้ว render โพสต์บนหน้าจอ\n5. เมื่อกด Like → App ส่ง POST /api/posts/123/like"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "API ≠ Backend — API คือ interface (ช่องทางสื่อสาร), Backend คือระบบทั้งหมดเบื้องหลัง",
+        "API ≠ Database — API เป็นช่องทาง, Database เป็นที่เก็บข้อมูล",
+        "REST API เป็นแค่รูปแบบหนึ่ง — ยังมี GraphQL, gRPC, WebSocket API",
+        "Public API vs Internal API — เปิดให้ภายนอกใช้ vs ใช้ภายในองค์กรเท่านั้น"
+      ]
+    }
+  ],
+  "related": [
+    "http",
+    "json",
+    "rest",
+    "authentication",
+    "backend"
+  ],
+  "visualization": "api-flow"
+}

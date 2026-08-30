@@ -1,0 +1,59 @@
+{
+  "slug": "psu",
+  "title": "PSU",
+  "fullName": "Power Supply Unit",
+  "summary": "แหล่งจ่ายไฟให้ทุก component — wattage, efficiency และ redundancy",
+  "difficulty": "intermediate",
+  "category": "hardware",
+  "subcategory": "peripherals",
+  "tags": [
+    "power",
+    "wattage",
+    "efficiency",
+    "server"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "PSU (Power Supply Unit) แปลงไฟฟ้า AC จากปลั๊กเป็น DC หลายแรงดัน (+12V, +5V, +3.3V) ให้ motherboard, CPU, GPU และอุปกรณ์ภายในเคส\n\nมี rating 80 Plus (Bronze → Titanium) วัดประสิทธิภาพการแปลงพลังงาน — Gold ขึ้นไปเหมาะ build ทั่วไป"
+    },
+    {
+      "type": "why",
+      "content": "PSU คุณภาพต่ำเสี่ยงต่อความเสียหายของ component ทั้งระบบ:\n\n- Wattage ต้องรองรับ peak load (CPU + GPU พร้อมกัน) + headroom 20%\n- Server ใช้ redundant PSU — สลับตัวใดตัวหนึ่งได้โดยไม่ดับ\n- Modular cable ช่วยจัดการสายและ airflow ในเคส"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. รับ AC 110V/220V จากปลั๊กไฟ\n2. แปลงและจ่าย DC ผ่าน rail (+12V สำหรับ GPU/CPU, +5V/+3.3V สำหรับ board)\n3. ATX 24-pin จ่าย motherboard, 8-pin CPU, PCIe 6+2-pin ให้การ์ดจอ\n4. PSU ปรับ output ตาม load จริง — ไม่ได้จ่ายเต็ม wattage ตลอดเวลา"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Wattage (650W-1200W)",
+        "80 Plus efficiency",
+        "Modular vs non-modular",
+        "Redundant PSU (server)",
+        "12V rail capacity"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Gaming PC: CPU 150W + GPU 350W + headroom 20% → PSU 750W Gold minimum"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "PSU wattage สูง ≠ กินไฟมาก — จ่ายตาม load",
+        "Cheap PSU เสี่ยง damage component",
+        "Server dual PSU = hot swap redundancy"
+      ]
+    }
+  ],
+  "related": [
+    "motherboard",
+    "gpu",
+    "cpu",
+    "rack-server",
+    "data-center"
+  ],
+  "visualization": "peripheral-flow"
+}

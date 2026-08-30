@@ -1,0 +1,56 @@
+{
+  "slug": "data-structure",
+  "title": "Data Structure",
+  "fullName": "โครงสร้างข้อมูล",
+  "summary": "วิธีจัดเก็บและจัดระเบียบข้อมูลใน memory — เลือก structure ที่เหมาะกับปัญหาเพื่อความเร็วและประหยัดทรัพยากร",
+  "difficulty": "beginner",
+  "category": "programming",
+  "subcategory": "data-structure",
+  "tags": [
+    "algorithm",
+    "memory",
+    "fundamentals"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "**Data Structure** คือรูปแบบการจัดเก็บและจัดการข้อมูลในโปรแกรม — แต่ละแบบมีจุดแข็งสำหรับ operation ต่างกัน (ค้นหา, แทรก, ลบ)\n\n**Linear** (เรียงต่อเนื่อง):\n- Array, Linked List, Stack, Queue\n\n**Non-linear** (เชื่อมโยงหลายทาง):\n- Tree, Graph, Heap\n\n**Associative**:\n- Hash Table — ค้นหาแบบ O(1) เฉลี่ย"
+    },
+    {
+      "type": "why",
+      "content": "เลือก structure ผิด = โปรแกรมช้าหรือใช้ memory เกิน:\n\n- ค้นหาบ่อย → Hash Table หรือ BST\n- ต้องการลำดับ FIFO → Queue\n- Undo/Backtrack → Stack\n- ความสัมพันธ์เครือข่าย → Graph\n- Top K / Priority → Heap\n\nสัมภาษณ์งานและ system design ถามเรื่องนี้บ่อย"
+    },
+    {
+      "type": "how_it_works",
+      "content": "ประเมินด้วย **Time Complexity (Big O)**:\n\n| Operation | Array | Linked List | Hash Table |\n|-----------|-------|-------------|------------|\n| Access by index | O(1) | O(n) | — |\n| Search | O(n) | O(n) | O(1)* |\n| Insert end | O(1)* | O(1) | O(1)* |\n| Delete | O(n) | O(1)** | O(1)* |\n\n* amortized / ** ถ้ามี pointer ไป node\n\nเลือก structure จาก **operations ที่ทำบ่อยที่สุด** ไม่ใช่แค่ชื่อดัง"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Element — หน่วยข้อมูล",
+        "Index / Pointer — อ้างอิงตำแหน่ง",
+        "Node — โหนดใน list/tree/graph",
+        "Edge — เส้นเชื่อมใน graph",
+        "Key-Value — คู่ใน hash table",
+        "Big O — วัดประสิทธิภาพ"
+      ]
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Data Structure ≠ Algorithm — structure คือที่เก็บ, algorithm คือวิธีทำ",
+        "Array ใน JavaScript เป็น dynamic array ไม่ใช่ array ตายตัวแบบ C",
+        "Hash Table collision ทำให้ worst case ช้ากว่า O(1)",
+        "Tree หลายแบบ — BST, AVL, B-Tree ใช้คนละกรณี"
+      ]
+    }
+  ],
+  "related": [
+    "array",
+    "linked-list",
+    "hash-table",
+    "tree",
+    "oop"
+  ],
+  "visualization": "array-flow"
+}

@@ -1,0 +1,19 @@
+{
+  "slug": "ssh-flow",
+  "title": "SSH Remote Session",
+  "description": "เชื่อมต่อ remote server ผ่าน SSH แล้วรันคำสั่งบนเครื่องปลายทาง",
+  "conceptSlug": "ssh",
+  "protocol": "SSH",
+  "category": "cli",
+  "nodes": [
+    { "id": "local", "label": "Local Terminal", "description": "เครื่อง developer", "type": "client", "position": { "x": 0, "y": 120 } },
+    { "id": "server", "label": "Remote Server", "description": "VPS / production host", "type": "server", "position": { "x": 320, "y": 120 } }
+  ],
+  "steps": [
+    { "id": "ssh-1", "from": "local", "to": "server", "label": "Connect", "packet": "ssh user@host", "description": "Client เริ่ม SSH handshake และยืนยัน host key", "duration": 1200 },
+    { "id": "ssh-2", "from": "local", "to": "server", "label": "Auth", "packet": "public key / password", "description": "Server ตรวจ private key หรือ password", "duration": 1100 },
+    { "id": "ssh-3", "from": "local", "to": "server", "label": "Command", "packet": "git pull && deploy", "description": "ส่งคำสั่งผ่าน encrypted channel", "duration": 1300 },
+    { "id": "ssh-4", "from": "server", "to": "local", "label": "Output", "packet": "stdout / stderr", "description": "Server ส่งผลลัพธ์กลับ terminal", "duration": 1200 },
+    { "id": "ssh-5", "from": "local", "to": "server", "label": "Exit", "packet": "exit", "description": "ปิด session — connection หยุด", "duration": 1000 }
+  ]
+}

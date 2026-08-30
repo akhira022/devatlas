@@ -1,0 +1,60 @@
+{
+  "slug": "ssh",
+  "title": "ssh",
+  "fullName": "Secure Shell",
+  "summary": "เชื่อมต่อ remote server แบบเข้ารหัส — รันคำสั่งบนเครื่องอื่นอย่างปลอดภัย",
+  "difficulty": "intermediate",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "unix",
+  "tags": [
+    "remote",
+    "security",
+    "server"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`ssh` (Secure Shell) เชื่อมต่อ terminal ไปยัง remote host ผ่านการเข้ารหัส — ใช้จัดการ VPS, deploy server, หรือ tunnel port อย่างปลอดภัย"
+    },
+    {
+      "type": "why",
+      "content": "จัดการ server ระยะไกลอย่างปลอดภัย:\n\n- ไม่ต้องนั่งหน้าเครื่อง production\n- การสื่อสารเข้ารหัส ป้องกัน password ถูกดัก\n- มาตรฐานสำหรับ DevOps และ cloud administration"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nssh user@192.168.1.10\nssh user@server.example.com\nssh -p 2222 user@host          # custom port\nssh -i ~/.ssh/id_ed25519 user@host   # ระบุ private key\nssh user@host \"ls -la\"         # รันคำสั่งเดียวแล้วออก\nssh -L 3000:localhost:3000 user@host   # local port forward\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "user@host — username และ address",
+        "-p — port (default 22)",
+        "-i — identity/private key file",
+        "~/.ssh/id_ed25519 — key pair",
+        "known_hosts — บันทึก fingerprint server",
+        "-L — local port forwarding"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เข้า production server:\n```\nssh deploy@prod.example.com\ncd /var/www/app\ngit pull && npm run build && pm2 restart app\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "ssh ใช้ key-based auth ปลอดภัยกว่า password — ssh-copy-id ส่ง public key",
+        "Permission denied มักมาจาก key ผิดหรือ ~/.ssh permission หลวม",
+        "scp และ sftp ใช้ SSH protocol เดียวกัน — สำหรับ copy ไฟล์"
+      ]
+    }
+  ],
+  "related": [
+    "tcp",
+    "tls",
+    "chmod",
+    "deployment",
+    "scp"
+  ],
+  "visualization": "ssh-flow"
+}

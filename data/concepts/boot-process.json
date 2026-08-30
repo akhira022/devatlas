@@ -1,0 +1,57 @@
+{
+  "slug": "boot-process",
+  "title": "Boot Process",
+  "summary": "สิ่งที่เกิดขึ้นตั้งแต่กด power จน OS พร้อมใช้งาน",
+  "difficulty": "intermediate",
+  "category": "hardware",
+  "subcategory": "boot-and-firmware",
+  "tags": [
+    "boot",
+    "os",
+    "startup"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Boot Process: Power → Firmware (UEFI) → Bootloader (GRUB/systemd-boot) → Kernel → Init system → Login"
+    },
+    {
+      "type": "why",
+      "content": "Debug boot failure, dual-boot, server recovery, เข้าใจว่า OS โหลดจากไหน"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. UEFI POST\n2. โหลด bootloader จาก EFI partition\n3. Kernel โหลด drivers\n4. Init (systemd) start services\n5. Login screen"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "UEFI/BIOS",
+        "Bootloader",
+        "Kernel",
+        "Init system",
+        "User space"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Server ไม่ boot: ต่อ IPMI/KVM → ดู POST error → ตรวจ boot disk ใน RAID → repair GRUB"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Bootloader ≠ OS",
+        "Fast boot ข้าม POST บางอย่าง",
+        "M.2 vs SATA boot priority ต้องตั้งใน UEFI"
+      ]
+    }
+  ],
+  "related": [
+    "bios-uefi",
+    "storage",
+    "cpu",
+    "ram",
+    "secure-boot"
+  ],
+  "visualization": "boot-process-flow"
+}

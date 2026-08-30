@@ -1,0 +1,62 @@
+{
+  "slug": "raspberry-pi",
+  "title": "Raspberry Pi",
+  "summary": "คอมพิวเตอร์ขนาดเล็กรัน Linux — homelab, IoT gateway และ learning",
+  "difficulty": "beginner",
+  "category": "hardware",
+  "subcategory": "embedded-boards",
+  "tags": [
+    "sbc",
+    "linux",
+    "gpio",
+    "homelab"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Raspberry Pi คือ single-board computer (SBC) ขนาดเครดิตการ์ด รัน Linux เต็มรูปแบบ — มี GPIO สำหรับต่อ sensor และ actuator\n\nต่างจาก Arduino/ESP32 ที่เป็น MCU — Pi เหมาะงานที่ต้องการ OS, networking และ processing มากกว่า"
+    },
+    {
+      "type": "why",
+      "content": "Pi เหมาะ gateway, media server, และ IoT hub:\n\n- รัน Docker, Python, Node.js ได้\n- Home Assistant, Pi-hole, NAS lightweight\n- GPIO + camera module สำหรับ computer vision\n- ราคาถูกกว่า PC สำหรับ edge processing"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Flash OS (Raspberry Pi OS) ลง microSD\n2. Boot แล้วตั้งค่า WiFi/SSH\n3. รัน service (MQTT broker, web server)\n4. อ่าน sensor ผ่าน GPIO หรือ USB\n5. ส่งข้อมูลขึ้น cloud หรือแสดง dashboard local"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "ARM CPU",
+        "RAM (1-8GB)",
+        "GPIO 40-pin",
+        "microSD boot",
+        "USB/Ethernet/WiFi"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Home server: Pi 4 + SSD → Pi-hole + MQTT broker + Grafana สำหรับ home sensor"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Pi ≠ Arduino — Pi รัน OS, Arduino เป็น MCU bare-metal",
+        "microSD ช้าและเสื่อม — ใช้ SSD boot ดีกว่า",
+        "Pi 5 เร็วกว่า Pi 4 มาก"
+      ]
+    }
+  ],
+  "related": [
+    "arduino",
+    "esp32",
+    "sensor",
+    "docker",
+    "edge-device-hardware"
+  ],
+  "visualization": "embedded-board-flow",
+  "prerequisites": [
+    "cpu",
+    "storage"
+  ]
+}

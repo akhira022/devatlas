@@ -1,0 +1,72 @@
+{
+  "slug": "rack-server",
+  "title": "Rack Server",
+  "summary": "เซิร์ฟเวอร์แบบ mount ใน rack มาตรฐาน 19\" — 1U/2U สำหรับ data center, colocation และ on-prem",
+  "difficulty": "advanced",
+  "category": "hardware",
+  "subcategory": "server-hardware",
+  "tags": [
+    "server",
+    "rack",
+    "1u",
+    "enterprise",
+    "ipmi",
+    "datacenter"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Rack Server คือเซิร์ฟเวอร์ที่ออกแบบให้ติดตั้งใน **server rack** มาตรฐาน 19 นิ้ว โดยใช้หน่วย **U (Unit)** วัดความสูง — 1U = 1.75 นิ้ว (44.45 mm)\n\nตัวอย่างรุ่นที่พบบ่อย:\n- Dell PowerEdge\n- HPE ProLiant\n- Supermicro\n- Lenovo ThinkSystem\n\nต่างจาก PC ทั่วไป — rack server เน้น **density, redundancy และ remote management** สำหรับรัน 24/7 ใน data center"
+    },
+    {
+      "type": "why",
+      "content": "Developer และ DevOps ควรเข้าใจ rack server เพราะ:\n\n- **Cloud ทำงานบน rack server** — EC2, Azure VM รันบน physical host ใน data center\n- **On-prem / hybrid** — บริษัทยังมี rack ใน office หรือ colocation\n- **Remote ops** — disk พังกลางคืน แก้ผ่าน IPMI/iDRAC ไม่ต้องไป data center\n- **Capacity planning** — 1U ใส่ได้กี่ core/RAM/disk กำหนดขนาด infra\n- **Cost model** — colocation คิดต่อ U ต่อเดือน"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. **Mount** — slide server เข้า rail ของ rack (42U มาตรฐาน)\n2. **Power** — ต่อ dual PSU เข้า PDU (Power Distribution Unit) 2 feed แยก\n3. **Network** — ต่อ Ethernet ไป top-of-rack switch (1G/10G/25G)\n4. **Remote management** — IPMI/iDRAC/iLO สำหรับ power cycle, console, BIOS\n5. **OS / Hypervisor** — ติดตั้ง Linux bare metal, ESXi, Proxmox หรือ Kubernetes node\n6. **Monitoring** — SNMP, agent รายงาน temperature, disk health, PSU status"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Form Factor — 1U (compact), 2U (more drives/GPU), 4U (high density storage)",
+        "Hot-swap Drive Bays — เปลี่ยน disk ไม่ต้อง shutdown (กับ RAID)",
+        "Dual PSU — redundant power, hot-swappable",
+        "BMC / IPMI / iDRAC / iLO — out-of-band remote management",
+        "Rail Kit — ราง slide เข้า-ออก rack",
+        "RAID Controller — hardware RAID 0/1/5/10",
+        "NIC — onboard 1G + optional 10G/25G PCIe card"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Startup มี rack 1 ตู้ 42U ใน colocation:\n\n```\n[42U Rack]\n├── 1U: Top-of-rack switch (48 port 10G)\n├── 1U: Firewall\n├── 1U-20U: 20x 1U app servers (Kubernetes workers)\n├── 21U-22U: 1x 2U database server (8 hot-swap SSD, RAID 10)\n├── 23U: 1U backup server\n├── 24U-42U: ว่างสำหรับขยาย / cable management\n└── PDU A + PDU B (power redundancy)\n```\n\n**Disk fail ตอน 2 AM:**\n1. Monitoring alert: RAID degraded\n2. DevOps login iDRAC → ยืนยัน disk bay 3 fail\n3. สั่ง hot-remove + hot-insert spare disk\n4. RAID rebuild อัตโนมัติ — service ยังรันอยู่\n5. ตรวจสอบ SMART log ตอนเช้า"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Rack server ≠ Tower server — tower ตั้งพื้น, rack mount ในตู้",
+        "Rack server ≠ Blade server — blade ใส่ chassis ร่วม, rack server เป็นเครื่องอิสระ",
+        "1U server ดังมาก — fan หมุนเร็วเพื่อระบายความร้อนใน space แคบ",
+        "Cloud VM ≠ rack server โดยตรง — VM อยู่บน hypervisor ที่รันบน rack server",
+        "Server (software) ≠ Rack server (hardware) — Nginx รันบน rack server ได้"
+      ]
+    }
+  ],
+  "related": [
+    "data-center",
+    "raid",
+    "psu",
+    "hypervisor-host",
+    "server",
+    "nic",
+    "cpu",
+    "ram"
+  ],
+  "visualization": "server-infra-flow",
+  "prerequisites": [
+    "cpu",
+    "ram",
+    "storage"
+  ]
+}

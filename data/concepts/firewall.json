@@ -1,0 +1,59 @@
+{
+  "slug": "firewall",
+  "title": "Firewall",
+  "summary": "กำแพงกั้น traffic ตามกฎ — อนุญาต/บล็อก connection ตาม IP, port, protocol",
+  "difficulty": "intermediate",
+  "category": "network",
+  "tags": [
+    "security",
+    "filter",
+    "rules"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Firewall ตรวจสอบ network traffic เข้า-ออก ตามชุดกฎ (rules)\n\nตัวอย่างกฎ:\n- อนุญาต port 443 (HTTPS) เข้า\n- บล็อก port 23 (Telnet)\n- อนุญาตเฉพาะ IP range ของบริษัท"
+    },
+    {
+      "type": "analogy",
+      "content": "Firewall เหมือนยามประตู — ตรวจว่าใครเข้า-ออกได้ ตามกฎที่ตั้งไว้"
+    },
+    {
+      "type": "why",
+      "content": "ป้องกันการโจมตีและจำกัดการเข้าถึง:\n- บล็อก port ที่ไม่ใช้\n- ป้องกัน unauthorized access\n- WAF (Web Application Firewall) ป้องกัน SQL injection"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Packet เข้ามาที่ firewall\n2. ตรวจสอบตาม rules จากบนลงล่าง (first match)\n3. เปรียบเทียบ source/dest IP, port, protocol\n4. Action: Allow, Deny, หรือ Log\n5. Stateful firewall ติดตาม connection state — อนุญาต reply ของ connection ที่เริ่มจากภายใน"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Inbound Rules",
+        "Outbound Rules",
+        "Port",
+        "IP Whitelist/Blacklist",
+        "Stateful Inspection"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Firewall บริษัท:\n\n- อนุญาต inbound port 443 (HTTPS) จาก internet\n- บล็อก inbound port 22 (SSH) จากภายนอก\n- อนุญาต outbound ทุก port สำหรับพนักงาน\n- บล็อก access ไป social media ในเวลาทำงาน\n- WAF ตรวจ HTTP request ป้องกัน SQL injection"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Firewall ≠ Antivirus — firewall กรอง traffic, antivirus สแกน malware",
+        "Windows Firewall / iptables เป็น host firewall, อุปกรณ์เครือข่ายเป็น network firewall",
+        "เปิด port ทุกอันปลอดภัยกว่า — principle of least privilege"
+      ]
+    }
+  ],
+  "related": [
+    "nat",
+    "vpn",
+    "https",
+    "server"
+  ],
+  "visualization": "firewall-flow"
+}

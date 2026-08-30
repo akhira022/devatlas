@@ -1,0 +1,54 @@
+{
+  "slug": "hashing",
+  "title": "Hashing",
+  "summary": "แปลงข้อมูลเป็น fingerprint แบบ one-way — ใช้เก็บ password อย่างปลอดภัย",
+  "difficulty": "intermediate",
+  "category": "security",
+  "tags": [
+    "password",
+    "crypto",
+    "one-way"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Hashing คือการแปลง input ใด ๆ เป็นสตริงขนาดคงที่ (hash) แบบ one-way — ถอนกลับไม่ได้\n\nตัวอย่าง:\n- Input: 'mypassword123'\n- SHA-256: '482c811da5d5b4bc...' (64 ตัวอักษร)\n\nInput เดิมเปลี่ยนนิดเดียว → hash เปลี่ยนทั้งหมด"
+    },
+    {
+      "type": "why",
+      "content": "เก็บ password ใน database:\n- ❌ เก็บ plain text — ถ้า DB รั่ว password หมด\n- ✅ เก็บ hash — แม้ DB รั่ว ก็ถอน password ไม่ได้\n\nใช้ bcrypt/argon2 พร้อม salt เพื่อป้องกัน rainbow table"
+    },
+    {
+      "type": "how_it_works",
+      "content": "Login flow:\n1. User กรอก password\n2. Server hash password ที่กรอก\n3. เปรียบเทียบ hash กับที่เก็บใน DB\n4. ตรงกัน = login สำเร็จ (ไม่เคยเก็บ password จริง)"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Hash Function — แปลง input เป็น fixed-size output",
+        "Salt — random string เพิ่มก่อน hash password",
+        "One-way — ถอนกลับไม่ได้",
+        "Collision Resistance — input ต่างกันได้ hash ซ้ำยาก",
+        "Algorithm — SHA-256, bcrypt, Argon2"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เก็บ password ใน Database:\n\n1. User สมัครด้วย password \"hello123\"\n2. Server สร้าง salt แบบ random\n3. Hash ด้วย bcrypt(salt + password) → $2b$12$...\n4. เก็บเฉพาะ hash + salt ใน DB — ไม่เก็บ password จริง\n5. Login: hash password ที่กรอก + salt แล้วเปรียบเทียบกับที่เก็บ"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Hashing ≠ Encryption — Hash ถอนกลับไม่ได้",
+        "MD5/SHA-1 ไม่ปลอดภัยสำหรับ password — ใช้ bcrypt หรือ argon2",
+        "Hash ใช้ตรวจสอบ integrity ของไฟล์ได้ด้วย (checksum)"
+      ]
+    }
+  ],
+  "related": [
+    "authentication",
+    "encryption",
+    "database"
+  ],
+  "visualization": "jwt-flow"
+}

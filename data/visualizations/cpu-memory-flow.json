@@ -1,0 +1,20 @@
+{
+  "slug": "cpu-memory-flow",
+  "title": "CPU ↔ RAM ↔ Storage",
+  "description": "ดูข้อมูลไหลจาก storage เข้า RAM แล้ว CPU ประมวลผล",
+  "conceptSlug": "cpu",
+  "protocol": "Hardware",
+  "category": "hardware",
+  "nodes": [
+    { "id": "storage", "label": "Storage (SSD)", "description": "เก็บโปรแกรมและไฟล์ถาวร", "type": "database", "position": { "x": 0, "y": 120 } },
+    { "id": "ram", "label": "RAM", "description": "memory ชั่วคราว เร็ว", "type": "service", "position": { "x": 320, "y": 120 } },
+    { "id": "cpu", "label": "CPU", "description": "execute คำสั่ง", "type": "device", "position": { "x": 640, "y": 120 } }
+  ],
+  "steps": [
+    { "id": "cm-1", "from": "storage", "to": "ram", "label": "Load", "packet": "read app.exe", "description": "OS โหลดโปรแกรมจาก disk เข้า RAM", "duration": 1200 },
+    { "id": "cm-2", "from": "ram", "to": "cpu", "label": "Fetch", "packet": "instruction", "description": "CPU ดึงคำสั่งจาก RAM (fetch-decode-execute)", "duration": 1100 },
+    { "id": "cm-3", "from": "cpu", "to": "ram", "label": "Read/Write", "packet": "data", "description": "CPU อ่าน/เขียนข้อมูลใน RAM ระหว่างทำงาน", "duration": 1200 },
+    { "id": "cm-4", "from": "ram", "to": "storage", "label": "Save", "packet": "write file", "description": "บันทึกผลลัพธ์กลับ storage เมื่อ save ไฟล์", "duration": 1200 },
+    { "id": "cm-5", "from": "cpu", "to": "cpu", "label": "Cache", "packet": "L1/L2/L3", "description": "CPU cache ลดการเข้า RAM — เร็วกว่า main memory", "duration": 1100 }
+  ]
+}

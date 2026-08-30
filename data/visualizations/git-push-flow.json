@@ -1,0 +1,19 @@
+{
+  "slug": "git-push-flow",
+  "title": "Git Push Flow",
+  "description": "ส่ง local commits ขึ้น GitHub remote",
+  "conceptSlug": "git-push",
+  "protocol": "Git",
+  "category": "git-github",
+  "nodes": [
+    { "id": "local", "label": "Local Repo", "description": "commits บนเครื่อง", "type": "client", "position": { "x": 0, "y": 120 } },
+    { "id": "network", "label": "HTTPS/SSH", "description": "encrypted transport", "type": "network", "position": { "x": 320, "y": 120 } },
+    { "id": "github", "label": "GitHub", "description": "origin remote", "type": "server", "position": { "x": 640, "y": 120 } }
+  ],
+  "steps": [
+    { "id": "gp-1", "from": "local", "to": "network", "label": "git push", "packet": "git push origin main", "description": "ส่ง objects (commits, trees, blobs) ขึ้น remote", "duration": 1200 },
+    { "id": "gp-2", "from": "network", "to": "github", "label": "Upload", "packet": "pack file", "description": "GitHub รับและเก็บใน remote repo", "duration": 1300 },
+    { "id": "gp-3", "from": "github", "to": "local", "label": "ACK", "packet": "refs updated", "description": "อัปเดต remote-tracking branch (origin/main)", "duration": 1100 },
+    { "id": "gp-4", "from": "github", "to": "github", "label": "Visible", "packet": "commits on GitHub", "description": "ทีมเห็น commits บน GitHub — พร้อมเปิด PR", "duration": 1100 }
+  ]
+}

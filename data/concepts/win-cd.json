@@ -1,0 +1,58 @@
+{
+  "slug": "win-cd",
+  "title": "cd",
+  "fullName": "Change Directory (CMD / PowerShell)",
+  "summary": "เปลี่ยน working directory บน Windows — รองรับ drive letter และ path แบบ Windows",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "navigation",
+  "platform": "windows",
+  "tags": [
+    "cmd",
+    "powershell",
+    "directory"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "บน Windows ใช้ `cd` (CMD) หรือ `Set-Location` / alias `cd` (PowerShell) เพื่อเปลี่ยนโฟลเดอร์ปัจจุบัน — รองรับ drive (`C:`, `D:`) และ backslash path"
+    },
+    {
+      "type": "why",
+      "content": "cd (Change Directory) เป็นคำสั่งพื้นฐานบน Windows CMD — ต้องใช้ก่อนรันสคริปต์ ดูไฟล์ หรือ build โปรเจกต์ในโฟลเดอร์ที่ถูกต้อง\n\nPowerShell ใช้ `Set-Location` (alias `cd`) ซึ่งทำงานคล้ายกันแต่รองรับ path object และ pipeline"
+    },
+    {
+      "type": "how_it_works",
+      "content": "**CMD:**\n```\ncd C:\\Users\\dev\ncd projects\ncd ..                    # ขึ้น 1 ระดับ\ncd \\                     # root ของ drive ปัจจุบัน\nD:                       # เปลี่ยน drive (ไม่เปลี่ยน path)\ncd /d D:\\data             # เปลี่ยน drive + path พร้อมกัน\n```\n\n**PowerShell:**\n```\nSet-Location C:\\Users\\dev\ncd ..                    # alias ของ Set-Location\ncd ~                     # home directory\ncd -                     # โฟลเดอร์ก่อนหน้า\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "C:\\path — absolute path (backslash)",
+        "cd .. — parent folder",
+        "cd /d — เปลี่ยน drive ใน CMD",
+        "D: — สลับ drive",
+        "Set-Location — cmdlet ใน PowerShell",
+        "ช่องว่างใน path — ใส่ใน \"double quotes\""
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\ncd C:\\Projects\\my-app\ncd ..          :: ขึ้นหนึ่งระดับ\ncd %USERPROFILE%\\Documents\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "CMD: cd ไป drive อื่นต้องใช้ cd /d หรือพิมพ์ D: แยก",
+        "Unix ใช้ / แต่ Windows ใช้ \\ — PowerShell รับทั้งสองแบบ",
+        "cd ไม่สร้างโฟลเดอร์ — ใช้ mkdir ก่อน"
+      ]
+    }
+  ],
+  "related": [
+    "cd",
+    "win-dir",
+    "win-mkdir"
+  ],
+  "visualization": "cli-navigation-flow"
+}

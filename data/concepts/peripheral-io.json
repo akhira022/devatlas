@@ -1,0 +1,58 @@
+{
+  "slug": "peripheral-io",
+  "title": "Peripheral & I/O",
+  "summary": "พอร์ตและอุปกรณ์ต่อพ่วง — USB, HDMI, PCIe และ audio",
+  "difficulty": "intermediate",
+  "category": "hardware",
+  "subcategory": "peripherals",
+  "tags": [
+    "usb",
+    "pcie",
+    "hdmi",
+    "io"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Peripheral I/O คือพอร์ตและบัสที่ motherboard ใช้ต่ออุปกรณ์ภายนอก — USB, HDMI, DisplayPort, audio jack, Ethernet และ header ภายใน (USB front panel, RGB)"
+    },
+    {
+      "type": "why",
+      "content": "I/O กำหนดว่าต่อ monitor, keyboard, storage external และอุปกรณ์อื่นได้อย่างไร:\n\n- USB version (2.0/3.2/4) ส่งผลต่อความเร็ว transfer\n- Thunderbolt รวม USB + DisplayPort + power\n- Front panel header ต่อพอร์ตด้านหน้าเคส"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. CPU/chipset มี controller สำหรับแต่ละบัส\n2. USB device ลงทะเบียนกับ OS driver\n3. Display output จาก iGPU หรือ dGPU ผ่าน HDMI/DP\n4. Audio codec แปลง digital → analog สำหรับหูฟัง"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "USB (2/3/4)",
+        "PCIe expansion",
+        "HDMI/DisplayPort",
+        "SATA",
+        "Audio jack"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Dev setup: USB-C dock → monitor + keyboard + Ethernet, NVMe ผ่าน M.2 PCIe"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "USB-C ≠ Thunderbolt เสมอไป",
+        "PCIe x16 slot ใส่ GPU ได้, x4 ใส่ NVMe",
+        "Driver ต้อง match OS version"
+      ]
+    }
+  ],
+  "related": [
+    "motherboard",
+    "gpu",
+    "display-monitor",
+    "nic",
+    "storage"
+  ],
+  "visualization": "peripheral-flow"
+}

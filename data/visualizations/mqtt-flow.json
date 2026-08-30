@@ -1,0 +1,78 @@
+{
+  "slug": "mqtt-flow",
+  "title": "MQTT Publish/Subscribe",
+  "description": "ดู IoT device ส่งข้อมูลผ่าน MQTT broker ไปยัง dashboard",
+  "conceptSlug": "mqtt",
+  "protocol": "MQTT",
+  "category": "iot",
+  "nodes": [
+    {
+      "id": "device",
+      "label": "ESP32 Sensor",
+      "description": "อุปกรณ์ IoT วัดอุณหภูมิและ publish ข้อมูล",
+      "type": "device",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "broker",
+      "label": "MQTT Broker",
+      "description": "ตัวกลางรับและกระจาย message ตาม Topic",
+      "type": "service",
+      "position": {
+        "x": 300,
+        "y": 120
+      }
+    },
+    {
+      "id": "dashboard",
+      "label": "Dashboard",
+      "description": "แอป subscribe Topic และแสดงข้อมูล real-time",
+      "type": "client",
+      "position": {
+        "x": 600,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "mqtt-1",
+      "from": "device",
+      "to": "broker",
+      "label": "Connect",
+      "packet": "CONNECT",
+      "description": "ESP32 เชื่อมต่อ MQTT Broker — authenticate ด้วย username/password",
+      "duration": 1200
+    },
+    {
+      "id": "mqtt-2",
+      "from": "dashboard",
+      "to": "broker",
+      "label": "Subscribe",
+      "packet": "SUB sensor/temp",
+      "description": "Dashboard subscribe Topic sensor/temp — บอก broker ว่าอยากรับ message นี้",
+      "duration": 1200
+    },
+    {
+      "id": "mqtt-3",
+      "from": "device",
+      "to": "broker",
+      "label": "Publish",
+      "packet": "PUB 28°C",
+      "description": "Sensor อ่านอุณหภูมิ 28°C แล้ว publish ไป Topic sensor/temp",
+      "duration": 1300
+    },
+    {
+      "id": "mqtt-4",
+      "from": "broker",
+      "to": "dashboard",
+      "label": "Deliver",
+      "packet": "28°C",
+      "description": "Broker ส่ง message ไปยังทุก client ที่ subscribe Topic นี้ — Dashboard แสดง 28°C",
+      "duration": 1300
+    }
+  ]
+}

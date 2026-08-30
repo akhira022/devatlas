@@ -1,0 +1,50 @@
+{
+  "slug": "git-add",
+  "title": "add",
+  "summary": "stage ไฟล์เพื่อเตรียม commit — ย้ายจาก working directory ไป staging area",
+  "difficulty": "beginner",
+  "category": "git-github",
+  "subcategory": "workflow",
+  "tags": [
+    "git",
+    "workflow"
+  ],
+  "sections": [
+    {
+      "type": "why",
+      "content": "Git ไม่ track ทุกไฟล์อัตโนมัติ — add เลือกว่าอะไรเข้า commit ถัดไป\n\n- แยก commit เป็นหน่วยย่อย\n- ไม่ commit ไฟล์ชั่วคราว (.env, build/)"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ngit add file.ts\ngit add .                       # ทุกไฟล์ในโฟลเดอร์\ngit add -A                      # ทุกการเปลี่ยนแปลงใน repo\ngit add -p                      # interactive — เลือก hunk\ngit add src/                    # เฉพาะโฟลเดอร์\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "git add <file> — stage ไฟล์เดียว",
+        "git add . — stage ทั้งหมดในโฟลเดอร์",
+        "git add -p — stage ทีละ hunk",
+        "git restore --staged — unstage",
+        ".gitignore — ไฟล์ที่ไม่ track"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\n# แก้ 3 ไฟล์ แต่ commit แยก\ngit add src/auth.ts\ngit commit -m \"fix login\"\ngit add src/ui.tsx\ngit commit -m \"update button style\"\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "add ไม่ได้ commit — ต้อง `git commit` ต่อ",
+        "add ไฟล์แล้วแก้อีก — ต้อง add ใหม่ก่อน commit",
+        "อย่า add .env หรือ secrets — ใส่ใน .gitignore"
+      ]
+    }
+  ],
+  "related": [
+    "git-status",
+    "git-commit",
+    "git-diff"
+  ],
+  "visualization": "git-commit-flow"
+}

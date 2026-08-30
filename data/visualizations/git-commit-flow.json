@@ -1,0 +1,20 @@
+{
+  "slug": "git-commit-flow",
+  "title": "Git Commit Flow",
+  "description": "จาก working directory → staging → commit snapshot",
+  "conceptSlug": "git-commit",
+  "protocol": "Git",
+  "category": "git-github",
+  "nodes": [
+    { "id": "dev", "label": "Developer", "description": "แก้ไขไฟล์ในโปรเจกต์", "type": "client", "position": { "x": 0, "y": 120 } },
+    { "id": "working", "label": "Working Tree", "description": "ไฟล์ที่แก้แล้วยังไม่ stage", "type": "service", "position": { "x": 260, "y": 120 } },
+    { "id": "staging", "label": "Staging Area", "description": "ไฟล์ที่ git add แล้ว", "type": "service", "position": { "x": 520, "y": 120 } },
+    { "id": "repo", "label": "Local Repo", "description": ".git — commit history", "type": "database", "position": { "x": 780, "y": 120 } }
+  ],
+  "steps": [
+    { "id": "gc-1", "from": "dev", "to": "working", "label": "Edit", "packet": "แก้ api.ts", "description": "แก้ไขไฟล์ใน working directory", "duration": 1100 },
+    { "id": "gc-2", "from": "dev", "to": "staging", "label": "git add", "packet": "git add api.ts", "description": "ย้ายไฟล์เข้า staging area", "duration": 1100 },
+    { "id": "gc-3", "from": "dev", "to": "repo", "label": "git commit", "packet": "git commit -m \"fix api\"", "description": "บันทึก snapshot จาก staging เข้า history", "duration": 1300 },
+    { "id": "gc-4", "from": "repo", "to": "dev", "label": "Done", "packet": "abc1234", "description": "ได้ commit hash — working tree สะอาดสำหรับไฟล์ที่ commit", "duration": 1100 }
+  ]
+}

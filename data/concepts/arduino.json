@@ -1,0 +1,57 @@
+{
+  "slug": "arduino",
+  "title": "Arduino",
+  "summary": "บอร์ด microcontroller สำหรับเรียนรู้และ prototype IoT ง่ายๆ",
+  "difficulty": "beginner",
+  "category": "hardware",
+  "subcategory": "embedded-boards",
+  "tags": [
+    "microcontroller",
+    "iot",
+    "embedded",
+    "prototype"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Arduino คือแพลตฟอร์ม embedded แบบ open-source — board (เช่น Uno, Nano) + IDE ที่เขียน sketch ด้วย C++ แบบง่าย\n\nเหมาะเรียนรู้ electronics และ prototype ก่อนย้ายไป production board"
+    },
+    {
+      "type": "why",
+      "content": "Arduino ลด barrier ในการเริ่มต้น hardware programming:\n\n- ecosystem ใหญ่ — shield และ library มากมาย\n- ไม่ต้องตั้งค่า OS — flash แล้วรัน\n- community และ tutorial ภาษาไทย/อังกฤษเยอะ\n- bridge สู่ ESP32, STM32 เมื่อต้องการ WiFi หรือ performance"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. เขียน sketch ใน Arduino IDE\n2. Compile และ upload ผ่าน USB\n3. `setup()` รันครั้งเดียวตอน boot, `loop()` รันซ้ำ\n4. อ่าน/เขียน digital และ analog pin\n5. ใช้ library สำหรับ sensor, motor, display"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "ATmega/ARM MCU",
+        "GPIO pins",
+        "Analog/Digital I/O",
+        "PWM",
+        "Shields (expansion)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Temperature logger: DHT22 → Arduino → Serial → Python script → CSV"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Arduino ≠ Raspberry Pi — MCU vs full Linux computer",
+        "5V vs 3.3V logic level ต้อง match sensor",
+        "Uno ไม่มี WiFi built-in (ต้อง shield)"
+      ]
+    }
+  ],
+  "related": [
+    "esp32",
+    "raspberry-pi",
+    "sensor",
+    "mqtt"
+  ],
+  "visualization": "embedded-board-flow"
+}

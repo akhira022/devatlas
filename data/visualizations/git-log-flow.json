@@ -1,0 +1,78 @@
+{
+  "slug": "git-log-flow",
+  "title": "Git Log History",
+  "description": "ดูประวัติ commit — ใครแก้อะไรเมื่อไหร่",
+  "conceptSlug": "git-log",
+  "protocol": "Git",
+  "category": "git-github",
+  "nodes": [
+    {
+      "id": "dev",
+      "label": "Developer",
+      "description": "git log",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "git",
+      "label": "Git",
+      "description": "อ่าน .git/objects",
+      "type": "service",
+      "position": {
+        "x": 280,
+        "y": 120
+      }
+    },
+    {
+      "id": "history",
+      "label": "Commit History",
+      "description": "linked commits",
+      "type": "database",
+      "position": {
+        "x": 560,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "gl-1",
+      "from": "dev",
+      "to": "git",
+      "label": "git log",
+      "packet": "git log --oneline",
+      "description": "ขอรายการ commit จาก HEAD ย้อนหลัง",
+      "duration": 1100
+    },
+    {
+      "id": "gl-2",
+      "from": "git",
+      "to": "history",
+      "label": "Traverse",
+      "packet": "parent pointers",
+      "description": "เดินตาม parent commit ทีละตัว",
+      "duration": 1100
+    },
+    {
+      "id": "gl-3",
+      "from": "history",
+      "to": "git",
+      "label": "Commits",
+      "packet": "hash, author, date",
+      "description": "รวบรวม metadata แต่ละ commit",
+      "duration": 1100
+    },
+    {
+      "id": "gl-4",
+      "from": "git",
+      "to": "dev",
+      "label": "Display",
+      "packet": "abc1234 fix api",
+      "description": "แสดง log — กรองด้วย --author, --grep ได้",
+      "duration": 1000
+    }
+  ]
+}

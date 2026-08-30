@@ -1,0 +1,85 @@
+{
+  "slug": "cloud-vm-flow",
+  "title": "Cloud VM Flow",
+  "description": "สร้างและจัดการ Virtual Machine บน cloud provider",
+  "conceptSlug": "virtual-machine",
+  "protocol": "Cloud VM",
+  "category": "cloud",
+  "nodes": [
+    {
+      "id": "admin",
+      "label": "Admin",
+      "description": "ผู้ดูแลระบบที่จัดการ VM ผ่าน console หรือ CLI",
+      "type": "client",
+      "position": { "x": 0, "y": 120 }
+    },
+    {
+      "id": "console",
+      "label": "Cloud Console",
+      "description": "Web UI / API ของ cloud provider สำหรับจัดการ resources",
+      "type": "service",
+      "position": { "x": 240, "y": 120 }
+    },
+    {
+      "id": "vm",
+      "label": "Virtual Machine",
+      "description": "VM instance ที่รัน OS และแอปพลิเคชันบน hypervisor",
+      "type": "server",
+      "position": { "x": 480, "y": 120 }
+    },
+    {
+      "id": "storage",
+      "label": "Block Storage",
+      "description": "Persistent disk ที่ attach กับ VM สำหรับเก็บข้อมูล",
+      "type": "database",
+      "position": { "x": 720, "y": 120 }
+    }
+  ],
+  "steps": [
+    {
+      "id": "vm-1",
+      "from": "admin",
+      "to": "console",
+      "label": "Create VM",
+      "packet": "POST /instances",
+      "description": "Admin เลือก region, instance type และ OS image",
+      "duration": 1200
+    },
+    {
+      "id": "vm-2",
+      "from": "console",
+      "to": "vm",
+      "label": "Provision",
+      "packet": "allocate vCPU + RAM",
+      "description": "Cloud สร้าง VM บน hypervisor และ boot OS",
+      "duration": 1300
+    },
+    {
+      "id": "vm-3",
+      "from": "console",
+      "to": "storage",
+      "label": "Attach Disk",
+      "packet": "EBS / Persistent Disk",
+      "description": "สร้างและ attach block storage ให้ VM",
+      "duration": 1200
+    },
+    {
+      "id": "vm-4",
+      "from": "admin",
+      "to": "vm",
+      "label": "SSH Connect",
+      "packet": "ssh user@public-ip",
+      "description": "Admin เข้าถึง VM ผ่าน SSH หรือ RDP",
+      "duration": 1200
+    },
+    {
+      "id": "vm-5",
+      "from": "vm",
+      "to": "storage",
+      "label": "Read/Write",
+      "packet": "I/O operations",
+      "description": "VM อ่าน/เขียนข้อมูลบน attached disk",
+      "duration": 1100
+    }
+  ]
+}

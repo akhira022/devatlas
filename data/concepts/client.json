@@ -1,0 +1,55 @@
+{
+  "slug": "client",
+  "title": "Client",
+  "summary": "ฝั่งที่เริ่มต้นการสื่อสาร — ส่ง request ขอข้อมูลหรือใช้บริการจาก Server",
+  "difficulty": "beginner",
+  "category": "programming",
+  "tags": [
+    "frontend",
+    "request",
+    "user"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Client คือโปรแกรมหรืออุปกรณ์ที่เริ่มต้นการสื่อสาร — ส่ง request ไปหา Server เพื่อขอข้อมูลหรือบริการ โดยไม่ต้องเก็บข้อมูลหลักเอง\n\nตัวอย่าง Client:\n- Web Browser (Chrome, Firefox)\n- Mobile App (Instagram, LINE)\n- Desktop App (VS Code, Slack)\n- CLI tools (curl, Postman)"
+    },
+    {
+      "type": "why",
+      "content": "ในโมเดล Client-Server, Client เป็นฝั่งที่ผู้ใช้โต้ตอบโดยตรง:\n\n- แสดง UI และรับ input จากผู้ใช้\n- ส่ง request ไปยัง Server เมื่อต้องการข้อมูล\n- ประมวลผล response และแสดงผลบนหน้าจอ\n- ไม่ต้องรัน business logic หนักหรือเก็บข้อมูลกลาง"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. ผู้ใช้ทำ action (กดปุ่ม, เปิดหน้า, scroll)\n2. Client สร้าง HTTP request (URL, method, headers, body)\n3. ส่ง request ผ่านเครือข่ายไปยัง Server\n4. รอ response กลับมา\n5. แปลง response (มักเป็น JSON) แล้วอัปเดต UI"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "User Interface (UI)",
+        "HTTP Client / Fetch API",
+        "State Management",
+        "Local Storage / Cache",
+        "Event Handlers"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เมื่อคุณค้นหาใน Google:\n\n1. พิมพ์คำค้นใน Browser (Client)\n2. Browser ส่ง GET request ไป google.com/search?q=...\n3. Google Server ประมวลผลและส่ง HTML กลับ\n4. Browser render หน้าผลลัพธ์ให้คุณเห็น"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Client ≠ Frontend เสมอไป — Mobile App ก็เป็น Client ได้โดยไม่ใช่เว็บ",
+        "Client อาจเป็น Server ใน context อื่น (microservices เรียกกันเป็น client-server)",
+        "Thin Client — พึ่ง Server หนัก, Thick Client — ประมวลผลเองมากขึ้น"
+      ]
+    }
+  ],
+  "related": [
+    "server",
+    "frontend",
+    "http",
+    "api"
+  ],
+  "visualization": "client-server-flow"
+}

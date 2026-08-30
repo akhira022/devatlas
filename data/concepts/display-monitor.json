@@ -1,0 +1,56 @@
+{
+  "slug": "display-monitor",
+  "title": "Display & Monitor",
+  "summary": "จอภาพและมาตรฐานส่งส ignal — resolution, refresh rate และ color",
+  "difficulty": "intermediate",
+  "category": "hardware",
+  "subcategory": "peripherals",
+  "tags": [
+    "monitor",
+    "display",
+    "resolution",
+    "hdmi"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Monitor แสดง output จาก GPU — resolution (1080p/4K), refresh rate (60/144Hz), panel type (IPS/VA/OLED)"
+    },
+    {
+      "type": "why",
+      "content": "Monitor ส่งผลต่อ productivity และ experience โดยตรง:\n\n- 144Hz+ เหมาะ gaming และ animation\n- 4K + ขนาดใหญ่เหมาะ coding และ design\n- Color accuracy สำคัญสำหรับ photo/video\n- Dual monitor เพิ่มพื้นที่ทำงาน"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. GPU render frame เป็น pixel buffer\n2. ส่งผ่าน DisplayPort/HDMI cable\n3. Monitor scaler แปลง signal เป็น panel native resolution\n4. Backlight (LED) ส่องผ่าน LCD/OLED pixels\n5. Refresh ตาม Hz rating (60/144/240 ครั้ง/วินาที)"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Resolution",
+        "Refresh Rate (Hz)",
+        "Panel Type",
+        "HDR",
+        "DisplayPort/HDMI version"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Dev dual monitor: 27\" 4K code + ultrawide docs/browser, macOS Display Settings จัด arrangement"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "4K @144Hz ต้อง DP 1.4/HDMI 2.1 + GPU รองรับ",
+        "Retina = high PPI ไม่ใช่ resolution คงที่",
+        "Scaling 150% บน 4K อ่านง่าย"
+      ]
+    }
+  ],
+  "related": [
+    "gpu",
+    "peripheral-io",
+    "motherboard"
+  ],
+  "visualization": "peripheral-flow"
+}

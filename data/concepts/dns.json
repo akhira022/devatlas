@@ -1,0 +1,58 @@
+{
+  "slug": "dns",
+  "title": "DNS",
+  "fullName": "Domain Name System",
+  "summary": "ระบบแปลงชื่อโดเมน (google.com) เป็น IP address ที่เครื่องเข้าใจ",
+  "difficulty": "beginner",
+  "category": "network",
+  "tags": [
+    "network",
+    "domain",
+    "ip"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "DNS ทำหน้าที่เหมือนสมุดโทรศัพท์ของอินเทอร์เน็ต — แปลง google.com เป็น 142.250.x.x"
+    },
+    {
+      "type": "analogy",
+      "content": "DNS เหมือนสมุดโทรศัพท์ — คุณจำชื่อเพื่อน (domain) แต่โทรศัพท์ต้องกดเบอร์ (IP)"
+    },
+    {
+      "type": "why",
+      "content": "คนจำ google.com ได้ง่ายกว่า 142.250.80.46 — DNS ทำให้:\n\n- ใช้ชื่อที่จำง่ายแทน IP\n- เปลี่ยน IP server ได้โดย user ไม่ต้องรู้\n- Load balance ด้วยหลาย IP ต่อ domain เดียว\n- เป็นจุดเริ่มต้นทุกการเชื่อมต่อบนเว็บ"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Browser ถาม DNS Resolver\n2. Resolver ถาม Root DNS → TLD DNS → Authoritative DNS\n3. ได้ IP address กลับมา\n4. Browser เชื่อมต่อ Server ด้วย IP นั้น"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "A Record — แปลง domain เป็น IPv4",
+        "AAAA Record — แปลง domain เป็น IPv6",
+        "CNAME — alias ชี้ไป domain อื่น",
+        "MX Record — mail server ของ domain",
+        "TTL — ระยะเวลา cache DNS"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "พิมพ์ github.com ใน browser:\n\n1. Browser ถาม OS resolver → ถาม router → ถาม ISP DNS\n2. ISP ถาม Root DNS → .com TLD → GitHub authoritative DNS\n3. ได้ IP 140.82.x.x\n4. Browser เชื่อมต่อ IP นั้นด้วย HTTPS\n5. ผลลัพธ์ cache ตาม TTL (เช่น 300 วินาที) — ครั้งถัดไปเร็วขึ้น"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "DNS ≠ DHCP — DNS แปลงชื่อ→IP, DHCP แจก IP",
+        "DNS propagation ใช้เวลาเมื่อเปลี่ยน record — ไม่ได้เปลี่ยนทันทีทั่วโลก",
+        "8.8.8.8 (Google) และ 1.1.1.1 (Cloudflare) เป็น public DNS resolver"
+      ]
+    }
+  ],
+  "related": [
+    "http",
+    "tcp"
+  ],
+  "visualization": "dns-flow"
+}

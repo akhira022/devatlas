@@ -1,0 +1,41 @@
+{
+  "slug": "dns-lookup",
+  "title": "เปิดเว็บแล้ว DNS ทำงานยังไง?",
+  "description": "ติดตามการแปลงชื่อโดเมนเป็น IP ก่อนเชื่อมต่อเว็บไซต์",
+  "difficulty": "beginner",
+  "icon": "globe",
+  "concepts": ["dns", "dhcp", "ip", "tcp", "http"],
+  "visualization": "dns-flow",
+  "steps": [
+    {
+      "order": 1,
+      "title": "เครื่องมี IP อยู่แล้ว",
+      "description": "ตอนเชื่อม Wi-Fi/LAN มักได้ IP จาก DHCP มาก่อน",
+      "conceptSlug": "dhcp"
+    },
+    {
+      "order": 2,
+      "title": "พิมพ์ชื่อโดเมน",
+      "description": "ผู้ใช้พิมพ์ google.com — แต่เครือข่ายต้องการ IP address",
+      "conceptSlug": "dns"
+    },
+    {
+      "order": 3,
+      "title": "DNS lookup",
+      "description": "Resolver ถาม Root → TLD → Authoritative จนได้ IP",
+      "conceptSlug": "ip"
+    },
+    {
+      "order": 4,
+      "title": "เปิด TCP connection",
+      "description": "Browser ใช้ IP ที่ได้มาสร้าง TCP handshake กับ server",
+      "conceptSlug": "tcp"
+    },
+    {
+      "order": 5,
+      "title": "ส่ง HTTP request",
+      "description": "หลังเชื่อมต่อแล้ว ส่ง HTTP เพื่อดึงหน้าเว็บ",
+      "conceptSlug": "http"
+    }
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "slug": "deploy-app",
+  "title": "Deploy แอปขึ้น cloud อย่างไร?",
+  "description": "จาก push code ผ่าน CI/CD จนแอปอยู่บน production",
+  "difficulty": "intermediate",
+  "icon": "cloud",
+  "concepts": ["ci-cd", "docker", "deployment", "cloud-computing"],
+  "visualization": "deploy-flow",
+  "steps": [
+    {
+      "order": 1,
+      "title": "Push code",
+      "description": "Developer push ขึ้น Git — เริ่ม trigger pipeline",
+      "conceptSlug": "ci-cd"
+    },
+    {
+      "order": 2,
+      "title": "Build ด้วย Docker",
+      "description": "CI สร้าง Docker image จาก Dockerfile",
+      "conceptSlug": "docker"
+    },
+    {
+      "order": 3,
+      "title": "Deploy",
+      "description": "Pipeline ดึง image ไปรันบน cloud environment",
+      "conceptSlug": "deployment"
+    },
+    {
+      "order": 4,
+      "title": "Live บน Cloud",
+      "description": "บริการทำงานบน cloud — มี URL / load balancer",
+      "conceptSlug": "cloud-computing"
+    }
+  ]
+}

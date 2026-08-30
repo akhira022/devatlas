@@ -1,0 +1,56 @@
+{
+  "slug": "llm",
+  "title": "LLM",
+  "fullName": "Large Language Model",
+  "summary": "AI model ขนาดใหญ่ที่เข้าใจและสร้างภาษามนุษย์ — เช่น GPT, Claude, Gemini",
+  "difficulty": "intermediate",
+  "category": "ai",
+  "tags": [
+    "gpt",
+    "nlp",
+    "generative"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "LLM คือ neural network ขนาดใหญ่ที่ train ด้วยข้อความจำนวนมหาศาล — เข้าใจบริบทและสร้างข้อความที่สมเหตุสมผล\n\nตัวอย่าง: GPT-4, Claude, Gemini, Llama, Mistral"
+    },
+    {
+      "type": "why",
+      "content": "เปลี่ยนวิธีที่ developer ทำงาน:\n- Code generation และ debugging\n- เขียน documentation\n- แปลภาษา\n- สรุปเอกสารยาว\n- Chatbot และ virtual assistant\n- RAG — ตอบคำถามจากข้อมูลขององค์กร"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Pre-training — เรียนรู้ภาษาจาก internet-scale data\n2. Fine-tuning — ปรับให้ทำ task เฉพาะ\n3. RLHF — ปรับให้ตอบตามที่มนุษย์ต้องการ\n4. Inference — รับ prompt ส่ง text กลับ (token by token)"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Transformer Architecture — โครงสร้างหลักของ LLM สมัยใหม่",
+        "Token — หน่วยข้อความที่ model ประมวลผล",
+        "Context Window — จำนวน token สูงสุดต่อ request",
+        "Prompt — คำสั่ง/ข้อความ input",
+        "Fine-tuning — ปรับ model สำหรับ domain เฉพาะ"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ใช้ ChatGPT ช่วยเขียน code:\n\n1. ส่ง prompt: \"เขียน Python function เรียง list\"\n2. LLM แปลงข้อความเป็น tokens\n3. ทำนาย token ถัดไปทีละตัว (autoregressive)\n4. ตอบกลับเป็น code พร้อมคำอธิบาย\n5. Token limit กำหนดความยาว conversation ได้"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "LLM ≠ AI ทั้งหมด — LLM เป็น subset ของ AI/ML",
+        "LLM อาจ hallucinate — ตอบมั่นใจแต่ผิด",
+        "Context window จำกัด — ไม่จำข้อความยาวเกิน limit"
+      ]
+    }
+  ],
+  "related": [
+    "machine-learning",
+    "neural-network",
+    "rag",
+    "api"
+  ],
+  "visualization": "llm-flow"
+}

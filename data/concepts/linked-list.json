@@ -1,0 +1,54 @@
+{
+  "slug": "linked-list",
+  "title": "Linked List",
+  "summary": "โหนดเชื่อมด้วย pointer — แทรก/ลบตรงจุดได้ O(1) ถ้ามี reference",
+  "difficulty": "beginner",
+  "category": "programming",
+  "subcategory": "data-structure",
+  "tags": [
+    "linear",
+    "pointer"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "**Linked List** แต่ละ **node** เก็บ data + pointer ไป node ถัดไป\n\n```\n[10|•] → [20|•] → [30|null]\n head              tail\n```\n\nแบบย่อย: Singly, Doubly (มี prev), Circular"
+    },
+    {
+      "type": "why",
+      "content": "- Insert/delete ต้น/กลาง list เร็ว O(1) ถ้ามี pointer\n- ขยายขนาดได้ง่าย ไม่ต้อง resize ทั้งก้อน\n- ใช้ใน implementation ของ Stack, Queue, Hash Table chaining"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nclass Node {\n  value\n  next\n}\n\n// Insert หลัง head — O(1)\nnewNode.next = head.next\nhead.next = newNode\n\n// Search — O(n) ต้องวนทีละ node\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Node — data + next pointer",
+        "Head / Tail",
+        "Singly vs Doubly linked",
+        "O(1) insert ถ้ามี pointer",
+        "ไม่มี random access"
+      ]
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "ไม่มี random access — หา index i ต้อง O(n)",
+        "ใช้ memory มากกว่า array เพราะเก็บ pointer",
+        "Doubly linked list — ลบ node ง่ายกว่า singly"
+      ]
+    }
+  ],
+  "related": [
+    "data-structure",
+    "array",
+    "stack",
+    "queue"
+  ],
+  "visualization": "linked-list-flow",
+  "prerequisites": [
+    "array"
+  ]
+}

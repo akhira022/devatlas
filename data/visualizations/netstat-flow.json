@@ -1,0 +1,78 @@
+{
+  "slug": "netstat-flow",
+  "title": "Network Connections",
+  "description": "netstat — ดู port ที่เปิดและ connection ที่ active",
+  "conceptSlug": "netstat",
+  "protocol": "TCP/UDP",
+  "category": "cli",
+  "nodes": [
+    {
+      "id": "user",
+      "label": "User",
+      "description": "ตรวจสอบ connection",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "cmd",
+      "label": "netstat",
+      "description": "แสดง socket table",
+      "type": "service",
+      "position": {
+        "x": 280,
+        "y": 120
+      }
+    },
+    {
+      "id": "kernel",
+      "label": "Network Stack",
+      "description": "TCP/UDP state ใน kernel",
+      "type": "network",
+      "position": {
+        "x": 560,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "ns-1",
+      "from": "user",
+      "to": "cmd",
+      "label": "netstat -an",
+      "packet": "netstat -tuln",
+      "description": "ขอรายการ connection และ listening port",
+      "duration": 1100
+    },
+    {
+      "id": "ns-2",
+      "from": "cmd",
+      "to": "kernel",
+      "label": "Query",
+      "packet": "socket table",
+      "description": "อ่านตาราง socket จาก kernel",
+      "duration": 1100
+    },
+    {
+      "id": "ns-3",
+      "from": "kernel",
+      "to": "cmd",
+      "label": "Entries",
+      "packet": ":443 LISTEN",
+      "description": "ส่งรายการ port, state, remote address",
+      "duration": 1100
+    },
+    {
+      "id": "ns-4",
+      "from": "cmd",
+      "to": "user",
+      "label": "Output",
+      "packet": "0.0.0.0:3000",
+      "description": "แสดงผล — ใช้ debug port conflict",
+      "duration": 1000
+    }
+  ]
+}

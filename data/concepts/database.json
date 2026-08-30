@@ -1,0 +1,54 @@
+{
+  "slug": "database",
+  "title": "Database",
+  "summary": "ระบบเก็บข้อมูลถาวร — จัดเก็บ, ค้นหา, อัปเดตข้อมูลอย่างมีโครงสร้าง",
+  "difficulty": "beginner",
+  "category": "database",
+  "tags": [
+    "storage",
+    "sql",
+    "data"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Database คือระบบจัดเก็บข้อมูลอย่างเป็นระบบ — ให้โปรแกรมบันทึกและดึงข้อมูลได้อย่างมีประสิทธิภาพ\n\nประเภทหลัก: SQL (PostgreSQL, MySQL) และ NoSQL (MongoDB, Redis)"
+    },
+    {
+      "type": "why",
+      "content": "ข้อมูลต้องเก็บถาวร — ถ้าปิด server แล้วข้อมูลหาย แอปใช้งานไม่ได้ Database แก้ปัญหานี้"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Application ส่ง query ผ่าน driver/ORM\n2. Database engine parse และ optimize query\n3. ค้นหา/เขียนข้อมูลใน storage (disk/memory)\n4. ใช้ index เพื่อค้นหาเร็วขึ้น\n5. ส่งผลลัพธ์กลับเป็น rows/JSON\n6. Transaction รับประกัน ACID (Atomicity, Consistency, Isolation, Durability)"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Table / Collection — โครงสร้างเก็บข้อมูล",
+        "Schema — กำหนด column และ type",
+        "Index — เร่งการค้นหา",
+        "Query Language — SQL หรือ query API",
+        "Transaction — ชุด operation ที่สำเร็จหรือล้มเหลวพร้อมกัน"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เมื่อสมัครสมาชิก Facebook — ข้อมูล user (email, password hash, profile) ถูกบันทึกใน Database"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Database ≠ File storage — Database query และ index ได้, file อ่านทั้งไฟล์",
+        "SQL ≠ NoSQL — ไม่ใช่ SQL ดีกว่าเสมอ, เลือกตาม use case",
+        "Redis เป็น in-memory store — มักใช้ cache มากกว่า primary database"
+      ]
+    }
+  ],
+  "related": [
+    "backend",
+    "api",
+    "server"
+  ],
+  "visualization": "database-flow"
+}

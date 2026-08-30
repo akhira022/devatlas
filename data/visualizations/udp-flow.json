@@ -1,0 +1,68 @@
+{
+  "slug": "udp-flow",
+  "title": "UDP vs Reliable Delivery",
+  "description": "ดู UDP ส่ง datagram แบบไม่รอ ACK — เร็วแต่อาจสูญหาย",
+  "conceptSlug": "udp",
+  "protocol": "UDP",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "sender",
+      "label": "Game Client",
+      "description": "ส่งตำแหน่ง player ทุก frame",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "receiver",
+      "label": "Game Server",
+      "description": "รับ position updates",
+      "type": "server",
+      "position": {
+        "x": 400,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "udp-1",
+      "from": "sender",
+      "to": "receiver",
+      "label": "Datagram 1",
+      "packet": "POS (x:10,y:5)",
+      "description": "ส่ง UDP packet ไม่สร้าง connection — ไม่มี handshake",
+      "duration": 1100
+    },
+    {
+      "id": "udp-2",
+      "from": "sender",
+      "to": "receiver",
+      "label": "Datagram 2",
+      "packet": "POS (x:12,y:5)",
+      "description": "ส่งต่อทันที — ไม่รอ ACK จาก packet ก่อน",
+      "duration": 900
+    },
+    {
+      "id": "udp-3",
+      "from": "sender",
+      "to": "receiver",
+      "label": "Lost!",
+      "packet": "POS (x:14,y:6) ✗",
+      "description": "Packet หายบน network — UDP ไม่ส่งใหม่ (server ข้ามไปใช้ frame ถัดไป)",
+      "duration": 1300
+    },
+    {
+      "id": "udp-4",
+      "from": "sender",
+      "to": "receiver",
+      "label": "Datagram 4",
+      "packet": "POS (x:16,y:6)",
+      "description": "ส่งต่อได้เลย — game ยอมรับข้อมูลขาดหายได้เพื่อ latency ต่ำ",
+      "duration": 1100
+    }
+  ]
+}

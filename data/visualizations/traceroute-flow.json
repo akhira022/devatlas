@@ -1,0 +1,97 @@
+{
+  "slug": "traceroute-flow",
+  "title": "Traceroute Path",
+  "description": "traceroute / tracert — ติดตามเส้นทาง packet ไปปลายทาง",
+  "conceptSlug": "traceroute",
+  "protocol": "ICMP/UDP",
+  "category": "cli",
+  "nodes": [
+    {
+      "id": "host",
+      "label": "Your PC",
+      "description": "เริ่ม traceroute",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "hop1",
+      "label": "Router 1",
+      "description": "hop แรก — มักเป็น gateway",
+      "type": "network",
+      "position": {
+        "x": 240,
+        "y": 60
+      }
+    },
+    {
+      "id": "hop2",
+      "label": "Router 2",
+      "description": "ISP backbone",
+      "type": "network",
+      "position": {
+        "x": 480,
+        "y": 120
+      }
+    },
+    {
+      "id": "target",
+      "label": "Destination",
+      "description": "server ปลายทาง",
+      "type": "server",
+      "position": {
+        "x": 720,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "tr-1",
+      "from": "host",
+      "to": "hop1",
+      "label": "TTL=1",
+      "packet": "probe",
+      "description": "ส่ง packet TTL=1 — หยุดที่ router แรก",
+      "duration": 1100
+    },
+    {
+      "id": "tr-2",
+      "from": "hop1",
+      "to": "host",
+      "label": "Reply",
+      "packet": "10ms",
+      "description": "router ตอบ Time Exceeded + IP",
+      "duration": 1100
+    },
+    {
+      "id": "tr-3",
+      "from": "host",
+      "to": "hop2",
+      "label": "TTL=2",
+      "packet": "probe",
+      "description": "เพิ่ม TTL ทีละ hop จนถึงปลายทาง",
+      "duration": 1100
+    },
+    {
+      "id": "tr-4",
+      "from": "host",
+      "to": "target",
+      "label": "TTL=n",
+      "packet": "probe",
+      "description": "packet ถึง destination สำเร็จ",
+      "duration": 1100
+    },
+    {
+      "id": "tr-5",
+      "from": "target",
+      "to": "host",
+      "label": "Done",
+      "packet": "45ms total",
+      "description": "แสดงเส้นทางและ latency แต่ละ hop",
+      "duration": 1000
+    }
+  ]
+}

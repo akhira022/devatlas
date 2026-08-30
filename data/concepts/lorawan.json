@@ -1,0 +1,63 @@
+{
+  "slug": "lorawan",
+  "title": "LoRaWAN",
+  "fullName": "Long Range Wide Area Network",
+  "summary": "โปรโตคอลและเครือข่าย LPWAN ส่งข้อมูลไกลหลายกม. ด้วยพลังงานน้อย — เหมาะ sensor นอกอาคารที่เปลี่ยน battery ยาก",
+  "difficulty": "advanced",
+  "category": "iot",
+  "tags": [
+    "lpwan",
+    "lora",
+    "wireless"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "LoRaWAN เป็น open standard LPWAN (Low Power Wide Area Network) บน physical layer **LoRa** (Long Range) modulation — ออกแบบให้อุปกรณ์ battery-powered ส่ง payload เล็ก ๆ ไกลถึงหลายกิโลเมตรด้วยพลังงานต่ำ\n\nองค์ประกอบเครือข่าย:\n- **End Device** — sensor ที่ส่ง uplink\n- **Gateway** — รับ radio แล้ว forward ไป network server ผ่าน IP\n- **Network Server** — จัดการ join, ADR, deduplication\n- **Application Server** — decode payload ส่งให้ app\n\nFrequency band ตามประเทศ (EU 868 MHz, US 915 MHz, AS923 ในไทย/เอเชีย)"
+    },
+    {
+      "type": "why",
+      "content": "Wi-Fi และ cellular กินพลังงานและค่า subscription สูงสำหรับ sensor ที่ส่งข้อมูลน้อย ๆ ทุก 15 นาที\n\nLoRaWAN เหมาะเมื่อ:\n- ครอบคลุมพื้นที่กว้าง — เกษตร, smart city, asset tracking\n- Battery ต้องอยู่ได้ 5–10 ปี\n- Payload เล็ก ( tens of bytes ) และ latency นาที–ชั่วโมงรับได้\n- ไม่ต้องการ real-time streaming\n\nTrade-off: bandwidth ต่ำมาก, downlink จำกัด, duty cycle ตาม regulation"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Device **OTAA** (Over-The-Air Activation) join กับ network — ได้ session keys\n2. Device ส่ง **uplink** ตาม schedule/class — payload เข้ารหัส AES\n3. Gateway ใกล้ที่สุดหลายตัวอาจรับ packet เดียวกัน ( diversity )\n4. Network server dedupe เลือก best SNR ส่งต่อ application server\n5. Application server decode ด้วย application key → JSON metric\n6. **Downlink** สำหรับ config/command — จำกัด rate และ window\n7. **ADR** (Adaptive Data Rate) ปรับ SF/data rate ตามสัญญาณ"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "End Device Classes — Class A (battery save), B, C (more downlink)",
+        "Spreading Factor (SF7–SF12) — ไกลขึ้นแต่ช้าและกิน airtime",
+        "Gateway — multi-channel LoRa concentrator (Semtech SX130x)",
+        "Network Server — ChirpStack, TTN, AWS IoT Core for LoRaWAN",
+        "DevEUI / AppEUI / AppKey — identity และ keys สำหรับ join",
+        "Duty Cycle & Regional Parameters — กฎ EIRP และ airtime limit"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Smart agriculture วัดความชื้นดิน 500 ไร่:\n\n1. ติดตั้ง soil sensor + LoRaWAN node Class A ทุก 2 ไร่\n2. Gateway บนยอดเขา coverage ~5 km radius\n3. OTAA join ผ่าน ChirpStack network server\n4. Uplink ทุก 30 นาที — 4 bytes moisture + 2 bytes temp\n5. Application server decode → MQTT → dashboard แจ้เตือนขาดน้ำ\n6. SF10 ใน zone ไกล — battery คาด 7 ปี\n7. Downlink ปีละครั้ง — เปลี่ยน uplink interval firmware OTA ผ่าน multicast"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "LoRa ≠ LoRaWAN — LoRa เป็น modulation; LoRaWAN เป็น network protocol บน LoRa",
+        "LoRaWAN ≠ Wi-Fi/5G — bandwidth ต่ำมาก ไม่ stream video",
+        "Gateway ไม่ decode application payload — ทำที่ application server ด้วย keys",
+        "Coverage ขึ้นกับ SF, antenna, environment — urban vs rural ต่างกันมาก"
+      ]
+    }
+  ],
+  "related": [
+    "mqtt",
+    "sensor",
+    "edge-computing",
+    "udp",
+    "api"
+  ],
+  "visualization": "iot-gateway-flow",
+  "prerequisites": [
+    "iot-gateway",
+    "sensor"
+  ]
+}

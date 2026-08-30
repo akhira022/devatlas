@@ -1,0 +1,19 @@
+{
+  "slug": "git-merge-flow",
+  "title": "Git Merge Flow",
+  "description": "รวม feature branch เข้า main พร้อม merge commit",
+  "conceptSlug": "git-merge",
+  "protocol": "Git",
+  "category": "git-github",
+  "nodes": [
+    { "id": "main", "label": "main", "description": "branch หลัก", "type": "server", "position": { "x": 0, "y": 80 } },
+    { "id": "feature", "label": "feature/auth", "description": "branch งานใหม่", "type": "client", "position": { "x": 0, "y": 200 } },
+    { "id": "merged", "label": "main (merged)", "description": "main หลัง merge", "type": "server", "position": { "x": 400, "y": 120 } }
+  ],
+  "steps": [
+    { "id": "gm-1", "from": "main", "to": "feature", "label": "Diverge", "packet": "2 commits แยกกัน", "description": "main และ feature มี commits คนละชุด", "duration": 1100 },
+    { "id": "gm-2", "from": "feature", "to": "main", "label": "git checkout main", "packet": "switch main", "description": "ย้ายไป main ก่อน merge", "duration": 1000 },
+    { "id": "gm-3", "from": "main", "to": "merged", "label": "git merge", "packet": "git merge feature/auth", "description": "รวม commits จาก feature — อาจมี conflict", "duration": 1300 },
+    { "id": "gm-4", "from": "merged", "to": "merged", "label": "Merge Commit", "packet": "2 parents", "description": "สร้าง merge commit ที่มี parent ทั้ง main และ feature", "duration": 1200 }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "slug": "json",
+  "title": "JSON",
+  "fullName": "JavaScript Object Notation",
+  "summary": "รูปแบบข้อมูลที่มนุษย์และเครื่องอ่านได้ง่าย — มาตรฐาน de facto สำหรับ API response",
+  "difficulty": "beginner",
+  "category": "programming",
+  "tags": [
+    "data",
+    "format",
+    "api",
+    "serialization"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "JSON (JavaScript Object Notation) คือรูปแบบข้อมูลข้อความ (text-based data format) ที่ใช้เก็บและแลกเปลี่ยนข้อมูลระหว่างระบบ\n\nโครงสร้างหลักคือ key-value pairs ใน object และ list ใน array:\n```\n{\n  \"name\": \"สมชาย\",\n  \"age\": 25,\n  \"skills\": [\"JavaScript\", \"Python\"],\n  \"active\": true\n}\n```\n\nJSON ไม่ได้จำกัดแค่ JavaScript — ทุกภาษาโปรแกรมสมัยใหม่มี library แปลง JSON ได้"
+    },
+    {
+      "type": "why",
+      "content": "API ส่วนใหญ่ใช้ JSON เป็น response format เพราะ:\n\n- อ่านง่ายสำหรับ developer — เห็นโครงสร้างข้อมูลชัดเจน\n- เบากว่า XML — ส่งผ่านเครือข่ายเร็วกว่า\n- แปลงเป็น object ในภาษาต่าง ๆ ได้ง่าย (parse/stringify)\n- รองรับ type พื้นฐาน: string, number, boolean, null, array, object"
+    },
+    {
+      "type": "how_it_works",
+      "content": "การใช้ JSON ในแอปจริงมี 2 ทิศทาง:\n\n**Serialize (Object → JSON string):**\n1. Backend สร้าง object จากข้อมูลใน Database\n2. เรียก JSON.stringify() หรือ json.dumps()\n3. ส่งเป็น text ใน HTTP response body\n\n**Deserialize (JSON string → Object):**\n1. Client รับ response body เป็น text\n2. เรียก JSON.parse() หรือ json.loads()\n3. ได้ object ที่ใช้ render UI ได้ทันที"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Object {} — key-value pairs",
+        "Array [] — ลำดับของค่า",
+        "String — ข้อความใน double quotes",
+        "Number — จำนวนเต็มหรือทศนิยม",
+        "Boolean — true/false",
+        "null — ค่าว่าง"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เมื่อเปิด social media feed:\n\n1. App ส่ง GET /api/timeline\n2. Server ตอบ JSON:\n```\n{\n  \"posts\": [\n    {\"id\": 1, \"text\": \"Hello world\", \"likes\": 42},\n    {\"id\": 2, \"text\": \"Learning JSON\", \"likes\": 7}\n  ]\n}\n```\n3. App แปลง JSON → object แล้ว map posts แสดงเป็นหน้า feed"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "JSON ≠ JavaScript object — JSON เป็น text string, ต้อง parse ก่อนใช้",
+        "JSON key ต้องอยู่ใน double quotes (\"name\") — ไม่ใช่ single quotes",
+        "JSON ไม่รองรับ comment, trailing comma, หรือ undefined",
+        "JSON vs XML — JSON เบาและนิยมกว่าใน API สมัยใหม่"
+      ]
+    }
+  ],
+  "related": [
+    "api",
+    "http",
+    "rest"
+  ],
+  "visualization": "json-flow"
+}

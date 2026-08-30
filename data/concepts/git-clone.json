@@ -1,0 +1,55 @@
+{
+  "slug": "git-clone",
+  "title": "clone",
+  "summary": "ดาวน์โหลด repository จาก remote มาทั้งโฟลเดอร์พร้อม history",
+  "difficulty": "beginner",
+  "category": "git-github",
+  "subcategory": "fundamentals",
+  "tags": [
+    "git",
+    "remote",
+    "github"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`git clone` คัดลอก repo จาก URL (มักเป็น GitHub) มาที่เครื่อง — ได้ไฟล์ทั้งหมด + history + remote `origin` ตั้งให้แล้ว"
+    },
+    {
+      "type": "why",
+      "content": "clone คือวิธีมาตรฐานในการเริ่มทำงานกับ repo ที่มีอยู่แล้ว — ได้ทั้ง code และ history ครบ\n\n- onboarding ทีมใหม่\n- CI runner ดึง source\n- fork โปรเจกต์ open source"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ngit clone https://github.com/user/repo.git\ngit clone git@github.com:user/repo.git    # SSH\ngit clone <url> my-folder                 # ตั้งชื่อโฟลเดอร์\ngit clone --depth 1 <url>                 # shallow clone (แค่ commit ล่าสุด)\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "git clone <url> — ดึง repo",
+        "HTTPS vs SSH URL",
+        "origin — remote default",
+        "--depth 1 — shallow clone เร็วขึ้น",
+        "submodule — repo ซ้อน repo"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เริ่มทำงานโปรเจกต์:\n```\ngit clone https://github.com/vercel/next.js.git\ncd next.js\nnpm install\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "clone ≠ fork — fork สร้าง copy บน GitHub account คุณก่อน แล้วค่อย clone",
+        "HTTPS ต้อง login/token, SSH ต้องตั้ง key ก่อน"
+      ]
+    }
+  ],
+  "related": [
+    "git",
+    "git-init",
+    "git-remote",
+    "ssh"
+  ],
+  "visualization": "git-workflow-flow"
+}

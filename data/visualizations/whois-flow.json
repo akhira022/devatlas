@@ -1,0 +1,78 @@
+{
+  "slug": "whois-flow",
+  "title": "WHOIS Lookup",
+  "description": "whois — ดูข้อมูลการจดทะเบียน domain",
+  "conceptSlug": "whois",
+  "protocol": "WHOIS",
+  "category": "cli",
+  "nodes": [
+    {
+      "id": "user",
+      "label": "User",
+      "description": "สอบถามข้อมูล domain",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "whois",
+      "label": "whois client",
+      "description": "CLI whois",
+      "type": "service",
+      "position": {
+        "x": 260,
+        "y": 120
+      }
+    },
+    {
+      "id": "registry",
+      "label": "WHOIS Server",
+      "description": "registry ของ TLD",
+      "type": "server",
+      "position": {
+        "x": 520,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "wh-1",
+      "from": "user",
+      "to": "whois",
+      "label": "whois",
+      "packet": "whois example.com",
+      "description": "ระบุ domain ที่ต้องการสอบถาม",
+      "duration": 1100
+    },
+    {
+      "id": "wh-2",
+      "from": "whois",
+      "to": "registry",
+      "label": "Query",
+      "packet": "example.com?",
+      "description": "เชื่อมต่อ WHOIS server ของ TLD",
+      "duration": 1100
+    },
+    {
+      "id": "wh-3",
+      "from": "registry",
+      "to": "whois",
+      "label": "Record",
+      "packet": "Registrar, dates…",
+      "description": "ได้ข้อมูล registrant, expiry, nameservers",
+      "duration": 1100
+    },
+    {
+      "id": "wh-4",
+      "from": "whois",
+      "to": "user",
+      "label": "Display",
+      "packet": "text output",
+      "description": "แสดงผลข้อมูล domain registration",
+      "duration": 1000
+    }
+  ]
+}

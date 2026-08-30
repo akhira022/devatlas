@@ -1,0 +1,23 @@
+{
+  "slug": "rest-vs-graphql",
+  "title": "REST vs GraphQL",
+  "description": "สองรูปแบบ API ยอดนิยม — REST ใช้ endpoint หลายตัว, GraphQL ใช้ query เดียว",
+  "icon": "arrow-left-right",
+  "items": [
+    { "conceptSlug": "rest", "name": "REST", "tagline": "Resource-based, HTTP verbs, หลาย endpoint" },
+    { "conceptSlug": "graphql", "name": "GraphQL", "tagline": "Query language, endpoint เดียว, เลือก field ได้" }
+  ],
+  "rows": [
+    { "label": "Endpoint", "values": ["/users, /posts, /comments", "/graphql เดียว"] },
+    { "label": "Over-fetching", "values": ["ได้ field ทั้งหมดที่ server ส่งมา", "ขอเฉพาะ field ที่ต้องการ"] },
+    { "label": "Under-fetching", "values": ["อาจต้องเรียกหลาย endpoint", "join ข้อมูลใน query เดียว"] },
+    { "label": "Caching", "values": ["HTTP cache ใช้ได้ง่าย", "ซับซ้อนกว่า — POST query"] },
+    { "label": "Learning curve", "values": ["เข้าใจง่าย มาตรฐาน HTTP", "ต้องเรียนรู้ schema และ query syntax"] }
+  ],
+  "whenToUse": [
+    { "label": "API ทั่วไป CRUD", "pick": "REST" },
+    { "label": "Mobile app ต้องการข้อมูลเฉพาะ", "pick": "GraphQL" },
+    { "label": "ทีมเล็ก ต้องการ simple", "pick": "REST" },
+    { "label": "Frontend หลาย client ต้องการข้อมูลต่างกัน", "pick": "GraphQL" }
+  ]
+}

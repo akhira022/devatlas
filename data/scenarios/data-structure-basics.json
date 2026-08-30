@@ -1,0 +1,16 @@
+{
+  "slug": "data-structure-basics",
+  "title": "Data Structure พื้นฐานใช้เมื่อไหร?",
+  "description": "เปรียบเทียบ Array, Stack และ Tree ในสถานการณ์จริง",
+  "difficulty": "beginner",
+  "icon": "code",
+  "concepts": ["data-structure", "array", "stack", "tree", "hash-table"],
+  "visualization": "array-flow",
+  "steps": [
+    { "order": 1, "title": "Array — รายการสินค้า", "description": "เข้าถึงด้วย index O(1) — cart items[0]", "conceptSlug": "array" },
+    { "order": 2, "title": "Stack — Undo", "description": "Undo/Redo ใช้ stack — push/pop ล่าสุดก่อน", "conceptSlug": "stack" },
+    { "order": 3, "title": "Tree — โฟลเดอร์", "description": "file system เป็น tree — folder ซ้อน folder", "conceptSlug": "tree" },
+    { "order": 4, "title": "Hash Table — ค้นหาเร็ว", "description": "Dictionary/map ค้นหา key O(1) — user cache", "conceptSlug": "hash-table" },
+    { "order": 5, "title": "เลือกให้เหมาะ", "description": "แต่ละ structure trade-off ต่างกัน — ไม่มีตัวเดียวดีที่สุด", "conceptSlug": "data-structure" }
+  ]
+}

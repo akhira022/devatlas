@@ -1,0 +1,47 @@
+{
+  "slug": "ps-resolve-dnsname",
+  "title": "Resolve-DnsName",
+  "summary": "ถาม DNS จาก PowerShell — แสดง A, AAAA, CNAME, MX record",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "windows",
+  "tags": [
+    "powershell",
+    "dns",
+    "network"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`Resolve-DnsName` เป็น PowerShell cmdlet สำหรับ DNS lookup — แทน nslookup/dig ใน script บน Windows"
+    },
+    {
+      "type": "why",
+      "content": "Resolve-DnsName เป็น cmdlet PowerShell สำหรับ DNS lookup — ได้ผลลัพธ์แบบ object แทน text ธรรมดา\n\nใช้ใน script automation และ pipeline ได้สะดวกกว่า nslookup"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nResolve-DnsName google.com\nResolve-DnsName google.com -Type A\nResolve-DnsName google.com -Type AAAA\nResolve-DnsName google.com -Type MX\nResolve-DnsName google.com -Server 8.8.8.8\n\n# reverse DNS\nResolve-DnsName 8.8.8.8\n```"
+    },
+    {
+      "type": "real_world_example",
+      "content": "```powershell\nResolve-DnsName google.com\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Resolve-DnsName vs nslookup — PS output เป็น object ใช้ใน script ง่ายกว่า",
+        "ต้องรันใน PowerShell ไม่ใช่ CMD",
+        "เทียบเท่า dig/host บน Linux"
+      ]
+    }
+  ],
+  "related": [
+    "dig",
+    "dns",
+    "win-nslookup",
+    "host"
+  ],
+  "visualization": "dns-flow"
+}

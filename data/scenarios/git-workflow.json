@@ -1,0 +1,41 @@
+{
+  "slug": "git-workflow",
+  "title": "ส่ง code ขึ้น GitHub ได้อย่างไร?",
+  "description": "ติดตามเส้นทางจาก git init จนถึงเปิด Pull Request",
+  "difficulty": "beginner",
+  "icon": "git-branch",
+  "concepts": ["git-init", "git-add", "git-commit", "git-push", "github-pr"],
+  "visualization": "git-workflow-flow",
+  "steps": [
+    {
+      "order": 1,
+      "title": "เริ่ม repository",
+      "description": "รัน git init (หรือ git clone) เพื่อมี local repo",
+      "conceptSlug": "git-init"
+    },
+    {
+      "order": 2,
+      "title": "Stage ไฟล์",
+      "description": "git add เลือกไฟล์เข้า staging area",
+      "conceptSlug": "git-add"
+    },
+    {
+      "order": 3,
+      "title": "สร้าง commit",
+      "description": "git commit บันทึก snapshot พร้อมข้อความอธิบาย",
+      "conceptSlug": "git-commit"
+    },
+    {
+      "order": 4,
+      "title": "Push ขึ้น remote",
+      "description": "git push ส่ง commits ไปยัง GitHub",
+      "conceptSlug": "git-push"
+    },
+    {
+      "order": 5,
+      "title": "เปิด Pull Request",
+      "description": "สร้าง PR เพื่อให้ทีม review และ merge",
+      "conceptSlug": "github-pr"
+    }
+  ]
+}

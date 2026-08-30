@@ -1,0 +1,59 @@
+{
+  "slug": "prompt-engineering",
+  "title": "Prompt Engineering",
+  "fullName": "Prompt Engineering",
+  "summary": "ศิลปะและเทคนิคการออกแบบ prompt ให้ LLM ตอบได้ถูกต้อง มีประสิทธิภาพ และควบคุมได้",
+  "difficulty": "intermediate",
+  "category": "ai",
+  "tags": [
+    "llm",
+    "prompt",
+    "generative-ai"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Prompt Engineering คือการออกแบบและปรับข้อความ input (prompt) ที่ส่งให้ LLM เพื่อให้ได้ผลลัพธ์ที่ต้องการ — ไม่ใช่แค่ถามสั้น ๆ แต่กำหนดบทบาท บริบท รูปแบบ output และข้อจำกัดอย่างเป็นระบบ\n\nครอบคลุมเทคนิค เช่น:\n- **Zero-shot** — สั่งงานโดยไม่ให้ตัวอย่าง\n- **Few-shot** — ให้ตัวอย่าง input/output ก่อนถามจริง\n- **Chain-of-Thought (CoT)** — ให้ model อธิบายขั้นตอนคิดก่อนตอบ\n- **System prompt** — กำหนด personality และกฎของ assistant"
+    },
+    {
+      "type": "why",
+      "content": "LLM ตอบตาม prompt — prompt แย่ได้ผลแย่ แม้ model ดี\n\nDeveloper ควรเรียนรู้เพราะ:\n- ลด hallucination และ output ที่ไม่ตรง format\n- ประหยัด token และ latency ด้วย prompt ที่กระชับ\n- ทำให้ AI feature ใน production มีคุณภาพสม่ำเสมอ\n- เป็นทักษะพื้นฐานก่อนใช้ RAG หรือ fine-tuning\n- ช่วย debug ว่าปัญหาอยู่ที่ prompt, model หรือ data"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. กำหนดเป้าหมาย — ต้องการ output แบบไหน (JSON, สรุป, code)\n2. เขียน system prompt — บทบาท, ข้อห้าม, tone\n3. ใส่ context — เอกสาร, ตัวอย่าง, ข้อมูลที่ model ต้องใช้\n4. ระบุ task ชัดเจน — คำสั่งเดียวต่อ request หรือแยก step\n5. กำหนด output format — schema, bullet, ภาษา\n6. ทดสอบและ iterate — ปรับ wording, เพิ่ม/ลดตัวอย่าง, วัดผล"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "System Prompt — กฎและบทบาทระดับ session",
+        "User Prompt — คำถามหรืองานจริงในแต่ละ turn",
+        "Few-shot Examples — ตัวอย่าง input/output ที่สอน pattern",
+        "Output Format Spec — JSON schema, markdown, ความยาว",
+        "Constraints — สิ่งที่ห้ามทำ, แหล่งข้อมูลที่อนุญาต",
+        "Temperature / Top-p — ควบคุมความสร้างสรรค์ vs ความแม่นยำ"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ทีม dev สร้าง chatbot สรุป ticket support:\n\n1. System prompt: \"คุณเป็นผู้ช่วย IT — ตอบจาก ticket เท่านั้น ถ้าไม่มีข้อมูลให้ตอบ 'ไม่พบใน ticket'\"\n2. User prompt รวม ticket text + คำถาม \"สรุปปัญหาและขั้นตอนแก้\"\n3. กำหนด output เป็น JSON: `{ \"summary\", \"priority\", \"suggested_action\" }`\n4. ทดสอบ 20 ticket — พบว่า model ใส่ priority ผิด → เพิ่ม few-shot 3 ตัวอย่าง\n5. Deploy แล้ว monitor — ถ้า format พัง ปรับ prompt ก่อนคิด fine-tune"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Prompt ยาว ≠ ดีเสมอ — สิ่งที่ไม่เกี่ยวกิน token และทำให้ model สับสน",
+        "Prompt engineering ≠ แทน RAG — RAG ให้ข้อมูลล่าสุดจาก knowledge base, prompt ควบคุมวิธีใช้ข้อมูลนั้น",
+        "ผลลัพธ์ไม่คงที่ 100% — temperature > 0 จะมี variance แม้ prompt เดิม",
+        "Fine-tuning ไม่ได้ทำให้ไม่ต้อง prompt — ยังต้องกำหนด task และ format"
+      ]
+    }
+  ],
+  "related": [
+    "llm",
+    "rag",
+    "machine-learning",
+    "neural-network",
+    "api"
+  ],
+  "visualization": "llm-flow"
+}

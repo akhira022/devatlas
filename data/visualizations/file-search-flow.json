@@ -1,0 +1,78 @@
+{
+  "slug": "file-search-flow",
+  "title": "Find Executable Path",
+  "description": "where — หา path ของโปรแกรมใน PATH",
+  "conceptSlug": "win-where",
+  "protocol": "Shell",
+  "category": "cli",
+  "nodes": [
+    {
+      "id": "user",
+      "label": "User",
+      "description": "หาว่าโปรแกรมอยู่ที่ไหน",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "shell",
+      "label": "where / which",
+      "description": "ค้นหาใน PATH",
+      "type": "service",
+      "position": {
+        "x": 280,
+        "y": 120
+      }
+    },
+    {
+      "id": "path",
+      "label": "PATH dirs",
+      "description": "โฟลเดอร์ใน environment PATH",
+      "type": "database",
+      "position": {
+        "x": 560,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "fs-1",
+      "from": "user",
+      "to": "shell",
+      "label": "where node",
+      "packet": "where node",
+      "description": "ถามว่า executable ชื่อ node อยู่ที่ไหน",
+      "duration": 1100
+    },
+    {
+      "id": "fs-2",
+      "from": "shell",
+      "to": "path",
+      "label": "Scan",
+      "packet": "C:\\Program Files\\…",
+      "description": "สแกนแต่ละโฟลเดอร์ใน PATH",
+      "duration": 1100
+    },
+    {
+      "id": "fs-3",
+      "from": "path",
+      "to": "shell",
+      "label": "Match",
+      "packet": "node.exe found",
+      "description": "พบไฟล์ที่ตรงชื่อ",
+      "duration": 1100
+    },
+    {
+      "id": "fs-4",
+      "from": "shell",
+      "to": "user",
+      "label": "Result",
+      "packet": "C:\\…\\node.exe",
+      "description": "แสดง path เต็มของ executable",
+      "duration": 1000
+    }
+  ]
+}

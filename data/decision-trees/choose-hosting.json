@@ -1,0 +1,49 @@
+{
+  "slug": "choose-hosting",
+  "title": "Cloud, Edge หรือ On-prem?",
+  "description": "เลือกที่รัน workload ตาม latency, privacy และ scale",
+  "icon": "cloud",
+  "category": "cloud",
+  "startNodeId": "latency",
+  "nodes": [
+    {
+      "id": "latency",
+      "question": "ต้องการตอบสนอง real-time ใกล้ sensor/device ไหม?",
+      "options": [
+        { "label": "ใช่ — IoT, CCTV analytics, factory", "next": "result:edge" },
+        { "label": "ไม่ — web app / API ทั่วไป", "next": "data-sensitivity" }
+      ]
+    },
+    {
+      "id": "data-sensitivity",
+      "question": "ข้อมูล sensitive ต้องอยู่ในองค์กรไหม?",
+      "options": [
+        { "label": "ใช่ — compliance ห้ามออก cloud", "next": "result:onprem" },
+        { "label": "ไม่ — cloud SaaS/PaaS ได้", "next": "result:cloud" }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "cloud",
+      "title": "แนะนำ: Cloud",
+      "summary": "Scale ง่าย, managed services — เหมาะ web app, SaaS, analytics ระยะยาว",
+      "conceptSlugs": ["cloud-computing", "serverless"],
+      "compareSlug": "cloud-vs-edge"
+    },
+    {
+      "id": "edge",
+      "title": "แนะนำ: Edge Computing",
+      "summary": "ประมวลผลใกล้แหล่งข้อมูล — ลด latency และ bandwidth มัก sync กับ cloud",
+      "conceptSlugs": ["edge-computing", "iot-gateway"],
+      "compareSlug": "cloud-vs-edge",
+      "learnPathSlug": "iot-starter"
+    },
+    {
+      "id": "onprem",
+      "title": "แนะนำ: On-premises / Private",
+      "summary": "รันบน server ขององค์กร — ควบคุม data ได้เต็มที่ อาจใช้ VM หรือ Kubernetes ใน data center",
+      "conceptSlugs": ["virtual-machine", "kubernetes", "data-center"]
+    }
+  ]
+}

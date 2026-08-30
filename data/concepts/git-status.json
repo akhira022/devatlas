@@ -1,0 +1,53 @@
+{
+  "slug": "git-status",
+  "title": "status",
+  "summary": "ดูไฟล์ที่เปลี่ยน staged/unstaged และ branch ปัจจุบัน",
+  "difficulty": "beginner",
+  "category": "git-github",
+  "subcategory": "workflow",
+  "tags": [
+    "git",
+    "workflow"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`git status` แสดงสถานะ working directory — ไฟล์ใหม่, แก้แล้ว, staged พร้อม commit หรือยัง"
+    },
+    {
+      "type": "why",
+      "content": "ก่อน commit ต้องรู้ว่าไฟล์ไหนเปลี่ยน  staged หรือยัง — status ป้องกัน commit ผิดไฟล์"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ngit status\ngit status -s                   # แบบสั้น (short)\ngit status --ignored            # รวม ignored files\n```\n\nสัญลักษณ์ short format:\n- `??` untracked\n- ` M` modified (unstaged)\n- `M ` staged\n- `A ` added"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Untracked — ไฟล์ใหม่",
+        "Modified — แก้แต่ยังไม่ add",
+        "Staged — พร้อม commit",
+        "git status -s — แบบสั้น",
+        "git status -u — แสดง untracked ละเอียด"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ก่อน commit ทุกครั้ง:\n```\ngit status\n# modified: src/api.ts\ngit add src/api.ts\ngit status\n# Changes to be committed: src/api.ts\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "รัน status บ่อย ๆ ก่อน add/commit — ป้องกัน commit ผิดไฟล์",
+        "untracked ≠ ignored — .gitignore ควบคุม ignored"
+      ]
+    }
+  ],
+  "related": [
+    "git-add",
+    "git-diff",
+    "git-commit"
+  ],
+  "visualization": "git-commit-flow"
+}

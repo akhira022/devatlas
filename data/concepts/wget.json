@@ -1,0 +1,56 @@
+{
+  "slug": "wget",
+  "title": "wget",
+  "summary": "ดาวน์โหลดไฟล์จาก URL — รองรับ recursive, resume และ mirror เว็บ",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "unix",
+  "tags": [
+    "http",
+    "download",
+    "network"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`wget` ดาวน์โหลดไฟล์จาก HTTP, HTTPS, FTP — เน้นการ save ลง disk มากกว่า `curl` รองรับ resume ไฟล์ค้าง และ mirror เว็บทั้งไซต์"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nwget https://example.com/file.zip\nwget -O output.zip https://example.com/file.zip   # ตั้งชื่อไฟล์\nwget -c https://example.com/large.iso            # resume ต่อจากที่ค้าง (-c)\nwget -q https://example.com/file.txt             # quiet mode\nwget -r -l 1 https://example.com/                # recursive 1 level\nwget --spider https://example.com/                 # ตรวจว่า URL มีจริง (ไม่ดาวน์โหลด)\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "-O filename — ตั้งชื่อ output",
+        "-c — continue/resume",
+        "-q — quiet",
+        "-r — recursive download",
+        "--spider — check only",
+        "-P dir — ระบุโฟลเดอร์ปลายทาง"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ดาวน์โหลด binary บน server ที่ไม่มี browser:\n```\nwget https://github.com/.../release.tar.gz\nwget -c https://example.com/10gb-backup.img   # resume ถ้าขาด\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "wget vs curl — wget ดาวน์โหลดไฟล์, curl ทดสอบ API/ส่ง request",
+        "macOS ไม่มี wget ติดมา — ติดตั้งด้วย brew install wget หรือใช้ curl -O",
+        "wget -r mirror เว็บใหญ่ — ระวัง bandwidth และ robots.txt"
+      ]
+    }
+  ],
+  "related": [
+    "http",
+    "curl",
+    "https"
+  ],
+  "visualization": "curl-request-flow",
+  "prerequisites": [
+    "curl"
+  ]
+}

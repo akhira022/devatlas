@@ -1,0 +1,97 @@
+{
+  "slug": "npm-flow",
+  "title": "npm Install Flow",
+  "description": "npm install — ดาวน์โหลด dependencies จาก registry",
+  "conceptSlug": "npm",
+  "protocol": "npm",
+  "category": "cli",
+  "nodes": [
+    {
+      "id": "dev",
+      "label": "Developer",
+      "description": "รัน npm install",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "npm",
+      "label": "npm CLI",
+      "description": "อ่าน package.json",
+      "type": "service",
+      "position": {
+        "x": 260,
+        "y": 120
+      }
+    },
+    {
+      "id": "registry",
+      "label": "npm Registry",
+      "description": "registry.npmjs.org",
+      "type": "server",
+      "position": {
+        "x": 520,
+        "y": 60
+      }
+    },
+    {
+      "id": "node_modules",
+      "label": "node_modules",
+      "description": "โฟลเดอร์ dependencies",
+      "type": "database",
+      "position": {
+        "x": 520,
+        "y": 180
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "npm-1",
+      "from": "dev",
+      "to": "npm",
+      "label": "npm install",
+      "packet": "npm install",
+      "description": "อ่าน package.json และ lock file",
+      "duration": 1100
+    },
+    {
+      "id": "npm-2",
+      "from": "npm",
+      "to": "registry",
+      "label": "Fetch",
+      "packet": "GET react@18",
+      "description": "ดาวน์โหลด package tarball จาก registry",
+      "duration": 1200
+    },
+    {
+      "id": "npm-3",
+      "from": "registry",
+      "to": "npm",
+      "label": "Tarball",
+      "packet": ".tgz",
+      "description": "ได้ package และ dependencies ซ้อน",
+      "duration": 1100
+    },
+    {
+      "id": "npm-4",
+      "from": "npm",
+      "to": "node_modules",
+      "label": "Extract",
+      "packet": "node_modules/",
+      "description": "แตกไฟล์ลง node_modules",
+      "duration": 1100
+    },
+    {
+      "id": "npm-5",
+      "from": "node_modules",
+      "to": "dev",
+      "label": "Ready",
+      "packet": "added 142 pkgs",
+      "description": "พร้อม import ในโปรเจกต์",
+      "duration": 1000
+    }
+  ]
+}

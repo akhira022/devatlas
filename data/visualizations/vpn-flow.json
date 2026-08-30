@@ -1,0 +1,87 @@
+{
+  "slug": "vpn-flow",
+  "title": "VPN Tunnel",
+  "description": "ดู traffic เข้ารหัสผ่าน VPN tunnel",
+  "conceptSlug": "vpn",
+  "protocol": "VPN / IPsec",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Remote Worker",
+      "description": "ทำงานจาก café WiFi",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "vpn",
+      "label": "VPN Server",
+      "description": "Corporate VPN gateway",
+      "type": "network",
+      "position": {
+        "x": 320,
+        "y": 120
+      }
+    },
+    {
+      "id": "intranet",
+      "label": "Internal Server",
+      "description": "File server ในองค์กร",
+      "type": "server",
+      "position": {
+        "x": 600,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "vpn-1",
+      "from": "client",
+      "to": "vpn",
+      "label": "Connect",
+      "packet": "VPN Handshake",
+      "description": "Client เชื่อมต่อ VPN — authenticate ด้วย certificate/password",
+      "duration": 1300
+    },
+    {
+      "id": "vpn-2",
+      "from": "client",
+      "to": "vpn",
+      "label": "Encrypted",
+      "packet": "🔒 Tunnel Data",
+      "description": "ทุก packet ถูก encrypt ใน tunnel — WiFi รอบข้างอ่านไม่ได้",
+      "duration": 1300
+    },
+    {
+      "id": "vpn-3",
+      "from": "vpn",
+      "to": "intranet",
+      "label": "Decrypt",
+      "packet": "GET /files",
+      "description": "VPN server ถอดรหัสและ forward ไป internal network",
+      "duration": 1200
+    },
+    {
+      "id": "vpn-4",
+      "from": "intranet",
+      "to": "vpn",
+      "label": "Response",
+      "packet": "File data",
+      "description": "Internal server ตอบกลับ VPN server",
+      "duration": 1100
+    },
+    {
+      "id": "vpn-5",
+      "from": "vpn",
+      "to": "client",
+      "label": "Encrypted",
+      "packet": "🔒 Tunnel Data",
+      "description": "VPN server encrypt ส่งกลับ client — เหมือนอยู่ใน office network",
+      "duration": 1300
+    }
+  ]
+}

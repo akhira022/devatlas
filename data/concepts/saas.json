@@ -1,0 +1,55 @@
+{
+  "slug": "saas",
+  "title": "SaaS",
+  "fullName": "Software as a Service",
+  "summary": "ซอฟต์แวร์ที่ใช้ผ่าน browser — ไม่ต้องติดตั้ง จ่าย subscription",
+  "difficulty": "beginner",
+  "category": "cloud",
+  "tags": [
+    "subscription",
+    "web-app",
+    "service"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "SaaS คือ software ที่ provider host และดูแลให้ — user เข้าใช้ผ่าน browser หรือ app จ่ายรายเดือน/ปี\n\nตัวอย่าง: Gmail, Slack, Notion, Figma, Spotify, Salesforce"
+    },
+    {
+      "type": "why",
+      "content": "สำหรับ user:\n- ไม่ต้องติดตั้งหรืออัปเดต\n- เข้าถึงได้ทุกที่ทุกอุปกรณ์\n- จ่าย subscription แทนซื้อ license\n\nสำหรับ business:\n- Recurring revenue model\n- Scale ได้ง่าย"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Provider สร้าง software บน cloud infrastructure\n2. User สมัครผ่านเว็บ — ไม่ต้องติดตั้ง\n3. Multi-tenant: หลายลูกค้าใช้ instance เดียว แยก data\n4. จ่าย subscription รายเดือน/ปี\n5. Provider ดูแล update, security, scaling"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Multi-tenancy — ลูกค้าหลายรายใช้ platform เดียว",
+        "Subscription — จ่ายรายเดือนแทนซื้อขาด",
+        "Cloud-hosted — เข้าถึงผ่าน browser",
+        "Automatic Updates — provider อัปเดตให้",
+        "SLA — ข้อตกลง uptime และ support"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ใช้ Slack ในบริษัท:\n\n- ไม่ต้องติดตั้ง server เอง\n- สมัคร workspace → invite ทีม\n- จ่ายต่อ user/เดือน\n- Slack อัปเดต feature ให้อัตโนมัติ\n- ข้อมูลแยกตาม workspace (tenant)"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "SaaS vs PaaS vs IaaS — SaaS ใช้ software, PaaS deploy app, IaaS จัดการ infrastructure",
+        "SaaS ข้อมูลอยู่ที่ provider — ต้องพิจารณา privacy",
+        "Self-hosted alternative มี control มากกว่า"
+      ]
+    }
+  ],
+  "related": [
+    "cloud-computing",
+    "frontend",
+    "api"
+  ],
+  "visualization": "serverless-flow"
+}

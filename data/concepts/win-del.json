@@ -1,0 +1,56 @@
+{
+  "slug": "win-del",
+  "title": "del",
+  "fullName": "Delete Files (CMD / PowerShell)",
+  "summary": "ลบไฟล์ — CMD ใช้ del/erase/rmdir, PowerShell ใช้ Remove-Item",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "navigation",
+  "platform": "windows",
+  "tags": [
+    "cmd",
+    "powershell",
+    "files"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`del` (CMD) ลบไฟล์, `rmdir` ลบโฟลเดอร์ — PowerShell ใช้ `Remove-Item` (alias `rm`) สำหรับทั้งไฟล์และโฟลเดอร์"
+    },
+    {
+      "type": "why",
+      "content": "del ลบไฟล์ที่ไม่ต้องการ — ล้าง temp, build artifact หรือไฟล์ที่สร้างผิด\n\nระวัง: ไม่มี recycle bin ใน CMD แบบ GUI — ลบแล้วกู้ยาก"
+    },
+    {
+      "type": "how_it_works",
+      "content": "**CMD:**\n```\ndel file.txt\ndel /q *.tmp                 # quiet\ndel /s /q temp\\*.log          # recursive ใน subfolder\nrmdir emptydir\nrmdir /s /q folder            # ลบโฟลเดอร์และข้างใน\n```\n\n**PowerShell:**\n```\nRemove-Item file.txt\nRemove-Item -Recurse -Force .\\node_modules\nrm -r folder                  # alias\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "del file.txt",
+        "del /Q — quiet",
+        "rmdir /S — ลบโฟลเดอร์",
+        "ระวัง path ก่อนลบ",
+        "Recycle Bin ไม่ผ่าน del"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\ndel /Q *.log\nrmdir /S /Q node_modules\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "del ลบไฟล์ ไม่ลบโฟลเดอร์ที่มีข้างใน — ใช้ rmdir /s หรือ Remove-Item -Recurse",
+        "Recycle Bin ไม่ใช่ default — ลบแล้วหาย (ระวัง!)",
+        "PowerShell -Force ลบ read-only/hidden ได้"
+      ]
+    }
+  ],
+  "related": [
+    "win-copy",
+    "win-dir"
+  ],
+  "visualization": "file-ops-flow"
+}

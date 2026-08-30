@@ -1,0 +1,51 @@
+{
+  "slug": "tree",
+  "title": "Tree",
+  "summary": "โครงสร้างแบบ hierarchical — มี root, parent, child ไม่มี cycle",
+  "difficulty": "intermediate",
+  "category": "programming",
+  "subcategory": "data-structure",
+  "tags": [
+    "non-linear",
+    "hierarchy"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "**Tree** เป็น graph ที่ **ไม่มี cycle** และเชื่อมกันทุก node\n\n```\n       8 (root)\n      / \\\n     3   10\n    / \\    \\\n   1   6    14\n```\n\n**Binary Tree** — แต่ละ node มีลูกได้สูงสุด 2\n**BST** — ซ้าย < parent < ขวา → ค้นหา O(log n)"
+    },
+    {
+      "type": "why",
+      "content": "- File system (folder/subfolder)\n- DOM ใน browser\n- JSON object แสดงเป็น tree\n- Database index (B-Tree)\n- Decision tree ใน ML"
+    },
+    {
+      "type": "how_it_works",
+      "content": "Traversal:\n- **In-order** (LNR) — BST ได้ sorted order\n- **Pre-order** (NLR) — copy tree\n- **Post-order** (LRN) — ลบ tree\n- **BFS** — level by level (ใช้ queue)\n- **DFS** — ลึกก่อน (ใช้ stack/recursion)"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Root / Leaf / Internal node",
+        "Binary tree",
+        "BST — ordered",
+        "Traversal: in/pre/post-order",
+        "Height & balance"
+      ]
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "BST ไม่ balance → worst O(n) — ใช้ AVL/Red-Black",
+        "Heap เป็น tree แบบหนึ่ง แต่เน้น min/max ไม่ใช่ sort ทั้งหมด",
+        "Trie ใช้กับ string prefix ไม่ใช่ BST"
+      ]
+    }
+  ],
+  "related": [
+    "data-structure",
+    "graph-structure",
+    "heap",
+    "array"
+  ],
+  "visualization": "tree-flow"
+}

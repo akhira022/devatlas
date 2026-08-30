@@ -1,0 +1,42 @@
+{
+  "slug": "choose-transport",
+  "title": "TCP หรือ UDP?",
+  "description": "เลือก transport protocol ตามความต้องการ reliability vs latency",
+  "icon": "globe",
+  "category": "network",
+  "startNodeId": "reliability",
+  "nodes": [
+    {
+      "id": "reliability",
+      "question": "ข้อมูลต้องถึงครบและถูกต้องทุก byte ไหม?",
+      "options": [
+        { "label": "ใช่ — ไฟล์, API, email ห้ามหาย", "next": "result:tcp" },
+        { "label": "ไม่ — ยอมเสียบาง packet ได้", "next": "latency" }
+      ]
+    },
+    {
+      "id": "latency",
+      "question": "latency ต่ำสำคัญแค่ไหน?",
+      "options": [
+        { "label": "สำคัญมาก — game, live video, VoIP", "next": "result:udp" },
+        { "label": "ปานกลาง — DNS lookup, metric ส่งเป็นระยะ", "next": "result:udp" }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "tcp",
+      "title": "แนะนำ: TCP",
+      "summary": "Connection-oriented, reliable, ordered — ใช้กับ HTTP, HTTPS, SSH, SMTP",
+      "conceptSlugs": ["tcp", "ip"],
+      "compareSlug": "tcp-vs-udp"
+    },
+    {
+      "id": "udp",
+      "title": "แนะนำ: UDP",
+      "summary": "Fast, connectionless — ใช้กับ DNS, streaming, gaming, VoIP",
+      "conceptSlugs": ["udp", "ip"],
+      "compareSlug": "tcp-vs-udp"
+    }
+  ]
+}

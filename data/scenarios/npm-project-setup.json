@@ -1,0 +1,41 @@
+{
+  "slug": "npm-project-setup",
+  "title": "เริ่มโปรเจกต์ Node.js ด้วย npm",
+  "description": "สร้างโปรเจกต์ ติดตั้ง dependencies และรัน script — workflow พื้นฐานของ JavaScript developer",
+  "difficulty": "beginner",
+  "icon": "package",
+  "concepts": ["npm", "mkdir", "cd", "json"],
+  "visualization": "npm-flow",
+  "steps": [
+    {
+      "order": 1,
+      "title": "สร้างโฟลเดอร์โปรเจกต์",
+      "description": "mkdir สร้างโฟลเดอร์ใหม่ แล้ว cd เข้าไป",
+      "conceptSlug": "mkdir"
+    },
+    {
+      "order": 2,
+      "title": "เริ่มต้น package.json",
+      "description": "npm init สร้าง package.json — กำหนดชื่อ, version และ entry point",
+      "conceptSlug": "npm"
+    },
+    {
+      "order": 3,
+      "title": "ติดตั้ง dependencies",
+      "description": "npm install express หรือ framework อื่น — สร้าง node_modules และ package-lock.json",
+      "conceptSlug": "npm"
+    },
+    {
+      "order": 4,
+      "title": "เขียนและรัน script",
+      "description": "เพิ่ม scripts ใน package.json แล้ว npm run dev หรือ npm start",
+      "conceptSlug": "json"
+    },
+    {
+      "order": 5,
+      "title": "แชร์และ deploy",
+      "description": "commit package.json + lock file — CI ใช้ npm ci ติดตั้งแบบ reproducible",
+      "conceptSlug": "npm"
+    }
+  ]
+}

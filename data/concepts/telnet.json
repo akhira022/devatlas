@@ -1,0 +1,49 @@
+{
+  "slug": "telnet",
+  "title": "telnet",
+  "summary": "เชื่อมต่อ TCP port แบบ interactive — ทดสอบว่า service ตอบหรือไม่ (ไม่เข้ารหัส)",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "unix",
+  "tags": [
+    "network",
+    "port",
+    "debug"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`telnet` เปิด TCP connection ไปยัง host:port แล้วพิมพ์ข้อความดิบได้ — เดิมใช้ remote login (ไม่ปลอดภัย) ปัจจุบันใช้หลักเพื่อ **ทดสอบว่า port เปิดและตอบ**"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ntelnet google.com 80\ntelnet localhost 3000\ntelnet smtp.example.com 25       # ทดสอบ mail server\n\n# ถ้าเชื่อมต่อสำเร็จจะเห็น\nTrying 142.250.x.x...\nConnected to google.com.\nEscape character is '^]'.\n\n# ทดสอบ HTTP ดิบ\nGET / HTTP/1.0\n\n# ออก: Ctrl+] แล้วพิมพ์ quit\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "host port — ปลายทาง",
+        "Connected — port เปิดและตอบ",
+        "Connection refused — ไม่มี service ฟัง",
+        "timed out — firewall บล็อกหรือ host ไม่ถึง",
+        "ไม่เข้ารหัส — ห้ามใช้ส่ง password จริง"
+      ]
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "telnet ไม่ปลอดภัย — ใช้ ssh สำหรับ remote login, telnet แค่ทดสอบ port",
+        "telnet vs nc — nc ยืดหยุ่นกว่า (UDP, listen, scan)",
+        "macOS อาจไม่มี telnet — brew install telnet หรือใช้ nc -zv"
+      ]
+    }
+  ],
+  "related": [
+    "tcp",
+    "nc",
+    "smtp",
+    "ssh"
+  ],
+  "visualization": "network-connect-flow"
+}

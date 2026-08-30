@@ -1,0 +1,68 @@
+{
+  "slug": "dhcp-flow",
+  "title": "DHCP DORA Process",
+  "description": "ดู 4 ขั้นตอน DHCP: Discover → Offer → Request → Acknowledge",
+  "conceptSlug": "dhcp",
+  "protocol": "DHCP",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Client Device",
+      "description": "มือถือ/laptop ที่เพิ่งเชื่อม WiFi — ยังไม่มี IP",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "dhcp",
+      "label": "DHCP Server",
+      "description": "Router ที่แจก IP และ config เครือข่าย",
+      "type": "server",
+      "position": {
+        "x": 400,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "dhcp-1",
+      "from": "client",
+      "to": "dhcp",
+      "label": "Discover",
+      "packet": "DHCPDISCOVER",
+      "description": "Client broadcast: 'มี DHCP server ไหม?' — ยังไม่มี IP เลยใช้ 0.0.0.0",
+      "duration": 1300
+    },
+    {
+      "id": "dhcp-2",
+      "from": "dhcp",
+      "to": "client",
+      "label": "Offer",
+      "packet": "DHCPOFFER 192.168.1.50",
+      "description": "Server เสนอ IP 192.168.1.50 พร้อม subnet, gateway, DNS",
+      "duration": 1300
+    },
+    {
+      "id": "dhcp-3",
+      "from": "client",
+      "to": "dhcp",
+      "label": "Request",
+      "packet": "DHCPREQUEST",
+      "description": "Client ขอใช้ IP 192.168.1.50 ที่เสนอมา",
+      "duration": 1200
+    },
+    {
+      "id": "dhcp-4",
+      "from": "dhcp",
+      "to": "client",
+      "label": "Acknowledge",
+      "packet": "DHCPACK + Config",
+      "description": "Server ยืนยัน — ส่ง IP, Gateway (192.168.1.1), DNS (8.8.8.8), Lease time",
+      "duration": 1400
+    }
+  ]
+}

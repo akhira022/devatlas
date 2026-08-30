@@ -1,0 +1,78 @@
+{
+  "slug": "git-workflow-flow",
+  "title": "Git → GitHub Workflow",
+  "description": "จาก init จนถึง push และเปิด Pull Request",
+  "conceptSlug": "git",
+  "protocol": "Git",
+  "category": "git-github",
+  "nodes": [
+    {
+      "id": "dev",
+      "label": "Developer",
+      "description": "เขียนโค้ดและรันคำสั่ง git ในเครื่อง",
+      "type": "client",
+      "position": { "x": 0, "y": 120 }
+    },
+    {
+      "id": "local",
+      "label": "Local Repo",
+      "description": "Working tree, staging area, commits บนเครื่อง",
+      "type": "service",
+      "position": { "x": 260, "y": 120 }
+    },
+    {
+      "id": "remote",
+      "label": "GitHub",
+      "description": "Remote repository และ Pull Request",
+      "type": "server",
+      "position": { "x": 520, "y": 120 }
+    }
+  ],
+  "steps": [
+    {
+      "id": "git-1",
+      "from": "dev",
+      "to": "local",
+      "label": "git init",
+      "packet": "git init",
+      "description": "สร้าง repository ใหม่บนเครื่อง (หรือ clone จาก remote)",
+      "duration": 1100
+    },
+    {
+      "id": "git-2",
+      "from": "dev",
+      "to": "local",
+      "label": "git add",
+      "packet": "git add .",
+      "description": "เลือกไฟล์เข้า staging area",
+      "duration": 1100
+    },
+    {
+      "id": "git-3",
+      "from": "dev",
+      "to": "local",
+      "label": "git commit",
+      "packet": "git commit -m \"…\"",
+      "description": "บันทึก snapshot เป็น commit ในประวัติ local",
+      "duration": 1200
+    },
+    {
+      "id": "git-4",
+      "from": "local",
+      "to": "remote",
+      "label": "git push",
+      "packet": "git push origin main",
+      "description": "ส่ง commits ขึ้น GitHub remote",
+      "duration": 1300
+    },
+    {
+      "id": "git-5",
+      "from": "dev",
+      "to": "remote",
+      "label": "Open PR",
+      "packet": "Pull Request",
+      "description": "เปิด Pull Request เพื่อ review และ merge เข้า main",
+      "duration": 1200
+    }
+  ]
+}

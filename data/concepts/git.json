@@ -1,0 +1,37 @@
+{
+  "slug": "git",
+  "title": "Git",
+  "summary": "ระบบ version control แบบ distributed — บันทึก history, ทำงานเป็นทีม และย้อนกลับได้",
+  "difficulty": "beginner",
+  "category": "git-github",
+  "subcategory": "fundamentals",
+  "tags": ["version-control", "github", "collaboration"],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Git คือ **distributed version control system** — บันทึกทุกการเปลี่ยนแปลงของโค้ดเป็น **commit** พร้อม history ที่ย้อนกลับได้\n\n- ทำงาน **local** ได้โดยไม่ต้องมี internet\n- **Remote** (GitHub, GitLab) ใช้แชร์และ backup\n- ทุกคนมี copy repo เต็ม ไม่พึ่ง server เดียว"
+    },
+    {
+      "type": "why",
+      "content": "- ย้อนกลับเมื่อพัง — `git revert` / `git reset`\n- ทำงานเป็นทีม — branch แยก feature แล้ว merge\n- รู้ว่าใครเปลี่ยนอะไรเมื่อไหร่ — `git log`\n- Code review ผ่าน Pull Request บน GitHub"
+    },
+    {
+      "type": "how_it_works",
+      "content": "Workflow พื้นฐาน:\n\n```\ngit clone <url>          # ดึง repo\n# แก้ไฟล์\ngit status               # ดูสิ่งที่เปลี่ยน\ngit add .                # stage\ngit commit -m \"message\"  # บันทึก snapshot\ngit push                 # ส่งขึ้น GitHub\ngit pull                 # ดึงของคนอื่น\n```\n\n**3 states:** Working Directory → Staging (`git add`) → Repository (`git commit`)"
+    },
+    {
+      "type": "key_components",
+      "items": ["Repository (repo)", "Commit — snapshot พร้อม message", "Branch — เส้นพัฒนาแยก", "Remote — origin บน GitHub", "HEAD — ชี้ commit ปัจจุบัน", "Pull Request — ขอ review ก่อน merge"]
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Git ≠ GitHub — Git เป็น tool, GitHub เป็น hosting",
+        "commit ≠ push — commit บันทึก local, push ส่ง remote",
+        "main vs master — ชื่อ default branch ปัจจุบันมักเป็น main"
+      ]
+    }
+  ],
+  "related": ["git-clone", "git-commit", "git-push", "github-pr", "ci-cd"],
+  "visualization": "git-workflow-flow"
+}

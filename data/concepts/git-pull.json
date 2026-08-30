@@ -1,0 +1,56 @@
+{
+  "slug": "git-pull",
+  "title": "pull",
+  "summary": "ดึง commits จาก remote มารวมกับ branch ปัจจุบัน (fetch + merge)",
+  "difficulty": "beginner",
+  "category": "git-github",
+  "subcategory": "sync",
+  "tags": [
+    "git",
+    "remote",
+    "sync"
+  ],
+  "sections": [
+    {
+      "type": "why",
+      "content": "ดึงงานล่าสุดจาก remote — sync กับทีมก่อนเริ่มงาน"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ngit pull\ngit pull origin main\ngit pull --rebase                  # rebase แทน merge (history เรียบกว่า)\ngit fetch                          # ดึงอย่างเดียว ไม่ merge\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "git pull = fetch + merge",
+        "git pull --rebase — ประวัติตรงกว่า",
+        "merge conflict หลัง pull",
+        "git fetch แล้ว merge เอง",
+        "upstream branch"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เริ่มวันทำงาน:\n```\ngit switch main\ngit pull --rebase\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "pull = fetch + merge — ถ้าต้องการควบคุม ใช้ fetch แล้ว merge/rebase แยก",
+        "pull แล้ว conflict — แก้ไฟล์แล้ว commit",
+        "ทีมนิยม pull --rebase บน feature branch"
+      ]
+    }
+  ],
+  "related": [
+    "git-push",
+    "git-fetch",
+    "git-merge",
+    "git-rebase"
+  ],
+  "visualization": "git-push-flow",
+  "prerequisites": [
+    "git-fetch",
+    "git-merge"
+  ]
+}

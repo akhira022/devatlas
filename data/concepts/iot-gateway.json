@@ -1,0 +1,63 @@
+{
+  "slug": "iot-gateway",
+  "title": "IoT Gateway",
+  "fullName": "IoT Gateway",
+  "summary": "อุปกรณ์กลางระหว่าง sensor/device กับ cloud — แปลงโปรโตคอล กรองข้อมูล และทำ edge processing",
+  "difficulty": "intermediate",
+  "category": "iot",
+  "tags": [
+    "edge",
+    "gateway",
+    "protocol-bridge"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "IoT Gateway คือ hardware/software ที่อยู่ระหว่าง **edge devices** (sensor, PLC, meter) กับ **cloud platform** — รับข้อมูลจาก protocol ท้องถิ่น แล้วส่งต่อด้วย protocol ที่ cloud เข้าใจ\n\nหน้าที่หลัก:\n- Protocol translation — Modbus, BLE, Zigbee, LoRa → MQTT/HTTP\n- Edge compute — filter, aggregate, anomaly detection ก่อนส่ง cloud\n- Local storage — buffer เมื่อ internet ขาด\n- Device management — OTA firmware, config push\n\nตัวอย่าง: AWS IoT Greengrass, Azure IoT Edge, industrial gateway จาก Advantech, Raspberry Pi + custom stack"
+    },
+    {
+      "type": "why",
+      "content": "Sensor ร้อยตัวไม่ควรเชื่อม cloud ตรง ๆ — security, bandwidth และ protocol ไม่ตรงกัน\n\nGateway ช่วย:\n- ลด bandwidth — ส่ง average แทน raw ทุกวินาที\n- ทำงาน offline — rule ท้องถิ่นยังรันเมื่อ WAN down\n- รวมศูนย์ authentication และ TLS termination\n- แปลง legacy industrial protocol เป็น modern API\n- ลด latency สำหรับ control loop ที่ต้องตอบเร็ว (ปิด valve, alarm)"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Edge devices ส่งข้อมูลผ่าน local radio/wired (LoRa, RS485, BLE)\n2. Gateway รับ parse ตาม protocol driver\n3. Normalize เป็น model เดียว — timestamp, device_id, metric, unit\n4. Edge logic — threshold, dedupe, batch 1 นาที\n5. Publish ไป cloud ผ่าน MQTT/HTTPS พร้อม client cert\n6. Cloud ส่ง command กลับ — gateway route ไป device ที่ถูกต้อง\n7. Local UI/dashboard สำหรับ technician ใน field"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Protocol Adapters — Modbus, OPC-UA, BACnet, LoRaWAN NS",
+        "Message Broker (local) — MQTT Mosquitto บน gateway",
+        "Edge Runtime — Greengrass, Node-RED, custom Docker",
+        "Store-and-Forward — queue เมื่อ uplink หลุด",
+        "Device Registry — map physical device → logical ID",
+        "Security — cert provisioning, firewall, secure boot"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "โรงงานน้ำตาล monitor เครื่องจักร 200 จุด:\n\n1. PLC ส่ง Modbus RTU ผ่าน RS485 ไป industrial gateway\n2. Gateway อ่าน register ทุก 5 วิ — แปลงเป็น JSON `{ \"motor_id\", \"rpm\", \"temp\" }`\n3. Rule ท้องถิ่น: temp > 90°C → สั่ง relay หยุด motor ทันที (ไม่รอ cloud)\n4. Aggregate RPM ส่ง MQTT ไป AWS IoT Core ทุก 1 นาที\n5. Cloud dashboard + ML anomaly — gateway OTA อัปเดต rule ใหม่\n6. คืน internet ขาด 3 ชม. — gateway buffer 18,000 messages แล้ว sync"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Gateway ≠ Router — router ส่ง packet; gateway แปลง protocol และ semantic",
+        "Gateway ≠ Cloud — compute บางส่วนอยู่ edge แต่ analytics หนักยังอยู่ cloud",
+        "Gateway ตัวเดียวเป็น single point of failure — วาง redundant หรือ cluster",
+        "Edge compute ไม่ได้แปลว่าไม่ต้อง cloud — ส่วนใหญ่ hybrid"
+      ]
+    }
+  ],
+  "related": [
+    "mqtt",
+    "sensor",
+    "edge-computing",
+    "api",
+    "http"
+  ],
+  "visualization": "iot-gateway-flow",
+  "prerequisites": [
+    "mqtt",
+    "sensor"
+  ]
+}

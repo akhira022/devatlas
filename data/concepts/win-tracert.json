@@ -1,0 +1,57 @@
+{
+  "slug": "win-tracert",
+  "title": "tracert",
+  "fullName": "Trace Route (Windows)",
+  "summary": "ตามเส้นทาง packet ไปปลายทาง — เทียบเท่า traceroute บน Unix",
+  "difficulty": "intermediate",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "windows",
+  "tags": [
+    "network",
+    "routing",
+    "windows"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`tracert` คือคำสั่ง trace route บน Windows — เทียบเท่า `traceroute` บน Unix/macOS"
+    },
+    {
+      "type": "why",
+      "content": "tracert ติดตามเส้นทาง packet ไปปลายทาง — หา hop ที่ latency สูงหรือ packet หาย\n\nเทียบเท่า traceroute บน Unix — ใช้ debug routing และ ISP issue"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ntracert google.com\ntracert -d google.com          # ไม่ resolve hostname (เร็วขึ้น)\ntracert -h 15 google.com       # max 15 hops\n\n# PowerShell ทางเลือก\nTest-NetConnection google.com -TraceRoute\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "tracert host",
+        "hop-by-hop RTT",
+        "เทียบ traceroute บน Unix",
+        "* * * — timeout ที่ hop",
+        "ใช้ debug routing"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\ntracert google.com\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "tracert (Windows) vs traceroute (Unix) — ชื่อต่าง หน้าที่เดียวกัน",
+        "macOS/Linux ใช้ traceroute, Windows ใช้ tracert",
+        "* * * ไม่ได้แปลว่า network พัง — router อาจไม่ตอบ ICMP"
+      ]
+    }
+  ],
+  "related": [
+    "traceroute",
+    "win-ping",
+    "ip"
+  ],
+  "visualization": "traceroute-flow"
+}

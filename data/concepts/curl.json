@@ -1,0 +1,64 @@
+{
+  "slug": "curl",
+  "title": "curl",
+  "fullName": "Client URL",
+  "summary": "ส่ง HTTP/HTTPS request จาก terminal — ทดสอบ API ดาวน์โหลดไฟล์ debug header",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "unix",
+  "tags": [
+    "http",
+    "api",
+    "request"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`curl` เป็น CLI client สำหรับส่ง request ผ่าน URL — รองรับ HTTP, HTTPS, FTP และอื่น ๆ ใช้ทดสอบ API โดยไม่ต้องเปิด browser หรือ Postman"
+    },
+    {
+      "type": "why",
+      "content": "ทดสอบ API จาก terminal เร็วกว่าเปิด GUI tool:\n\n- ตรวจ health endpoint บน server\n- debug request/response headers\n- ทดสอบ authentication flow\n- ใช้ใน CI/CD script"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ncurl https://api.example.com/users\ncurl -I https://google.com              # HEAD — แสดง headers อย่างเดียว\ncurl -X POST https://api.example.com/users \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"name\":\"John\"}'\ncurl -o file.zip https://example.com/file.zip   # ดาวน์โหลด\ncurl -v https://api.example.com/health          # verbose — ดู request/response\ncurl -H \"Authorization: Bearer TOKEN\" ...       # ส่ง header\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "-X METHOD — GET, POST, PUT, DELETE",
+        "-H — request header",
+        "-d — request body",
+        "-i — แสดง response headers",
+        "-v — verbose debug",
+        "-o — save to file",
+        "-L — follow redirects"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ทดสอบ local API ก่อน deploy:\n```\ncurl http://localhost:3000/api/health\ncurl -X POST http://localhost:3000/api/login \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\"email\":\"test@test.com\",\"password\":\"123\"}'\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "curl vs wget — curl เน้น transfer ข้อมูล/API, wget เน้นดาวน์โหลดไฟล์",
+        "PowerShell มี alias curl → Invoke-WebRequest — syntax ต่างจาก Unix curl",
+        "JSON ใน -d ต้อง escape quote ใน shell — ใช้ single quote ครอบ JSON"
+      ]
+    }
+  ],
+  "related": [
+    "http",
+    "api",
+    "dns",
+    "ping",
+    "wget"
+  ],
+  "visualization": "curl-request-flow",
+  "prerequisites": [
+    "http"
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "slug": "grep-flow",
+  "title": "Text Search with grep",
+  "description": "ค้นหา pattern ในไฟล์หรือ pipe output — กรอง log และหาโค้ด",
+  "conceptSlug": "grep",
+  "protocol": "Shell",
+  "category": "cli",
+  "nodes": [
+    {
+      "id": "user",
+      "label": "User",
+      "description": "พิมพ์คำสั่ง grep",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "shell",
+      "label": "Shell",
+      "description": "รัน grep บนไฟล์หรือ stdin",
+      "type": "service",
+      "position": {
+        "x": 280,
+        "y": 120
+      }
+    },
+    {
+      "id": "files",
+      "label": "Files / stdin",
+      "description": "แหล่งข้อความที่ค้นหา",
+      "type": "database",
+      "position": {
+        "x": 560,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "gr-1",
+      "from": "user",
+      "to": "shell",
+      "label": "grep pattern",
+      "packet": "grep \"error\" app.log",
+      "description": "ส่ง pattern และชื่อไฟล์ให้ grep",
+      "duration": 1100
+    },
+    {
+      "id": "gr-2",
+      "from": "shell",
+      "to": "files",
+      "label": "Read",
+      "packet": "อ่านทีละบรรทัด",
+      "description": "grep เปิดไฟล์และอ่านเนื้อหา",
+      "duration": 1100
+    },
+    {
+      "id": "gr-3",
+      "from": "files",
+      "to": "shell",
+      "label": "Lines",
+      "packet": "บรรทัดที่ match",
+      "description": "ส่งบรรทัดที่ตรง pattern กลับ",
+      "duration": 1100
+    },
+    {
+      "id": "gr-4",
+      "from": "shell",
+      "to": "user",
+      "label": "Output",
+      "packet": "ERROR: timeout…",
+      "description": "แสดงผลบรรทัดที่พบ — หรือว่างถ้าไม่เจอ",
+      "duration": 1000
+    }
+  ]
+}

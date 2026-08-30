@@ -1,0 +1,52 @@
+{
+  "slug": "whois",
+  "title": "whois",
+  "summary": "ดูข้อมูลการจดทะเบียน domain — registrar, name server, วันหมดอายุ",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "unix",
+  "tags": [
+    "dns",
+    "domain",
+    "lookup"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`whois` ถาม WHOIS database เกี่ยวกับ domain หรือ IP — แสดง registrar, วันจดทะเบียน/หมดอายุ, name server, contact (บางส่วนถูกซ่อนด้วย privacy)"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nwhois google.com\nwhois example.org\nwhois 8.8.8.8                    # IP → allocation info\n\n# ผลลัพธ์มักมี\nRegistrar: ...\nCreation Date: ...\nExpiry Date: ...\nName Server: ns1.example.com\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Registrar — ผู้จดทะเบียน domain",
+        "Expiry Date — วันหมดอายุ",
+        "Name Server — DNS ที่ชี้",
+        "Status — clientTransferProhibited ฯลฯ",
+        "RDAP — มาตรฐานใหม่แทน whois บาง registry"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ตรวจ domain หมดอายุเมื่อไหร่:\n```\nwhois mycompany.com | grep -i expir\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "whois ≠ dig — whois ดูข้อมูลจดทะเบียน, dig ดู DNS record",
+        "GDPR/privacy ทำให้ contact info ถูกซ่อน — ไม่เห็นชื่อเจ้าของเสมอ",
+        "TLD ต่างกันใช้ whois server ต่างกัน — output format ไม่เหมือนกัน"
+      ]
+    }
+  ],
+  "related": [
+    "dns",
+    "dig",
+    "host"
+  ],
+  "visualization": "whois-flow"
+}

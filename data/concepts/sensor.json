@@ -1,0 +1,54 @@
+{
+  "slug": "sensor",
+  "title": "Sensor",
+  "summary": "อุปกรณ์วัดค่าทางกายภาพจากโลกจริง — อุณหภูมิ, ความชื้น, แสง, การเคลื่อนไหว",
+  "difficulty": "beginner",
+  "category": "iot",
+  "tags": [
+    "hardware",
+    "measurement",
+    "data"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Sensor คืออุปกรณ์ที่แปลง physical phenomenon เป็นสัญญาณไฟฟ้า/digital data\n\nตัวอย่าง:\n- Temperature sensor (DHT22)\n- Motion sensor (PIR)\n- Light sensor (LDR)\n- GPS module\n- Accelerometer"
+    },
+    {
+      "type": "why",
+      "content": "IoT เริ่มจาก sensor — ไม่มี sensor ก็ไม่มี data:\n- Smart home: วัดอุณหภูมิปรับแอร์\n- Agriculture: วัดความชื้นดินรดน้ำ\n- Healthcare: วัดชีพจร\n- Industry: ตรวจจับ vibration เครื่องจักร"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Sensor วัดค่าจากสิ่งแวดล้อม\n2. Microcontroller (ESP32, Arduino) อ่านค่า\n3. แปลงเป็น digital data\n4. ส่งผ่าน MQTT/HTTP ไป cloud\n5. Dashboard แสดงผล"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Transducer — แปลง physical signal เป็น electrical",
+        "Analog/Digital Output — ค่าที่อ่านได้",
+        "Sampling Rate — ความถี่ในการวัด",
+        "Calibration — ปรับค่าให้แม่นยำ",
+        "IoT Gateway — ส่งข้อมูล sensor ขึ้น cloud"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Smart farm วัดความชื้นดิน:\n\n1. Soil moisture sensor วัดทุก 5 นาที\n2. ส่งค่าผ่าน MQTT ไป gateway\n3. ถ้าความชื้น < 30% → สั่งเปิดสปริงเกอร์\n4. ข้อมูลสะสมใน cloud สำหรับ dashboard\n5. Farmer ดูกราฟผ่าน mobile app"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Sensor ≠ Actuator — sensor วัด, actuator ทำ action (มอเตอร์, สปริงเกอร์)",
+        "IoT sensor มักใช้พลังงานต่ำและส่งข้อมูลเป็นระยะ",
+        "Edge processing ลดการส่งข้อมูลดิบทั้งหมดขึ้น cloud"
+      ]
+    }
+  ],
+  "related": [
+    "mqtt",
+    "edge-computing",
+    "api"
+  ],
+  "visualization": "sensor-flow"
+}

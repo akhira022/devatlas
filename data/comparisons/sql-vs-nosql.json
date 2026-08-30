@@ -1,0 +1,23 @@
+{
+  "slug": "sql-vs-nosql",
+  "title": "SQL vs NoSQL",
+  "description": "สองครอบครัว database — relational กับ flexible schema",
+  "icon": "database",
+  "items": [
+    { "conceptSlug": "sql", "name": "SQL (Relational)", "tagline": "ตาราง, schema แน่นอน, ACID" },
+    { "conceptSlug": "nosql", "name": "NoSQL", "tagline": "Document, key-value, graph — schema ยืดหยุ่น" }
+  ],
+  "rows": [
+    { "label": "โครงสร้าง", "values": ["ตาราง + rows + columns", "JSON document, key-value, graph ฯลฯ"] },
+    { "label": "Schema", "values": ["กำหนดล่วงหน้า (rigid)", "ยืดหยุ่น (flexible)"] },
+    { "label": "Query", "values": ["SQL มาตรฐาน", "API/query แต่ละระบบต่างกัน"] },
+    { "label": "Scale", "values": ["Scale up + read replica", "Scale out แนวนอนง่ายกว่า"] },
+    { "label": "ตัวอย่าง", "values": ["PostgreSQL, MySQL", "MongoDB, Redis, DynamoDB"] }
+  ],
+  "whenToUse": [
+    { "label": "ข้อมูลมี relation ชัด (user → orders)", "pick": "SQL" },
+    { "label": "schema เปลี่ยนบ่อย", "pick": "NoSQL" },
+    { "label": "transaction สำคัญ (ธนาคาร)", "pick": "SQL" },
+    { "label": "cache / session / real-time", "pick": "NoSQL (Redis)" }
+  ]
+}

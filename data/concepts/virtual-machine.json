@@ -1,0 +1,62 @@
+{
+  "slug": "virtual-machine",
+  "title": "Virtual Machine",
+  "fullName": "Virtual Machine (VM)",
+  "summary": "เครื่องคอมพิวเตอร์เสมือนบน cloud — ได้ OS เต็ม ๆ ควบคุมได้เอง เหมือนเช่า server",
+  "difficulty": "beginner",
+  "category": "cloud",
+  "tags": [
+    "ec2",
+    "compute",
+    "iaas"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Virtual Machine (VM) คือ instance ของระบบปฏิบัติการและ CPU/RAM/disk ที่รันบน hypervisor ของ cloud provider — ผู้ใช้ได้ root/admin access เหมือน server จริง แต่ไม่ต้องดูแล hardware\n\nตัวอย่างบริการ:\n- **AWS EC2** — Elastic Compute Cloud\n- **Google Compute Engine (GCE)**\n- **Azure Virtual Machines**\n- **DigitalOcean Droplets**, **Linode**\n\nเป็นหัวใจของ IaaS — ยืดหยุ่นสูงกว่า PaaS/serverless"
+    },
+    {
+      "type": "why",
+      "content": "บาง workload ต้องการ control เต็มที่ — legacy app, custom kernel, long-running process\n\nDeveloper ใช้ VM เมื่อ:\n- ต้องเลือก OS และติดตั้ง software เอง\n- รัน stateful service ที่ container ยังไม่พร้อม\n- ต้องการ IP คงที่, VPN, หรือ network config พิเศษ\n- Lift-and-shift migration จาก on-premise\n- GPU instance สำหรับ ML training\n\nTrade-off: ต้อง patch OS, monitor, scale เองมากกว่า managed service"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. เลือก AMI/image (Ubuntu, Windows, custom snapshot)\n2. เลือก instance type — vCPU, RAM, network (t3.micro, m6i.large)\n3. ตั้ง VPC, subnet, security group (firewall rules)\n4. Launch instance — ได้ public/private IP\n5. SSH/RDP เข้า configure — ติดตั้ง app, Docker, nginx\n6. Attach EBS volume สำหรับ persistent disk\n7. Stop/start หรือ terminate — จ่ายตาม uptime และ storage"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Instance Type — ขนาด CPU/RAM/network (family: t, m, c, r, g)",
+        "AMI / Image — template OS และ software เริ่มต้น",
+        "EBS Volume — persistent block storage แยกจาก instance",
+        "Security Group — inbound/outbound firewall ระดับ instance",
+        "Elastic IP — public IP คงที่",
+        "Auto Scaling Group — เพิ่ม/ลดจำนวน VM ตาม load"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ทีม deploy monolith Rails บน AWS:\n\n1. Launch EC2 t3.small Ubuntu 22.04 ใน private subnet\n2. Security group: เปิด 22 จาก bastion, 80/443 จาก load balancer เท่านั้น\n3. ติดตั้ง Ruby, PostgreSQL client, clone repo, systemd service\n4. ALB หน้า EC2 — health check `/health`\n5. RDS แยกจาก VM — DB ไม่ตายเมื่อ replace instance\n6. AMI snapshot หลัง config เสร็จ — launch ใหม่จาก AMI เร็วขึ้น\n7. Scale: Auto Scaling Group min 2 max 6 ตาม CPU"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Stop vs Terminate — stop เก็บ disk จ่าย storage; terminate ลบ instance (disk อาจหายถ้าไม่ snapshot)",
+        "VM ≠ Container — VM แยก OS ทั้งเครื่อง; container แชร์ kernel host",
+        "t3 burstable — CPU credit หมดแล้วช้าลง ไม่เหมาะ load CPU สูงต่อเนื่อง",
+        "Public IP เปลี่ยนเมื่อ stop/start — ใช้ Elastic IP หรือ load balancer"
+      ]
+    }
+  ],
+  "related": [
+    "cloud-computing",
+    "docker",
+    "kubernetes",
+    "deployment",
+    "serverless"
+  ],
+  "visualization": "cloud-vm-flow",
+  "prerequisites": [
+    "cloud-computing"
+  ]
+}

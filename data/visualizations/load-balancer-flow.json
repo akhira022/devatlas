@@ -1,0 +1,107 @@
+{
+  "slug": "load-balancer-flow",
+  "title": "Load Balancing",
+  "description": "ดู traffic กระจายไปหลาย backend server",
+  "conceptSlug": "load-balancer",
+  "protocol": "HTTP / LB",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Users",
+      "description": "Traffic เข้ามาพร้อมกัน",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "lb",
+      "label": "Load Balancer",
+      "description": "กระจายตาม Round Robin / Least Conn",
+      "type": "network",
+      "position": {
+        "x": 280,
+        "y": 120
+      }
+    },
+    {
+      "id": "server1",
+      "label": "Server 1",
+      "description": "Healthy ✓",
+      "type": "server",
+      "position": {
+        "x": 560,
+        "y": 40
+      }
+    },
+    {
+      "id": "server2",
+      "label": "Server 2",
+      "description": "Healthy ✓",
+      "type": "server",
+      "position": {
+        "x": 560,
+        "y": 120
+      }
+    },
+    {
+      "id": "server3",
+      "label": "Server 3",
+      "description": "Down ✗",
+      "type": "server",
+      "position": {
+        "x": 560,
+        "y": 200
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "lb-1",
+      "from": "client",
+      "to": "lb",
+      "label": "Request 1",
+      "packet": "GET /api",
+      "description": "User 1 ส่ง request มาที่ Load Balancer (single entry point)",
+      "duration": 1100
+    },
+    {
+      "id": "lb-2",
+      "from": "lb",
+      "to": "server1",
+      "label": "→ Server 1",
+      "packet": "Forwarded",
+      "description": "LB เลือก Server 1 (round robin)",
+      "duration": 1100
+    },
+    {
+      "id": "lb-3",
+      "from": "client",
+      "to": "lb",
+      "label": "Request 2",
+      "packet": "GET /api",
+      "description": "User 2 request เข้ามา",
+      "duration": 900
+    },
+    {
+      "id": "lb-4",
+      "from": "lb",
+      "to": "server2",
+      "label": "→ Server 2",
+      "packet": "Forwarded",
+      "description": "LB ส่งไป Server 2 — กระจาย load",
+      "duration": 1100
+    },
+    {
+      "id": "lb-5",
+      "from": "lb",
+      "to": "server3",
+      "label": "Health Check",
+      "packet": "SKIP (down)",
+      "description": "Server 3 down — LB ข้ามไม่ส่ง traffic (health check)",
+      "duration": 1300
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "slug": "edge-computing-flow",
+  "title": "Edge vs Cloud Processing",
+  "description": "ประมวลผลใกล้ sensor ลด latency และ bandwidth",
+  "conceptSlug": "edge-computing",
+  "protocol": "IoT",
+  "category": "iot",
+  "nodes": [
+    {
+      "id": "sensor",
+      "label": "IoT Device",
+      "description": "ส่งข้อมูลดิบ",
+      "type": "device",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "edge",
+      "label": "Edge Node",
+      "description": "gateway ประมวลผล local",
+      "type": "service",
+      "position": {
+        "x": 280,
+        "y": 120
+      }
+    },
+    {
+      "id": "cloud",
+      "label": "Cloud",
+      "description": "analytics ระยะยาว",
+      "type": "server",
+      "position": {
+        "x": 560,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "ec-1",
+      "from": "sensor",
+      "to": "edge",
+      "label": "Raw data",
+      "packet": "video frame",
+      "description": "device ส่งข้อมูลไป edge gateway",
+      "duration": 1100
+    },
+    {
+      "id": "ec-2",
+      "from": "edge",
+      "to": "edge",
+      "label": "Process",
+      "packet": "detect motion",
+      "description": "ประมวลผล local — filter, aggregate, ML inference",
+      "duration": 1200
+    },
+    {
+      "id": "ec-3",
+      "from": "edge",
+      "to": "sensor",
+      "label": "Fast response",
+      "packet": "turn on light",
+      "description": "ตอบกลับ device ทันทีโดยไม่รอ cloud",
+      "duration": 1100
+    },
+    {
+      "id": "ec-4",
+      "from": "edge",
+      "to": "cloud",
+      "label": "Summary",
+      "packet": "alert event",
+      "description": "ส่งเฉพาะผลลัพธ์สำคัญขึ้น cloud",
+      "duration": 1000
+    }
+  ]
+}

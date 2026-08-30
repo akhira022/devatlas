@@ -1,0 +1,111 @@
+{
+  "slug": "frontend-backend-flow",
+  "title": "Frontend ↔ Backend Flow",
+  "description": "ดู Frontend และ Backend ทำงานร่วมกันในการส่งฟอร์มและรับข้อมูล",
+  "conceptSlug": "frontend",
+  "protocol": "Full Stack",
+  "category": "programming",
+  "nodes": [
+    {
+      "id": "user",
+      "label": "User",
+      "description": "ผู้ใช้กรอกข้อมูลในฟอร์ม",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "frontend",
+      "label": "Frontend",
+      "description": "React/Vue/Next.js — validate input, ส่ง API call",
+      "type": "client",
+      "position": {
+        "x": 200,
+        "y": 120
+      }
+    },
+    {
+      "id": "backend",
+      "label": "Backend API",
+      "description": "Node.js/Django — รับ request, รัน business logic",
+      "type": "server",
+      "position": {
+        "x": 440,
+        "y": 120
+      }
+    },
+    {
+      "id": "database",
+      "label": "Database",
+      "description": "PostgreSQL/MySQL — เก็บข้อมูลถาวร",
+      "type": "database",
+      "position": {
+        "x": 680,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "fb-1",
+      "from": "user",
+      "to": "frontend",
+      "label": "Fill Form",
+      "description": "ผู้ใช้กรอกข้อมูลในฟอร์ม — เช่น สมัครสมาชิก, สั่งซื้อ",
+      "duration": 1000
+    },
+    {
+      "id": "fb-2",
+      "from": "frontend",
+      "to": "frontend",
+      "label": "Validate",
+      "description": "Frontend ตรวจสอบ input เบื้องต้น — กรอกครบ, format ถูกต้อง",
+      "duration": 800
+    },
+    {
+      "id": "fb-3",
+      "from": "frontend",
+      "to": "backend",
+      "label": "POST",
+      "packet": "POST /api/register",
+      "description": "Frontend ส่ง JSON body ไป Backend API endpoint",
+      "duration": 1400
+    },
+    {
+      "id": "fb-4",
+      "from": "backend",
+      "to": "backend",
+      "label": "Process",
+      "description": "Backend validate อีกครั้ง, hash password, รัน business rules",
+      "duration": 1200
+    },
+    {
+      "id": "fb-5",
+      "from": "backend",
+      "to": "database",
+      "label": "INSERT",
+      "packet": "INSERT INTO users...",
+      "description": "Backend บันทึกข้อมูลลง Database",
+      "duration": 1200
+    },
+    {
+      "id": "fb-6",
+      "from": "backend",
+      "to": "frontend",
+      "label": "201 Created",
+      "packet": "{id: 1, name: '...'}",
+      "description": "Backend ส่ง JSON response กลับ — success หรือ error message",
+      "duration": 1400
+    },
+    {
+      "id": "fb-7",
+      "from": "frontend",
+      "to": "user",
+      "label": "Show Result",
+      "description": "Frontend แสดง success message หรือ redirect ไปหน้าถัดไป",
+      "duration": 1000
+    }
+  ]
+}

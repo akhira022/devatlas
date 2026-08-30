@@ -1,0 +1,55 @@
+{
+  "slug": "array",
+  "title": "Array",
+  "summary": "เก็บข้อมูลเรียงต่อเนื่องใน memory — เข้าถึงด้วย index ได้ O(1)",
+  "difficulty": "beginner",
+  "category": "programming",
+  "subcategory": "data-structure",
+  "tags": [
+    "linear",
+    "index"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "**Array** เก็บ elements ติดกันใน memory แต่ละตัวมี **index** (เริ่มที่ 0)\n\n```\n[10, 20, 30, 40]\n 0   1   2   3   ← index\n```"
+    },
+    {
+      "type": "why",
+      "content": "- Random access เร็ว — `arr[i]` เป็น O(1)\n- Cache-friendly — อ่านต่อเนื่องเร็ว\n- ใช้เป็น foundation ของ structure อื่น (heap, hash table bucket)"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\n// JavaScript\nconst nums = [1, 2, 3]\nnums.push(4)        // O(1) amortized\nnums.unshift(0)     // O(n) — shift ทุกตัว\nnums[2]             // O(1) access\n```\n\n**ข้อจำกัด:** ขนาด fixed (C) หรือ resize ใหม่ (dynamic array) — insert/delete กลาง array ช้า O(n)"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Index — O(1) access",
+        "Dynamic resize",
+        "Contiguous memory",
+        "Length / size property",
+        "Multi-dimensional (2D matrix)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "รายการสินค้าใน cart, pixel ในรูปภาพ, buffer ของ audio — ข้อมูลที่ต้องเข้าถึงด้วย index"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "JavaScript Array เป็น object ที่มี methods มากกว่า array ธรรมดา",
+        "2D array = array of arrays (matrix)",
+        "Sparse array — index ไม่ต่อเนื่อง ประหยัด memory บางกรณี"
+      ]
+    }
+  ],
+  "related": [
+    "data-structure",
+    "linked-list",
+    "stack",
+    "hash-table"
+  ],
+  "visualization": "array-flow"
+}

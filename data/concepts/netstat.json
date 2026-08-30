@@ -1,0 +1,58 @@
+{
+  "slug": "netstat",
+  "title": "netstat",
+  "fullName": "Network Statistics",
+  "summary": "ดู connection, listening port และ network interface — debug ว่า service ฟัง port ไหน",
+  "difficulty": "intermediate",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "unix",
+  "tags": [
+    "network",
+    "port",
+    "debug"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`netstat` แสดงสถานะเครือข่าย — TCP/UDP connections, port ที่เปิดฟัง (LISTEN), routing table\n\nบน Linux สมัยใหม่นิยมใช้ `ss` แทน (เร็วกว่า) แต่ `netstat` ยังใช้กว้างและ syntax คล้ายกัน"
+    },
+    {
+      "type": "how_it_works",
+      "content": "**netstat:**\n```\nnetstat -tuln                    # TCP/UDP ports ที่ LISTEN (ตัวเลข)\nnetstat -tulnp                 # + process (Linux, ต้อง sudo)\nnetstat -an | grep 3000        # หา port 3000\nnetstat -rn                    # routing table\n```\n\n**ss (ทางเลือกบน Linux):**\n```\nss -tuln                       # เทียบเท่า netstat -tuln\nss -tulnp                      # + process name\nss -s                          # summary statistics\n```\n\nFlags: `-t` TCP, `-u` UDP, `-l` LISTEN only, `-n` ตัวเลข (ไม่ resolve ชื่อ)"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "LISTEN — port รอรับ connection",
+        "ESTABLISHED — connection ที่ active",
+        "0.0.0.0 — ฟังทุก interface",
+        "127.0.0.1 — localhost only",
+        "-p — แสดง PID/process",
+        "ss — ตัวแทนสมัยใหม่บน Linux"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ตรวจว่า dev server รันอยู่ port 3000 หรือไม่:\n```\nnetstat -tuln | grep 3000\n# หรือ\nlsof -i :3000\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "netstat vs ss — ss เร็วกว่าบน Linux, netstat ยังใช้บน macOS",
+        "LISTEN บน 0.0.0.0 — เข้าถึงจาก network ได้, 127.0.0.1 — local เท่านั้น",
+        "TIME_WAIT จำนวนมาก — ปกติหลัง connection ปิด, ไม่ใช่ bug เสมอ"
+      ]
+    }
+  ],
+  "related": [
+    "tcp",
+    "http",
+    "ssh",
+    "nc"
+  ],
+  "visualization": "netstat-flow",
+  "prerequisites": [
+    "tcp"
+  ]
+}

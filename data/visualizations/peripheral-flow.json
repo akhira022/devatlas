@@ -1,0 +1,88 @@
+{
+  "slug": "peripheral-flow",
+  "title": "Peripherals & Power",
+  "description": "PSU จ่ายไฟ → motherboard → monitor และอุปกรณ์ต่อพ่วง",
+  "conceptSlug": "psu",
+  "protocol": "Hardware",
+  "category": "hardware",
+  "nodes": [
+    {
+      "id": "psu",
+      "label": "PSU",
+      "description": "Power Supply Unit",
+      "type": "device",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "mb",
+      "label": "Motherboard",
+      "description": "รับไฟ 24-pin",
+      "type": "device",
+      "position": {
+        "x": 280,
+        "y": 120
+      }
+    },
+    {
+      "id": "io",
+      "label": "I/O Ports",
+      "description": "USB, HDMI, audio",
+      "type": "network",
+      "position": {
+        "x": 520,
+        "y": 60
+      }
+    },
+    {
+      "id": "monitor",
+      "label": "Monitor",
+      "description": "แสดงผล",
+      "type": "client",
+      "position": {
+        "x": 520,
+        "y": 180
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "pf-1",
+      "from": "psu",
+      "to": "mb",
+      "label": "12V/5V",
+      "packet": "ATX power",
+      "description": "PSU แปลง AC เป็น DC จ่าย motherboard",
+      "duration": 1100
+    },
+    {
+      "id": "pf-2",
+      "from": "mb",
+      "to": "io",
+      "label": "USB",
+      "packet": "keyboard/mouse",
+      "description": "peripheral ต่อผ่าน USB port",
+      "duration": 1100
+    },
+    {
+      "id": "pf-3",
+      "from": "mb",
+      "to": "monitor",
+      "label": "HDMI/DP",
+      "packet": "display signal",
+      "description": "GPU/onboard ส่งภาพไป monitor",
+      "duration": 1100
+    },
+    {
+      "id": "pf-4",
+      "from": "io",
+      "to": "mb",
+      "label": "Input",
+      "packet": "HID events",
+      "description": "ข้อมูลจาก keyboard/mouse กลับ CPU",
+      "duration": 1000
+    }
+  ]
+}

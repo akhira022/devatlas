@@ -1,0 +1,61 @@
+{
+  "slug": "redis",
+  "title": "Redis",
+  "summary": "In-memory database ความเร็วสูง — ใช้เป็น cache, session store, และ message broker",
+  "difficulty": "intermediate",
+  "category": "database",
+  "tags": [
+    "cache",
+    "in-memory",
+    "key-value"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Redis คือ in-memory data store ที่ทำงานเร็วมาก — เก็บข้อมูลใน RAM แทน disk\n\nใช้เป็น: Cache, Session store, Rate limiter, Pub/Sub, Leaderboard"
+    },
+    {
+      "type": "analogy",
+      "content": "Redis เหมือนกระดานไวท์บอร์ดในห้อง — ทุกคนอ่าน/เขียนได้เร็ว แต่ข้อมูลหายเมื่อลบ"
+    },
+    {
+      "type": "why",
+      "content": "Database หลัก (PostgreSQL) อาจช้าถ้า query บ่อย — Redis cache ผลลัพธ์ไว้ใน RAM:\n\n- อ่านจาก Redis: ~0.1ms\n- อ่านจาก PostgreSQL: ~5-50ms\n\nช่วยลด load บน database หลักได้มาก"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Client ส่ง command (SET, GET, HSET) ผ่าน TCP\n2. Redis ประมวลผลใน memory — ตอบใน microsecond\n3. Optional persistence (RDB snapshot, AOF log)\n4. รองรับ data structures: string, hash, list, set, sorted set\n5. Pub/Sub และ TTL สำหรับ cache expiration"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "In-Memory Store — ข้อมูลใน RAM เร็วมาก",
+        "Key-Value — GET/SET พื้นฐาน",
+        "TTL — หมดอายุอัตโนมัติ (cache)",
+        "Pub/Sub — publish/subscribe messaging",
+        "Persistence — RDB / AOF กู้ข้อมูลหลัง restart"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Twitter ใช้ Redis cache timeline ของ user — แทนที่จะ query database ทุกครั้งที่เปิดแอป ดึงจาก Redis ที่เร็วกว่า 100 เท่า"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Redis ≠ Database หลัก — มักใช้เสริม ไม่ใช่แทน PostgreSQL",
+        "ข้อมูลใน Redis หายเมื่อ restart (unless persistence enabled)"
+      ]
+    }
+  ],
+  "related": [
+    "database",
+    "nosql",
+    "backend"
+  ],
+  "visualization": "redis-flow",
+  "prerequisites": [
+    "database",
+    "sql"
+  ]
+}

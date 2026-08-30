@@ -1,0 +1,61 @@
+{
+  "slug": "switch",
+  "title": "Switch",
+  "summary": "เชื่อมอุปกรณ์ใน LAN เดียวกัน — ส่ง frame ตาม MAC address",
+  "difficulty": "beginner",
+  "category": "hardware",
+  "subcategory": "networking-hardware",
+  "tags": [
+    "network",
+    "lan",
+    "ethernet",
+    "mac"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Network Switch เชื่อมอุปกรณ์หลายตัวใน LAN โดย forward frame ไปยัง port ที่มี MAC ปลายทาง — ต่างจาก hub ที่ broadcast ทุก port\n\nManaged switch ตั้ง VLAN, QoS, port mirroring ได้; unmanaged ใช้ plug-and-play"
+    },
+    {
+      "type": "why",
+      "content": "Switch ลด collision และเพิ่ม bandwidth — แต่ละ port ได้ full duplex:\n\n- ออฟฟิศ/บ้านขนาดใหญ่ต้องมี switch แยกจาก router\n- Data center ใช้ switch ความเร็ว 25G/100G\n- VLAN แยก traffic (guest WiFi vs internal server)"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. รับ Ethernet frame ที่ port ใด port หนึ่ง\n2. ดู destination MAC ในตาราง MAC address\n3. Forward ไปเฉพาะ port ที่มี MAC นั้น\n4. ถ้าไม่รู้ MAC — flood ทุก port (ยกเว้น port ต้นทาง)\n5. เรียนรู้ MAC จาก source address ของ frame ที่ผ่าน"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "MAC address table",
+        "Ports (1G/10G/25G)",
+        "VLAN",
+        "Managed vs Unmanaged",
+        "PoE (power devices)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Office: router → core switch → access switch ต่อ PC/printer, VLAN 10 = dev, VLAN 20 = guest"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Switch ≠ Hub — switch ส่งเฉพาะ port ปลายทาง",
+        "Unmanaged switch ไม่มี VLAN config",
+        "Switch L3 ทำ routing ได้บางอย่าง"
+      ]
+    }
+  ],
+  "related": [
+    "router",
+    "nic",
+    "arp",
+    "ip",
+    "subnetting"
+  ],
+  "visualization": "network-hardware-flow",
+  "prerequisites": [
+    "nic"
+  ]
+}

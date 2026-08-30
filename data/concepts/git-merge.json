@@ -1,0 +1,54 @@
+{
+  "slug": "git-merge",
+  "title": "merge",
+  "summary": "รวม branch เข้ากับ branch ปัจจุบัน — สร้าง merge commit ถ้าจำเป็น",
+  "difficulty": "intermediate",
+  "category": "git-github",
+  "subcategory": "branching",
+  "tags": [
+    "git",
+    "branch"
+  ],
+  "sections": [
+    {
+      "type": "why",
+      "content": "รวมงานจาก branch กลับเข้า main — จบ feature cycle"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ngit checkout main\ngit merge feature/login\ngit merge --no-ff feature/login    # บังคับ merge commit\n```\n\n**เมื่อ conflict:**\n```\n# แก้ไฟล์ที่มี <<<<<<< ======= >>>>>>>\ngit add .\ngit commit\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "git merge feature/x",
+        "Fast-forward merge",
+        "3-way merge + merge commit",
+        "Merge conflict — แก้ด้วยมือ",
+        "git merge --abort — ยกเลิก"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\ngit switch main\ngit pull\ngit merge feature/auth\n# ถ้า conflict แก้ไฟล์ → git add → git commit\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "merge conflict — Git ไม่รู้เลือกบรรทัดไหน ต้องแก้เอง",
+        "fast-forward — ไม่มี merge commit ถ้า main ไม่มี commit ใหม่",
+        "บน GitHub มัก merge ผ่าน PR แทน local merge"
+      ]
+    }
+  ],
+  "related": [
+    "git-branch",
+    "git-rebase",
+    "github-pr"
+  ],
+  "visualization": "git-merge-flow",
+  "prerequisites": [
+    "git-branch",
+    "git-commit"
+  ]
+}

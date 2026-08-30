@@ -1,0 +1,58 @@
+{
+  "slug": "grep",
+  "title": "grep",
+  "fullName": "Global Regular Expression Print",
+  "summary": "ค้นหาข้อความในไฟล์หรือ output — กรอง log และหา pattern ในโค้ด",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "files",
+  "platform": "unix",
+  "tags": [
+    "shell",
+    "search",
+    "regex"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`grep` ค้นหาบรรทัดที่ตรงกับ pattern — ใช้หา error ใน log, หา function ในโค้ด, หรือกรอง output จากคำสั่งอื่น (pipe)"
+    },
+    {
+      "type": "why",
+      "content": "log และ codebase ใหญ่เกินจะอ่านทีละบรรทัด — grep ช่วย:\n\n- หา error ใน log ภายในไม่กี่วินาที\n- ค้นหา function หรือ TODO ทั้งโปรเจกต์\n- กรอง output จากคำสั่งอื่นด้วย pipe"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ngrep \"error\" app.log\ngrep -i \"warning\" app.log          # ไม่สนตัวพิมพ์ใหญ่-เล็ก\ngrep -r \"TODO\" src/                 # ค้นหา recursive ในโฟลเดอร์\ngrep -n \"import\" app.ts             # แสดงเลขบรรทัด\ngrep -v \"debug\" app.log              # แสดงบรรทัดที่ไม่ match (invert)\nps aux | grep node                   # pipe จากคำสั่งอื่น\ngrep -E \"error|warn\" app.log         # extended regex (egrep)\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "-r — recursive",
+        "-i — case insensitive",
+        "-n — line numbers",
+        "-v — invert match",
+        "-E — extended regex",
+        "| — pipe กับคำสั่งอื่น"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "หา 500 error ใน nginx log:\n```\ngrep \" 500 \" /var/log/nginx/access.log\ngrep -c \" 500 \" /var/log/nginx/access.log   # นับจำนวน\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "grep ค้นหาข้อความ ไม่ใช่ชื่อไฟล์ — หาไฟล์ใช้ find",
+        "pattern มีอักขระพิเศษต้อง escape หรือใช้ -E",
+        "ทางเลือกสมัยใหม่: ripgrep (rg) เร็วกว่าในโปรเจกต์ใหญ่"
+      ]
+    }
+  ],
+  "related": [
+    "cat",
+    "ls",
+    "git"
+  ],
+  "visualization": "grep-flow"
+}

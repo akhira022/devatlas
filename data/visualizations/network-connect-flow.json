@@ -1,0 +1,78 @@
+{
+  "slug": "network-connect-flow",
+  "title": "TCP Connection Test",
+  "description": "nc / telnet — ทดสอบเชื่อมต่อ port โดยตรง",
+  "conceptSlug": "nc",
+  "protocol": "TCP",
+  "category": "cli",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Client",
+      "description": "nc หรือ telnet",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "network",
+      "label": "Network",
+      "description": "TCP handshake",
+      "type": "network",
+      "position": {
+        "x": 320,
+        "y": 120
+      }
+    },
+    {
+      "id": "server",
+      "label": "Server :port",
+      "description": "service ที่ listen",
+      "type": "server",
+      "position": {
+        "x": 640,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "nc-1",
+      "from": "client",
+      "to": "network",
+      "label": "SYN",
+      "packet": "nc host 443",
+      "description": "ส่ง TCP SYN ไป port ปลายทาง",
+      "duration": 1100
+    },
+    {
+      "id": "nc-2",
+      "from": "network",
+      "to": "server",
+      "label": "Forward",
+      "packet": "SYN",
+      "description": "packet ไปถึง server",
+      "duration": 1100
+    },
+    {
+      "id": "nc-3",
+      "from": "server",
+      "to": "client",
+      "label": "SYN-ACK",
+      "packet": "connected",
+      "description": "server ตอบรับ — connection สำเร็จ",
+      "duration": 1100
+    },
+    {
+      "id": "nc-4",
+      "from": "client",
+      "to": "server",
+      "label": "Data",
+      "packet": "GET / …",
+      "description": "ส่งข้อมูลทดสอบหรือ HTTP request",
+      "duration": 1000
+    }
+  ]
+}

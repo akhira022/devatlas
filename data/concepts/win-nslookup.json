@@ -1,0 +1,47 @@
+{
+  "slug": "win-nslookup",
+  "title": "nslookup",
+  "summary": "ถาม DNS บน Windows — แปลง domain เป็น IP และดู record",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "windows",
+  "tags": [
+    "dns",
+    "network",
+    "windows"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`nslookup` ถาม DNS บน Windows — ทำงานคล้าย Unix แต่ PowerShell มี `Resolve-DnsName` ที่ output เป็น object ใช้ใน script ง่ายกว่า"
+    },
+    {
+      "type": "why",
+      "content": "nslookup ทดสอบ DNS resolution บน Windows — ตรวจว่า domain แปลงเป็น IP ได้หรือไม่\n\nใช้ debug ปัญหาเว็บเปิดไม่ได้หลังตรวจ ping และ ipconfig"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nnslookup google.com\nnslookup google.com 8.8.8.8\n\n# interactive\nnslookup\n> set type=MX\n> gmail.com\n> exit\n```\n\n**PowerShell:**\n```\nResolve-DnsName google.com\nResolve-DnsName google.com -Type MX\n```"
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\nnslookup google.com\nnslookup myapp.com 8.8.8.8\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "nslookup มีทั้ง Windows และ Unix — syntax คล้ายกัน",
+        "Resolve-DnsName output อ่านง่ายกว่าใน PowerShell",
+        "DNS cache ดูด้วย ipconfig /displaydns"
+      ]
+    }
+  ],
+  "related": [
+    "nslookup",
+    "dig",
+    "ps-resolve-dnsname",
+    "dns"
+  ],
+  "visualization": "dns-flow"
+}

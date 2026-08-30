@@ -1,0 +1,57 @@
+{
+  "slug": "ping",
+  "title": "ping",
+  "summary": "ทดสอบการเชื่อมต่อไป host — ส่ง ICMP echo request วัด latency และ packet loss",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "unix",
+  "tags": [
+    "network",
+    "icmp",
+    "connectivity"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`ping` ส่ง packet ไปยัง host แล้วรอ echo กลับ — ใช้ตรวจว่าเครื่องหรือ domain ออนไลน์หรือไม่ และวัด round-trip time (RTT)"
+    },
+    {
+      "type": "why",
+      "content": "ขั้นตอนแรกเมื่อเครือข่ายมีปัญหา:\n\n- ตรวจว่า host ออนไลน์หรือไม่\n- วัด latency ก่อน/หลังแก้ปัญหา\n- ตรวจ routing ไป gateway หรือ internet"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nping google.com\nping 8.8.8.8\nping -c 4 google.com       # ส่ง 4 ครั้งแล้วหยุด (Linux/macOS)\nping -i 2 google.com       # interval 2 วินาที\nping6 google.com           # IPv6\n```\n\nOutput ตัวอย่าง:\n```\n64 bytes from 142.250.x.x: icmp_seq=1 ttl=117 time=12.3 ms\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "host/IP — ปลายทาง",
+        "-c count — จำนวนครั้ง",
+        "time=ms — latency",
+        "ttl — Time To Live",
+        "packet loss % — สัญญาณคุณภาพเครือข่าย"
+      ]
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "ping สำเร็จ ≠ service ทำงาน — แค่ host ตอบ ICMP ได้",
+        "บาง server บล็อก ICMP — ping ไม่ผ่านแต่ HTTP อาจใช้ได้",
+        "ping วิ่งไม่หยุดจนกด Ctrl+C — ใช้ -c จำกัดจำนวน"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "WiFi บ้านอินเทอร์เน็ตช้า:\n\n```\nping 192.168.1.1    # router — ควร <5ms\nping 8.8.8.8       # internet — ดู latency และ loss\nping google.com    # ทดสอบ DNS + connectivity\n```\n\nถ้า ping router ไม่ผ่าน → ปัญหา LAN, ถ้า router ผ่านแต่ 8.8.8.8 ไม่ผ่าน → ปัญหา ISP"
+    }
+  ],
+  "related": [
+    "ip",
+    "dns",
+    "curl",
+    "traceroute"
+  ],
+  "visualization": "ping-test-flow"
+}

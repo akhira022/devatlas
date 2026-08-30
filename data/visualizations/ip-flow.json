@@ -1,0 +1,88 @@
+{
+  "slug": "ip-flow",
+  "title": "IP Packet Routing",
+  "description": "ดู IP packet เดินทางผ่าน router หลาย hop ถึงปลายทาง",
+  "conceptSlug": "ip",
+  "protocol": "IP",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "source",
+      "label": "Source Host",
+      "description": "192.168.1.5 ใน LAN",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "router1",
+      "label": "Router (ISP)",
+      "description": "Gateway ออกจาก LAN",
+      "type": "network",
+      "position": {
+        "x": 220,
+        "y": 120
+      }
+    },
+    {
+      "id": "router2",
+      "label": "Core Router",
+      "description": "Router กลางอินเทอร์เน็ต",
+      "type": "network",
+      "position": {
+        "x": 440,
+        "y": 120
+      }
+    },
+    {
+      "id": "dest",
+      "label": "Destination",
+      "description": "Server 8.8.8.8",
+      "type": "server",
+      "position": {
+        "x": 660,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "ip-1",
+      "from": "source",
+      "to": "router1",
+      "label": "Packet",
+      "packet": "DST: 8.8.8.8 TTL:64",
+      "description": "Host สร้าง IP packet — ระบุ destination IP และ TTL (Time To Live)",
+      "duration": 1200
+    },
+    {
+      "id": "ip-2",
+      "from": "router1",
+      "to": "router2",
+      "label": "Forward",
+      "packet": "TTL:63",
+      "description": "Router ลด TTL ลง 1 แล้ว forward ไปทาง next hop ตาม routing table",
+      "duration": 1200
+    },
+    {
+      "id": "ip-3",
+      "from": "router2",
+      "to": "dest",
+      "label": "Forward",
+      "packet": "TTL:62",
+      "description": "Router ถัดไป forward จนถึง destination network",
+      "duration": 1200
+    },
+    {
+      "id": "ip-4",
+      "from": "dest",
+      "to": "source",
+      "label": "Response",
+      "packet": "Reply TTL:64",
+      "description": "Destination ตอบกลับ — IP routing ทำงานสองทาง",
+      "duration": 1300
+    }
+  ]
+}

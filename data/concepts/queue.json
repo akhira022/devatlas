@@ -1,0 +1,54 @@
+{
+  "slug": "queue",
+  "title": "Queue",
+  "summary": "FIFO — First In First Out แทรกท้าย ดึงหัว",
+  "difficulty": "beginner",
+  "category": "programming",
+  "subcategory": "data-structure",
+  "tags": [
+    "linear",
+    "fifo"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "**Queue** ทำงานแบบ **FIFO** — คนแรกเข้า ออกก่อน (คิวร้านกาแฟ)\n\nOperations:\n- `enqueue` — ใส่ท้าย\n- `dequeue` — เอาออกจากหัว\n- `front` / `rear` — ดูหัว/ท้าย"
+    },
+    {
+      "type": "why",
+      "content": "- Job scheduling, message queue (RabbitMQ, SQS)\n- BFS บน graph/tree\n- Request handling ใน server\n- Print spooler"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nenqueue(A) enqueue(B) enqueue(C)\n\nfront → A → B → C ← rear\n\ndequeue() → A\n```\n\n**Deque (Double-ended queue)** — enqueue/dequeue ได้ทั้งสองปลาย"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "FIFO — First In First Out",
+        "enqueue / dequeue",
+        "BFS algorithm",
+        "Task queue / message queue",
+        "Circular buffer"
+      ]
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Array.shift() ใน JS เป็น O(n) — ใช้ linked list หรือ ring buffer สำหรับ queue จริง",
+        "Priority Queue ไม่ใช่ FIFO — ใช้ heap",
+        "Message queue ใน distributed system ≠ queue ในหนังสือ"
+      ]
+    }
+  ],
+  "related": [
+    "data-structure",
+    "stack",
+    "heap",
+    "graph-structure"
+  ],
+  "visualization": "stack-flow",
+  "prerequisites": [
+    "stack"
+  ]
+}

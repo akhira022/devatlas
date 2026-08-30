@@ -1,0 +1,57 @@
+{
+  "slug": "ps-test-netconnection",
+  "title": "Test-NetConnection",
+  "summary": "PowerShell cmdlet ทดสอบการเชื่อมต่อ — ping, port, traceroute ในคำสั่งเดียว",
+  "difficulty": "intermediate",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "windows",
+  "tags": [
+    "powershell",
+    "network",
+    "port"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`Test-NetConnection` เป็น PowerShell cmdlet สำหรับ diagnostic เครือข่าย — ทดสอบ ping, TCP port, DNS resolve และ traceroute แทนการใช้หลายคำสั่ง"
+    },
+    {
+      "type": "why",
+      "content": "Test-NetConnection ทดสอบ connectivity บน PowerShell — ping, TCP port test และ traceroute ในคำสั่งเดียว\n\nทดแทน ping/telnet แบบเก่าและได้ output ที่ parse ง่าย"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nTest-NetConnection google.com\nTest-NetConnection localhost -Port 3000\nTest-NetConnection db.server.com -Port 5432\nTest-NetConnection google.com -TraceRoute\nTest-NetConnection google.com -DiagnoseRouting\n\n# ผลลัพธ์สำคัญ\nTcpTestSucceeded : True    # port เปิด\nPingSucceeded    : True\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Test-NetConnection host",
+        "-Port 443",
+        "TcpTestSucceeded",
+        "PingSucceeded",
+        "แทน telnet สมัยใหม่"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ตรวจว่า dev server รัน port 3000:\n```\nTest-NetConnection localhost -Port 3000\n# TcpTestSucceeded : True\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "PingSucceeded False แต่ TcpTestSucceeded True — ICMP ถูกบล็อก แต่ service ทำงาน",
+        "ใช้ได้เฉพาะ PowerShell ไม่ใช่ CMD",
+        "เทียบเท่า nc -zv บน Linux สำหรับทดสอบ port"
+      ]
+    }
+  ],
+  "related": [
+    "nc",
+    "win-ping",
+    "win-netstat",
+    "ping"
+  ],
+  "visualization": "ping-test-flow"
+}

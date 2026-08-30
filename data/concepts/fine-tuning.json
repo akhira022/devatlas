@@ -1,0 +1,63 @@
+{
+  "slug": "fine-tuning",
+  "title": "Fine-tuning",
+  "fullName": "Model Fine-tuning",
+  "summary": "การปรับแต่ง model ที่ train มาแล้วด้วยข้อมูลเฉพาะ domain — ให้ทำงาน specialized task ได้ดีขึ้น",
+  "difficulty": "advanced",
+  "category": "ai",
+  "tags": [
+    "llm",
+    "training",
+    "custom-model"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Fine-tuning คือการ train ต่อ (continue training) จาก pre-trained model ด้วย dataset ขององค์กรหรือ task เฉพาะ — ปรับ weights ให้ model เรียนรู้ pattern, ศัพท์เฉพาะทาง หรือรูปแบบ output ที่ต้องการ\n\nรูปแบบยอดนิยม:\n- **Full fine-tuning** — ปรับ weights ทั้ง model (ใช้ GPU มาก)\n- **LoRA / QLoRA** — ปรับ adapter เล็ก ๆ ประหยัดทรัพยากร\n- **Instruction tuning** — สอนให้ทำตามคำสั่งในรูปแบบ chat\n\nต่างจาก prompt engineering ที่ไม่เปลี่ยน model และต่างจาก training จากศูนย์"
+    },
+    {
+      "type": "why",
+      "content": "บางงาน prompt + RAG ไม่พอ — ต้องการ model ที่ \"จำ\" style, compliance หรือ classification ที่แม่นยำสม่ำเสมอ\n\nใช้ fine-tuning เมื่อ:\n- มี labeled data เพียงพอ (หล hundreds–thousands ตัวอย่าง)\n- ต้องการ tone/format คงที่ (เช่น กฎหมาย, medical shorthand)\n- Latency สำคัญ — model เล็กที่ fine-tune แล้วอาจแทน prompt ยาว ๆ\n- ลด token cost ใน production ที่ scale ใหญ่\n- Classification หรือ extraction ที่ต้อง deterministic กว่า zero-shot"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. เลือก base model (Llama, Mistral, GPT fine-tune API)\n2. เตรียม dataset — คู่ input/output หรือ conversation ที่ถูกต้อง\n3. แบ่ง train / validation / test — กัน overfit\n4. เลือกวิธี fine-tune (LoRA vs full) และ hyperparameters\n5. Train บน GPU cluster หรือ managed service (OpenAI, Azure, Hugging Face)\n6. Evaluate บน test set — เปรียบเทียบกับ baseline prompt\n7. Deploy model ใหม่ — version control และ monitor drift"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Base Model — foundation ที่ fine-tune ต่อ",
+        "Training Dataset — ตัวอย่างคุณภาพสูงและ representative",
+        "LoRA Adapters — ปรับ parameter น้อย ประหยัด VRAM",
+        "Hyperparameters — learning rate, epochs, batch size",
+        "Evaluation Metrics — accuracy, F1, human eval, LLM-as-judge",
+        "Model Registry — เก็บ version และ rollback path"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ธนาคาสร้าง model สรุปรายงานการเงินภาษาไทย:\n\n1. รวบรวม 2,000 คู่ (รายงานดิบ → สรุปมาตรฐานธนาคาร) จาก analyst\n2. Fine-tune Llama 8B ด้วย QLoRA บน 4× A100 2 วัน\n3. Validation — เปรียบกับ GPT-4 + long prompt: fine-tuned model ตรง format 98% vs 85%\n4. Deploy เป็น internal API — latency ต่ำกว่าเรียก GPT-4\n5. ทุกไตรมาส retrain ด้วย report ใหม่ — ติดตาม concept drift"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Fine-tuning ≠ สอน fact ใหม่ล่าสุด — ความรู้ factual ควรใช้ RAG; fine-tune สอน behavior และ style",
+        "Data น้อยและ dirty → overfit และ hallucinate แย่กว่า base model",
+        "Fine-tune แล้วไม่ได้หมายความว่าไม่ต้อง prompt — ยังต้องกำหนด task boundary",
+        "Full fine-tune แพงและยาก maintain — LoRA มักพอสำหรับ enterprise use case"
+      ]
+    }
+  ],
+  "related": [
+    "llm",
+    "machine-learning",
+    "neural-network",
+    "rag",
+    "api"
+  ],
+  "visualization": "llm-flow",
+  "prerequisites": [
+    "llm",
+    "machine-learning"
+  ]
+}

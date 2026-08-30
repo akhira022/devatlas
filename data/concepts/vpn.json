@@ -1,0 +1,60 @@
+{
+  "slug": "vpn",
+  "title": "VPN",
+  "fullName": "Virtual Private Network",
+  "summary": "สร้าง tunnel เข้ารหัสผ่านอินเทอร์เน็ต — เหมือนอยู่ในเครือข่ายส่วนตัว",
+  "difficulty": "intermediate",
+  "category": "network",
+  "tags": [
+    "tunnel",
+    "encryption",
+    "privacy"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "VPN สร้าง encrypted tunnel ระหว่าง device กับ VPN server — traffic ทั้งหมดถูกเข้ารหัสระหว่างทาง\n\nใช้ทำงานจากบ้านเข้า corporate network หรือปกป้อง privacy บน public WiFi"
+    },
+    {
+      "type": "why",
+      "content": "- เข้ารหัส traffic บน WiFi สาธารณะ\n- เข้าถึงทรัพยากรภายในองค์กรจากภายนอก\n- ซ่อน IP จริงจาก website (บางกรณี)"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Client ติดตั้ง VPN software\n2. สร้าง encrypted tunnel ไป VPN server\n3. Traffic ทั้งหมด (หรือบางส่วน) ส่งผ่าน tunnel\n4. VPN server decrypt แล้ว forward ไป internet\n5. Response กลับผ่าน tunnel — ISP เห็นแค่ VPN server IP"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "VPN Client — software บนอุปกรณ์",
+        "VPN Server — ปลายทาง tunnel",
+        "Encrypted Tunnel — WireGuard, OpenVPN, IPSec",
+        "Tunnel Interface — virtual network adapter",
+        "Split Tunneling — บาง traffic ผ่าน VPN บางส่วนไม่ผ่าน"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ทำงานจากบ้าน เข้า corporate network:\n\n1. เปิด VPN client → เชื่อม office VPN server\n2. Traffic ไป internal tools (Jira, Git) ผ่าน encrypted tunnel\n3. เข้าถึง resource ที่ block จาก public internet\n4. IT policy บังคับ VPN ก่อนเข้าระบบภายใน\n5. Public WiFi ปลอดภัยขึ้น — traffic เข้ารหัสถึง VPN server"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "VPN ≠ Proxy — VPN encrypt ทุก traffic, proxy มักแค่ HTTP",
+        "VPN ช้าลงได้เพราะต้อง encrypt + route ผ่าน server",
+        "Site-to-site VPN เชื่อม office สองแห่ง"
+      ]
+    }
+  ],
+  "related": [
+    "encryption",
+    "ip",
+    "proxy",
+    "firewall"
+  ],
+  "visualization": "vpn-flow",
+  "prerequisites": [
+    "ip",
+    "encryption"
+  ]
+}

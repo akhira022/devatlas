@@ -1,0 +1,94 @@
+{
+  "slug": "redis-flow",
+  "title": "Redis Cache Flow",
+  "description": "ตรวจ cache ก่อน — cache hit ตอบทันที, cache miss ดึงจาก database",
+  "conceptSlug": "redis",
+  "protocol": "Redis",
+  "category": "database",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Client",
+      "description": "แอปที่ขอข้อมูลผ่าน API",
+      "type": "client",
+      "position": { "x": 0, "y": 120 }
+    },
+    {
+      "id": "api",
+      "label": "API Server",
+      "description": "Backend ที่จัดการ cache logic",
+      "type": "server",
+      "position": { "x": 240, "y": 120 }
+    },
+    {
+      "id": "redis",
+      "label": "Redis",
+      "description": "In-memory cache เก็บ key-value พร้อม TTL",
+      "type": "database",
+      "position": { "x": 480, "y": 120 }
+    },
+    {
+      "id": "db",
+      "label": "Database",
+      "description": "Source of truth เมื่อ cache miss",
+      "type": "database",
+      "position": { "x": 720, "y": 120 }
+    }
+  ],
+  "steps": [
+    {
+      "id": "redis-1",
+      "from": "client",
+      "to": "api",
+      "label": "Request",
+      "packet": "GET /api/product/42",
+      "description": "Client ขอข้อมูล product",
+      "duration": 1200
+    },
+    {
+      "id": "redis-2",
+      "from": "api",
+      "to": "redis",
+      "label": "Cache Lookup",
+      "packet": "GET product:42",
+      "description": "API ตรวจ Redis ว่ามีข้อมูล cached หรือไม่",
+      "duration": 1100
+    },
+    {
+      "id": "redis-3",
+      "from": "api",
+      "to": "db",
+      "label": "Cache Miss",
+      "packet": "SELECT * FROM products",
+      "description": "ไม่พบใน cache — API query จาก database",
+      "duration": 1300
+    },
+    {
+      "id": "redis-4",
+      "from": "db",
+      "to": "api",
+      "label": "Row",
+      "packet": "product data",
+      "description": "Database ส่งข้อมูลกลับ",
+      "duration": 1100
+    },
+    {
+      "id": "redis-5",
+      "from": "api",
+      "to": "redis",
+      "label": "Cache Set",
+      "packet": "SET product:42 EX 3600",
+      "description": "API เก็บข้อมูลลง Redis พร้อม TTL",
+      "duration": 1200
+    },
+    {
+      "id": "redis-6",
+      "from": "api",
+      "to": "client",
+      "label": "Response",
+      "packet": "200 OK + JSON",
+      "description": "API ส่งข้อมูลกลับ — request ถัดไปจะได้ cache hit",
+      "duration": 1100
+    }
+  ]
+}

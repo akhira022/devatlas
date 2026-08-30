@@ -1,0 +1,62 @@
+{
+  "slug": "monitoring",
+  "title": "Monitoring",
+  "fullName": "System & Application Monitoring",
+  "summary": "การเก็บและดู metrics ของระบบแบบ real-time — รู้ว่า service สุขภาพดีหรือมีปัญหาก่อน user แจ้ง",
+  "difficulty": "intermediate",
+  "category": "devops",
+  "tags": [
+    "prometheus",
+    "grafana",
+    "observability"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Monitoring คือการเก็บ **metrics** (ตัวเลขที่วัดได้เป็นเวลา) จาก infrastructure และ application แล้วแสดงผล/แจ้งเตือนเมื่อผิดปกติ\n\nStack ยอดนิยม (Prometheus/Grafana style):\n- **Prometheus** — scrape และเก็บ time-series metrics\n- **Grafana** — dashboard และ visualization\n- **Alertmanager** — ส่ง alert ไป Slack/PagerDuty\n- **Exporters** — node_exporter, kube-state-metrics\n\nครอบคลุม CPU, memory, request rate, error rate, latency (RED/USE methods)"
+    },
+    {
+      "type": "why",
+      "content": "Production ที่ไม่มี monitoring = ตาบอด — รู้ปัญหาจาก user complaint ช้าเกินไป\n\nMonitoring ช่วย:\n- ตรวจ SLO/SLA — uptime 99.9% ทำได้จริงไหม\n- หา bottleneck ก่อน outage (CPU spike, disk full, connection pool หมด)\n- Correlate deploy กับ error rate ขึ้น\n- Capacity planning — ต้อง scale เมื่อไหร่\n- On-call ได้ alert ที่ actionable ไม่ใช่ noise"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Instrument app — expose `/metrics` (Prometheus format) หรือ push ไป collector\n2. Prometheus scrape ทุก N วินาที — เก็บ label เช่น service, pod, status_code\n3. กำหนด recording rules และ alerts (PromQL) — เช่น error_rate > 1% 5 นาที\n4. Grafana query Prometheus แสดง graph และ single pane of glass\n5. Alertmanager group, dedupe, route alert ตาม severity\n6. On-call รับแจ้ง → runbook → incident → postmortem\n7. เก็บ retention และ long-term storage (Thanos, Mimir) ถ้าต้องการ"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Metrics — counter, gauge, histogram (request_total, latency_seconds)",
+        "Time-Series Database — Prometheus, InfluxDB, CloudWatch",
+        "Dashboard — Grafana, Datadog, New Relic UI",
+        "Alert Rules — threshold และ anomaly detection",
+        "Exporters / Agents — ดึง metrics จาก OS, DB, K8s",
+        "SLO / SLI — เป้าหมาย reliability ที่วัดได้ (availability, latency p99)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ทีมรัน microservices บน Kubernetes:\n\n1. ทุก service expose Prometheus metrics — `http_requests_total`, `http_request_duration_seconds`\n2. ServiceMonitor ให้ Prometheus scrape pod อัตโนมัติ\n3. Grafana dashboard: RPS, error %, p95 latency ต่อ service\n4. Alert: p99 latency > 500ms 10 นาที → Slack #oncall\n5. Deploy ใหม่ → error rate ขึ้น 5× → rollback ภายใน 5 นาทีจาก alert\n6. รายเดือน review SLO — 99.95% availability ผ่านหรือไม่"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Monitoring ≠ Logging — metrics เป็นตัวเลข aggregate; logs เป็นเหตุการณ์รายบรรทัด",
+        "Alert มากเกิน → alert fatigue — ตั้ง threshold และ runbook ให้ดี",
+        "Dashboard สวย ≠ monitor ครบ — ต้องมี alert ที่ wake คนขึ้นมา",
+        "Prometheus pull model — service ต้อง expose endpoint; ไม่ใช่แค่ tail log file"
+      ]
+    }
+  ],
+  "related": [
+    "kubernetes",
+    "deployment",
+    "ci-cd",
+    "docker",
+    "api"
+  ],
+  "visualization": "monitoring-flow",
+  "prerequisites": [
+    "deployment"
+  ]
+}

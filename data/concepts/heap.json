@@ -1,0 +1,55 @@
+{
+  "slug": "heap",
+  "title": "Heap",
+  "summary": "Binary tree ที่ parent ≤/≥ ลูก — หา min/max ได้ O(1), insert O(log n)",
+  "difficulty": "intermediate",
+  "category": "programming",
+  "subcategory": "data-structure",
+  "tags": [
+    "tree",
+    "priority"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "**Heap** เป็น complete binary tree:\n- **Min-Heap** — parent ≤ children → root คือค่าต่ำสุด\n- **Max-Heap** — parent ≥ children → root คือค่าสูงสุด\n\nมัก implement ด้วย array (index formula: left=2i+1, right=2i+2)"
+    },
+    {
+      "type": "why",
+      "content": "- **Priority Queue** — task สำคัญก่อน\n- Top K elements (หา K ตัวใหญ่สุด)\n- Heap Sort\n- Dijkstra algorithm\n- Event scheduling"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ninsert(x): ใส่ท้าย array แล้ว bubble up — O(log n)\nextractMin(): เอา root, ย้าย leaf มา root แล้ว bubble down\n\nMin-Heap array: [1, 3, 2, 7, 5]\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Min-heap / Max-heap",
+        "Parent-child ordering",
+        "Priority queue",
+        "heapify O(n)",
+        "extract-min O(log n)"
+      ]
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Heap ≠ sorted array — แค่รับประกัน root min/max",
+        "JavaScript ไม่มี built-in heap — ใช้ library หรือเขียนเอง",
+        "Priority Queue มัก implement ด้วย heap"
+      ]
+    }
+  ],
+  "related": [
+    "data-structure",
+    "tree",
+    "queue",
+    "array"
+  ],
+  "visualization": "tree-flow",
+  "prerequisites": [
+    "tree",
+    "array"
+  ]
+}

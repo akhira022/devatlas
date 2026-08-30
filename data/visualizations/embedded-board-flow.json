@@ -1,0 +1,88 @@
+{
+  "slug": "embedded-board-flow",
+  "title": "Embedded Development Board",
+  "description": "Arduino / ESP32 / Raspberry Pi — โปรแกรมและต่อ sensor",
+  "conceptSlug": "esp32",
+  "protocol": "GPIO",
+  "category": "hardware",
+  "nodes": [
+    {
+      "id": "dev",
+      "label": "Developer",
+      "description": "เขียน firmware",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "ide",
+      "label": "IDE / flasher",
+      "description": "Arduino IDE, esptool",
+      "type": "service",
+      "position": {
+        "x": 240,
+        "y": 120
+      }
+    },
+    {
+      "id": "board",
+      "label": "ESP32 / Pi",
+      "description": "development board",
+      "type": "device",
+      "position": {
+        "x": 480,
+        "y": 120
+      }
+    },
+    {
+      "id": "sensor",
+      "label": "Sensors",
+      "description": "GPIO, I2C, SPI",
+      "type": "device",
+      "position": {
+        "x": 720,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "eb-1",
+      "from": "dev",
+      "to": "ide",
+      "label": "Write code",
+      "packet": "sketch.ino",
+      "description": "เขียนโปรแกรมอ่าน sensor / WiFi",
+      "duration": 1100
+    },
+    {
+      "id": "eb-2",
+      "from": "ide",
+      "to": "board",
+      "label": "Flash",
+      "packet": "USB upload",
+      "description": "อัปโหลด firmware ลง board",
+      "duration": 1200
+    },
+    {
+      "id": "eb-3",
+      "from": "board",
+      "to": "sensor",
+      "label": "Read",
+      "packet": "DHT22 data",
+      "description": "board อ่านค่าจาก sensor ที่ต่อ",
+      "duration": 1100
+    },
+    {
+      "id": "eb-4",
+      "from": "sensor",
+      "to": "board",
+      "label": "Values",
+      "packet": "temp=28°C",
+      "description": "ส่งข้อมูลกลับ MCU ประมวลผลต่อ",
+      "duration": 1000
+    }
+  ]
+}

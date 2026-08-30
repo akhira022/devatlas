@@ -1,0 +1,62 @@
+{
+  "slug": "object-storage",
+  "title": "Object Storage",
+  "fullName": "Object Storage",
+  "summary": "ที่เก็บไฟล์แบบ object บน cloud — scale ได้มหาศาล จ่ายตามใช้ เหมาะกับรูป วิดีโอ backup",
+  "difficulty": "beginner",
+  "category": "cloud",
+  "tags": [
+    "s3",
+    "blob",
+    "storage"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Object Storage เก็บข้อมูลเป็น **object** (ไฟล์ + metadata) ใน **bucket** แทนโครงสร้างโฟลเดอร์แบบไฟล์ระบบดั้งเดิม — เข้าถึงผ่าน HTTP API ด้วย key (path-like name)\n\nตัวอย่างบริการ:\n- **AWS S3** — Simple Storage Service\n- **Google Cloud Storage (GCS)**\n- **Azure Blob Storage**\n- **Cloudflare R2**, **MinIO** (self-hosted S3-compatible)\n\nเหมาะกับ static assets, backup, data lake และ user uploads"
+    },
+    {
+      "type": "why",
+      "content": "Block storage (disk บน VM) และ file storage (NFS) scale ยากและแพงเมื่อข้อมูลเป็น PB\n\nObject storage ให้:\n- Durability สูง (99.999999999% บน S3)\n- Scale ไม่จำกัด practically\n- Pay per GB และ request — ไม่ต้อง provision ล่วงหน้า\n- CDN integration ง่าย\n- Versioning, lifecycle (ลบไฟล์เก่าอัตโนมัติ)\n- Public หรือ private access ผ่าน IAM/policy"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. สร้าง bucket ใน region ที่ใกล้ user\n2. Upload object ด้วย PUT — ระบุ key เช่น `users/123/avatar.png`\n3. Metadata เก็บ content-type, cache-control, custom tags\n4. อ่านด้วย GET URL — public หรือ signed URL ชั่วคราว\n5. ตั้ง bucket policy / IAM ว่าใครอ่าน/เขียนได้\n6. Lifecycle rule — ย้ายไป cold tier หรือลบหลัง N วัน\n7. Event notification — trigger Lambda เมื่อมีไฟล์ใหม่"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Bucket — container ระดับบัญชี/region",
+        "Object Key — ชื่อ unique ภายใน bucket",
+        "Metadata — content-type, encryption, custom headers",
+        "Storage Class — Standard, Infrequent Access, Glacier",
+        "Access Policy — IAM, bucket policy, ACL, signed URL",
+        "Versioning — เก็บหลาย version ของ object เดียวกัน"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "แอปโซเชียลมีเดียเก็บรูป user:\n\n1. สร้าง S3 bucket `myapp-media-prod` region ap-southeast-1\n2. Backend รับ upload → validate → PUT ไป `posts/{postId}/{uuid}.jpg`\n3. ตั้ง object public-read หรือ CloudFront signed URL สำหรับ private\n4. Lifecycle: ย้ายรูปเก่ากว่า 1 ปีไป S3 Glacier ลด cost\n5. S3 event → Lambda สร้าง thumbnail แล้ว PUT กลับ bucket\n6. Database เก็บแค่ URL/key — ไม่เก็บ binary ใน PostgreSQL"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "S3 ≠ database — ไม่ query แบบ SQL; ใช้ key หรือ index ภายนอก",
+        "Bucket name ต้อง globally unique บน AWS — วางแผนชื่อให้ดี",
+        "Public bucket ผิด config → data leak — ใช้ block public access default",
+        "Object storage ไม่เหมาะเป็น OS disk — latency สูงกว่า block storage สำหรับ random I/O"
+      ]
+    }
+  ],
+  "related": [
+    "cloud-computing",
+    "serverless",
+    "api",
+    "database",
+    "docker"
+  ],
+  "visualization": "object-storage-flow",
+  "prerequisites": [
+    "cloud-computing"
+  ]
+}

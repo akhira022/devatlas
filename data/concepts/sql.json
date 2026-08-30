@@ -1,0 +1,55 @@
+{
+  "slug": "sql",
+  "title": "SQL",
+  "fullName": "Structured Query Language",
+  "summary": "ภาษาสำหรับจัดการข้อมูลใน relational database — SELECT, INSERT, UPDATE, DELETE",
+  "difficulty": "beginner",
+  "category": "database",
+  "tags": [
+    "query",
+    "relational",
+    "rdbms"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "SQL คือภาษามาตรฐานสำหรับสื่อสารกับ relational database — ใช้ query, insert, update และ delete ข้อมูล\n\n```sql\nSELECT name, email FROM users WHERE age > 18;\n```"
+    },
+    {
+      "type": "why",
+      "content": "Relational database ใช้กันแพร่หลายที่สุด:\n- ข้อมูลมีโครงสร้างชัด (tables, rows, columns)\n- ACID transactions — ข้อมูลปลอดภัย\n- SQL เป็นทักษะพื้นฐานที่ developer ต้องรู้"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. เขียน SQL query: SELECT name FROM users WHERE age > 18\n2. Query parser ตรวจ syntax\n3. Query optimizer เลือก execution plan (ใช้ index ไหม)\n4. Engine อ่านข้อมูลจาก disk/memory\n5. ส่ง result set กลับเป็น table rows\n6. INSERT/UPDATE/DELETE เปลี่ยนข้อมูลใน transaction"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "SELECT (read)",
+        "INSERT (create)",
+        "UPDATE (modify)",
+        "DELETE (remove)",
+        "JOIN (combine tables)",
+        "INDEX (speed up)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "E-commerce ดึงสินค้าขายดี:\n\n```sql\nSELECT p.name, SUM(o.quantity) AS sold\nFROM products p\nJOIN order_items o ON p.id = o.product_id\nGROUP BY p.id\nORDER BY sold DESC\nLIMIT 10;\n```\n\n→ 10 สินค้าที่ขายมากสุด จาก join 3 tables"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "SQL ≠ Database — SQL เป็นภาษา, PostgreSQL/MySQL เป็น database",
+        "SQL databases ไม่ได้ช้าเสมอ — indexing และ design ดีก็เร็วมาก"
+      ]
+    }
+  ],
+  "related": [
+    "database",
+    "nosql",
+    "orm"
+  ],
+  "visualization": "sql-query-flow"
+}

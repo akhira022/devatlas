@@ -1,0 +1,78 @@
+{
+  "slug": "file-read-flow",
+  "title": "Read File Contents",
+  "description": "cat / type — แสดงเนื้อหาไฟล์ใน terminal",
+  "conceptSlug": "cat",
+  "protocol": "Shell",
+  "category": "cli",
+  "nodes": [
+    {
+      "id": "user",
+      "label": "User",
+      "description": "ต้องการดูเนื้อหาไฟล์",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "shell",
+      "label": "Shell",
+      "description": "cat หรือ type",
+      "type": "service",
+      "position": {
+        "x": 280,
+        "y": 120
+      }
+    },
+    {
+      "id": "fs",
+      "label": "File",
+      "description": "ไฟล์บน disk",
+      "type": "database",
+      "position": {
+        "x": 560,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "fr-1",
+      "from": "user",
+      "to": "shell",
+      "label": "cat file",
+      "packet": "cat config.json",
+      "description": "ระบุไฟล์ที่ต้องการอ่าน",
+      "duration": 1100
+    },
+    {
+      "id": "fr-2",
+      "from": "shell",
+      "to": "fs",
+      "label": "Open",
+      "packet": "read bytes",
+      "description": "เปิดไฟล์และอ่านเนื้อหาทั้งหมด",
+      "duration": 1100
+    },
+    {
+      "id": "fr-3",
+      "from": "fs",
+      "to": "shell",
+      "label": "Content",
+      "packet": "{ \"port\": 3000 }",
+      "description": "ส่งเนื้อหาไฟล์กลับ shell",
+      "duration": 1100
+    },
+    {
+      "id": "fr-4",
+      "from": "shell",
+      "to": "user",
+      "label": "Print",
+      "packet": "stdout",
+      "description": "พิมพ์เนื้อหาลง terminal",
+      "duration": 1000
+    }
+  ]
+}

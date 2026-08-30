@@ -1,0 +1,19 @@
+{
+  "slug": "git-branch-flow",
+  "title": "Git Branch Flow",
+  "description": "สร้าง branch ใหม่และ commit แยกจาก main",
+  "conceptSlug": "git-branch",
+  "protocol": "Git",
+  "category": "git-github",
+  "nodes": [
+    { "id": "main", "label": "main", "description": "commit ล่าสุดบน main", "type": "server", "position": { "x": 0, "y": 120 } },
+    { "id": "branch", "label": "feature/x", "description": "branch ใหม่แยกออก", "type": "client", "position": { "x": 320, "y": 120 } },
+    { "id": "commits", "label": "New Commits", "description": "commits บน feature", "type": "service", "position": { "x": 640, "y": 120 } }
+  ],
+  "steps": [
+    { "id": "gb-1", "from": "main", "to": "branch", "label": "git branch", "packet": "git checkout -b feature/x", "description": "สร้าง branch ใหม่ชี้ commit เดียวกับ main", "duration": 1100 },
+    { "id": "gb-2", "from": "branch", "to": "commits", "label": "Commit", "packet": "git commit", "description": "commit บน feature — main ไม่เปลี่ยน", "duration": 1200 },
+    { "id": "gb-3", "from": "main", "to": "main", "label": "main unchanged", "packet": "main ยังเดิม", "description": "main ยังอยู่ commit เดิมจนกว่าจะ merge", "duration": 1100 },
+    { "id": "gb-4", "from": "commits", "to": "branch", "label": "HEAD", "packet": "feature ล้ำหน้า", "description": "feature branch มี commits เพิ่มจากจุดแยก", "duration": 1100 }
+  ]
+}

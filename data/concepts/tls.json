@@ -1,0 +1,60 @@
+{
+  "slug": "tls",
+  "title": "TLS",
+  "fullName": "Transport Layer Security",
+  "summary": "protocol เข้ารหัสการสื่อสาร — HTTPS ใช้ TLS เป็นหลัก",
+  "difficulty": "intermediate",
+  "category": "network",
+  "tags": [
+    "encryption",
+    "security",
+    "certificate"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "TLS (successor ของ SSL) เข้ารหัสข้อมูลระหว่าง client กับ server\n\nHTTPS = HTTP + TLS\n\nTLS 1.3 เป็นเวอร์ชันล่าสุดที่ปลอดภัยและเร็ว"
+    },
+    {
+      "type": "why",
+      "content": "- ป้องกัน eavesdropping และ tampering\n- ยืนยันตัวตน server ด้วย certificate\n- จำเป็นสำหรับ password, payment, personal data"
+    },
+    {
+      "type": "how_it_works",
+      "content": "TLS Handshake (simplified):\n\n1. ClientHello — ส่ง supported ciphers\n2. ServerHello + Certificate\n3. Client ตรวจ certificate, สร้าง pre-master secret\n4. ทั้งสองฝั่ง derive session keys\n5. Finished messages ยืนยัน handshake\n6. ส่ง application data ผ่าน symmetric encryption"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Handshake",
+        "Certificate",
+        "Cipher Suite",
+        "Session Key",
+        "CA (Certificate Authority)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เปิด https://google.com:\n\n1. Browser ตรวจ certificate ออกโดย Google Trust Services\n2. TLS 1.3 handshake เสร็จใน ~50ms\n3. ทุก HTTP request/response เข้ารหัส\n4. Padlock แสดงใน address bar\n5. Certificate หมดอายุทุก ~90 วัน — ต้อง renew (มักอัตโนมัติด้วย Let's Encrypt)"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "TLS แทน SSL — SSL 3.0 ล้าสมัย, ใช้ TLS 1.2+",
+        "TLS ≠ HTTPS — TLS เป็น protocol, HTTPS คือ HTTP over TLS",
+        "Self-signed cert ใช้ทดสอบได้ แต่ browser ไม่ trust"
+      ]
+    }
+  ],
+  "related": [
+    "https",
+    "encryption",
+    "tcp",
+    "http"
+  ],
+  "visualization": "https-flow",
+  "prerequisites": [
+    "https",
+    "encryption"
+  ]
+}

@@ -1,0 +1,104 @@
+{
+  "slug": "client-server-flow",
+  "title": "Client-Server Communication",
+  "description": "ดู Client ส่ง request ไป Server และรับ response กลับมายังไง",
+  "conceptSlug": "client",
+  "protocol": "Client-Server",
+  "category": "programming",
+  "nodes": [
+    {
+      "id": "user",
+      "label": "User",
+      "description": "ผู้ใช้โต้ตอบกับ Client — กดปุ่ม, พิมพ์, scroll",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "client",
+      "label": "Client App",
+      "description": "Browser หรือ Mobile App — สร้าง request และแสดงผล",
+      "type": "client",
+      "position": {
+        "x": 220,
+        "y": 120
+      }
+    },
+    {
+      "id": "server",
+      "label": "Server",
+      "description": "รับ request, ประมวลผล business logic",
+      "type": "server",
+      "position": {
+        "x": 480,
+        "y": 120
+      }
+    },
+    {
+      "id": "database",
+      "label": "Database",
+      "description": "เก็บข้อมูลถาวร — Server query ข้อมูลจากที่นี่",
+      "type": "database",
+      "position": {
+        "x": 740,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "cs-1",
+      "from": "user",
+      "to": "client",
+      "label": "Action",
+      "description": "ผู้ใช้ทำ action — เช่น กดปุ่ม 'ดูสินค้า' หรือเปิดหน้าเว็บ",
+      "duration": 1000
+    },
+    {
+      "id": "cs-2",
+      "from": "client",
+      "to": "server",
+      "label": "Request",
+      "packet": "GET /api/products",
+      "description": "Client สร้าง HTTP request ส่งไป Server — ระบุ method, URL, headers",
+      "duration": 1400
+    },
+    {
+      "id": "cs-3",
+      "from": "server",
+      "to": "database",
+      "label": "Query",
+      "packet": "SELECT * FROM products",
+      "description": "Server ประมวลผล request และ query ข้อมูลจาก Database",
+      "duration": 1200
+    },
+    {
+      "id": "cs-4",
+      "from": "database",
+      "to": "server",
+      "label": "Data",
+      "packet": "Result Rows",
+      "description": "Database ส่งข้อมูลกลับมาให้ Server",
+      "duration": 1000
+    },
+    {
+      "id": "cs-5",
+      "from": "server",
+      "to": "client",
+      "label": "Response",
+      "packet": "200 OK + JSON",
+      "description": "Server สร้าง response — status code, headers, JSON body",
+      "duration": 1400
+    },
+    {
+      "id": "cs-6",
+      "from": "client",
+      "to": "user",
+      "label": "Display",
+      "description": "Client แปลง JSON เป็น UI และแสดงผลให้ผู้ใช้เห็น",
+      "duration": 1000
+    }
+  ]
+}

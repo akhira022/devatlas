@@ -1,0 +1,85 @@
+{
+  "slug": "kubernetes-flow",
+  "title": "Kubernetes Pod Deploy",
+  "description": "Deploy application เป็น Pod ผ่าน kubectl และ Kubernetes control plane",
+  "conceptSlug": "kubernetes",
+  "protocol": "Kubernetes",
+  "category": "devops",
+  "nodes": [
+    {
+      "id": "dev",
+      "label": "Developer",
+      "description": "รัน kubectl apply เพื่อ deploy manifest",
+      "type": "client",
+      "position": { "x": 0, "y": 120 }
+    },
+    {
+      "id": "apiserver",
+      "label": "API Server",
+      "description": "Control plane รับคำสั่งและจัดการ desired state",
+      "type": "server",
+      "position": { "x": 240, "y": 120 }
+    },
+    {
+      "id": "scheduler",
+      "label": "Scheduler",
+      "description": "เลือก Node ที่เหมาะสมสำหรับรัน Pod",
+      "type": "service",
+      "position": { "x": 480, "y": 120 }
+    },
+    {
+      "id": "pod",
+      "label": "Pod",
+      "description": "กลุ่ม container ที่รันบน worker node",
+      "type": "server",
+      "position": { "x": 720, "y": 120 }
+    }
+  ],
+  "steps": [
+    {
+      "id": "k8s-1",
+      "from": "dev",
+      "to": "apiserver",
+      "label": "Apply",
+      "packet": "kubectl apply -f deploy.yaml",
+      "description": "Developer ส่ง Deployment manifest ไปยัง API Server",
+      "duration": 1200
+    },
+    {
+      "id": "k8s-2",
+      "from": "apiserver",
+      "to": "scheduler",
+      "label": "Schedule",
+      "packet": "pending pod",
+      "description": "API Server แจ้ง Scheduler ว่ามี Pod รอ placement",
+      "duration": 1200
+    },
+    {
+      "id": "k8s-3",
+      "from": "scheduler",
+      "to": "apiserver",
+      "label": "Bind",
+      "packet": "node assignment",
+      "description": "Scheduler เลือก Node แล้ว bind Pod เข้ากับ Node นั้น",
+      "duration": 1100
+    },
+    {
+      "id": "k8s-4",
+      "from": "apiserver",
+      "to": "pod",
+      "label": "Create",
+      "packet": "pull image + start",
+      "description": "Kubelet บน Node ดึง image และสร้าง container ใน Pod",
+      "duration": 1300
+    },
+    {
+      "id": "k8s-5",
+      "from": "pod",
+      "to": "dev",
+      "label": "Running",
+      "packet": "kubectl get pods",
+      "description": "Pod อยู่ในสถานะ Running — Developer ตรวจสอบผ่าน kubectl",
+      "duration": 1200
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "slug": "authentication-vs-authorization",
+  "title": "Authentication vs Authorization",
+  "description": "สองแนวคิดที่มักสับสน — คือใคร vs ทำอะไรได้",
+  "icon": "shield",
+  "items": [
+    { "conceptSlug": "authentication", "name": "Authentication", "tagline": "พิสูจน์ตัวตน — คุณคือใคร?" },
+    { "conceptSlug": "authorization", "name": "Authorization", "tagline": "ตรวจสิทธิ์ — คุณทำอะไรได้?" }
+  ],
+  "rows": [
+    { "label": "คำถาม", "values": ["Who are you?", "What can you do?"] },
+    { "label": "ตัวอย่าง", "values": ["Login ด้วย email/password", "Admin ลบ user ได้, user ธรรมดาไม่ได้"] },
+    { "label": "HTTP status", "values": ["401 Unauthorized", "403 Forbidden"] },
+    { "label": "เทคโนโลยี", "values": ["OAuth, password, MFA, SSO", "RBAC, ACL, permissions, scopes"] },
+    { "label": "ลำดับ", "values": ["เกิดขึ้นก่อน", "เกิดขึ้นหลัง auth สำเร็จ"] }
+  ],
+  "whenToUse": [
+    { "label": "ต้องการรู้ว่า user login แล้วหรือยัง", "pick": "Authentication" },
+    { "label": "ต้องการจำกัดว่า role ไหนทำ action อะไรได้", "pick": "Authorization" },
+    { "label": "ได้ 401", "pick": "ตรวจ Authentication" },
+    { "label": "ได้ 403", "pick": "ตรวจ Authorization" }
+  ]
+}

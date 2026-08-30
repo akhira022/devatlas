@@ -1,0 +1,85 @@
+{
+  "slug": "monitoring-flow",
+  "title": "Monitoring Alert Flow",
+  "description": "เก็บ metrics จาก service แล้วแจ้งเตือนเมื่อเกิน threshold",
+  "conceptSlug": "monitoring",
+  "protocol": "Monitoring",
+  "category": "devops",
+  "nodes": [
+    {
+      "id": "app",
+      "label": "Application",
+      "description": "Service ที่ expose metrics endpoint เช่น /metrics",
+      "type": "server",
+      "position": { "x": 0, "y": 120 }
+    },
+    {
+      "id": "collector",
+      "label": "Metrics Collector",
+      "description": "Prometheus หรือ agent ที่ scrape metrics เป็นระยะ",
+      "type": "service",
+      "position": { "x": 240, "y": 120 }
+    },
+    {
+      "id": "alertmanager",
+      "label": "Alert Manager",
+      "description": "ประเมิน alert rules และส่ง notification",
+      "type": "service",
+      "position": { "x": 480, "y": 120 }
+    },
+    {
+      "id": "oncall",
+      "label": "On-Call Engineer",
+      "description": "ทีมที่รับแจ้งเตือนผ่าน Slack, PagerDuty หรือ email",
+      "type": "client",
+      "position": { "x": 720, "y": 120 }
+    }
+  ],
+  "steps": [
+    {
+      "id": "mon-1",
+      "from": "collector",
+      "to": "app",
+      "label": "Scrape",
+      "packet": "GET /metrics",
+      "description": "Collector ดึง metrics จาก application ทุก 15 วินาที",
+      "duration": 1200
+    },
+    {
+      "id": "mon-2",
+      "from": "app",
+      "to": "collector",
+      "label": "Metrics",
+      "packet": "cpu, memory, latency",
+      "description": "Application ส่ง metrics กลับ — collector เก็บ time-series data",
+      "duration": 1100
+    },
+    {
+      "id": "mon-3",
+      "from": "collector",
+      "to": "alertmanager",
+      "label": "Evaluate",
+      "packet": "alert rule fired",
+      "description": "เมื่อ metric เกิน threshold — ส่ง alert ไป Alert Manager",
+      "duration": 1300
+    },
+    {
+      "id": "mon-4",
+      "from": "alertmanager",
+      "to": "oncall",
+      "label": "Notify",
+      "packet": "PagerDuty / Slack",
+      "description": "Alert Manager ส่ง notification พร้อม severity และ runbook link",
+      "duration": 1200
+    },
+    {
+      "id": "mon-5",
+      "from": "oncall",
+      "to": "app",
+      "label": "Investigate",
+      "packet": "dashboard + logs",
+      "description": "On-call ตรวจสอบ dashboard และ logs เพื่อแก้ปัญหา",
+      "duration": 1300
+    }
+  ]
+}

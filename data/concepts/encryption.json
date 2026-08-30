@@ -1,0 +1,54 @@
+{
+  "slug": "encryption",
+  "title": "Encryption",
+  "summary": "การเข้ารหัสข้อมูลให้อ่านไม่ได้โดยไม่มี key — ปกป้องข้อมูลระหว่างส่งและเก็บ",
+  "difficulty": "intermediate",
+  "category": "security",
+  "tags": [
+    "crypto",
+    "security",
+    "privacy"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Encryption คือการแปลงข้อมูลให้อ่านไม่ได้ (ciphertext) — ต้องมี key ถอดรหัสถึงจะอ่านได้\n\nสองประเภทหลัก:\n- Symmetric (AES) — key เดียว encrypt/decrypt\n- Asymmetric (RSA) — public key encrypt, private key decrypt"
+    },
+    {
+      "type": "why",
+      "content": "- HTTPS ใช้ TLS encryption ปกป้องข้อมูลระหว่างส่ง\n- Password เก็บเป็น hash ไม่ใช่ plain text\n- ข้อมูลส่วนตัวใน database ควร encrypt at rest\n- End-to-end encryption ใน messaging apps"
+    },
+    {
+      "type": "how_it_works",
+      "content": "Symmetric (AES):\n- ใช้ key เดียว encrypt/decrypt — เร็ว ใช้เข้ารหัสข้อมูลจำนวนมาก\n\nAsymmetric (RSA, ECC):\n- ใช้ public key encrypt, private key decrypt — ใช้แลก key ใน TLS handshake\n\nTLS ผสมทั้งสอง: asymmetric แลก session key → symmetric เข้ารหัสข้อมูลจริง"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Plaintext / Ciphertext — ข้อมูลก่อนและหลังเข้ารหัส",
+        "Encryption Key — รหัสลับสำหรับเข้า/ถอดรหัส",
+        "Algorithm — AES, RSA, ChaCha20",
+        "Certificate — ยืนยัน public key ของ server",
+        "End-to-End Encryption — เฉพาะผู้ส่งและผู้รับอ่านได้"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "WhatsApp ใช้ end-to-end encryption — แม้ WhatsApp server ก็อ่านข้อความของคุณไม่ได้ มีแค่ sender และ receiver ที่ถอดรหัสได้"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Encryption ≠ Hashing — Encryption ถอดรหัสได้, Hashing เป็น one-way",
+        "Encoding (Base64) ≠ Encryption — Base64 อ่านได้ง่าย ไม่ใช่ security",
+        "HTTPS = HTTP + TLS encryption"
+      ]
+    }
+  ],
+  "related": [
+    "https",
+    "hashing",
+    "authentication"
+  ],
+  "visualization": "oauth-flow"
+}

@@ -1,0 +1,41 @@
+{
+  "slug": "hardware-build-pc",
+  "title": "ประกอบคอมพิวเตอร์จากศูนย์",
+  "description": "ติดตั้ง component บน motherboard จ่ายไฟด้วย PSU และ boot ครั้งแรก",
+  "difficulty": "intermediate",
+  "icon": "cpu",
+  "concepts": ["motherboard", "cpu", "ram", "storage", "gpu", "psu", "boot-process"],
+  "visualization": "motherboard-flow",
+  "steps": [
+    {
+      "order": 1,
+      "title": "เตรียม motherboard",
+      "description": "ติด CPU ลง socket, เสียบ RAM, ติด M.2 SSD — ทำบน motherboard ก่อนใส่เคส",
+      "conceptSlug": "motherboard"
+    },
+    {
+      "order": 2,
+      "title": "ติดตั้งในเคส",
+      "description": "ยึด motherboard, ติด PSU, เสียบสาย power และ front panel",
+      "conceptSlug": "psu"
+    },
+    {
+      "order": 3,
+      "title": "ใส่การ์ดจอและ storage",
+      "description": "เสียบ GPU ใน PCIe x16, ต่อ SATA ถ้ามี HDD เพิ่ม",
+      "conceptSlug": "gpu"
+    },
+    {
+      "order": 4,
+      "title": "Boot ครั้งแรก",
+      "description": "เปิดเครื่องเข้า BIOS — ตรวจว่า CPU, RAM, storage ถูก detect",
+      "conceptSlug": "boot-process"
+    },
+    {
+      "order": 5,
+      "title": "ติดตั้ง OS",
+      "description": "เลือก boot device จาก USB แล้วติดตั้ง Windows/Linux",
+      "conceptSlug": "storage"
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+[
+  {
+    "slug": "network",
+    "name": "Network",
+    "icon": "globe",
+    "description": "อุปกรณ์สื่อสารกันบนเครือข่ายอย่างไร",
+    "color": "#3B82F6",
+    "startHere": [
+      "http",
+      "dns",
+      "tcp"
+    ]
+  },
+  {
+    "slug": "programming",
+    "name": "Programming",
+    "icon": "code",
+    "description": "API, OOP, Data Structure, รูปแบบข้อมูล และสถาปัตยกรรม client-server",
+    "color": "#8B5CF6",
+    "startHere": [
+      "api",
+      "json",
+      "data-structure"
+    ]
+  },
+  {
+    "slug": "database",
+    "name": "Database",
+    "icon": "database",
+    "description": "การจัดเก็บ ค้นหา และจัดการข้อมูล",
+    "color": "#10B981",
+    "startHere": [
+      "database",
+      "sql"
+    ]
+  },
+  {
+    "slug": "security",
+    "name": "Security",
+    "icon": "shield",
+    "description": "การยืนยันตัวตน สิทธิ์การเข้าถึง และการป้องกัน",
+    "color": "#EF4444",
+    "startHere": [
+      "authentication",
+      "authorization",
+      "https"
+    ]
+  },
+  {
+    "slug": "ai",
+    "name": "AI",
+    "icon": "brain",
+    "description": "ปัญญาประดิษฐ์และ machine learning",
+    "color": "#F59E0B",
+    "startHere": [
+      "llm",
+      "machine-learning"
+    ]
+  },
+  {
+    "slug": "cloud",
+    "name": "Cloud",
+    "icon": "cloud",
+    "description": "Cloud computing และระบบกระจาย",
+    "color": "#06B6D4",
+    "startHere": [
+      "cloud-computing",
+      "docker"
+    ]
+  },
+  {
+    "slug": "devops",
+    "name": "DevOps",
+    "icon": "settings",
+    "description": "การพัฒนา ปรับใช้ และดูแลระบบ",
+    "color": "#F97316",
+    "startHere": [
+      "git",
+      "ci-cd",
+      "docker"
+    ]
+  },
+  {
+    "slug": "iot",
+    "name": "IoT",
+    "icon": "radio",
+    "description": "Internet of Things และอุปกรณ์เชื่อมต่อ",
+    "color": "#EC4899",
+    "startHere": [
+      "sensor",
+      "mqtt"
+    ]
+  },
+  {
+    "slug": "cli",
+    "name": "CLI",
+    "icon": "terminal",
+    "description": "Terminal commands for Unix/Linux/macOS and Windows/PowerShell",
+    "color": "#64748B",
+    "startHere": [
+      "pwd",
+      "ls",
+      "cd"
+    ]
+  },
+  {
+    "slug": "git-github",
+    "name": "Git & GitHub",
+    "icon": "git-branch",
+    "description": "คำสั่ง Git และ workflow บน GitHub ที่ใช้บ่อย",
+    "color": "#24292F",
+    "startHere": [
+      "git",
+      "git-commit",
+      "git-branch"
+    ]
+  },
+  {
+    "slug": "hardware",
+    "name": "Hardware",
+    "icon": "cpu",
+    "description": "ชิป หน่วยความจำ อุปกรณ์ และเครื่องจริงที่ซอฟต์แวร์ทำงานอยู่",
+    "color": "#78716C",
+    "startHere": [
+      "cpu",
+      "motherboard",
+      "boot-process"
+    ]
+  }
+]

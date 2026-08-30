@@ -1,0 +1,56 @@
+{
+  "slug": "scp",
+  "title": "scp",
+  "fullName": "Secure Copy",
+  "summary": "คัดลอกไฟล์ระหว่างเครื่องผ่าน SSH — upload/download อย่างปลอดภัย",
+  "difficulty": "intermediate",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "unix",
+  "tags": [
+    "ssh",
+    "transfer",
+    "remote"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`scp` คัดลอกไฟล์ระหว่าง local กับ remote host ผ่าน SSH encryption — ใช้ deploy config, ดึง log, หรือสำรองไฟล์บน server โดยไม่ต้องเปิด FTP"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\n# upload local → remote\nscp file.txt user@server:/home/user/\nscp -r ./dist user@server:/var/www/app/     # โฟลเดอร์ (-r)\n\n# download remote → local\nscp user@server:/var/log/app.log ./\nscp -r user@server:/backup ./local-backup/\n\n# options\nscp -P 2222 file.txt user@host:/path/     # custom SSH port\nscp -i ~/.ssh/key.pem file.txt user@host:/path/\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "user@host:path — remote destination",
+        "-r — recursive (โฟลเดอร์)",
+        "-P port — SSH port (scp ใช้ P ตัวใหญ่)",
+        "-i — private key file",
+        "syntax เหมือน cp — source แล้ว destination"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "deploy static build ขึ้น server:\n```\nnpm run build\nscp -r ./out user@prod.example.com:/var/www/site/\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "scp vs rsync — rsync sync เฉพาะส่วนที่เปลี่ยน (incremental), scp copy ทั้งก้อน",
+        "scp -P vs ssh -p — scp ใช้ -P ตัวใหญ่สำหรับ port",
+        "OpenSSH 9+ แนะนำ rsync/sftp แทน scp บางกรณี — แต่ scp ยังใช้กว้าง"
+      ]
+    }
+  ],
+  "related": [
+    "ssh",
+    "chmod",
+    "deployment"
+  ],
+  "visualization": "ssh-flow",
+  "prerequisites": [
+    "ssh"
+  ]
+}

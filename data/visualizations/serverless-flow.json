@@ -1,0 +1,94 @@
+{
+  "slug": "serverless-flow",
+  "title": "Serverless Request Flow",
+  "description": "HTTP request เข้า API Gateway แล้ว trigger function รันแบบ on-demand",
+  "conceptSlug": "serverless",
+  "protocol": "Serverless",
+  "category": "cloud",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Client",
+      "description": "Browser หรือ mobile app ส่ง HTTP request",
+      "type": "client",
+      "position": { "x": 0, "y": 120 }
+    },
+    {
+      "id": "gateway",
+      "label": "API Gateway",
+      "description": "รับ request และ route ไปยัง function ที่เหมาะสม",
+      "type": "network",
+      "position": { "x": 240, "y": 120 }
+    },
+    {
+      "id": "function",
+      "label": "Lambda Function",
+      "description": "Function รันแบบ ephemeral — scale อัตโนมัติตาม traffic",
+      "type": "service",
+      "position": { "x": 480, "y": 120 }
+    },
+    {
+      "id": "db",
+      "label": "Database",
+      "description": "เก็บข้อมูลที่ function อ่าน/เขียนระหว่างทำงาน",
+      "type": "database",
+      "position": { "x": 720, "y": 120 }
+    }
+  ],
+  "steps": [
+    {
+      "id": "sls-1",
+      "from": "client",
+      "to": "gateway",
+      "label": "Request",
+      "packet": "GET /api/items",
+      "description": "Client ส่ง HTTP request ไปยัง API Gateway endpoint",
+      "duration": 1200
+    },
+    {
+      "id": "sls-2",
+      "from": "gateway",
+      "to": "function",
+      "label": "Invoke",
+      "packet": "event payload",
+      "description": "Gateway trigger Lambda function (cold start หรือ warm instance)",
+      "duration": 1300
+    },
+    {
+      "id": "sls-3",
+      "from": "function",
+      "to": "db",
+      "label": "Query",
+      "packet": "SELECT * FROM items",
+      "description": "Function อ่าน/เขียนข้อมูลจาก database",
+      "duration": 1200
+    },
+    {
+      "id": "sls-4",
+      "from": "db",
+      "to": "function",
+      "label": "Result",
+      "packet": "rows JSON",
+      "description": "Database ส่งผลลัพธ์กลับให้ function ประมวลผล",
+      "duration": 1100
+    },
+    {
+      "id": "sls-5",
+      "from": "function",
+      "to": "gateway",
+      "label": "Response",
+      "packet": "200 + JSON body",
+      "description": "Function ส่ง response กลับไปยัง Gateway",
+      "duration": 1200
+    },
+    {
+      "id": "sls-6",
+      "from": "gateway",
+      "to": "client",
+      "label": "Deliver",
+      "packet": "HTTP response",
+      "description": "Gateway ส่ง response กลับให้ Client — function อาจถูก destroy หลัง idle",
+      "duration": 1100
+    }
+  ]
+}

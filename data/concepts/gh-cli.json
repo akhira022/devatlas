@@ -1,0 +1,55 @@
+{
+  "slug": "gh-cli",
+  "title": "gh",
+  "fullName": "GitHub CLI",
+  "summary": "จัดการ GitHub จาก terminal — เปิด PR, issue, review โดยไม่เปิด browser",
+  "difficulty": "intermediate",
+  "category": "git-github",
+  "subcategory": "github",
+  "tags": [
+    "github",
+    "cli"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`gh` คือ official GitHub CLI — ทำงานกับ repo, PR, issue จาก command line หลัง `gh auth login`"
+    },
+    {
+      "type": "why",
+      "content": "ทำงาน GitHub จาก terminal — เร็วกว่าเปิด browser สำหรับ PR, issue, release"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ngh auth login\ngh repo clone user/repo\ngh pr create --title \"feat: login\" --body \"...\"\ngh pr list\ngh pr checkout 42\ngh pr merge 42 --squash\ngh issue create --title \"bug: ...\"\ngh workflow run ci.yml\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "gh pr create",
+        "gh pr checkout",
+        "gh issue list",
+        "gh repo clone",
+        "gh auth login"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\ngit push -u origin feature/api\ngh pr create --fill\ngh pr view --web\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "ต้องติดตั้งแยกจาก git — brew install gh / winget install GitHub.cli",
+        "gh ทำงานกับ GitHub เท่านั้น ไม่ใช่ GitLab",
+        "PR ยังสร้างบน GitHub — gh เป็น interface"
+      ]
+    }
+  ],
+  "related": [
+    "github-pr",
+    "git-push",
+    "ci-cd"
+  ],
+  "visualization": "git-workflow-flow"
+}

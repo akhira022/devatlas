@@ -1,0 +1,78 @@
+{
+  "slug": "database-flow",
+  "title": "Database Query Flow",
+  "description": "Client ส่ง query ผ่าน API ไปยัง database แล้วได้ผลลัพธ์กลับ",
+  "conceptSlug": "database",
+  "protocol": "SQL",
+  "category": "database",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Client",
+      "description": "แอปหรือ frontend ที่ต้องการข้อมูล",
+      "type": "client",
+      "position": { "x": 0, "y": 120 }
+    },
+    {
+      "id": "api",
+      "label": "API Server",
+      "description": "Backend ที่รับ request และสร้าง SQL query",
+      "type": "server",
+      "position": { "x": 240, "y": 120 }
+    },
+    {
+      "id": "db",
+      "label": "Database",
+      "description": "PostgreSQL, MySQL หรือ database engine อื่น",
+      "type": "database",
+      "position": { "x": 480, "y": 120 }
+    }
+  ],
+  "steps": [
+    {
+      "id": "db-1",
+      "from": "client",
+      "to": "api",
+      "label": "Request",
+      "packet": "GET /api/users",
+      "description": "Client ส่ง HTTP request เพื่อขอข้อมูล",
+      "duration": 1200
+    },
+    {
+      "id": "db-2",
+      "from": "api",
+      "to": "db",
+      "label": "Query",
+      "packet": "SELECT * FROM users",
+      "description": "API สร้าง SQL query และส่งไปยัง database ผ่าน connection pool",
+      "duration": 1200
+    },
+    {
+      "id": "db-3",
+      "from": "db",
+      "to": "db",
+      "label": "Execute",
+      "packet": "index scan / table scan",
+      "description": "Database engine ประมวลผล query และอ่านข้อมูลจาก disk/memory",
+      "duration": 1300
+    },
+    {
+      "id": "db-4",
+      "from": "db",
+      "to": "api",
+      "label": "Result Set",
+      "packet": "rows",
+      "description": "Database ส่งผลลัพธ์กลับเป็น rows",
+      "duration": 1100
+    },
+    {
+      "id": "db-5",
+      "from": "api",
+      "to": "client",
+      "label": "Response",
+      "packet": "200 OK + JSON",
+      "description": "API แปลง rows เป็น JSON แล้วส่งกลับให้ Client",
+      "duration": 1200
+    }
+  ]
+}

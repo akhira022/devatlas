@@ -1,0 +1,41 @@
+{
+  "slug": "cli-network-debug",
+  "title": "Debug เครือข่ายด้วย CLI",
+  "description": "ขั้นตอนมาตรฐานเมื่อเว็บหรือ API เปิดไม่ได้ — ตรวจ IP, DNS, ping และ port",
+  "difficulty": "beginner",
+  "icon": "terminal",
+  "concepts": ["ifconfig", "dns", "ping", "curl", "netstat"],
+  "visualization": "ping-test-flow",
+  "steps": [
+    {
+      "order": 1,
+      "title": "ตรวจ IP ของเครื่อง",
+      "description": "รัน ipconfig หรือ ifconfig — ดูว่าได้ IP จาก DHCP หรือตั้งค่า static ถูกต้อง",
+      "conceptSlug": "ifconfig"
+    },
+    {
+      "order": 2,
+      "title": "ทดสอบ DNS",
+      "description": "ใช้ nslookup หรือ dig ตรวจว่า domain แปลงเป็น IP ได้ — ถ้าไม่ได้ ปัญหาอยู่ที่ DNS",
+      "conceptSlug": "dns"
+    },
+    {
+      "order": 3,
+      "title": "ทดสอบ connectivity",
+      "description": "ping ไป gateway แล้ว ping ไป 8.8.8.8 — แยกปัญหา LAN กับ internet",
+      "conceptSlug": "ping"
+    },
+    {
+      "order": 4,
+      "title": "ทดสอบ port และ service",
+      "description": "curl หรือ nc ทดสอบว่า server ตอบที่ port ที่ต้องการ — netstat ดู port ที่เปิดอยู่",
+      "conceptSlug": "curl"
+    },
+    {
+      "order": 5,
+      "title": "สรุปและแก้ไข",
+      "description": "จากผลทดสอบแยกว่าปัญหาอยู่ที่เครื่อง, router, DNS หรือ server ปลายทาง",
+      "conceptSlug": "netstat"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "slug": "choose-api",
+  "title": "REST หรือ GraphQL?",
+  "description": "เลือกรูปแบบ API ที่เหมาะกับทีมและ client ของคุณ",
+  "icon": "code",
+  "category": "programming",
+  "startNodeId": "client-types",
+  "nodes": [
+    {
+      "id": "client-types",
+      "question": "มี client กี่แบบที่ต้องการข้อมูลต่างกัน?",
+      "help": "เช่น mobile ต้องการ field น้อย, web admin ต้องการ field เยอะ",
+      "options": [
+        { "label": "client เดียวหรือต้องการข้อมูลคล้ายกัน", "next": "team-size" },
+        { "label": "หลาย client ต้องการ field/shape ต่างกันมาก", "next": "result:graphql" }
+      ]
+    },
+    {
+      "id": "team-size",
+      "question": "ทีมและ timeline เป็นอย่างไร?",
+      "options": [
+        { "label": "ทีมเล็ก ต้องการ simple และ HTTP cache ง่าย", "next": "result:rest" },
+        { "label": "มี bandwidth เรียนรู้ schema/query language", "next": "result:graphql" }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "rest",
+      "title": "แนะนำ: REST",
+      "summary": "Resource-based endpoints, HTTP verbs — เข้าใจง่าย cache ได้ดี เหมาะ CRUD ทั่วไป",
+      "conceptSlugs": ["rest", "api", "http"],
+      "compareSlug": "rest-vs-graphql"
+    },
+    {
+      "id": "graphql",
+      "title": "แนะนำ: GraphQL",
+      "summary": "Query เดียวเลือก field ได้ — ลด over-fetching เหมาะ mobile และหลาย client",
+      "conceptSlugs": ["graphql", "api"],
+      "compareSlug": "rest-vs-graphql"
+    }
+  ]
+}

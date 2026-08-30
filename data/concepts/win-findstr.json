@@ -1,0 +1,56 @@
+{
+  "slug": "win-findstr",
+  "title": "findstr",
+  "fullName": "Find String (CMD / PowerShell)",
+  "summary": "ค้นหาข้อความในไฟล์ — CMD ใช้ findstr, PowerShell ใช้ Select-String",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "files",
+  "platform": "windows",
+  "tags": [
+    "cmd",
+    "powershell",
+    "search"
+  ],
+  "sections": [
+    {
+      "type": "why",
+      "content": "findstr ค้นหาข้อความในไฟล์บน Windows — เทียบเท่า grep บน Unix\n\nใช้กรอง log, หา error code หรือ config value ในไฟล์ขนาดใหญ่"
+    },
+    {
+      "type": "how_it_works",
+      "content": "**CMD:**\n```\nfindstr \"error\" app.log\nfindstr /i \"warning\" app.log     # ไม่สนตัวพิมพ์\nfindstr /s /i \"TODO\" *.ts        # recursive\nfindstr /n \"error\" app.log       # แสดงเลขบรรทัด\n```\n\n**PowerShell:**\n```\nSelect-String -Path app.log -Pattern \"error\"\nSelect-String -Path .\\src\\*.ts -Pattern \"TODO\" -Recurse\nGet-Content app.log | Select-String \"error\"\ngrep \"error\" app.log             # ถ้ามี grep จาก Git Bash\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "findstr pattern file",
+        "/I — case insensitive",
+        "/S — recursive",
+        "/N — line numbers",
+        "regex จำกัดกว่า grep"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\nfindstr /S /I \"error\" *.log\nfindstr /N \"TODO\" src\\*.ts\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "findstr ไม่ใช่ regex เต็มรูปแบบ — pattern จำกัด",
+        "Select-String รองรับ regex ดีกว่า",
+        "Git for Windows มักมี grep — ทำงานเหมือน Unix"
+      ]
+    }
+  ],
+  "related": [
+    "grep",
+    "win-type",
+    "cat"
+  ],
+  "visualization": "grep-flow",
+  "prerequisites": [
+    "win-dir"
+  ]
+}

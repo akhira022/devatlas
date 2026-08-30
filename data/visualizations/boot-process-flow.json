@@ -1,0 +1,20 @@
+{
+  "slug": "boot-process-flow",
+  "title": "Computer Boot Process",
+  "description": "ตั้งแต่กดเปิดเครื่องจน OS พร้อมใช้งาน",
+  "conceptSlug": "boot-process",
+  "protocol": "Boot",
+  "category": "hardware",
+  "nodes": [
+    { "id": "power", "label": "Power On", "description": "กดปุ่มเปิดเครื่อง", "type": "device", "position": { "x": 0, "y": 120 } },
+    { "id": "bios", "label": "BIOS/UEFI", "description": "firmware เริ่มต้น", "type": "service", "position": { "x": 240, "y": 120 } },
+    { "id": "bootloader", "label": "Bootloader", "description": "GRUB / Windows Boot Manager", "type": "service", "position": { "x": 480, "y": 120 } },
+    { "id": "os", "label": "Operating System", "description": "Linux / Windows kernel", "type": "server", "position": { "x": 720, "y": 120 } }
+  ],
+  "steps": [
+    { "id": "boot-1", "from": "power", "to": "bios", "label": "POST", "packet": "Power-On Self-Test", "description": "BIOS/UEFI ตรวจ hardware พื้นฐาน", "duration": 1200 },
+    { "id": "boot-2", "from": "bios", "to": "bootloader", "label": "Boot Device", "packet": "read MBR/EFI", "description": "โหลด bootloader จาก disk/USB", "duration": 1200 },
+    { "id": "boot-3", "from": "bootloader", "to": "os", "label": "Load Kernel", "packet": "vmlinuz / ntoskrnl", "description": "bootloader โหลด OS kernel เข้า memory", "duration": 1300 },
+    { "id": "boot-4", "from": "os", "to": "os", "label": "Init", "packet": "systemd / services", "description": "kernel เริ่ม drivers และ services — desktop พร้อม", "duration": 1200 }
+  ]
+}

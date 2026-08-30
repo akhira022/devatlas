@@ -1,0 +1,46 @@
+{
+  "slug": "win-type",
+  "title": "type",
+  "fullName": "Display File Contents (CMD / PowerShell)",
+  "summary": "แสดงเนื้อหาไฟล์ใน terminal — CMD ใช้ type, PowerShell ใช้ Get-Content",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "files",
+  "platform": "windows",
+  "tags": [
+    "cmd",
+    "powershell",
+    "text"
+  ],
+  "sections": [
+    {
+      "type": "why",
+      "content": "type แสดงเนื้อหาไฟล์ข้อความใน CMD — ใช้ดู config, log หรือ script อย่างรวดเร็วโดยไม่เปิด editor\n\nเทียบเท่า `cat` บน Unix; PowerShell ใช้ `Get-Content`"
+    },
+    {
+      "type": "how_it_works",
+      "content": "**CMD:**\n```\ntype package.json\ntype file1.txt file2.txt       # แสดงหลายไฟล์ต่อกัน\n```\n\n**PowerShell:**\n```\nGet-Content package.json\ncat package.json               # alias\nGet-Content app.log -Tail 20   # 20 บรรทัดท้าย\nGet-Content app.log -Wait      # tail -f แบบ realtime\n```"
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\ntype package.json\ntype .env.example\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "type ไม่มี pipe filter แบบ Unix cat — ใช้ findstr หรือ Select-String",
+        "Get-Content -Wait เทียบเท่า tail -f บน Linux",
+        "ไฟล์ใหญ่ใช้ -Tail แทนอ่านทั้งไฟล์"
+      ]
+    }
+  ],
+  "related": [
+    "cat",
+    "win-findstr",
+    "win-dir"
+  ],
+  "visualization": "file-read-flow",
+  "prerequisites": [
+    "win-dir"
+  ]
+}

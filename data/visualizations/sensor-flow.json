@@ -1,0 +1,88 @@
+{
+  "slug": "sensor-flow",
+  "title": "Sensor Data Flow",
+  "description": "จาก sensor วัดค่า → microcontroller → cloud",
+  "conceptSlug": "sensor",
+  "protocol": "IoT",
+  "category": "iot",
+  "nodes": [
+    {
+      "id": "env",
+      "label": "Environment",
+      "description": "อุณหภูมิ, ความชื้น, แสง",
+      "type": "device",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "sensor",
+      "label": "Sensor",
+      "description": "แปลงค่าทางกายภาพเป็นสัญญาณ",
+      "type": "device",
+      "position": {
+        "x": 220,
+        "y": 120
+      }
+    },
+    {
+      "id": "mcu",
+      "label": "Microcontroller",
+      "description": "ESP32 / Arduino",
+      "type": "client",
+      "position": {
+        "x": 440,
+        "y": 120
+      }
+    },
+    {
+      "id": "cloud",
+      "label": "Cloud / MQTT",
+      "description": "เก็บและแสดงผล",
+      "type": "server",
+      "position": {
+        "x": 660,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "sf-1",
+      "from": "env",
+      "to": "sensor",
+      "label": "Measure",
+      "packet": "28°C",
+      "description": "sensor วัดค่าจากสิ่งแวดล้อม",
+      "duration": 1100
+    },
+    {
+      "id": "sf-2",
+      "from": "sensor",
+      "to": "mcu",
+      "label": "Analog/Digital",
+      "packet": "ADC read",
+      "description": "MCU อ่านค่าผ่าน GPIO/I2C/SPI",
+      "duration": 1100
+    },
+    {
+      "id": "sf-3",
+      "from": "mcu",
+      "to": "cloud",
+      "label": "Publish",
+      "packet": "MQTT temp=28",
+      "description": "ส่งข้อมูลขึ้น broker หรือ HTTP API",
+      "duration": 1100
+    },
+    {
+      "id": "sf-4",
+      "from": "cloud",
+      "to": "mcu",
+      "label": "Alert",
+      "packet": "threshold OK",
+      "description": "cloud/dashboard แสดงผลหรือ trigger action",
+      "duration": 1000
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "slug": "array-flow",
+  "title": "Array Access Flow",
+  "description": "ดูการเข้าถึง element ใน array ด้วย index แบบ O(1)",
+  "conceptSlug": "array",
+  "protocol": "Data Structure",
+  "category": "programming",
+  "nodes": [
+    { "id": "code", "label": "Code", "description": "arr[i] ในโปรแกรม", "type": "client", "position": { "x": 0, "y": 120 } },
+    { "id": "memory", "label": "Memory", "description": "บล็อกข้อมูลต่อเนื่อง", "type": "database", "position": { "x": 320, "y": 120 } },
+    { "id": "value", "label": "Value", "description": "ค่าที่ index นั้น", "type": "service", "position": { "x": 640, "y": 120 } }
+  ],
+  "steps": [
+    { "id": "arr-1", "from": "code", "to": "memory", "label": "Index", "packet": "arr[2]", "description": "โปรแกรมขอ element ที่ index 2", "duration": 1100 },
+    { "id": "arr-2", "from": "memory", "to": "memory", "label": "Calculate", "packet": "base + 2×size", "description": "คำนวณ address จาก base address + offset", "duration": 1000 },
+    { "id": "arr-3", "from": "memory", "to": "value", "label": "Read", "packet": "30", "description": "อ่านค่าจาก memory — O(1) ไม่ว่า array จะใหญ่แค่ไหน", "duration": 1200 },
+    { "id": "arr-4", "from": "value", "to": "code", "label": "Return", "packet": "return 30", "description": "ส่งค่ากลับให้โปรแกรมใช้ต่อ", "duration": 1100 }
+  ]
+}

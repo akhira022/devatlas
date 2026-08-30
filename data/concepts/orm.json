@@ -1,0 +1,59 @@
+{
+  "slug": "orm",
+  "title": "ORM",
+  "fullName": "Object-Relational Mapping",
+  "summary": "เครื่องมือแปลงระหว่าง database tables กับ objects ในโค้ด — เขียน Python/JS แทน SQL",
+  "difficulty": "intermediate",
+  "category": "database",
+  "tags": [
+    "mapping",
+    "abstraction",
+    "query"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "ORM คือ layer ที่แปลง database rows เป็น objects ในภาษาโปรแกรม — แทนที่จะเขียน SQL ตรง ๆ\n\nตัวอย่าง:\n- Prisma (Node.js/TypeScript)\n- Drizzle ORM\n- SQLAlchemy (Python)\n- Hibernate (Java)"
+    },
+    {
+      "type": "why",
+      "content": "ข้อดี:\n- เขียนโค้ดใน language เดียว ไม่สลับ SQL\n- Type-safe (Prisma, Drizzle)\n- Migration จัดการ schema ให้\n\nข้อเสีย:\n- Query ซับซ้อนอาจช้ากว่า raw SQL\n- Learning curve"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. กำหนด Model class map กับ table (User → users)\n2. ORM แปลง method เป็น SQL: User.findAll() → SELECT * FROM users\n3. Object ใน code ↔ row ใน database\n4. Relationship: user.posts → JOIN query อัตโนมัติ\n5. Migration จัดการ schema changes"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Model — class แทน table",
+        "Query Builder — สร้าง SQL จาก method chain",
+        "Migration — version control สำหรับ schema",
+        "Relationship Mapping — hasMany, belongsTo",
+        "N+1 Problem — query ซ้ำเมื่อ load relations (ใช้ eager loading แก้)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "แทนที่จะเขียน:\n```sql\nSELECT * FROM users WHERE email = 'john@example.com'\n```\n\nเขียน:\n```typescript\nconst user = await prisma.user.findUnique({ where: { email: 'john@example.com' } })\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "ORM ≠ Database — ORM เป็น abstraction layer บน SQL database",
+        "Raw SQL ยังใช้ได้เมื่อ query ซับซ้อน",
+        "Prisma, Sequelize, Hibernate เป็น ORM ยอดนิยม"
+      ]
+    }
+  ],
+  "related": [
+    "database",
+    "sql",
+    "backend"
+  ],
+  "visualization": "database-flow",
+  "prerequisites": [
+    "sql",
+    "database"
+  ]
+}

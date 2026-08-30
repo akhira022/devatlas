@@ -1,0 +1,78 @@
+{
+  "slug": "llm-flow",
+  "title": "LLM Inference Flow",
+  "description": "ส่ง prompt ไป LLM API — model ประมวลผลแล้วสตรีมคำตอบกลับ",
+  "conceptSlug": "llm",
+  "protocol": "LLM API",
+  "category": "ai",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Client App",
+      "description": "แอปหรือ chat UI ที่ส่ง prompt ไปยัง LLM",
+      "type": "client",
+      "position": { "x": 0, "y": 120 }
+    },
+    {
+      "id": "api",
+      "label": "LLM API",
+      "description": "API gateway รับ request และจัดการ token / rate limit",
+      "type": "server",
+      "position": { "x": 240, "y": 120 }
+    },
+    {
+      "id": "model",
+      "label": "Model Server",
+      "description": "GPU server ที่รัน inference บน neural network",
+      "type": "service",
+      "position": { "x": 480, "y": 120 }
+    }
+  ],
+  "steps": [
+    {
+      "id": "llm-1",
+      "from": "client",
+      "to": "api",
+      "label": "Send Prompt",
+      "packet": "POST /v1/chat/completions",
+      "description": "Client ส่ง prompt พร้อม system message และ parameters",
+      "duration": 1200
+    },
+    {
+      "id": "llm-2",
+      "from": "api",
+      "to": "model",
+      "label": "Tokenize",
+      "packet": "input tokens",
+      "description": "API แปลงข้อความเป็น tokens แล้วส่งไป model server",
+      "duration": 1100
+    },
+    {
+      "id": "llm-3",
+      "from": "model",
+      "to": "model",
+      "label": "Inference",
+      "packet": "forward pass",
+      "description": "Model ประมวลผลทีละ token ด้วย attention layers",
+      "duration": 1300
+    },
+    {
+      "id": "llm-4",
+      "from": "model",
+      "to": "api",
+      "label": "Output",
+      "packet": "logits → tokens",
+      "description": "Model ส่ง output tokens กลับไปยัง API layer",
+      "duration": 1200
+    },
+    {
+      "id": "llm-5",
+      "from": "api",
+      "to": "client",
+      "label": "Stream",
+      "packet": "SSE chunks",
+      "description": "API สตรีมคำตอบทีละ chunk กลับให้ Client แสดงผล",
+      "duration": 1300
+    }
+  ]
+}

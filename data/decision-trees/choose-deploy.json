@@ -1,0 +1,47 @@
+{
+  "slug": "choose-deploy",
+  "title": "Docker, VM หรือ Serverless?",
+  "description": "เลือกวิธี deploy application ให้เหมาะกับ workload",
+  "icon": "settings",
+  "category": "devops",
+  "startNodeId": "runtime",
+  "nodes": [
+    {
+      "id": "runtime",
+      "question": "แอปรันนานแบบ stateful หรือ request สั้น ๆ?",
+      "options": [
+        { "label": "Request สั้น ๆ ไม่บ่อย (API sporadic)", "next": "result:serverless" },
+        { "label": "รันต่อเนื่อง มี state หรือ background job", "next": "control" }
+      ]
+    },
+    {
+      "id": "control",
+      "question": "ต้องการควบคุม OS และ dependency แค่ไหน?",
+      "options": [
+        { "label": "แค่ app + dependencies — portable ข้าม environment", "next": "result:docker" },
+        { "label": "ควบคุม OS เต็มที่ legacy app", "next": "result:vm" }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "docker",
+      "title": "แนะนำ: Docker + Container",
+      "summary": "Package app เป็น image — deploy สม่ำเสมอ ใช้กับ K8s หรือ cloud container service",
+      "conceptSlugs": ["docker", "kubernetes"],
+      "learnPathSlug": "beginner-developer"
+    },
+    {
+      "id": "vm",
+      "title": "แนะนำ: Virtual Machine",
+      "summary": "รัน OS เต็มรูปแบบ — เหมาะ legacy, ต้องการ isolation ระดับ OS",
+      "conceptSlugs": ["virtual-machine", "cloud-computing"]
+    },
+    {
+      "id": "serverless",
+      "title": "แนะนำ: Serverless",
+      "summary": "จ่ายต่อ request ไม่ต้องจัดการ server — เหมาะ API, webhook, event-driven",
+      "conceptSlugs": ["serverless", "cloud-computing"]
+    }
+  ]
+}

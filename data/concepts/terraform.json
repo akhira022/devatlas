@@ -1,0 +1,62 @@
+{
+  "slug": "terraform",
+  "title": "Terraform",
+  "fullName": "HashiCorp Terraform",
+  "summary": "เครื่องมือ Infrastructure as Code — ประกาศ cloud resource เป็นไฟล์ แล้ว apply สร้าง/แก้ไขแบบ repeatable",
+  "difficulty": "intermediate",
+  "category": "devops",
+  "tags": [
+    "iac",
+    "hcl",
+    "infrastructure"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Terraform เป็น open-source IaC tool จาก HashiCorp — เขียน config ด้วย **HCL** (HashiCorp Configuration Language) อธิบาย resource ที่ต้องการ (VPC, EC2, S3, RDS) แล้ว `terraform apply` ให้ provider สร้างจริงบน cloud\n\nหลักการ:\n- **Declarative** — บอกว่าต้องการ state อะไร ไม่ใช่ step-by-step script\n- **State file** — เก็บ mapping ระหว่าง config กับ resource จริง\n- **Plan** — preview การเปลี่ยนแปลงก่อน apply\n\nรองรับ AWS, GCP, Azure, Kubernetes และ hundreds of providers"
+    },
+    {
+      "type": "why",
+      "content": "สร้าง resource ด้วยมือใน Console — ไม่ reproducible, ไม่ review ได้, drift ง่าย\n\nTerraform ให้:\n- Version control infrastructure เหมือน code\n- PR review ก่อนเปลี่ยน production\n- Environment เดียวกัน (dev/staging/prod) จาก module เดียว\n- Disaster recovery — apply ใหม่ได้จาก repo\n- ทำงานร่วม CI/CD — plan ใน pipeline, apply หลัง approve\n\nเป็นทักษะมาตรฐานของ platform/DevOps engineer"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. เขียน `.tf` files — resource, variable, output\n2. `terraform init` — download providers, backend config\n3. `terraform plan` — คำนวณ diff กับ state ปัจจุบัน\n4. Review plan — สร้าง/แก้/ลบ resource อะไรบ้าง\n5. `terraform apply` — เรียก cloud API สร้างจริง\n6. State เก็บใน remote backend (S3 + DynamoDB lock)\n7. แก้ config → plan อีกครั้ง — Terraform reconcile drift"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Provider — plugin เชื่อม cloud (aws, google, azurerm)",
+        "Resource Block — นิยาม object ที่ต้องการสร้าง",
+        "Variable & Output — parameterize และ export ค่า",
+        "State — terraform.tfstate หรือ remote backend",
+        "Module — reuse config เป็น component",
+        "Workspace — แยก state ต่อ environment"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ทีม provision staging บน AWS:\n\n1. Module `vpc` — subnet, NAT, route table\n2. Module `eks` — Kubernetes cluster + node group\n3. `variables.tf` — instance_size, region ต่างกัน dev vs prod\n4. PR เปลี่ยน node group จาก t3.medium → t3.large\n5. CI รัน `terraform plan` — comment diff บน GitHub\n6. Merge → `terraform apply` ใน pipeline ด้วย OIDC role ไม่ใช้ static key\n7. State บน S3 encrypted — ทีม collaborate ไม่ชนกัน"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Terraform ≠ Ansible — Terraform สร้าง infrastructure; Ansible config software บน machine ที่มีแล้ว (overlap ได้บางส่วน)",
+        "State file สำคัญมาก — หายหรือ corrupt → resource orphan หรือ duplicate",
+        "terraform destroy ลบทุกอย่างใน state — ระวังใน production",
+        "Drift — คนแก้ใน Console แล้วไม่ sync กลับ code → plan แปลก ๆ"
+      ]
+    }
+  ],
+  "related": [
+    "cloud-computing",
+    "deployment",
+    "ci-cd",
+    "kubernetes",
+    "docker"
+  ],
+  "visualization": "deploy-flow",
+  "prerequisites": [
+    "cloud-computing"
+  ]
+}

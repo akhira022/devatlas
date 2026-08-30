@@ -1,0 +1,56 @@
+{
+  "slug": "frontend",
+  "title": "Frontend",
+  "summary": "ส่วนที่ผู้ใช้เห็นและโต้ตอบ — UI, UX, การแสดงผลบน Browser หรือ App",
+  "difficulty": "beginner",
+  "category": "programming",
+  "tags": [
+    "ui",
+    "react",
+    "web"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Frontend คือส่วนของแอปพลิเคชันที่ผู้ใช้เห็นและใช้งาน — ปุ่ม, ฟอร์ม, หน้าเว็บ, animation, layout\n\nFrontend รับผิดชอบ:\n- แสดงข้อมูลจาก Backend บนหน้าจอ\n- รับ input จากผู้ใช้ (คลิก, พิมพ์, swipe)\n- Validate ข้อมูลเบื้องต้นก่อนส่งไป Server\n- จัดการ state ของ UI (loading, error, success)\n\nเทคโนโลยียอดนิยม: HTML, CSS, JavaScript, React, Vue, Next.js"
+    },
+    {
+      "type": "why",
+      "content": "Frontend เป็นจุดสัมผัสแรกของผู้ใช้:\n\n- UX ที่ดีทำให้ผู้ใช้กลับมาใช้ซ้ำ\n- Responsive design — ใช้ได้ทั้งมือถือและ desktop\n- Performance — โหลดเร็ว, animation ลื่น\n- Accessibility — ใช้งานได้สำหรับทุกคน"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. โหลด HTML/CSS/JS จาก Server (หรือ build เป็น static files)\n2. Render UI เริ่มต้น (initial page)\n3. เมื่อผู้ใช้ทำ action → เรียก API ผ่าน fetch/axios\n4. แสดง loading state ขณะรอ response\n5. อัปเดต UI ด้วยข้อมูลใหม่ (re-render)\n6. จัดการ error state ถ้า request ล้มเหลว"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "HTML (structure)",
+        "CSS (styling)",
+        "JavaScript (logic)",
+        "Components (React/Vue)",
+        "Routing (pages)",
+        "State Management"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "หน้า Login:\n\n1. ผู้ใช้กรอก email/password ในฟอร์ม (Frontend)\n2. กด Submit → Frontend validate ว่ากรอกครบ\n3. Frontend ส่ง POST /api/login พร้อม credentials\n4. ได้ JWT กลับมา → เก็บใน localStorage\n5. Redirect ไปหน้า Dashboard"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Frontend ≠ Client เสมอไป — Frontend คือ layer UI, Client คือ role ในการสื่อสาร",
+        "Frontend ไม่ควรเก็บ secret (API key, password) — โค้ด Frontend เห็นได้ทั้งหมด",
+        "SPA (Single Page App) vs MPA — Frontend สมัยใหม่มักเป็น SPA ที่ render ฝั่ง client"
+      ]
+    }
+  ],
+  "related": [
+    "backend",
+    "client",
+    "api",
+    "http"
+  ],
+  "visualization": "frontend-backend-flow"
+}

@@ -1,0 +1,58 @@
+{
+  "slug": "asic",
+  "title": "ASIC",
+  "fullName": "Application-Specific Integrated Circuit",
+  "summary": "ชิปออกแบบเฉพาะงาน — เร็วและประหยัดพลังงานแต่ produce ครั้งแล้วแก้ไม่ได้",
+  "difficulty": "advanced",
+  "category": "hardware",
+  "subcategory": "advanced",
+  "tags": [
+    "chip",
+    "custom",
+    "mining",
+    "acceleration"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "ASIC (Application-Specific Integrated Circuit) คือชิปที่ออกแบบวงจรเฉพาะสำหรับ algorithm หนึ่ง — เร็วและประหยัดพลังงานกว่า CPU/GPU สำหรับงานนั้น แต่ยืดหยุ่นไม่ได้"
+    },
+    {
+      "type": "why",
+      "content": "เมื่อ algorithm นิ่งและ volume สูง — ASIC คุ้มกว่า:\n\n- Bitcoin mining (SHA-256 ASIC)\n- AI inference ใน data center (TPU, NPU)\n- Network packet processing ใน router\n- ต้นทุน R&D สูง — เหมาะ production scale"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. ออกแบบวงจร digital สำหรับ algorithm เป้าหมาย\n2. Tape-out ส่งโรงงานผลิตชิป\n3. ชิปทำงานเฉพาะ function ที่ออกแบบ — ไม่รันโปรแกรมทั่วไป\n4. Performance/Watt สูงกว่า FPGA/CPU มากสำหรับงานเฉพาะ"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Tape-out",
+        "NRE cost",
+        "Hash rate (mining)",
+        "TPU/NPU",
+        "Power efficiency"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Google TPU สำหรับ ML inference ใน GCP, Bitcoin ASIC miner เร็วกว่า GPU มหาศาลสำหรับ SHA-256"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "ASIC ≠ general CPU",
+        "FPGA prototype → ASIC production",
+        "NRE สูง — คุ้มเมื่อ volume ใหญ่"
+      ]
+    }
+  ],
+  "related": [
+    "fpga",
+    "gpu",
+    "cpu",
+    "edge-device-hardware"
+  ],
+  "visualization": "specialized-chip-flow"
+}

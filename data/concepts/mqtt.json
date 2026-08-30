@@ -1,0 +1,57 @@
+{
+  "slug": "mqtt",
+  "title": "MQTT",
+  "fullName": "Message Queuing Telemetry Transport",
+  "summary": "โปรโตคอลส่งข้อความแบบเบา — ใช้กับ IoT และอุปกรณ์ที่ bandwidth จำกัด",
+  "difficulty": "intermediate",
+  "category": "iot",
+  "tags": [
+    "iot",
+    "messaging",
+    "pubsub"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "MQTT เป็นโปรโตคอล publish/subscribe สำหรับส่งข้อความระหว่างอุปกรณ์ — ออกแบบให้เบาและใช้ bandwidth น้อย\n\nใช้กับ: IoT sensors, smart home, industrial monitoring"
+    },
+    {
+      "type": "analogy",
+      "content": "MQTT broker เหมือนวิทยุสื่อสาร — คนพูด (publish) ทุกคนที่ฟังช่องนั้น (subscribe) ได้ยิน"
+    },
+    {
+      "type": "why",
+      "content": "IoT devices มักมีพลังงานและ bandwidth จำกัด — MQTT ใช้ packet เล็ก, connection คงอยู่, และ pub/sub model ที่ยืดหยุ่น"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Device เชื่อมต่อ MQTT Broker\n2. Publisher ส่ง message ไป Topic (เช่น sensor/temp)\n3. Subscriber ที่ subscribe Topic นั้นจะได้รับ message\n4. Broker เป็นตัวกลางกระจาย message"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Broker",
+        "Topic",
+        "Publisher",
+        "Subscriber",
+        "QoS (Quality of Service)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Smart home temperature sensor:\n\n1. Sensor publish ไป topic home/living-room/temp ทุก 30 วินาที\n2. MQTT broker (เช่น Mosquitto) รับและกระจาย\n3. Mobile app subscribe topic นั้น — ได้ค่าอุณหภูมิ real-time\n4. ถ้า temp > 30°C → automation subscribe แล้วเปิดแอร์\n5. QoS 1 รับประกันว่า message ถึง broker อย่างน้อยครั้งหลง"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "MQTT ≠ HTTP — MQTT เป็น pub/sub, HTTP เป็น request/response",
+        "MQTT ไม่เหมาะกับเว็บทั่วไป — เหมาะกับ IoT และ real-time messaging"
+      ]
+    }
+  ],
+  "related": [
+    "http",
+    "tcp"
+  ],
+  "visualization": "mqtt-flow"
+}

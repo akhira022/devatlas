@@ -1,0 +1,49 @@
+{
+  "slug": "git-fetch",
+  "title": "fetch",
+  "summary": "ดึงข้อมูลล่าสุดจาก remote โดยไม่ merge — ตรวจก่อน pull",
+  "difficulty": "intermediate",
+  "category": "git-github",
+  "subcategory": "sync",
+  "tags": [
+    "git",
+    "remote"
+  ],
+  "sections": [
+    {
+      "type": "why",
+      "content": "ดูว่า remote เปลี่ยนอะไรโดยไม่ merge ทันที — ปลอดภัยกว่า pull ตอน review"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ngit fetch\ngit fetch origin\ngit fetch --all\ngit log HEAD..origin/main          # ดู commit ใหม่บน remote\ngit diff main origin/main\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "git fetch origin",
+        "git fetch --all",
+        "origin/main — remote-tracking branch",
+        "git log origin/main..HEAD",
+        "ไม่แก้ working directory"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\ngit fetch origin\ngit log HEAD..origin/main --oneline\n# ตัดสินใจ merge หรือ rebase\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "fetch ไม่เปลี่ยน working directory — ปลอดภัยกว่า pull",
+        "origin/main อัปเดตหลัง fetch — แยกจาก local main"
+      ]
+    }
+  ],
+  "related": [
+    "git-pull",
+    "git-remote",
+    "git-log"
+  ],
+  "visualization": "git-push-flow"
+}

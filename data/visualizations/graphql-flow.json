@@ -1,0 +1,78 @@
+{
+  "slug": "graphql-flow",
+  "title": "GraphQL Query",
+  "description": "ดู client ส่ง query เลือก field ที่ต้องการใน request เดียว",
+  "conceptSlug": "graphql",
+  "protocol": "GraphQL / HTTP",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "app",
+      "label": "Mobile App",
+      "description": "ต้องการแค่ name + posts ของ user",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "api",
+      "label": "GraphQL API",
+      "description": "Single endpoint /graphql",
+      "type": "server",
+      "position": {
+        "x": 340,
+        "y": 120
+      }
+    },
+    {
+      "id": "db",
+      "label": "Database",
+      "description": "ดึงเฉพาะ field ที่ query ขอ",
+      "type": "database",
+      "position": {
+        "x": 640,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "gql-1",
+      "from": "app",
+      "to": "api",
+      "label": "Query",
+      "packet": "query { user { name posts } }",
+      "description": "Client ส่ง GraphQL query ระบุ field ที่ต้องการ — POST /graphql",
+      "duration": 1300
+    },
+    {
+      "id": "gql-2",
+      "from": "api",
+      "to": "db",
+      "label": "Resolve",
+      "packet": "SELECT name, posts...",
+      "description": "GraphQL resolver แปลง query เป็น database calls",
+      "duration": 1100
+    },
+    {
+      "id": "gql-3",
+      "from": "db",
+      "to": "api",
+      "label": "Data",
+      "packet": "Rows",
+      "description": "Database ส่งข้อมูลกลับ",
+      "duration": 1000
+    },
+    {
+      "id": "gql-4",
+      "from": "api",
+      "to": "app",
+      "label": "Response",
+      "packet": "{ user: { name, posts } }",
+      "description": "API ตอบ JSON ตรงตาม query — ไม่มี field เกิน (no over-fetching)",
+      "duration": 1300
+    }
+  ]
+}

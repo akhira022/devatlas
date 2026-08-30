@@ -1,0 +1,61 @@
+{
+  "slug": "ram",
+  "title": "RAM",
+  "fullName": "Random Access Memory",
+  "summary": "หน่วยความจำหลักที่โปรแกรมใช้งานขณะรัน — เร็วแต่ข้อมูลหายเมื่อปิดเครื่อง",
+  "difficulty": "beginner",
+  "category": "hardware",
+  "subcategory": "computer-components",
+  "tags": [
+    "memory",
+    "volatile",
+    "performance"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "RAM คือหน่วยความจำ volatile ที่ CPU อ่าน/เขียนได้เร็ว — เก็บ code, variables และ runtime data\n\nปิดเครื่องแล้วข้อมูลหาย (ต่างจาก Storage)"
+    },
+    {
+      "type": "why",
+      "content": "Program ต้องอยู่ใน RAM ก่อน execute, RAM น้อยทำให้ swap ช้า, database/cache ต้องการ RAM มาก"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. OS จัดสรร RAM ให้ process\n2. Variables/heap อยู่ใน RAM\n3. RAM เต็ม → swap ลง disk\n4. ปิดเครื่อง → ข้อมูลหาย"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Capacity (GB)",
+        "DDR4/DDR5",
+        "Speed (MHz)",
+        "Dual-channel",
+        "ECC (server)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "PostgreSQL: เพิ่ม RAM → shared_buffers และ cache ใหญ่ขึ้น → query เร็วขึ้น, Redis ใช้ RAM เป็น primary store"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "RAM ≠ Storage",
+        "Stack (data structure) ≠ memory stack",
+        "RAM usage สูงไม่เสมอไปแปลว่ามีปัญหา"
+      ]
+    }
+  ],
+  "related": [
+    "cpu",
+    "storage",
+    "motherboard",
+    "redis",
+    "database"
+  ],
+  "visualization": "cpu-memory-flow",
+  "prerequisites": [
+    "cpu"
+  ]
+}

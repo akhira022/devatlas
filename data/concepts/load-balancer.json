@@ -1,0 +1,63 @@
+{
+  "slug": "load-balancer",
+  "title": "Load Balancer",
+  "summary": "กระจาย traffic ไปหลาย server — ป้องกัน server ตัวเดียวรับ load หนักเกิน",
+  "difficulty": "intermediate",
+  "category": "network",
+  "tags": [
+    "scaling",
+    "traffic",
+    "high-availability"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Load Balancer รับ request จาก client แล้วกระจายไป backend servers หลายตัว\n\nตัวอย่าง: Nginx, AWS ALB, Cloudflare Load Balancing"
+    },
+    {
+      "type": "analogy",
+      "content": "Load balancer เหมือนพนักงานรับแขกที่แจกคิว — ส่งลูกค้าไปเคาน์เตอร์ที่ว่างที่สุด"
+    },
+    {
+      "type": "why",
+      "content": "- Scale horizontally — เพิ่ม server แทน upgrade เครื่องเดียว\n- High availability — server ตัวหนึ่งล่ม ตัวอื่นรับต่อ\n- SSL termination ที่จุดเดียว"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Client ส่ง request ไป IP ของ load balancer (VIP)\n2. LB เลือก backend server ตาม algorithm (round-robin, least connections)\n3. Forward request ไป server ที่เลือก\n4. Server ตอบกลับผ่าน LB → client\n5. Health check ตรวจ server — ถอด server ที่ล้มออกจาก pool"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Round Robin",
+        "Least Connections",
+        "Health Check",
+        "Sticky Session",
+        "SSL Termination"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เว็บขายของช่วง flash sale:\n\n- 3 app servers หลัง load balancer เดียว\n- LB แจก traffic round-robin\n- Server 2 ล้ม → health check ตรวจพบ → ไม่ส่ง traffic ไป\n- เพิ่ม server 4 ชั่วคราว → register กับ LB\n- User เห็น domain เดียว ไม่รู้ว่ามีหลาย server"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Load Balancer ≠ Reverse Proxy — LB เน้นกระจาย load, proxy เน้น forward/cache",
+        "Layer 4 LB ดู IP/port, Layer 7 LB ดู HTTP path/header",
+        "AWS ALB, Nginx, HAProxy เป็น load balancer ยอดนิยม"
+      ]
+    }
+  ],
+  "related": [
+    "server",
+    "cdn",
+    "http",
+    "proxy"
+  ],
+  "visualization": "load-balancer-flow",
+  "prerequisites": [
+    "http",
+    "tcp"
+  ]
+}

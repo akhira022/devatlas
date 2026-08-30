@@ -1,0 +1,62 @@
+{
+  "slug": "gpu",
+  "title": "GPU",
+  "fullName": "Graphics Processing Unit",
+  "summary": "ประมวลผล parallel — กราฟิก, ML training และ LLM inference",
+  "difficulty": "beginner",
+  "category": "hardware",
+  "subcategory": "computer-components",
+  "tags": [
+    "graphics",
+    "parallel",
+    "cuda",
+    "ml"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "GPU มี cores จำนวนมากสำหรับ parallel work — จาก graphics ไป ML/AI (NVIDIA CUDA, Apple Metal)"
+    },
+    {
+      "type": "why",
+      "content": "Matrix ops ใน ML, LLM inference, video encode — GPU เร็วกว่า CPU มากสำหรับ workload เหล่านี้"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. CPU ส่ง workload ไป GPU\n2. Parallel cores ประมวลผล\n3. VRAM เก็บ model weights\n4. ผลลัพธ์กลับ CPU"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "CUDA Cores",
+        "VRAM (GB)",
+        "Tensor Cores",
+        "PCIe bandwidth",
+        "TDP & cooling"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Fine-tune LLM 7B ต้องการ VRAM ≥16GB, cloud g5.xlarge, Ollama บน Mac ใช้ Metal"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "GPU ไม่เร็วกว่า CPU ทุกงาน",
+        "VRAM เต็ม = model รันไม่ได้",
+        "Integrated GPU อ่อนกว่า dedicated"
+      ]
+    }
+  ],
+  "related": [
+    "cpu",
+    "motherboard",
+    "llm",
+    "neural-network",
+    "machine-learning"
+  ],
+  "visualization": "cpu-memory-flow",
+  "prerequisites": [
+    "cpu"
+  ]
+}

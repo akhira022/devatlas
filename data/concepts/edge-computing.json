@@ -1,0 +1,59 @@
+{
+  "slug": "edge-computing",
+  "title": "Edge Computing",
+  "summary": "ประมวลผลข้อมูลใกล้แหล่งที่มา แทนส่งไป cloud — ลด latency และ bandwidth",
+  "difficulty": "intermediate",
+  "category": "iot",
+  "tags": [
+    "distributed",
+    "latency",
+    "local"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Edge Computing คือการประมวลผลข้อมูลที่ 'edge' ของ network — ใกล้ sensor/device แทนส่งทุกอย่างไป cloud\n\nCloud = ศูนย์กลาง, Edge = ใกล้ user/device"
+    },
+    {
+      "type": "why",
+      "content": "- Latency ต่ำ — ตอบสนอง real-time (autonomous car ไม่รอ cloud)\n- ลด bandwidth — ส่งแค่ผลลัพธ์ ไม่ใช่ raw data ทั้งหมด\n- ทำงาน offline ได้ — ไม่พึ่ง internet\n- Privacy — ข้อมูล sensitive ไม่ออกจาก device"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. IoT device ส่งข้อมูลไป Edge node (gateway ใกล้ device)\n2. Edge node ประมวลผลเบื้องต้น (filter, aggregate, alert)\n3. ส่งเฉพาะข้อมูลสำคัญไป Cloud สำหรับ analytics ระยะยาว\n4. ตอบกลับ device ได้เร็ว (local decision) โดยไม่รอ cloud\n5. ลด bandwidth และ latency เมื่อเทียบกับส่งทุกอย่างไป cloud"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Edge Node / Gateway — ประมวลผลใกล้แหล่งข้อมูล",
+        "IoT Device / Sensor — แหล่งข้อมูล",
+        "Local Processing — วิเคราะห์บน edge",
+        "Cloud Sync — ส่งข้อมูลสรุปขึ้น cloud",
+        "Latency Reduction — ตอบสนองเร็วกว่า round-trip ไป cloud"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "กล้อง CCTV ตรวจจับคนแปลกหน้าที่ edge (ในกล้อง) แทนส่ง video 24/7 ไป cloud — ส่งแค่ alert เมื่อเจอคนแปลกหน้า"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Edge ≠ ไม่ใช้ cloud — มักทำงานร่วมกัน (edge preprocess, cloud analyze)",
+        "Edge device มี compute จำกัด — ไม่รัน LLM ใหญ่ได้",
+        "Fog computing คล้าย edge แต่อยู่ระหว่าง device กับ cloud"
+      ]
+    }
+  ],
+  "related": [
+    "sensor",
+    "mqtt",
+    "cloud-computing",
+    "server"
+  ],
+  "visualization": "edge-computing-flow",
+  "prerequisites": [
+    "sensor",
+    "cloud-computing"
+  ]
+}

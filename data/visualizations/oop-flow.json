@@ -1,0 +1,19 @@
+{
+  "slug": "oop-flow",
+  "title": "OOP Method Call",
+  "description": "ดู object เรียก method บน class instance",
+  "conceptSlug": "oop",
+  "protocol": "OOP",
+  "category": "programming",
+  "nodes": [
+    { "id": "caller", "label": "Caller Code", "description": "user.getName()", "type": "client", "position": { "x": 0, "y": 120 } },
+    { "id": "object", "label": "Object Instance", "description": "user object ใน memory", "type": "service", "position": { "x": 300, "y": 120 } },
+    { "id": "class", "label": "Class Method", "description": "getName() implementation", "type": "server", "position": { "x": 600, "y": 120 } }
+  ],
+  "steps": [
+    { "id": "oop-1", "from": "caller", "to": "object", "label": "Call", "packet": "user.getName()", "description": "ส่ง message ไป object instance", "duration": 1100 },
+    { "id": "oop-2", "from": "object", "to": "class", "label": "Dispatch", "packet": "lookup method", "description": "หา method จาก class (หรือ prototype chain)", "duration": 1100 },
+    { "id": "oop-3", "from": "class", "to": "object", "label": "Execute", "packet": "return this.name", "description": "รัน method ด้วย this = object", "duration": 1200 },
+    { "id": "oop-4", "from": "object", "to": "caller", "label": "Return", "packet": "\"Alice\"", "description": "ส่งผลลัพธ์กลับ caller", "duration": 1100 }
+  ]
+}

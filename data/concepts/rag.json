@@ -1,0 +1,60 @@
+{
+  "slug": "rag",
+  "title": "RAG",
+  "fullName": "Retrieval-Augmented Generation",
+  "summary": "เทคนิคให้ LLM ตอบจากข้อมูลจริงของคุณ — ค้นหาก่อน แล้วค่อย generate",
+  "difficulty": "advanced",
+  "category": "ai",
+  "tags": [
+    "llm",
+    "search",
+    "context"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "RAG คือเทคนิคที่ LLM ตอบคำถามโดยอ้างอิงข้อมูลจาก knowledge base ของคุณ — ไม่พึ่งแค่ความรู้จาก training เท่านั้น\n\nFlow: คำถาม → ค้นหาเอกสารที่เกี่ยวข้อง → ส่ง context + คำถามให้ LLM → ตอบ"
+    },
+    {
+      "type": "why",
+      "content": "แก้ปัญหา LLM:\n- Hallucination — ตอบจากข้อมูลจริงลดการแต่ง\n- ข้อมูลล่าสุด — อัปเดต knowledge base ได้โดยไม่ retrain\n- ข้อมูลภายใน — ใช้เอกสารบริษัทได้โดยไม่ส่ง train model"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. แปลงเอกสารเป็น chunks\n2. สร้าง embeddings (vector) เก็บใน vector database\n3. User ถามคำถาม → แปลงเป็น embedding\n4. ค้นหา chunks ที่ใกล้เคียงที่สุด (similarity search)\n5. ส่ง chunks + คำถามให้ LLM generate คำตอบ"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Document Store — แหล่งความรู้ (PDF, wiki, database)",
+        "Embedding — แปลงข้อความเป็น vector",
+        "Vector Database — ค้นหาเอกสารที่ใกล้เคียง",
+        "Retriever — ดึง context ที่เกี่ยวข้อง",
+        "LLM — สร้างคำตอบจาก context + prompt"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Chatbot ตอบคำถามจาก company wiki — ถาม 'นโยบายลาป่วย' → RAG ค้นหา HR document ที่เกี่ยวข้อง → LLM สรุปคำตอบจากเอกสารจริง"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "RAG ≠ Fine-tuning — RAG ดึงข้อมูลภายนอก, fine-tuning เปลี่ยน model",
+        "RAG ลด hallucination — ตอบจากเอกสารจริง",
+        "Chunk size ส่งผลต่อความแม่นยำของ retrieval"
+      ]
+    }
+  ],
+  "related": [
+    "llm",
+    "database",
+    "api"
+  ],
+  "visualization": "rag-flow",
+  "prerequisites": [
+    "llm",
+    "embedding",
+    "api"
+  ]
+}

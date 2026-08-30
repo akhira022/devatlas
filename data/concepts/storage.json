@@ -1,0 +1,62 @@
+{
+  "slug": "storage",
+  "title": "Storage",
+  "fullName": "HDD / SSD / NVMe",
+  "summary": "ที่เก็บข้อมูลถาวร — HDD, SSD และ NVMe สำหรับ OS, apps และ database",
+  "difficulty": "beginner",
+  "category": "hardware",
+  "subcategory": "computer-components",
+  "tags": [
+    "hdd",
+    "ssd",
+    "nvme",
+    "disk"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Storage เก็บข้อมูลถาวร: HDD (ช้า/ถูก), SSD SATA (เร็ว), NVMe (เร็วที่สุด ต่อ PCIe)"
+    },
+    {
+      "type": "why",
+      "content": "Boot time, database I/O, Docker build speed และ cloud disk type (gp3 vs io2) ขึ้นกับ storage"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. OS boot จาก storage\n2. Program โหลดจาก disk → RAM\n3. DB read/write data files\n4. SSD ใช้ flash, NVMe ใช้ PCIe"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Capacity",
+        "SATA vs NVMe",
+        "IOPS",
+        "Throughput MB/s",
+        "TBW endurance"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Production DB ใช้ NVMe + RAID, archive ใช้ HDD/S3, monitor disk latency >10ms"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Storage มาก ≠ RAM มาก",
+        "SSD เร็วแต่ยังช้ากว่า RAM",
+        "Disk 100% อาจเป็น random I/O ไม่ใช่เต็มจริง"
+      ]
+    }
+  ],
+  "related": [
+    "ram",
+    "motherboard",
+    "raid",
+    "database",
+    "boot-process"
+  ],
+  "visualization": "cpu-memory-flow",
+  "prerequisites": [
+    "cpu"
+  ]
+}

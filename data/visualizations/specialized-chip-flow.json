@@ -1,0 +1,88 @@
+{
+  "slug": "specialized-chip-flow",
+  "title": "ASIC vs FPGA",
+  "description": "ชิปเฉพาะทาง — ASIC ประมวลผลคงที่ vs FPGA ปรับแต่งได้",
+  "conceptSlug": "asic",
+  "protocol": "Silicon",
+  "category": "hardware",
+  "nodes": [
+    {
+      "id": "design",
+      "label": "Design",
+      "description": "algorithm / circuit",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "asic",
+      "label": "ASIC",
+      "description": "Application-Specific IC",
+      "type": "device",
+      "position": {
+        "x": 320,
+        "y": 60
+      }
+    },
+    {
+      "id": "fpga",
+      "label": "FPGA",
+      "description": "Field-Programmable Gate Array",
+      "type": "device",
+      "position": {
+        "x": 320,
+        "y": 180
+      }
+    },
+    {
+      "id": "output",
+      "label": "Compute",
+      "description": "hash / signal processing",
+      "type": "server",
+      "position": {
+        "x": 600,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "sc-1",
+      "from": "design",
+      "to": "asic",
+      "label": "Tape-out",
+      "packet": "fixed circuit",
+      "description": "ออกแบบวงจรเฉพาะ — ผลิตครั้งเดียว เร็วและประหยัดพลังงาน",
+      "duration": 1200
+    },
+    {
+      "id": "sc-2",
+      "from": "asic",
+      "to": "output",
+      "label": "Run",
+      "packet": "SHA-256",
+      "description": "ASIC ทำงานเฉพาะ algorithm ที่ออกแบบ",
+      "duration": 1100
+    },
+    {
+      "id": "sc-3",
+      "from": "design",
+      "to": "fpga",
+      "label": "Synthesize",
+      "packet": "HDL bitstream",
+      "description": "FPGA โหลด configuration ใหม่ได้",
+      "duration": 1100
+    },
+    {
+      "id": "sc-4",
+      "from": "fpga",
+      "to": "output",
+      "label": "Reconfig",
+      "packet": "prototype",
+      "description": "เหมาะ prototype — เปลี่ยน logic โดยไม่ผลิตชิปใหม่",
+      "duration": 1000
+    }
+  ]
+}

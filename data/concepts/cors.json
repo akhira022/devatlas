@@ -1,0 +1,60 @@
+{
+  "slug": "cors",
+  "title": "CORS",
+  "fullName": "Cross-Origin Resource Sharing",
+  "summary": "กลไก browser ควบคุมการเรียก API ข้าม domain — ป้องกันเว็บอื่นเรียก API ของคุณ",
+  "difficulty": "intermediate",
+  "category": "network",
+  "tags": [
+    "browser",
+    "security",
+    "headers"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "CORS คือ browser security policy — บล็อก JavaScript จาก domain A เรียก API ที่ domain B โดย default\n\nยกเว้นเมื่อ server B ส่ง header Access-Control-Allow-Origin"
+    },
+    {
+      "type": "why",
+      "content": "ป้องกัน malicious site เรียก bank API ด้วย cookie ของ user ที่ login อยู่\n\nDeveloper ต้องตั้ง CORS headers บน API เมื่อ frontend อยู่คนละ domain"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Browser ส่ง preflight OPTIONS request (สำหรับ POST/custom headers)\n2. Server ตอบ Allowed-Origin, Methods, Headers\n3. Browser อนุญาต request จริงถ้าผ่าน"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Origin — protocol + domain + port ของหน้าเว็บ",
+        "Preflight Request — OPTIONS ก่อน POST/custom headers",
+        "Access-Control-Allow-Origin — header บอกว่าอนุญาต origin ไหน",
+        "Access-Control-Allow-Methods — HTTP methods ที่อนุญาต",
+        "Access-Control-Allow-Headers — custom headers ที่อนุญาต"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Frontend อยู่ที่ app.example.com เรียก API ที่ api.example.com:\n\n1. Browser ส่ง OPTIONS preflight ไป api.example.com\n2. API ตอบ Allow-Origin: https://app.example.com\n3. Browser ส่ง POST /api/orders พร้อม JSON\n4. API ประมวลผลและตอบกลับ\n\nถ้า API ไม่ตั้ง CORS headers → Browser บล็อก response แม้ server ตอบ 200"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "CORS เป็น browser policy — Postman/curl ไม่โดน",
+        "CORS error เกิดที่ client ไม่ใช่ server crash",
+        "Access-Control-Allow-Origin: * อนุญาตทุก domain"
+      ]
+    }
+  ],
+  "related": [
+    "http",
+    "api",
+    "authentication",
+    "frontend"
+  ],
+  "visualization": "cors-flow",
+  "prerequisites": [
+    "http",
+    "api"
+  ]
+}

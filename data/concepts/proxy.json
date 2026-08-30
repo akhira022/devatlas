@@ -1,0 +1,59 @@
+{
+  "slug": "proxy",
+  "title": "Proxy",
+  "summary": "ตัวกลางระหว่าง client กับ server — รับ request แทนแล้วส่งต่อ",
+  "difficulty": "intermediate",
+  "category": "network",
+  "tags": [
+    "middleware",
+    "forward",
+    "reverse"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Proxy server อยู่ระหว่าง client กับ destination\n\n- Forward Proxy: client รู้จัก proxy (VPN, corporate proxy)\n- Reverse Proxy: client ไม่รู้ (Nginx หน้า backend)"
+    },
+    {
+      "type": "analogy",
+      "content": "Proxy เหมือนคนกลางส่งข้อความ — คุณไม่คุยกับปลายทางโดยตรง แต่ผ่านตัวแทน"
+    },
+    {
+      "type": "why",
+      "content": "- ซ่อน IP client (forward proxy)\n- Cache, compress, SSL (reverse proxy)\n- Security filter ก่อนถึง server"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Client ตั้ง proxy address แทนเชื่อมตรง server\n2. Client ส่ง request ไป proxy\n3. Proxy forward request ไป server จริง (อาจแก้ headers)\n4. Server ตอบ proxy → proxy ส่งต่อ client\n5. Forward proxy: อยู่ฝั่ง client, Reverse proxy: อยู่ฝั่ง server"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Forward Proxy — แทน client ออก internet",
+        "Reverse Proxy — รับ request แทน backend servers",
+        "Caching — เก็บ response ลด load",
+        "SSL Termination — ถอดรหัส HTTPS ที่ proxy",
+        "Nginx, Squid — proxy software ยอดนิยม"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "บริษัทใช้ forward proxy:\n\n- พนักงานเข้า internet ผ่าน proxy เท่านั้น\n- Proxy บล็อกเว็บที่ไม่เกี่ยวข้อง\n- Log การเข้าเว็บทั้งหมด\n\nNginx reverse proxy:\n\n- Client เห็น nginx.com เท่านั้น\n- Nginx กระจายไป 3 backend servers\n- Cache static files ลด load backend"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Reverse Proxy ≠ Load Balancer แต่มักใช้ร่วมกัน",
+        "CDN edge ทำหน้าที่คล้าย reverse proxy + cache",
+        "Proxy ≠ VPN — VPN encrypt tunnel ทั้งหมด"
+      ]
+    }
+  ],
+  "related": [
+    "load-balancer",
+    "cdn",
+    "vpn",
+    "http"
+  ],
+  "visualization": "proxy-flow"
+}

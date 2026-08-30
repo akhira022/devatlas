@@ -1,0 +1,56 @@
+{
+  "slug": "backend",
+  "title": "Backend",
+  "summary": "ส่วนที่ทำงานเบื้องหลัง — business logic, API, database, authentication",
+  "difficulty": "beginner",
+  "category": "programming",
+  "tags": [
+    "api",
+    "server",
+    "logic"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Backend คือส่วนที่ผู้ใช้ไม่เห็น — รัน business logic, เชื่อมต่อ database, จัดการ authentication และ security\n\nBackend รับผิดชอบ:\n- รับและ validate request จาก Frontend\n- ประมวลผล business rules (คำนวณราคา, ตรวจสอบสิทธิ์)\n- อ่าน/เขียนข้อมูลใน Database\n- ส่ง response กลับเป็น JSON\n\nเทคโนโลยียอดนิยม: Node.js, Python (Django/FastAPI), Go, Java (Spring), Ruby (Rails)"
+    },
+    {
+      "type": "why",
+      "content": "Backend ปกป้องข้อมูลและ logic สำคัญ:\n\n- ผู้ใช้ไม่ควรเข้าถึง database โดยตรง — ต้องผ่าน API\n- Business logic อยู่ที่เดียว — แก้ครั้งเดียว มีผลทุก client\n- Security — hash password, validate input, rate limiting\n- Integration — เชื่อม payment gateway, email service, third-party API"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. รับ HTTP request ที่ API endpoint\n2. Middleware ตรวจสอบ authentication (JWT, session)\n3. Controller แปลง request เป็น action\n4. Service layer รัน business logic\n5. Data layer query/update Database ผ่าน ORM หรือ SQL\n6. สร้าง response (JSON + status code) ส่งกลับ"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "API Routes / Endpoints",
+        "Controllers",
+        "Services (business logic)",
+        "Middleware (auth, logging)",
+        "Database Layer (ORM/SQL)",
+        "Models / Schemas"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เมื่อสั่งซื้อสินค้าออนไลน์:\n\n1. Frontend ส่ง POST /api/orders พร้อม cart items\n2. Backend ตรวจสอบ JWT ว่า login แล้ว\n3. คำนวณราคารวม, ส่วนลด, ค่าส่ง\n4. ตรวจสอบสต็อกใน Database\n5. สร้าง order record, เรียก payment API\n6. ส่ง order confirmation กลับเป็น JSON"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Backend ≠ Server — Backend คือ logic ทั้งหมด, Server คือตัวรันโปรแกรม",
+        "Backend ≠ Database — Backend ใช้ Database แต่รวม API และ logic ด้วย",
+        "BFF (Backend for Frontend) — Backend แยกตาม client type (web vs mobile)"
+      ]
+    }
+  ],
+  "related": [
+    "frontend",
+    "api",
+    "database",
+    "server"
+  ],
+  "visualization": "frontend-backend-flow"
+}

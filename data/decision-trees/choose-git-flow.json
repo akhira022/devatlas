@@ -1,0 +1,44 @@
+{
+  "slug": "choose-git-flow",
+  "title": "Merge หรือ Rebase?",
+  "description": "เลือกวิธีรวม branch ให้เหมาะกับสถานการณ์",
+  "icon": "git-branch",
+  "category": "git-github",
+  "startNodeId": "branch-shared",
+  "nodes": [
+    {
+      "id": "branch-shared",
+      "question": "มีคนอื่นใช้ branch นี้ร่วมกันไหม?",
+      "options": [
+        { "label": "ใช่ — branch บน remote ทีม pull อยู่", "next": "result:merge" },
+        { "label": "ไม่ — branch ส่วนตัว ยังไม่ push หรือ push คนเดียว", "next": "history-pref" }
+      ]
+    },
+    {
+      "id": "history-pref",
+      "question": "ต้องการ history แบบไหน?",
+      "options": [
+        { "label": "เส้นตรง สะอาด ก่อนเปิด PR", "next": "result:rebase" },
+        { "label": "เก็บ branch history ครบ ปลอดภัยกว่า", "next": "result:merge" }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "merge",
+      "title": "แนะนำ: Git Merge",
+      "summary": "รวม branch ด้วย merge commit — ปลอดภัยสำหรับ shared branch ไม่ rewrite history",
+      "conceptSlugs": ["git-merge", "git-branch"],
+      "compareSlug": "git-merge-vs-rebase",
+      "learnPathSlug": "git-workflow"
+    },
+    {
+      "id": "rebase",
+      "title": "แนะนำ: Git Rebase",
+      "summary": "ย้าย commit ไปต่อท้าย main — history เป็นเส้นตรง เหมาะก่อน merge PR บน branch ส่วนตัว",
+      "conceptSlugs": ["git-rebase", "git-branch"],
+      "compareSlug": "git-merge-vs-rebase",
+      "learnPathSlug": "git-workflow"
+    }
+  ]
+}

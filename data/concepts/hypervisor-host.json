@@ -1,0 +1,64 @@
+{
+  "slug": "hypervisor-host",
+  "title": "Hypervisor Host",
+  "summary": "เครื่อง server ที่รัน VM หลายตัว — พื้นฐานของ cloud และ virtualization",
+  "difficulty": "intermediate",
+  "category": "hardware",
+  "subcategory": "server-hardware",
+  "tags": [
+    "virtualization",
+    "vm",
+    "server",
+    "kvm"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Hypervisor Host คือ physical server ที่รัน hypervisor (ESXi, KVM, Hyper-V) → สร้าง VM หลายตัวบนเครื่องเดียว"
+    },
+    {
+      "type": "why",
+      "content": "Virtualization แยก workload โดยไม่ต้องซื้อ server แยกทุก service:\n\n- ใช้ resource (CPU/RAM) ร่วมกันอย่างมีประสิทธิภาพ\n- Snapshot และ migrate VM ระหว่าง host\n- Lab และ dev environment แยกจาก production"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Hypervisor จัดการ CPU/RAM allocation ให้แต่ละ VM\n2. Virtual NIC และ virtual disk แยก I/O\n3. Host OS หรือ bare-metal hypervisor ควบคุม hardware\n4. VM รัน guest OS แยกกัน — isolated จากกัน"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Type 1 vs Type 2 hypervisor",
+        "vCPU allocation",
+        "Memory overcommit",
+        "Virtual disk",
+        "SR-IOV passthrough"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "On-prem: Dell server + ESXi → VM web/db/monitoring, cloud EC2 instance ก็รันบน hypervisor ของ AWS"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Docker ≠ VM — container share kernel",
+        "vCPU ไม่เท่า physical core 1:1",
+        "Nested virtualization ช้าและจำกัด"
+      ]
+    }
+  ],
+  "related": [
+    "cpu",
+    "ram",
+    "raid",
+    "docker",
+    "kubernetes",
+    "cloud-computing"
+  ],
+  "visualization": "cloud-vm-flow",
+  "prerequisites": [
+    "cpu",
+    "ram",
+    "virtual-machine"
+  ]
+}

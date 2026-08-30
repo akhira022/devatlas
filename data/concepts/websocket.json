@@ -1,0 +1,58 @@
+{
+  "slug": "websocket",
+  "title": "WebSocket",
+  "summary": "โปรโตคอลสื่อสารแบบ real-time สองทาง — เปิด connection ค้างไว้แล้วส่งข้อมูลได้ทั้งสองฝั่ง",
+  "difficulty": "intermediate",
+  "category": "network",
+  "tags": [
+    "realtime",
+    "protocol",
+    "bidirectional"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "WebSocket เป็นโปรโตคอลที่เปิด connection ระหว่าง Client กับ Server ค้างไว้ — ทั้งสองฝั่งส่งข้อมูลหากันได้ตลอดเวลาโดยไม่ต้อง request ใหม่ทุกครั้ง\n\nต่างจาก HTTP ที่เป็น request-response แบบ one-way ต่อหนึ่ง request"
+    },
+    {
+      "type": "why",
+      "content": "ใช้เมื่อต้องการ real-time:\n- Chat apps (Discord, Slack)\n- Live sports scores\n- Stock tickers\n- Multiplayer games\n- Collaborative editing (Google Docs)"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Client ส่ง HTTP Upgrade request\n2. Server ตอบ 101 Switching Protocols\n3. Connection เปลี่ยนเป็น WebSocket\n4. ทั้งสองฝั่งส่ง message ได้ตลอดจนกว่าจะปิด connection"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Upgrade Header — HTTP → WebSocket handshake",
+        "Full-Duplex — ส่งรับพร้อมกันสองทาง",
+        "Persistent Connection — ไม่ปิดหลังแต่ละ message",
+        "ws:// / wss:// — protocol (wss = secure)",
+        "Frame — หน่วยข้อมูลย่อยใน connection"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "แชท real-time ในเว็บ:\n\n1. HTTP upgrade เป็น WebSocket ที่ wss://chat.app/ws\n2. Connection ค้างไว้ตลอด session\n3. ส่งข้อความทันทีทั้งสองฝั่ง — ไม่ต้อง poll\n4. Server push typing indicator, online status\n5. ปิด tab → connection ปิด"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "WebSocket ≠ HTTP — เริ่มจาก HTTP แล้ว upgrade",
+        "WebSocket ≠ SSE — WebSocket สองทาง, SSE เป็น server→client เท่านั้น",
+        "ไม่ต้องใช้ WebSocket ทุกที่ — polling หรือ SSE อาจพอสำหรับบาง use case"
+      ]
+    }
+  ],
+  "related": [
+    "http",
+    "tcp",
+    "api"
+  ],
+  "visualization": "websocket-flow",
+  "prerequisites": [
+    "http",
+    "tcp"
+  ]
+}

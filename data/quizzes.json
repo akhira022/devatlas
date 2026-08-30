@@ -1,0 +1,457 @@
+{
+  "http": {
+    "conceptSlug": "http",
+    "questions": [
+      {
+        "question": "HTTP ใช้ transport protocol อะไรเป็นหลัก?",
+        "options": ["UDP", "TCP", "ICMP", "ARP"],
+        "correctIndex": 1,
+        "explanation": "HTTP ทำงานบน TCP — ต้องการการส่งข้อมูลที่เชื่อถือได้"
+      },
+      {
+        "question": "Status code 404 หมายความว่าอะไร?",
+        "options": ["Server error", "Not Found", "Unauthorized", "Redirect"],
+        "correctIndex": 1,
+        "explanation": "404 = ไม่พบ resource ที่ขอ — URL อาจผิดหรือถูกลบ"
+      },
+      {
+        "question": "HTTP method ไหนใช้ดึงข้อมูล?",
+        "options": ["POST", "PUT", "GET", "DELETE"],
+        "correctIndex": 2,
+        "explanation": "GET ใช้ดึงข้อมูล — ไม่ควรเปลี่ยนสถานะ server"
+      }
+    ]
+  },
+  "dns": {
+    "conceptSlug": "dns",
+    "questions": [
+      {
+        "question": "DNS แปลงอะไรเป็นอะไร?",
+        "options": ["IP → MAC", "Domain → IP", "Port → Service", "Email → User"],
+        "correctIndex": 1,
+        "explanation": "DNS แปลงชื่อโดเมน (google.com) เป็น IP address"
+      },
+      {
+        "question": "DNS กับ ARP ต่างกันยังไง?",
+        "options": ["เหมือนกัน", "DNS = domain→IP, ARP = IP→MAC", "ARP ใช้บน internet", "DNS ใช้ใน LAN เท่านั้น"],
+        "correctIndex": 1,
+        "explanation": "DNS ทำงานระดับ application, ARP ทำงานใน LAN แปลง IP เป็น MAC"
+      }
+    ]
+  },
+  "tcp": {
+    "conceptSlug": "tcp",
+    "questions": [
+      {
+        "question": "TCP handshake มีกี่ขั้นตอนหลัก?",
+        "options": ["1", "2", "3", "4"],
+        "correctIndex": 2,
+        "explanation": "SYN → SYN-ACK → ACK — เรียก 3-way handshake"
+      },
+      {
+        "question": "UDP กับ TCP — อันไหนรับประกันว่าข้อมูลถึง?",
+        "options": ["UDP", "TCP", "ทั้งคู่", "ไม่มีทั้งคู่"],
+        "correctIndex": 1,
+        "explanation": "TCP มี ACK และ retransmit — UDP ส่งแล้วไม่รอ"
+      }
+    ]
+  },
+  "git": {
+    "conceptSlug": "git",
+    "questions": [
+      {
+        "question": "git add ทำอะไร?",
+        "options": ["Commit ทันที", "ย้ายไฟล์เข้า staging area", "Push ขึ้น remote", "สร้าง branch ใหม่"],
+        "correctIndex": 1,
+        "explanation": "git add ย้ายการเปลี่ยนแปลงเข้า staging — ยังไม่ commit"
+      },
+      {
+        "question": "Working directory, staging, repository เรียงลำดับ workflow อย่างไร?",
+        "options": ["repo → staging → working", "working → staging → repo", "staging → working → repo", "working → repo → staging"],
+        "correctIndex": 1,
+        "explanation": "แก้ไฟล์ → git add (staging) → git commit (repo)"
+      }
+    ]
+  },
+  "jwt": {
+    "conceptSlug": "jwt",
+    "questions": [
+      {
+        "question": "JWT ประกอบด้วยกี่ส่วน?",
+        "options": ["1", "2", "3", "4"],
+        "correctIndex": 2,
+        "explanation": "Header.Payload.Signature — คั่นด้วยจุด"
+      },
+      {
+        "question": "JWT เก็บ session ที่ไหน?",
+        "options": ["Server database เท่านั้น", "Client (stateless)", "DNS server", "Load balancer"],
+        "correctIndex": 1,
+        "explanation": "JWT เป็น stateless — server ตรวจ signature โดยไม่ต้องเก็บ session"
+      }
+    ]
+  },
+  "authentication": {
+    "conceptSlug": "authentication",
+    "questions": [
+      {
+        "question": "401 Unauthorized หมายถึงปัญหาอะไร?",
+        "options": ["ไม่มีสิทธิ์ทำ action", "ยังไม่ได้ login / token ไม่ถูก", "Server พัง", "Not Found"],
+        "correctIndex": 1,
+        "explanation": "401 = authentication ล้มเหลว — 403 = มี auth แต่ไม่มีสิทธิ์"
+      }
+    ]
+  },
+  "docker": {
+    "conceptSlug": "docker",
+    "questions": [
+      {
+        "question": "Docker image กับ container ต่างกันยังไง?",
+        "options": ["เหมือนกัน", "Image = template, Container = instance ที่รัน", "Container = template", "Image รันได้เลย"],
+        "correctIndex": 1,
+        "explanation": "Image เป็น snapshot — container คือ process ที่รันจาก image"
+      }
+    ]
+  },
+  "api": {
+    "conceptSlug": "api",
+    "questions": [
+      {
+        "question": "API คืออะไรในภาพรวม?",
+        "options": ["Database", "สัญญาให้โปรแกรมคุยกัน", "Operating System", "Network cable"],
+        "correctIndex": 1,
+        "explanation": "API กำหนดวิธีที่ software components สื่อสารกัน"
+      }
+    ]
+  },
+  "mqtt": {
+    "conceptSlug": "mqtt",
+    "questions": [
+      {
+        "question": "MQTT ใช้ pattern อะไร?",
+        "options": ["Request-Response เท่านั้น", "Publish/Subscribe", "Peer-to-peer file share", "Email queue"],
+        "correctIndex": 1,
+        "explanation": "MQTT ใช้ pub/sub ผ่าน broker — device publish, subscriber รับ"
+      }
+    ]
+  },
+  "sql": {
+    "conceptSlug": "sql",
+    "questions": [
+      {
+        "question": "SQL command ไหนใช้ดึงข้อมูล?",
+        "options": ["INSERT", "UPDATE", "SELECT", "DELETE"],
+        "correctIndex": 2,
+        "explanation": "SELECT ดึงข้อมูล — INSERT/UPDATE/DELETE เปลี่ยนข้อมูล"
+      }
+    ]
+  },
+  "https": {
+    "conceptSlug": "https",
+    "questions": [
+      {
+        "question": "HTTPS ต่างจาก HTTP อย่างไร?",
+        "options": ["เร็วกว่า", "HTTP + TLS encryption", "ใช้ UDP", "ไม่มี port"],
+        "correctIndex": 1,
+        "explanation": "HTTPS = HTTP บน TLS — เข้ารหัสข้อมูลระหว่าง client กับ server"
+      },
+      {
+        "question": "TLS handshake เกิดขึ้นเมื่อไหร่?",
+        "options": ["หลังโหลดหน้าเว็บเสร็จ", "ก่อนส่ง HTTP request จริง", "ตอน DNS lookup", "ตอน cache hit"],
+        "correctIndex": 1,
+        "explanation": "Client กับ server ต่อ TLS ก่อน — แล้วค่อยส่ง HTTP บนช่องทางที่เข้ารหัส"
+      }
+    ]
+  },
+  "dhcp": {
+    "conceptSlug": "dhcp",
+    "questions": [
+      {
+        "question": "DHCP ให้อะไรกับเครื่อง client?",
+        "options": ["Domain name เท่านั้น", "IP address และ network config", "MAC address", "SSL certificate"],
+        "correctIndex": 1,
+        "explanation": "DHCP แจก IP, subnet mask, gateway, DNS — มักอัตโนมัติเมื่อเชื่อม Wi-Fi"
+      }
+    ]
+  },
+  "ip": {
+    "conceptSlug": "ip",
+    "questions": [
+      {
+        "question": "IP address ใช้ทำอะไร?",
+        "options": ["ระบุตัวตน Layer 2", "ระบุที่อยู่เครื่องบนเครือข่าย", "เข้ารหัสข้อมูล", "แปลง domain"],
+        "correctIndex": 1,
+        "explanation": "IP เป็น address ระดับ Layer 3 — router ใช้ forward packet"
+      },
+      {
+        "question": "192.168.x.x เป็น IP ประเภทใด?",
+        "options": ["Public IP", "Private IP", "Loopback", "Multicast"],
+        "correctIndex": 1,
+        "explanation": "192.168.0.0/16 เป็น private range — ใช้ใน LAN ไม่ออก internet โดยตรง"
+      }
+    ]
+  },
+  "udp": {
+    "conceptSlug": "udp",
+    "questions": [
+      {
+        "question": "UDP เหมาะกับ use case ไหน?",
+        "options": ["ดาวน์โหลดไฟล์", "Live streaming / gaming", "Bank transfer", "Email"],
+        "correctIndex": 1,
+        "explanation": "UDP เร็ว latency ต่ำ — ยอมเสีย packet บางส่วนได้"
+      }
+    ]
+  },
+  "websocket": {
+    "conceptSlug": "websocket",
+    "questions": [
+      {
+        "question": "WebSocket ต่างจาก HTTP polling อย่างไร?",
+        "options": ["ช้ากว่า", "Full-duplex persistent connection", "ใช้ได้แค่ GET", "ไม่รองรับ browser"],
+        "correctIndex": 1,
+        "explanation": "WebSocket เปิด connection ค้าง — ส่งข้อมูลสองทางได้ real-time"
+      }
+    ]
+  },
+  "git-branch": {
+    "conceptSlug": "git-branch",
+    "questions": [
+      {
+        "question": "ทำไมต้องใช้ branch?",
+        "options": ["ลดขนาด repo", "แยกงาน feature โดยไม่ชนกัน", "เร็วขึ้น", "ลบ history"],
+        "correctIndex": 1,
+        "explanation": "Branch แยก development — ทีมทำงานคู่ขนานบน main"
+      }
+    ]
+  },
+  "git-merge": {
+    "conceptSlug": "git-merge",
+    "questions": [
+      {
+        "question": "Merge conflict เกิดเมื่อไหร่?",
+        "options": ["ทุกครั้งที่ merge", "แก้บรรทัดเดียวกันใน branch ต่างกัน", "ตอน push", "ตอน clone"],
+        "correctIndex": 1,
+        "explanation": "Git ไม่รู้เลือก version ไหน — ต้องแก้ conflict ด้วยมือแล้ว commit"
+      }
+    ]
+  },
+  "git-rebase": {
+    "conceptSlug": "git-rebase",
+    "questions": [
+      {
+        "question": "ทำไมห้าม rebase branch ที่คนอื่นใช้?",
+        "options": ["ช้า", "Rewrite history ทำให้ commit hash เปลี่ยน", "ใช้ disk เยอะ", "GitHub ไม่รองรับ"],
+        "correctIndex": 1,
+        "explanation": "Rebase เปลี่ยน history — คนอื่น pull แล้ว conflict รุนแรง"
+      }
+    ]
+  },
+  "git-commit": {
+    "conceptSlug": "git-commit",
+    "questions": [
+      {
+        "question": "git commit บันทึกจากพื้นที่ไหน?",
+        "options": ["Working directory ทั้งหมด", "Staging area", "Remote", ".gitignore"],
+        "correctIndex": 1,
+        "explanation": "Commit เอาเฉพาะไฟล์ที่ git add แล้วใน staging"
+      }
+    ]
+  },
+  "authorization": {
+    "conceptSlug": "authorization",
+    "questions": [
+      {
+        "question": "403 Forbidden หมายความว่า?",
+        "options": ["ยังไม่ login", "Login แล้วแต่ไม่มีสิทธิ์", "Server error", "Not found"],
+        "correctIndex": 1,
+        "explanation": "403 = authenticated แต่ไม่มี permission สำหรับ action นั้น"
+      }
+    ]
+  },
+  "oauth": {
+    "conceptSlug": "oauth",
+    "questions": [
+      {
+        "question": "OAuth ใช้ทำอะไรหลัก?",
+        "options": ["เข้ารหัส database", "ให้ app เข้าถึง resource โดยไม่เห็น password", "แทน SQL", "DNS lookup"],
+        "correctIndex": 1,
+        "explanation": "OAuth ให้ user authorize ผ่าน IdP — app ได้ token ไม่ได้ password"
+      }
+    ]
+  },
+  "encryption": {
+    "conceptSlug": "encryption",
+    "questions": [
+      {
+        "question": "Symmetric encryption คืออะไร?",
+        "options": ["ใช้ key คนละอัน encrypt/decrypt", "ใช้ key เดียวกันทั้งสองฝั่ง", "ไม่ใช้ key", "แค่ hash"],
+        "correctIndex": 1,
+        "explanation": "AES เป็นตัวอย่าง — key เดียวเข้ารหัสและถอดรหัส"
+      }
+    ]
+  },
+  "array": {
+    "conceptSlug": "array",
+    "questions": [
+      {
+        "question": "การเข้าถึง array ด้วย index มี complexity เท่าไหร่?",
+        "options": ["O(n)", "O(1)", "O(log n)", "O(n²)"],
+        "correctIndex": 1,
+        "explanation": "Array อ่าน index ได้ทันที — O(1) random access"
+      }
+    ]
+  },
+  "stack": {
+    "conceptSlug": "stack",
+    "questions": [
+      {
+        "question": "Stack ใช้หลักการอะไร?",
+        "options": ["FIFO", "LIFO", "Random", "Sorted"],
+        "correctIndex": 1,
+        "explanation": "Last In First Out — push/pop จากด้านบน"
+      }
+    ]
+  },
+  "oop": {
+    "conceptSlug": "oop",
+    "questions": [
+      {
+        "question": "Encapsulation หมายถึงอะไร?",
+        "options": ["สืบทอด class", "ซ่อนรายละเอียดภายใน object", "หลายรูปแบบ method", "สร้าง instance"],
+        "correctIndex": 1,
+        "explanation": "Encapsulation ซ่อน state ภายใน — เปิดเฉพาะ public interface"
+      }
+    ]
+  },
+  "kubernetes": {
+    "conceptSlug": "kubernetes",
+    "questions": [
+      {
+        "question": "Pod ใน Kubernetes คืออะไร?",
+        "options": ["Physical server", "กลุ่ม container ที่รันร่วมกัน", "Load balancer", "Database"],
+        "correctIndex": 1,
+        "explanation": "Pod คือ unit เล็กสุด — มัก 1 container ต่อ pod"
+      }
+    ]
+  },
+  "ci-cd": {
+    "conceptSlug": "ci-cd",
+    "questions": [
+      {
+        "question": "CI ย่อมาจากอะไรและทำอะไร?",
+        "options": ["Cloud Integration", "Continuous Integration — merge + test อัตโนมัติ", "Code Import", "Container Image"],
+        "correctIndex": 1,
+        "explanation": "CI รัน test/build ทุก commit — จับ bug เร็ว"
+      }
+    ]
+  },
+  "serverless": {
+    "conceptSlug": "serverless",
+    "questions": [
+      {
+        "question": "Serverless หมายความว่าไม่มี server จริงหรือ?",
+        "options": ["ใช่ ไม่มี server", "มี server แต่ cloud จัดการให้", "ใช้แค่ CDN", "รันบน browser"],
+        "correctIndex": 1,
+        "explanation": "Serverless = ไม่ต้องจัดการ server เอง — provider scale ให้"
+      }
+    ]
+  },
+  "nosql": {
+    "conceptSlug": "nosql",
+    "questions": [
+      {
+        "question": "NoSQL เหมาะเมื่อไหร่?",
+        "options": ["ต้องการ ACID เข้มงวดเสมอ", "Schema ยืดหยุ่น scale แนวนอน", "แทน spreadsheet", "ไม่เก็บข้อมูล"],
+        "correctIndex": 1,
+        "explanation": "NoSQL ยืดหยุ่น — document, key-value เหมาะ scale out"
+      }
+    ]
+  },
+  "redis": {
+    "conceptSlug": "redis",
+    "questions": [
+      {
+        "question": "Redis เก็บข้อมูลที่ไหน?",
+        "options": ["Disk เท่านั้น", "In-memory (RAM) เป็นหลัก", "Tape", "Cloud only"],
+        "correctIndex": 1,
+        "explanation": "Redis เร็วเพราะอยู่ใน RAM — เหมาะ cache และ session"
+      }
+    ]
+  },
+  "llm": {
+    "conceptSlug": "llm",
+    "questions": [
+      {
+        "question": "LLM ทำนายอะไร?",
+        "options": ["อุณหภูมิ", "Token ถัดไปในข้อความ", "Stock price", "IP address"],
+        "correctIndex": 1,
+        "explanation": "Large Language Model ทำนาย token ถัดไป — สร้างข้อความต่อเนื่อง"
+      }
+    ]
+  },
+  "rag": {
+    "conceptSlug": "rag",
+    "questions": [
+      {
+        "question": "RAG เพิ่มอะไรให้ LLM?",
+        "options": ["GPU", "Context จาก documents ที่ค้นหาได้", "DNS", "OAuth"],
+        "correctIndex": 1,
+        "explanation": "Retrieval-Augmented Generation ดึงเอกสาร relevant มาใส่ prompt"
+      }
+    ]
+  },
+  "sensor": {
+    "conceptSlug": "sensor",
+    "questions": [
+      {
+        "question": "Sensor ต่างจาก Actuator อย่างไร?",
+        "options": ["เหมือนกัน", "Sensor วัดค่า Actuator ทำ action", "Actuator วัดค่า", "ไม่เกี่ยวกัน"],
+        "correctIndex": 1,
+        "explanation": "Sensor input — Actuator output เช่น มอเตอร์ สปริงเกอร์"
+      }
+    ]
+  },
+  "cors": {
+    "conceptSlug": "cors",
+    "questions": [
+      {
+        "question": "CORS error เกิดเมื่อไหร่?",
+        "options": ["Server down", "Browser block cross-origin request", "DNS fail", "SSL หมดอายุ"],
+        "correctIndex": 1,
+        "explanation": "Browser enforce same-origin — server ต้องส่ง CORS headers อนุญาต"
+      }
+    ]
+  },
+  "load-balancer": {
+    "conceptSlug": "load-balancer",
+    "questions": [
+      {
+        "question": "Load balancer ทำหน้าที่อะไร?",
+        "options": ["เข้ารหัสข้อมูล", "กระจาย traffic ไปหลาย server", "เก็บ log", "Compile code"],
+        "correctIndex": 1,
+        "explanation": "LB แจก request — ลด overload และเพิ่ม availability"
+      }
+    ]
+  },
+  "rest": {
+    "conceptSlug": "rest",
+    "questions": [
+      {
+        "question": "REST ใช้ HTTP method อย่างไร?",
+        "options": ["GET เท่านั้น", "GET/POST/PUT/DELETE map กับ CRUD", "ไม่ใช้ HTTP", "ใช้ WebSocket"],
+        "correctIndex": 1,
+        "explanation": "RESTful API ใช้ verbs มาตรฐานกับ resources"
+      }
+    ]
+  },
+  "graphql": {
+    "conceptSlug": "graphql",
+    "questions": [
+      {
+        "question": "GraphQL endpoint ปกติมีกี่ตัว?",
+        "options": ["หลาย endpoint ต่อ resource", "endpoint เดียว (/graphql)", "ไม่มี endpoint", "แค่ WebSocket"],
+        "correctIndex": 1,
+        "explanation": "Client ส่ง query ไป endpoint เดียว — เลือก field ที่ต้องการ"
+      }
+    ]
+  }
+}

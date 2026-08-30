@@ -1,0 +1,59 @@
+{
+  "slug": "win-npm",
+  "title": "npm",
+  "fullName": "Node Package Manager (Windows)",
+  "summary": "ติดตั้งและรัน Node.js packages บน Windows — path, permission และ script execution",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "npm",
+  "platform": "windows",
+  "tags": [
+    "nodejs",
+    "package",
+    "windows"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`npm` บน Windows ทำงานเหมือน Unix — แต่มีเรื่อง PATH, line endings (CRLF), และ execution policy ที่ต้องระวัง"
+    },
+    {
+      "type": "why",
+      "content": "npm บน Windows ทำงานเหมือนบน Unix — จัดการ dependencies ของ Node.js project\n\nต้องติดตั้ง Node.js ก่อน แล้วใช้ npm install / npm run ในโฟลเดอร์โปรเจกต์"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nnpm install\nnpm run dev\nnpm install -g pnpm\nnpx create-next-app@latest\n\n# ตรวจว่า npm อยู่ใน PATH\nwhere npm\nwhere node\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "npm.cmd — executable บน Windows",
+        "node_modules\\.bin — local binaries",
+        "PATH — ต้องมี Node.js install path",
+        "package-lock.json — lock versions",
+        "npx — รัน package ไม่ติดตั้ง global"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "script ไม่รันหลัง npm install:\n```\nwhere node\nwhere npm\nnpm run dev\n# ถ้า error execution policy ใน PowerShell:\nSet-ExecutionPolicy -Scope CurrentUser RemoteSigned\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "'npm' is not recognized — ติดตั้ง Node.js แล้ว restart terminal หรือเช็ค PATH",
+        "PowerShell บล็อก script — ปรับ ExecutionPolicy",
+        "ใช้ npm ใน Git Bash / WSL ได้ — path แยกจาก CMD",
+        "global install อาจต้อง Admin — ใช้ nvm-windows หรือ npx แทน"
+      ]
+    }
+  ],
+  "related": [
+    "npm",
+    "win-where",
+    "json",
+    "git"
+  ],
+  "visualization": "npm-flow"
+}

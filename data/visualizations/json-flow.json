@@ -1,0 +1,87 @@
+{
+  "slug": "json-flow",
+  "title": "JSON Serialize & Parse",
+  "description": "ดูการแปลงข้อมูลระหว่าง Object กับ JSON string ใน Client-Server",
+  "conceptSlug": "json",
+  "protocol": "JSON",
+  "category": "programming",
+  "nodes": [
+    {
+      "id": "backend-obj",
+      "label": "Backend Object",
+      "description": "ข้อมูลใน memory ของ Server — Python dict, JS object",
+      "type": "server",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "json-string",
+      "label": "JSON String",
+      "description": "ข้อความ text ที่ส่งผ่าน HTTP body",
+      "type": "service",
+      "position": {
+        "x": 300,
+        "y": 120
+      }
+    },
+    {
+      "id": "http",
+      "label": "HTTP Response",
+      "description": "JSON string อยู่ใน response body",
+      "type": "server",
+      "position": {
+        "x": 560,
+        "y": 120
+      }
+    },
+    {
+      "id": "client-obj",
+      "label": "Client Object",
+      "description": "ข้อมูลที่ parse แล้ว — ใช้ render UI ได้",
+      "type": "client",
+      "position": {
+        "x": 820,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "json-1",
+      "from": "backend-obj",
+      "to": "json-string",
+      "label": "Serialize",
+      "packet": "JSON.stringify()",
+      "description": "Backend แปลง object เป็น JSON string — {\"name\":\"John\",\"age\":25}",
+      "duration": 1200
+    },
+    {
+      "id": "json-2",
+      "from": "json-string",
+      "to": "http",
+      "label": "Send",
+      "packet": "Content-Type: application/json",
+      "description": "JSON string ถูกใส่ใน HTTP response body พร้อม header บอก content type",
+      "duration": 1000
+    },
+    {
+      "id": "json-3",
+      "from": "http",
+      "to": "client-obj",
+      "label": "Parse",
+      "packet": "JSON.parse()",
+      "description": "Client รับ text แล้วแปลงกลับเป็น object ที่ใช้ในโค้ดได้",
+      "duration": 1200
+    },
+    {
+      "id": "json-4",
+      "from": "client-obj",
+      "to": "client-obj",
+      "label": "Use",
+      "description": "Client เข้าถึงข้อมูลผ่าน object.name, object.age เพื่อแสดงบน UI",
+      "duration": 1000
+    }
+  ]
+}

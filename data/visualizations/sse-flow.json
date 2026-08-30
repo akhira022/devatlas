@@ -1,0 +1,77 @@
+{
+  "slug": "sse-flow",
+  "title": "Server-Sent Events",
+  "description": "ดู server push events ไป browser ผ่าน HTTP stream",
+  "conceptSlug": "sse",
+  "protocol": "SSE / HTTP",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "browser",
+      "label": "Browser",
+      "description": "EventSource รับ stream",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "server",
+      "label": "API Server",
+      "description": "ส่ง events ต่อเนื่อง",
+      "type": "server",
+      "position": {
+        "x": 400,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "sse-1",
+      "from": "browser",
+      "to": "server",
+      "label": "Connect",
+      "packet": "GET /events",
+      "description": "Browser เปิด HTTP connection ค้างไว้ — Accept: text/event-stream",
+      "duration": 1200
+    },
+    {
+      "id": "sse-2",
+      "from": "server",
+      "to": "browser",
+      "label": "Event 1",
+      "packet": "data: {\"price\":100}",
+      "description": "Server push event แรก — ไม่ต้อง client ถามใหม่",
+      "duration": 1100
+    },
+    {
+      "id": "sse-3",
+      "from": "server",
+      "to": "browser",
+      "label": "Event 2",
+      "packet": "data: {\"price\":101}",
+      "description": "Server push ต่อเมื่อราคาเปลี่ยน — connection เดิม",
+      "duration": 1100
+    },
+    {
+      "id": "sse-4",
+      "from": "server",
+      "to": "browser",
+      "label": "Event 3",
+      "packet": "data: {\"price\":99}",
+      "description": "Real-time update โดยไม่ต้อง polling",
+      "duration": 1100
+    },
+    {
+      "id": "sse-5",
+      "from": "browser",
+      "to": "server",
+      "label": "Close",
+      "packet": "Connection closed",
+      "description": "User ปิด tab — connection หยุด",
+      "duration": 1000
+    }
+  ]
+}

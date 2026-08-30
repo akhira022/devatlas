@@ -1,0 +1,41 @@
+{
+  "slug": "online-payment",
+  "title": "ชำระเงินออนไลน์ปลอดภัยยังไง?",
+  "description": "HTTPS เข้ารหัสข้อมูลการชำระเงิน และ JWT/OAuth ยืนยันตัวตน",
+  "difficulty": "intermediate",
+  "icon": "lock",
+  "concepts": ["https", "tls", "authentication", "jwt", "api"],
+  "visualization": "https-flow",
+  "steps": [
+    {
+      "order": 1,
+      "title": "เปิดหน้าชำระเงิน",
+      "description": "Browser เชื่อมต่อ HTTPS — TLS handshake เข้ารหัสการสื่อสาร",
+      "conceptSlug": "https"
+    },
+    {
+      "order": 2,
+      "title": "TLS เข้ารหัส",
+      "description": "Certificate ยืนยันตัวตน server — ข้อมูลระหว่างทางถูกเข้ารหัส",
+      "conceptSlug": "tls"
+    },
+    {
+      "order": 3,
+      "title": "Login / ยืนยันตัวตน",
+      "description": "ผู้ใช้ login หรือใช้ session ที่มีอยู่ — authentication ตรวจสอบตัวตน",
+      "conceptSlug": "authentication"
+    },
+    {
+      "order": 4,
+      "title": "ส่งคำสั่งชำระเงิน",
+      "description": "Frontend ส่ง request พร้อม JWT token ไป payment API",
+      "conceptSlug": "jwt"
+    },
+    {
+      "order": 5,
+      "title": "API ประมวลผล",
+      "description": "Backend ตรวจ token, ตัดบัตร/พร้อมเพย์, ตอบผลสำเร็จ/ล้มเหลว",
+      "conceptSlug": "api"
+    }
+  ]
+}

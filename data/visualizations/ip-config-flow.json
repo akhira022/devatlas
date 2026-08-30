@@ -1,0 +1,78 @@
+{
+  "slug": "ip-config-flow",
+  "title": "Network Interface Config",
+  "description": "ifconfig / ipconfig — ดู IP, MAC, gateway ของเครื่อง",
+  "conceptSlug": "ifconfig",
+  "protocol": "Network",
+  "category": "cli",
+  "nodes": [
+    {
+      "id": "user",
+      "label": "User",
+      "description": "ตรวจสอบ network ของเครื่อง",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "cmd",
+      "label": "ifconfig/ipconfig",
+      "description": "คำสั่งดู interface",
+      "type": "service",
+      "position": {
+        "x": 280,
+        "y": 120
+      }
+    },
+    {
+      "id": "nic",
+      "label": "Network Stack",
+      "description": "OS network interfaces",
+      "type": "network",
+      "position": {
+        "x": 560,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "ip-1",
+      "from": "user",
+      "to": "cmd",
+      "label": "ipconfig",
+      "packet": "ipconfig /all",
+      "description": "รันคำสั่งดูการตั้งค่าเครือข่าย",
+      "duration": 1100
+    },
+    {
+      "id": "ip-2",
+      "from": "cmd",
+      "to": "nic",
+      "label": "Query",
+      "packet": "interfaces?",
+      "description": "ถาม OS ว่ามี interface อะไรบ้าง",
+      "duration": 1100
+    },
+    {
+      "id": "ip-3",
+      "from": "nic",
+      "to": "cmd",
+      "label": "Info",
+      "packet": "192.168.1.50",
+      "description": "ได้ IP, subnet mask, gateway, DNS",
+      "duration": 1100
+    },
+    {
+      "id": "ip-4",
+      "from": "cmd",
+      "to": "user",
+      "label": "Display",
+      "packet": "Ethernet adapter…",
+      "description": "แสดงรายละเอียดแต่ละ interface",
+      "duration": 1000
+    }
+  ]
+}

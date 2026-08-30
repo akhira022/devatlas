@@ -1,0 +1,19 @@
+{
+  "slug": "cli-essentials",
+  "title": "CLI พื้นฐานที่ต้องรู้",
+  "description": "คำสั่ง terminal ที่ใช้ทุกวัน — นำทางไฟล์, ค้นหา, ทดสอบเครือข่าย",
+  "difficulty": "beginner",
+  "icon": "terminal",
+  "estimatedMinutes": 45,
+  "category": "cli",
+  "steps": [
+    { "order": 1, "conceptSlug": "pwd", "note": "อยู่โฟลเดอร์ไหน" },
+    { "order": 2, "conceptSlug": "ls", "note": "ดูไฟล์ในโฟลเดอร์" },
+    { "order": 3, "conceptSlug": "cd", "note": "เปลี่ยนโฟลเดอร์" },
+    { "order": 4, "conceptSlug": "cat", "note": "อ่านไฟล์" },
+    { "order": 5, "conceptSlug": "grep", "note": "ค้นหาข้อความ" },
+    { "order": 6, "conceptSlug": "curl", "note": "ทดสอบ API" },
+    { "order": 7, "conceptSlug": "ping", "note": "ทดสอบการเชื่อมต่อ" }
+  ],
+  "scenarioSlug": "cli-network-debug"
+}

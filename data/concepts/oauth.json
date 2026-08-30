@@ -1,0 +1,63 @@
+{
+  "slug": "oauth",
+  "title": "OAuth",
+  "fullName": "Open Authorization",
+  "summary": "มาตรฐานให้แอปเข้าถึงข้อมูล user จาก service อื่นโดยไม่ต้องรู้ password — เช่น Login with Google",
+  "difficulty": "intermediate",
+  "category": "security",
+  "tags": [
+    "auth",
+    "third-party",
+    "token"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "OAuth 2.0 คือมาตรฐาน authorization ที่ให้แอปขอสิทธิ์เข้าถึงข้อมูล user จาก service อื่น โดย user ไม่ต้องแชร์ password\n\nตัวอย่าง: กด 'Login with Google' บนเว็บ — OAuth จัดการให้"
+    },
+    {
+      "type": "analogy",
+      "content": "OAuth เหมือนบัตรแขก — Google ยืนยันตัวตนให้ แล้วเว็บอื่นให้เข้าได้โดยไม่รู้ password"
+    },
+    {
+      "type": "why",
+      "content": "- User ไม่ต้องสร้าง account ใหม่ทุกเว็บ\n- ไม่ต้องแชร์ password กับ third-party\n- User ควบคุมได้ว่าแอปเข้าถึงอะไรบ้าง (scope)\n- Revoke access ได้เมื่อไม่ต้องการ"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. App redirect user ไป Google login\n2. User อนุญาต (consent screen)\n3. Google ส่ง authorization code กลับ\n4. App แลก code เป็น access token\n5. App ใช้ token เรียก Google API"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Authorization Server — ออก token (Google, GitHub)",
+        "Resource Server — API ที่ป้องกันด้วย token",
+        "Client App — แอปที่ขอเข้าถึง",
+        "Authorization Code — code ชั่วคราวแลก token",
+        "Scope — สิทธิ์ที่ขอ (email, profile)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "\"Login with Google\" บนเว็บ:\n\n1. เว็บ redirect ไป accounts.google.com\n2. User login และอนุญาต scope ที่ขอ\n3. Google redirect กลับพร้อม authorization code\n4. Backend แลก code เป็น access token (client secret ใช้ฝั่ง server)\n5. ใช้ token ดึง profile — ไม่ต้องเก็บ Google password"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "OAuth ≠ Authentication เสมอ — OAuth 2.0 เป็น authorization; OpenID Connect เพิ่ม authentication",
+        "OAuth ≠ JWT — OAuth ใช้ access token ได้หลายรูปแบบ รวม JWT",
+        "'Login with Google' ใช้ OAuth + OpenID Connect"
+      ]
+    }
+  ],
+  "related": [
+    "authentication",
+    "jwt",
+    "authorization"
+  ],
+  "visualization": "oauth-flow",
+  "prerequisites": [
+    "authentication",
+    "api"
+  ]
+}

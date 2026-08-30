@@ -1,0 +1,59 @@
+{
+  "slug": "cdn",
+  "title": "CDN",
+  "fullName": "Content Delivery Network",
+  "summary": "เครือข่าย server กระจายทั่วโลก — ส่งไฟล์ static จาก server ที่ใกล้ผู้ใช้ที่สุด",
+  "difficulty": "intermediate",
+  "category": "network",
+  "tags": [
+    "performance",
+    "caching",
+    "distribution"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "CDN คือเครือข่าย server ที่กระจายอยู่ทั่วโลก — เก็บ copy ของ static files (images, CSS, JS, videos) ไว้ใกล้ผู้ใช้\n\nตัวอย่าง: Cloudflare, AWS CloudFront, Akamai"
+    },
+    {
+      "type": "why",
+      "content": "ลด latency และ load บน origin server:\n- User ในไทยโหลดจาก Singapore edge แทน US server\n- หน้าเว็บโหลดเร็วขึ้นมาก\n- รองรับ traffic สูงได้ดีขึ้น"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. User request ไฟล์จาก CDN URL\n2. CDN ตรวจว่ามี cache ที่ edge node ใกล้ user หรือไม่\n3. ถ้ามี → ส่งจาก cache ทันที\n4. ถ้าไม่มี → ดึงจาก origin server แล้ว cache ไว้"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Edge Server — server ใกล้ user เก็บ cache",
+        "Origin Server — server ต้นทางที่เก็บไฟล์จริง",
+        "Cache TTL — ระยะเวลาเก็บ cache",
+        "DNS Routing — ชี้ user ไป edge ที่ใกล้ที่สุด",
+        "Purge / Invalidation — ล้าง cache เมื่ออัปเดตเนื้อหา"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Netflix ใช้ CDN กระจาย video ไป edge servers ทั่วโลก — คุณดู Stranger Things จาก server ในกรุงเทพ ไม่ใช่จาก California"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "CDN ≠ Hosting — CDN cache เนื้อหาจาก origin ไม่ได้แทนที่ server หลัก",
+        "CDN ช่วย static files เป็นหลัก — dynamic API อาจไม่ cache",
+        "Cloudflare, Akamai, AWS CloudFront เป็น CDN provider ยอดนิยม"
+      ]
+    }
+  ],
+  "related": [
+    "http",
+    "server",
+    "cloud-computing"
+  ],
+  "visualization": "cdn-flow",
+  "prerequisites": [
+    "http",
+    "dns"
+  ]
+}

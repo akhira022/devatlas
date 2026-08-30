@@ -1,0 +1,58 @@
+{
+  "slug": "arp",
+  "title": "ARP",
+  "fullName": "Address Resolution Protocol",
+  "summary": "แปลง IP address เป็น MAC address ใน LAN — ก่อนส่ง packet ในเครือข่ายท้องถิ่น",
+  "difficulty": "advanced",
+  "category": "network",
+  "tags": [
+    "mac",
+    "lan",
+    "layer2"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "ARP ใช้ใน LAN เมื่อ device รู้ IP ปลายทาง แต่ต้องการ MAC address เพื่อส่ง frame บน Ethernet\n\n'Who has 192.168.1.1? Tell 192.168.1.5'"
+    },
+    {
+      "type": "why",
+      "content": "Layer 3 (IP) กับ Layer 2 (Ethernet) ใช้ address คนละแบบ — ARP เป็นสะพานเชื่อม\n\nเกิดขึ้นก่อนส่ง packet แรกใน LAN ทุกครั้ง"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Host broadcast ARP Request: ใครมี IP นี้?\n2. Owner ตอบ ARP Reply พร้อม MAC address\n3. เก็บใน ARP cache — ครั้งต่อไปไม่ต้องถามใหม่"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "ARP Request — broadcast ถามว่าใครมี IP นี้",
+        "ARP Reply — ตอบกลับพร้อม MAC address",
+        "ARP Cache — เก็บ IP→MAC ชั่วคราวในเครื่อง",
+        "Gratuitous ARP — ประกาศ IP/MAC ของตัวเอง",
+        "ARP Table — ตาราง mapping ใน router/switch"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เมื่อ laptop (192.168.1.50) จะส่งข้อมูลไป router (192.168.1.1) ครั้งแรก:\n\n1. Laptop รู้ IP ปลายทาง แต่ยังไม่รู้ MAC ของ router\n2. ส่ง ARP Request broadcast: \"Who has 192.168.1.1?\"\n3. Router ตอบ ARP Reply: \"192.168.1.1 is at AA:BB:CC:DD:EE:FF\"\n4. Laptop เก็บใน ARP cache แล้วส่ง Ethernet frame ไปยัง MAC นั้น\n5. ครั้งถัดไปใช้ cache โดยไม่ต้อง ARP ใหม่ (จนกว่า cache จะหมดอายุ)"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "ARP ใช้ใน LAN เท่านั้น — ข้าม router ใช้ IP routing แทน",
+        "ARP ≠ DNS — ARP แปลง IP→MAC, DNS แปลง domain→IP",
+        "ARP spoofing คือการปลอม ARP Reply เพื่อแทรกกลาง (man-in-the-middle)"
+      ]
+    }
+  ],
+  "related": [
+    "ip",
+    "dhcp",
+    "tcp"
+  ],
+  "visualization": "arp-flow",
+  "prerequisites": [
+    "ip"
+  ]
+}

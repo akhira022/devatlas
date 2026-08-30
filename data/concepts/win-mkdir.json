@@ -1,0 +1,47 @@
+{
+  "slug": "win-mkdir",
+  "title": "mkdir",
+  "fullName": "Make Directory (CMD / PowerShell)",
+  "summary": "สร้างโฟลเดอร์ใหม่ — CMD ใช้ mkdir/md, PowerShell ใช้ New-Item",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "navigation",
+  "platform": "windows",
+  "tags": [
+    "cmd",
+    "powershell",
+    "directory"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "สร้าง directory บน Windows ด้วย `mkdir` หรือ `md` (CMD) / `New-Item -ItemType Directory` (PowerShell)"
+    },
+    {
+      "type": "why",
+      "content": "mkdir สร้างโครงสร้างโฟลเดอร์สำหรับโปรเจกต์ใหม่ — จัดระเบียบไฟล์ตั้งแต่เริ่มต้น\n\nPowerShell รองรับ `New-Item -ItemType Directory` และสร้าง path ซ้อนกันด้วย `-Force`"
+    },
+    {
+      "type": "how_it_works",
+      "content": "**CMD:**\n```\nmkdir docs\nmkdir src\\components\\ui       # ล้มเหลวถ้า parent ยังไม่มี\nmkdir src\\components\\ui       # บางเวอร์ชันรองรับ intermediate\n```\n\n**PowerShell:**\n```\nmkdir docs\nNew-Item -ItemType Directory -Path src\\components\\ui\nNew-Item -ItemType Directory -Force -Path a\\b\\c   # สร้าง parent ให้\n```"
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\nmkdir src\\components\nmkdir logs 2>nul\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "CMD เก่าอาจไม่มี mkdir -p — PowerShell ใช้ -Force แทน",
+        "ใช้ backslash ใน path หรือ forward slash ใน PowerShell ได้",
+        "md เป็น alias ของ mkdir ใน CMD"
+      ]
+    }
+  ],
+  "related": [
+    "mkdir",
+    "win-cd",
+    "win-copy"
+  ],
+  "visualization": "cli-navigation-flow"
+}

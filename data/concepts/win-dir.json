@@ -1,0 +1,61 @@
+{
+  "slug": "win-dir",
+  "title": "dir",
+  "fullName": "Directory Listing (CMD / PowerShell)",
+  "summary": "แสดงรายการไฟล์และโฟลเดอร์ — CMD ใช้ dir, PowerShell ใช้ Get-ChildItem (ls/dir alias)",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "navigation",
+  "platform": "windows",
+  "tags": [
+    "cmd",
+    "powershell",
+    "files"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`dir` ใน CMD แสดงไฟล์และโฟลเดอร์ใน path ปัจจุบัน — PowerShell ใช้ `Get-ChildItem` (alias `dir`, `ls`, `gci`) ซึ่งยืดหยุ่นกว่า"
+    },
+    {
+      "type": "why",
+      "content": "dir ช่วยสำรวจโครงสร้างไฟล์บน Windows ก่อน copy, edit หรือรันโปรแกรม — เทียบเท่า `ls` บน Unix\n\nรู้ว่ามีไฟล์อะไรในโฟลเดอร์ ช่วยลดการพิมพ์ path ผิดและ debug ปัญหา \"file not found\""
+    },
+    {
+      "type": "how_it_works",
+      "content": "**CMD:**\n```\ndir\ndir C:\\Users\ndir /w                   # แบบกว้าง\ndir /s *.js               # recursive หา .js\ndir /a                    # รวม hidden\n```\n\n**PowerShell:**\n```\nGet-ChildItem\ndir\nls\nGet-ChildItem -Recurse -Filter *.ts\nGet-ChildItem | Where-Object { $_.PSIsContainer }   # เฉพาะโฟลเดอร์\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "/s — recursive (CMD)",
+        "/a — all files (CMD)",
+        "-Recurse — recursive (PS)",
+        "-Filter — กรองชื่อไฟล์",
+        "PSIsContainer — แยก folder กับ file",
+        "Format-Table — จัดรูปแบบ output"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\ndir\ndir /w\ndir *.json /s\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "dir ใน PowerShell ไม่ใช่ CMD เดิม — เป็น alias ของ Get-ChildItem",
+        "hidden files ใน CMD ใช้ dir /a",
+        "ดู path ปัจจุบัน — CMD: cd, PowerShell: Get-Location (pwd)"
+      ]
+    }
+  ],
+  "related": [
+    "ls",
+    "win-cd",
+    "win-type"
+  ],
+  "visualization": "cli-navigation-flow",
+  "prerequisites": [
+    "win-cd"
+  ]
+}

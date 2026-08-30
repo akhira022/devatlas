@@ -1,0 +1,97 @@
+{
+  "slug": "smtp-flow",
+  "title": "Email Delivery (SMTP)",
+  "description": "ดูอีเมลเดินทางจาก client ไป recipient ผ่าน SMTP",
+  "conceptSlug": "smtp",
+  "protocol": "SMTP",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Mail Client",
+      "description": "Gmail app ส่งอีเมล",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "smtp",
+      "label": "SMTP Server",
+      "description": "smtp.gmail.com",
+      "type": "server",
+      "position": {
+        "x": 280,
+        "y": 120
+      }
+    },
+    {
+      "id": "dns",
+      "label": "DNS (MX)",
+      "description": "หา mail server ของปลายทาง",
+      "type": "network",
+      "position": {
+        "x": 280,
+        "y": 0
+      }
+    },
+    {
+      "id": "recipient",
+      "label": "Recipient Server",
+      "description": "mail.company.com",
+      "type": "server",
+      "position": {
+        "x": 560,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "smtp-1",
+      "from": "client",
+      "to": "smtp",
+      "label": "Send",
+      "packet": "MAIL FROM / RCPT TO",
+      "description": "Client ส่ง email ผ่าน SMTP commands ไป mail server",
+      "duration": 1200
+    },
+    {
+      "id": "smtp-2",
+      "from": "smtp",
+      "to": "dns",
+      "label": "MX Lookup",
+      "packet": "MX company.com?",
+      "description": "SMTP server ถาม DNS หา MX record ของ domain ปลายทาง",
+      "duration": 1100
+    },
+    {
+      "id": "smtp-3",
+      "from": "dns",
+      "to": "smtp",
+      "label": "MX Record",
+      "packet": "mail.company.com",
+      "description": "DNS ตอบ mail server ของผู้รับ",
+      "duration": 1000
+    },
+    {
+      "id": "smtp-4",
+      "from": "smtp",
+      "to": "recipient",
+      "label": "Relay",
+      "packet": "Email body",
+      "description": "SMTP server ส่งต่อ email ไป recipient mail server",
+      "duration": 1300
+    },
+    {
+      "id": "smtp-5",
+      "from": "recipient",
+      "to": "client",
+      "label": "Delivered",
+      "packet": "250 OK",
+      "description": "ผู้รับดึงอีเมลด้วย IMAP/POP3 — ส่งสำเร็จ",
+      "duration": 1200
+    }
+  ]
+}

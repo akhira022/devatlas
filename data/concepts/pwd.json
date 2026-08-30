@@ -1,0 +1,54 @@
+{
+  "slug": "pwd",
+  "title": "pwd",
+  "fullName": "Print Working Directory",
+  "summary": "แสดง path เต็มของโฟลเดอร์ที่ terminal อยู่ตอนนี้",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "navigation",
+  "platform": "unix",
+  "tags": [
+    "shell",
+    "directory",
+    "path"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`pwd` (print working directory) แสดง absolute path ของตำแหน่งปัจจุบัน — ใช้เมื่อไม่แน่ใจว่าอยู่โฟลเดอร์ไหน หรือต้องการ copy path ไปใช้ในคำสั่งอื่น"
+    },
+    {
+      "type": "why",
+      "content": "เมื่อทำงานใน terminal หลาย tab หรือ path ซ้อนกัน ง่ายต่อการหลงโฟลเดอร์ — pwd ช่วย:\n\n- ยืนยันตำแหน่งก่อน rm -rf\n- copy path ไปใช้ในคำสั่งอื่น\n- debug script ที่อ้าง relative path"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\npwd\n# /Users/dev/projects/my-app\n\npwd -P    # แสดง physical path (resolve symlink)\npwd -L    # แสดง logical path (default บน macOS)\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "absolute path — path เต็มจาก root (/)",
+        "-P — physical path (resolve symlink)",
+        "-L — logical path (ตาม symlink)",
+        "working directory — ตำแหน่งที่ cd ตั้งไว้"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "clone repo แล้วหลงในโฟลเดอร์ย่อย:\n```\npwd\n# .../my-app/packages/ui\n\ncd ../../\npwd\n# .../my-app\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "pwd แสดง path ไม่ใช่รายการไฟล์ — ใช้ ls",
+        "relative path ขึ้นกับ pwd ปัจจุบัน — cd เปลี่ยนแล้ว path เดิมอาจใช้ไม่ได้"
+      ]
+    }
+  ],
+  "related": [
+    "cd",
+    "ls"
+  ],
+  "visualization": "cli-navigation-flow"
+}

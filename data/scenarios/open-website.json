@@ -1,0 +1,47 @@
+{
+  "slug": "open-website",
+  "title": "เกิดอะไรขึ้นเมื่อเปิดเว็บไซต์?",
+  "description": "ติดตามเส้นทางตั้งแต่พิมพ์ URL จนเห็นหน้าเว็บบนหน้าจอ",
+  "difficulty": "beginner",
+  "icon": "globe",
+  "concepts": ["http", "dns", "client", "server", "tcp"],
+  "visualization": "open-website-flow",
+  "steps": [
+    {
+      "order": 1,
+      "title": "ผู้ใช้พิมพ์ URL",
+      "description": "คุณพิมพ์ google.com ใน address bar ของ browser แล้วกด Enter",
+      "conceptSlug": "client"
+    },
+    {
+      "order": 2,
+      "title": "DNS lookup",
+      "description": "Browser ถาม DNS แปลง google.com เป็น IP address",
+      "conceptSlug": "dns"
+    },
+    {
+      "order": 3,
+      "title": "สร้าง TCP connection",
+      "description": "Browser สร้าง TCP connection ที่เชื่อถือได้ไปยัง server",
+      "conceptSlug": "tcp"
+    },
+    {
+      "order": 4,
+      "title": "ส่ง HTTP request",
+      "description": "Browser ส่ง HTTP GET request เพื่อดึงหน้าเว็บ",
+      "conceptSlug": "http"
+    },
+    {
+      "order": 5,
+      "title": "Server ตอบกลับ",
+      "description": "Web server ประมวลผล request และส่ง HTML, CSS, JavaScript กลับมา",
+      "conceptSlug": "server"
+    },
+    {
+      "order": 6,
+      "title": "แสดงผลหน้าเว็บ",
+      "description": "Browser parse response และแสดงหน้าเว็บบนหน้าจอ",
+      "conceptSlug": "client"
+    }
+  ]
+}

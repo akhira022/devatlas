@@ -1,0 +1,53 @@
+{
+  "slug": "login",
+  "title": "เกิดอะไรขึ้นเมื่อ login?",
+  "description": "ติดตาม flow การยืนยันตัวตนตั้งแต่กรอกฟอร์มจนถึง dashboard",
+  "difficulty": "intermediate",
+  "icon": "lock",
+  "concepts": ["frontend", "api", "authentication", "jwt", "database"],
+  "visualization": "login-flow",
+  "steps": [
+    {
+      "order": 1,
+      "title": "กรอก credentials",
+      "description": "คุณพิมพ์ email และ password ในฟอร์ม login",
+      "conceptSlug": "frontend"
+    },
+    {
+      "order": 2,
+      "title": "Frontend ส่งไป API",
+      "description": "ฟอร์ม login ส่ง POST request ไป /api/login พร้อม credentials",
+      "conceptSlug": "api"
+    },
+    {
+      "order": 3,
+      "title": "Server ตรวจสอบ",
+      "description": "API ส่งต่อไป authentication service เพื่อยืนยัน credentials",
+      "conceptSlug": "authentication"
+    },
+    {
+      "order": 4,
+      "title": "ค้นหาใน Database",
+      "description": "Server query database หา user record และตรวจ password hash",
+      "conceptSlug": "database"
+    },
+    {
+      "order": 5,
+      "title": "สร้าง JWT",
+      "description": "ถ้าถูกต้อง server สร้าง JWT token พร้อมข้อมูล user และ expiry",
+      "conceptSlug": "jwt"
+    },
+    {
+      "order": 6,
+      "title": "ส่ง token กลับ",
+      "description": "API ส่ง JWT กลับไปยัง frontend",
+      "conceptSlug": "api"
+    },
+    {
+      "order": 7,
+      "title": "Redirect ไป dashboard",
+      "description": "Frontend เก็บ token และ redirect ไปหน้า dashboard",
+      "conceptSlug": "frontend"
+    }
+  ]
+}

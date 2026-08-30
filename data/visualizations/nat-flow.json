@@ -1,0 +1,106 @@
+{
+  "slug": "nat-flow",
+  "title": "NAT Translation",
+  "description": "ดู router แปลง private IP เป็น public IP ตอนออกเน็ต",
+  "conceptSlug": "nat",
+  "protocol": "NAT",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "laptop",
+      "label": "Laptop",
+      "description": "192.168.1.5 (private)",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 80
+      }
+    },
+    {
+      "id": "phone",
+      "label": "Phone",
+      "description": "192.168.1.8 (private)",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 160
+      }
+    },
+    {
+      "id": "router",
+      "label": "Home Router",
+      "description": "NAT table + public IP 203.0.113.1",
+      "type": "network",
+      "position": {
+        "x": 320,
+        "y": 120
+      }
+    },
+    {
+      "id": "internet",
+      "label": "Internet",
+      "description": "Server เห็นแค่ public IP",
+      "type": "server",
+      "position": {
+        "x": 620,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "nat-1",
+      "from": "laptop",
+      "to": "router",
+      "label": "Request",
+      "packet": "192.168.1.5:54321",
+      "description": "Laptop ส่ง request จาก private IP + random port",
+      "duration": 1200
+    },
+    {
+      "id": "nat-2",
+      "from": "router",
+      "to": "internet",
+      "label": "Translate",
+      "packet": "203.0.113.1:54321",
+      "description": "Router แทนที่ source เป็น public IP — บันทึกใน NAT table",
+      "duration": 1300
+    },
+    {
+      "id": "nat-3",
+      "from": "phone",
+      "to": "router",
+      "label": "Request",
+      "packet": "192.168.1.8:49876",
+      "description": "Phone ส่งพร้อมกัน — IP private ต่างกัน",
+      "duration": 1100
+    },
+    {
+      "id": "nat-4",
+      "from": "router",
+      "to": "internet",
+      "label": "Translate",
+      "packet": "203.0.113.1:49876",
+      "description": "Public IP เดียวกัน แต่ port ต่าง — แยก connection ได้",
+      "duration": 1300
+    },
+    {
+      "id": "nat-5",
+      "from": "internet",
+      "to": "router",
+      "label": "Response",
+      "packet": "→ port 54321",
+      "description": "Response กลับมาที่ public IP:port",
+      "duration": 1100
+    },
+    {
+      "id": "nat-6",
+      "from": "router",
+      "to": "laptop",
+      "label": "Forward",
+      "packet": "→ 192.168.1.5",
+      "description": "Router ดู NAT table ส่งต่อกลับ laptop ที่ถูกต้อง",
+      "duration": 1200
+    }
+  ]
+}

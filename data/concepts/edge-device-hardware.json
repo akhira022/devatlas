@@ -1,0 +1,59 @@
+{
+  "slug": "edge-device-hardware",
+  "title": "Edge Device Hardware",
+  "summary": "ฮาร์ดแวร์ประมวลผลที่ edge — ลด latency ก่อนส่งขึ้น cloud",
+  "difficulty": "advanced",
+  "category": "hardware",
+  "subcategory": "advanced",
+  "tags": [
+    "edge",
+    "iot",
+    "gateway",
+    "latency"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Edge device hardware คือเครื่อง compute ที่ติดตั้งใกล้แหล่งข้อมูล (โรงงาน, ร้านค้า, กล้อง CCTV) แทนส่งทุกอย่างไป cloud — อาจเป็น industrial gateway, NUC หรือ ruggedized box"
+    },
+    {
+      "type": "why",
+      "content": "Latency และ bandwidth จำกัดเมื่อส่ง raw data ขึ้น cloud:\n\n- ประมวลผล video analytics ที่ edge\n- ทำงานต่อได้เมื่อ internet ขาด\n- ลดค่า egress cloud\n- ข้อมูล sensitive ไม่ออกจาก site"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. รับข้อมูลจาก sensor/camera local\n2. รัน inference หรือ rule engine บน device\n3. ส่งเฉพาะ alert/summary ขึ้น cloud\n4. รับคำสั่งกลับ (update model, config)\n5. อาจ sync เมื่อมี connectivity"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Industrial gateway",
+        "NVIDIA Jetson",
+        "Rugged enclosure",
+        "Local storage",
+        "5G/LTE module"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Factory QC: camera → Jetson run defect detection → ส่ง alert เฉพาะ defect ขึ้น cloud, ลด bandwidth 99%"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Edge ≠ IoT sensor — edge มี compute มากกว่า",
+        "Edge computing (software) ต้องมี edge hardware",
+        "Cloud ยังต้องมี — edge ไม่แทนทั้งหมด"
+      ]
+    }
+  ],
+  "related": [
+    "edge-computing",
+    "esp32",
+    "raspberry-pi",
+    "sensor",
+    "data-center",
+    "fpga"
+  ],
+  "visualization": "iot-gateway-flow"
+}

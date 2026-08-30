@@ -1,0 +1,112 @@
+{
+  "slug": "api-flow",
+  "title": "API Request Lifecycle",
+  "description": "ดู lifecycle ของ API request ตั้งแต่ Client เรียก endpoint จนได้ response",
+  "conceptSlug": "api",
+  "protocol": "API / HTTP",
+  "category": "programming",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "API Client",
+      "description": "App, script หรือ Postman — เรียก API endpoint",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "gateway",
+      "label": "API Gateway",
+      "description": "รับ request, ตรวจ auth, rate limit, route",
+      "type": "server",
+      "position": {
+        "x": 260,
+        "y": 120
+      }
+    },
+    {
+      "id": "service",
+      "label": "API Service",
+      "description": "รัน business logic ตาม endpoint",
+      "type": "server",
+      "position": {
+        "x": 520,
+        "y": 120
+      }
+    },
+    {
+      "id": "database",
+      "label": "Database",
+      "description": "แหล่งข้อมูลที่ API อ่าน/เขียน",
+      "type": "database",
+      "position": {
+        "x": 780,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "api-1",
+      "from": "client",
+      "to": "gateway",
+      "label": "Request",
+      "packet": "GET /api/v1/users",
+      "description": "Client ส่ง HTTP request — method, URL, Authorization header, body",
+      "duration": 1200
+    },
+    {
+      "id": "api-2",
+      "from": "gateway",
+      "to": "gateway",
+      "label": "Auth Check",
+      "description": "API Gateway ตรวจสอบ API key หรือ JWT token",
+      "duration": 800
+    },
+    {
+      "id": "api-3",
+      "from": "gateway",
+      "to": "service",
+      "label": "Route",
+      "description": "Gateway ส่งต่อ request ไป service ที่รับผิดชอบ endpoint นี้",
+      "duration": 1000
+    },
+    {
+      "id": "api-4",
+      "from": "service",
+      "to": "database",
+      "label": "Query",
+      "packet": "SELECT * FROM users",
+      "description": "API Service query ข้อมูลตาม business logic",
+      "duration": 1200
+    },
+    {
+      "id": "api-5",
+      "from": "database",
+      "to": "service",
+      "label": "Rows",
+      "description": "Database ส่ง result set กลับมา",
+      "duration": 1000
+    },
+    {
+      "id": "api-6",
+      "from": "service",
+      "to": "gateway",
+      "label": "JSON",
+      "packet": "[{id:1,name:'...'}]",
+      "description": "Service แปลงข้อมูลเป็น JSON response format",
+      "duration": 1000
+    },
+    {
+      "id": "api-7",
+      "from": "gateway",
+      "to": "client",
+      "label": "200 OK",
+      "packet": "200 + JSON body",
+      "description": "Client ได้ response — status code, headers, JSON body พร้อมใช้งาน",
+      "duration": 1200
+    }
+  ]
+}

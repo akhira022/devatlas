@@ -1,0 +1,60 @@
+{
+  "slug": "github-pr",
+  "title": "Pull Request",
+  "summary": "ขอรวม branch เข้า main บน GitHub พร้อม code review",
+  "difficulty": "beginner",
+  "category": "git-github",
+  "subcategory": "github",
+  "tags": [
+    "github",
+    "collaboration"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "**Pull Request (PR)** คือคำขอให้ merge branch เข้า branch หลัก (เช่น `main`) บน GitHub — ทีม review code, รัน CI, comment ก่อน merge"
+    },
+    {
+      "type": "why",
+      "content": "PR คือจุด review code ก่อน merge — มาตรฐานทีมและ open source"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. สร้าง branch + commit + push\n```\ngit checkout -b feature/login\ngit push -u origin feature/login\n```\n2. บน GitHub กด **Compare & pull request**\n3. เขียน title, description, ขอ reviewer\n4. แก้ตาม comment → push เพิ่ม (PR อัปเดตอัตโนมัติ)\n5. Merge เมื่อ approve + CI ผ่าน"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Draft PR — ยังไม่พร้อม review",
+        "Reviewer — คนตรวจ code",
+        "CI checks — test/lint อัตโนมัติ",
+        "Squash merge — รวม commits เป็นหนึ่ง",
+        "Merge conflict — แก้บน GitHub หรือ local"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "1. push branch\n2. เปิด PR บน GitHub\n3. CI รัน tests\n4. reviewer approve\n5. Squash merge → main"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "PR ≠ merge ทันที — ต้อง approve ก่อน (ตามกฎทีม)",
+        "Fork workflow — PR จาก fork ไป upstream repo",
+        "Close PR ไม่ลบ branch — ลบ branch แยกหลัง merge"
+      ]
+    }
+  ],
+  "related": [
+    "git",
+    "git-push",
+    "git-merge",
+    "ci-cd",
+    "gh-cli"
+  ],
+  "visualization": "git-workflow-flow",
+  "prerequisites": [
+    "git-push",
+    "git-branch"
+  ]
+}

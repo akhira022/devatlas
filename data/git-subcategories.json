@@ -1,0 +1,50 @@
+[
+  {
+    "slug": "fundamentals",
+    "name": "พื้นฐาน",
+    "description": "Git คืออะไร เริ่ม repo และ clone โปรเจกต์",
+    "icon": "book",
+    "order": 1,
+    "platform": "git"
+  },
+  {
+    "slug": "workflow",
+    "name": "Workflow ประจำวัน",
+    "description": "ดูสถานะ stage commit และตรวจ diff",
+    "icon": "workflow",
+    "order": 2,
+    "platform": "git"
+  },
+  {
+    "slug": "sync",
+    "name": "Sync กับ Remote",
+    "description": "push, pull, fetch และจัดการ remote",
+    "icon": "cloud-upload",
+    "order": 3,
+    "platform": "git"
+  },
+  {
+    "slug": "branching",
+    "name": "Branch & Merge",
+    "description": "สร้าง branch สลับ รวม code และ rebase",
+    "icon": "git-branch",
+    "order": 4,
+    "platform": "git"
+  },
+  {
+    "slug": "history",
+    "name": "History & Stash",
+    "description": "ดู log ย้อนหลัง และเก็บงานชั่วคราว",
+    "icon": "history",
+    "order": 5,
+    "platform": "git"
+  },
+  {
+    "slug": "github",
+    "name": "GitHub",
+    "description": "Pull Request, review และ GitHub CLI (gh)",
+    "icon": "github",
+    "order": 6,
+    "platform": "git"
+  }
+]

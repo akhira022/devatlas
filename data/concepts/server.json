@@ -1,0 +1,56 @@
+{
+  "slug": "server",
+  "title": "Server",
+  "summary": "เครื่องหรือโปรแกรมที่รอรับ request จาก Client — ประมวลผลและส่ง response กลับ",
+  "difficulty": "beginner",
+  "category": "programming",
+  "tags": [
+    "backend",
+    "response",
+    "hosting"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Server คือคอมพิวเตอร์หรือโปรแกรมที่รอรับการเชื่อมต่อจาก Client — ประมวลผล request และส่งผลลัพธ์กลับ\n\nServer ไม่ได้แปลว่าเครื่องใหญ่เสมอไป — อาจเป็น:\n- Web Server (Nginx, Apache) — ส่งไฟล์ static\n- Application Server (Node.js, Django) — รัน business logic\n- Database Server (PostgreSQL, MySQL) — จัดการข้อมูล\n- File Server — เก็บและแจกไฟล์"
+    },
+    {
+      "type": "why",
+      "content": "Server ทำหน้าที่เป็นศูนย์กลางของระบบ:\n\n- เก็บข้อมูลรวมศูนย์ — Client หลายตัวเข้าถึงข้อมูลเดียวกันได้\n- รัน business logic ที่ซับซ้อน — Client ไม่ต้องรู้ algorithm\n- จัดการ security — authentication, authorization, validation\n- Scale ได้ — รองรับ Client หลายพันล้านพร้อมกัน"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Server เปิด port รอรับ connection (เช่น port 443 สำหรับ HTTPS)\n2. รับ HTTP request จาก Client\n3. Route request ไป handler ที่ถูกต้อง (เช่น /api/users)\n4. ประมวลผล — อาจ query Database, เรียก service อื่น\n5. สร้าง HTTP response (status code, headers, body)\n6. ส่ง response กลับไปยัง Client"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Web Server (reverse proxy)",
+        "Application Server (runtime)",
+        "Database Server",
+        "Load Balancer",
+        "Cache Layer (Redis)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เมื่อสั่งอาหารผ่านแอป:\n\n1. แอป (Client) ส่ง POST /api/orders พร้อมรายการอาหาร\n2. Order Server รับ request, ตรวจสอบสต็อก\n3. Server บันทึก order ลง Database\n4. Server ส่ง notification ไปครัว\n5. Server ตอบ 201 Created พร้อม order ID กลับไปแอป"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Server ≠ Backend เสมอไป — Backend คือ logic ทั้งหมด, Server คือตัวรันจริง",
+        "Physical server (เครื่อง) vs software server (โปรแกรม) — คำเดียวกัน คนละความหมาย",
+        "Serverless ยังมี server — แค่ไม่ต้องจัดการเครื่องเอง"
+      ]
+    }
+  ],
+  "related": [
+    "client",
+    "backend",
+    "api",
+    "database",
+    "rack-server"
+  ],
+  "visualization": "client-server-flow"
+}

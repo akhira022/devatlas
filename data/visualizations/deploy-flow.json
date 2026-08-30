@@ -1,0 +1,85 @@
+{
+  "slug": "deploy-flow",
+  "title": "Deploy App Flow",
+  "description": "จาก push code → CI/CD → Docker image → deploy ขึ้น cloud",
+  "conceptSlug": "deployment",
+  "protocol": "CI/CD",
+  "category": "devops",
+  "nodes": [
+    {
+      "id": "dev",
+      "label": "Developer",
+      "description": "Push code ขึ้น Git remote",
+      "type": "client",
+      "position": { "x": 0, "y": 120 }
+    },
+    {
+      "id": "cicd",
+      "label": "CI/CD",
+      "description": "Pipeline รัน test, build, และเตรียม artifact",
+      "type": "service",
+      "position": { "x": 240, "y": 120 }
+    },
+    {
+      "id": "registry",
+      "label": "Container Registry",
+      "description": "เก็บ Docker image ที่ build แล้ว",
+      "type": "database",
+      "position": { "x": 480, "y": 120 }
+    },
+    {
+      "id": "cloud",
+      "label": "Cloud",
+      "description": "รัน container / serverless บน production",
+      "type": "server",
+      "position": { "x": 720, "y": 120 }
+    }
+  ],
+  "steps": [
+    {
+      "id": "dep-1",
+      "from": "dev",
+      "to": "cicd",
+      "label": "Push",
+      "packet": "git push",
+      "description": "Developer push code — trigger CI/CD pipeline",
+      "duration": 1200
+    },
+    {
+      "id": "dep-2",
+      "from": "cicd",
+      "to": "cicd",
+      "label": "Build & Test",
+      "packet": "npm test / docker build",
+      "description": "Pipeline รัน tests แล้ว build Docker image",
+      "duration": 1300
+    },
+    {
+      "id": "dep-3",
+      "from": "cicd",
+      "to": "registry",
+      "label": "Push Image",
+      "packet": "docker push",
+      "description": "ส่ง image ไปยัง container registry",
+      "duration": 1200
+    },
+    {
+      "id": "dep-4",
+      "from": "registry",
+      "to": "cloud",
+      "label": "Deploy",
+      "packet": "pull & run",
+      "description": "Cloud ดึง image แล้ว deploy เป็น service ใหม่",
+      "duration": 1300
+    },
+    {
+      "id": "dep-5",
+      "from": "cloud",
+      "to": "dev",
+      "label": "Live",
+      "packet": "https://app…",
+      "description": "แอปออนไลน์ — developer ตรวจ health / URL",
+      "duration": 1100
+    }
+  ]
+}

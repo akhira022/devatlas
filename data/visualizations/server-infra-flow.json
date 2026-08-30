@@ -1,0 +1,88 @@
+{
+  "slug": "server-infra-flow",
+  "title": "Server Infrastructure",
+  "description": "rack → RAID → data center — โครงสร้าง server ระดับองค์กร",
+  "conceptSlug": "rack-server",
+  "protocol": "Infrastructure",
+  "category": "hardware",
+  "nodes": [
+    {
+      "id": "dc",
+      "label": "Data Center",
+      "description": "อาคาร + power + cooling",
+      "type": "server",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "rack",
+      "label": "Rack",
+      "description": "42U server rack",
+      "type": "device",
+      "position": {
+        "x": 240,
+        "y": 120
+      }
+    },
+    {
+      "id": "server",
+      "label": "Server",
+      "description": "1U/2U machine",
+      "type": "server",
+      "position": {
+        "x": 480,
+        "y": 60
+      }
+    },
+    {
+      "id": "raid",
+      "label": "RAID Array",
+      "description": "redundant disks",
+      "type": "database",
+      "position": {
+        "x": 480,
+        "y": 180
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "si-1",
+      "from": "dc",
+      "to": "rack",
+      "label": "Power/Cool",
+      "packet": "PDU, HVAC",
+      "description": "data center จ่ายไฟและระบายความร้อน",
+      "duration": 1100
+    },
+    {
+      "id": "si-2",
+      "from": "rack",
+      "to": "server",
+      "label": "Mount",
+      "packet": "slide rails",
+      "description": "ติด server ลง rack unit",
+      "duration": 1100
+    },
+    {
+      "id": "si-3",
+      "from": "server",
+      "to": "raid",
+      "label": "Storage",
+      "packet": "RAID 10",
+      "description": "หลาย disk ทำงานร่วมกัน — fault tolerance",
+      "duration": 1100
+    },
+    {
+      "id": "si-4",
+      "from": "raid",
+      "to": "server",
+      "label": "I/O",
+      "packet": "redundant read",
+      "description": "RAID controller จัดการ read/write และ rebuild",
+      "duration": 1000
+    }
+  ]
+}

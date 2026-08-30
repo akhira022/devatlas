@@ -1,0 +1,16 @@
+{
+  "slug": "computer-boot",
+  "title": "คอมพิวเตอร์บูตทำงานอย่างไร?",
+  "description": "ติดตามขั้นตอนตั้งแต่กดเปิดเครื่องจน CPU รันโปรแกรม",
+  "difficulty": "beginner",
+  "icon": "cpu",
+  "concepts": ["boot-process", "bios-uefi", "cpu", "ram", "storage"],
+  "visualization": "boot-process-flow",
+  "steps": [
+    { "order": 1, "title": "กดเปิดเครื่อง", "description": "ไฟเลี้ยง motherboard และ CPU", "conceptSlug": "boot-process" },
+    { "order": 2, "title": "BIOS/UEFI POST", "description": "Firmware ตรวจ RAM, storage, peripheral", "conceptSlug": "bios-uefi" },
+    { "order": 3, "title": "โหลด Bootloader", "description": "อ่าน boot sector จาก SSD/HDD", "conceptSlug": "storage" },
+    { "order": 4, "title": "โหลด OS Kernel", "description": "Kernel เข้า RAM และเริ่ม drivers", "conceptSlug": "ram" },
+    { "order": 5, "title": "CPU รันโปรแกรม", "description": "fetch-execute cycle ประมวลผลคำสั่งจาก RAM", "conceptSlug": "cpu" }
+  ]
+}

@@ -1,0 +1,85 @@
+{
+  "slug": "sql-query-flow",
+  "title": "SQL Query Flow",
+  "description": "จากแอป → query → database parse/execute → ได้ rows กลับ",
+  "conceptSlug": "sql",
+  "protocol": "SQL",
+  "category": "database",
+  "nodes": [
+    {
+      "id": "app",
+      "label": "App / ORM",
+      "description": "โค้ดแอปหรือ ORM สร้าง SQL statement",
+      "type": "client",
+      "position": { "x": 0, "y": 120 }
+    },
+    {
+      "id": "parser",
+      "label": "Parser / Optimizer",
+      "description": "ตรวจ syntax และเลือก execution plan",
+      "type": "service",
+      "position": { "x": 280, "y": 40 }
+    },
+    {
+      "id": "db",
+      "label": "Database Engine",
+      "description": "รัน plan และจัดการ result set",
+      "type": "database",
+      "position": { "x": 280, "y": 200 }
+    },
+    {
+      "id": "storage",
+      "label": "Storage",
+      "description": "อ่าน/เขียน pages บน disk หรือ buffer cache",
+      "type": "service",
+      "position": { "x": 560, "y": 120 }
+    }
+  ],
+  "steps": [
+    {
+      "id": "sql-1",
+      "from": "app",
+      "to": "parser",
+      "label": "Query",
+      "packet": "SELECT * FROM users WHERE id=1",
+      "description": "แอปส่ง SQL ไปยัง database (ตรงหรือผ่าน ORM)",
+      "duration": 1200
+    },
+    {
+      "id": "sql-2",
+      "from": "parser",
+      "to": "db",
+      "label": "Plan",
+      "packet": "execution plan",
+      "description": "Parser ตรวจ syntax แล้ว Optimizer เลือก plan (ใช้ index หรือไม่)",
+      "duration": 1100
+    },
+    {
+      "id": "sql-3",
+      "from": "db",
+      "to": "storage",
+      "label": "Execute",
+      "packet": "read pages",
+      "description": "Engine อ่านข้อมูลจาก storage ตาม plan",
+      "duration": 1200
+    },
+    {
+      "id": "sql-4",
+      "from": "storage",
+      "to": "db",
+      "label": "Rows",
+      "packet": "result pages",
+      "description": "Storage ส่งข้อมูลดิบกลับให้ engine รวมเป็น result set",
+      "duration": 1000
+    },
+    {
+      "id": "sql-5",
+      "from": "db",
+      "to": "app",
+      "label": "Result",
+      "packet": "result set",
+      "description": "Database ส่ง rows กลับแอป — พร้อมใช้ใน business logic",
+      "duration": 1200
+    }
+  ]
+}

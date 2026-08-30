@@ -1,0 +1,63 @@
+{
+  "slug": "coap",
+  "title": "CoAP",
+  "fullName": "Constrained Application Protocol",
+  "summary": "โปรโตคอล HTTP-like สำหรับอุปกรณ์ IoT ที่ทรัพยากรจำกัด — ใช้ UDP เบาและประหยัดพลังงาน",
+  "difficulty": "intermediate",
+  "category": "iot",
+  "tags": [
+    "protocol",
+    "udp",
+    "constrained-devices"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "CoAP (Constrained Application Protocol) เป็นโปรโตคอล application layer สำหรับอุปกรณ์ IoT ที่ RAM/CPU/battery จำกัด — ออกแบบให้คล้าย REST/HTTP แต่เบากว่ามาก ทำงานบน **UDP** (RFC 7252)\n\nคุณสมบัติหลัก:\n- Request/Response model — GET, PUT, POST, DELETE\n- Binary encoding — header สั้น 4 byte\n- Observe pattern — subscribe การเปลี่ยนแปลง resource\n- DTLS สำหรับ security\n\nใช้กับ sensor node, smart meter, industrial gateway ที่ HTTP หนักเกินไป"
+    },
+    {
+      "type": "why",
+      "content": "HTTP บน TCP ใช้ overhead สูง — handshake, header ใหญ่, connection state ไม่เหมาะ MCU ที่ sleep บ่อย\n\nCoAP เหมาะเมื่อ:\n- อุปกรณ์ constrained (ESP8266, ARM Cortex-M)\n- Network ไม่เสถียร — UDP + retry mechanism\n- ต้องการ RESTful API บน device โดยไม่ใช้ HTTP เต็มรูปแบบ\n- Multicast discovery (CoRE Link Format)\n- ทำงานคู่กับ 6LoWPAN, Thread, LoRaWAN application layer\n\nTrade-off: UDP ไม่ reliable เอง — CoAP มี CON/NON messages และ ACK"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Client ส่ง CoAP request UDP ไป server (device หรือ gateway)\n2. URI path ระบุ resource เช่น `/temp`, `/actuator/led`\n3. Server ตอบ CoAP response พร้อม payload (JSON, CBOR, plain text)\n4. CON (Confirmable) — รอ ACK; NON — ไม่รอ\n5. Observe: client register interest → server push เมื่อค่าเปลี่ยน\n6. CoAP proxy แปลงเป็น HTTP สำหรับ cloud backend\n7. DTLS encrypt ถ้าต้องการ confidentiality บน UDP"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Message Type — CON, NON, ACK, RST",
+        "Method Codes — GET, PUT, POST, DELETE",
+        "Resource URI — path บน device ที่ address ได้",
+        "Observe Option — pub/sub แบบ CoAP-native",
+        "Block Transfer — แบ่ง payload ใหญ่เป็นหลาย block",
+        "CoAP Gateway — แปลง CoAP ↔ HTTP/MQTT ไป cloud"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Smart building วัด CO₂ ในแต่ละห้อง:\n\n1. Sensor node (STM32 + CoAP stack) expose `/sensors/co2`\n2. ทุก 60 วินาที gateway ส่ง CoAP GET — ได้ค่า ppm\n3. ห้องประชุมใช้ Observe — gateway ได้ push ทันทีเมื่อ CO₂ > 1000\n4. CoAP-HTTP proxy บน edge gateway ส่ง JSON ไป REST API บน cloud\n5. Battery node ใช้ NON message + sleep — ประหยัดพลังงาน\n6. DTLS pre-shared key ระหว่าง node กับ gateway"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "CoAP ≠ MQTT — CoAP เป็น request/response REST-like; MQTT เป็น pub/sub broker-centric",
+        "CoAP ใช้ UDP ไม่ใช่ TCP — ต้อง handle packet loss และ reorder",
+        "CoAP ≠ HTTP ย่อ — semantic คล้ายแต่ binary format และ message layer ต่างกัน",
+        "ไม่ทุก cloud รองรับ CoAP โดยตรง — มักต้องผ่าน gateway"
+      ]
+    }
+  ],
+  "related": [
+    "mqtt",
+    "sensor",
+    "udp",
+    "http",
+    "edge-computing"
+  ],
+  "visualization": "coap-flow",
+  "prerequisites": [
+    "mqtt",
+    "sensor"
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "slug": "mkdir",
+  "title": "mkdir",
+  "fullName": "Make Directory",
+  "summary": "สร้างโฟลเดอร์ใหม่ — รองรับสร้างหลายระดับพร้อมกัน",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "navigation",
+  "platform": "unix",
+  "tags": [
+    "shell",
+    "directory",
+    "files"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`mkdir` (make directory) สร้างโฟลเดอร์ใหม่ — ใช้ก่อน `cd` เข้าโฟลเดอร์ที่ยังไม่มี หรือจัดโครงสร้างโปรเจกต์"
+    },
+    {
+      "type": "why",
+      "content": "โครงสร้างโปรเจกต์ต้องมีโฟลเดอร์ก่อนใส่ไฟล์:\n\n- สร้าง src/, tests/, docs/ ตอนเริ่มโปรเจกต์\n- จัดโครงสร้างก่อน generate code\n- สคริปต์ deploy สร้างโฟลเดอร์ปลายทางอัตโนมัติ"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nmkdir docs                    # สร้างโฟลเดอร์ docs\nmkdir src/components/ui       # ล้มเหลวถ้า src/components ยังไม่มี\nmkdir -p src/components/ui    # สร้าง parent ที่ขาดให้อัตโนมัติ\nmkdir -p app/{api,web,admin}  # brace expansion (bash/zsh)\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "-p — สร้าง parent directories",
+        "หลายชื่อ — mkdir a b c",
+        "permission — ต้องมีสิทธิ์เขียนใน parent folder"
+      ]
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "mkdir ไม่ย้ายตำแหน่ง — ใช้ cd หลังสร้าง",
+        "โฟลเดอร์ซ้ำจะ error — ใช้ mkdir -p ถ้าต้องการ idempotent",
+        "rm -rf ลบโฟลเดอร์ได้ — ระวัง path ก่อนลบ"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "สร้างโครงสร้าง React app:\n\n```\nmkdir -p src/{components,hooks,utils}\nmkdir -p public/assets\nls -R src/\n# components  hooks  utils\n```"
+    }
+  ],
+  "related": [
+    "cd",
+    "ls",
+    "chmod"
+  ],
+  "visualization": "cli-navigation-flow"
+}

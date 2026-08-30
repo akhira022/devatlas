@@ -1,0 +1,61 @@
+{
+  "slug": "ip",
+  "title": "IP",
+  "fullName": "Internet Protocol",
+  "summary": "โปรโตคอลชั้น Network ที่ส่ง packet ข้ามเครือข่าย — ทุกอุปกรณ์มี IP address",
+  "difficulty": "beginner",
+  "category": "network",
+  "tags": [
+    "address",
+    "routing",
+    "packet"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "IP (Internet Protocol) กำหนดวิธีส่ง packet จาก source ไป destination ผ่าน router หลายตัว\n\n**IPv4** — 32-bit, เขียนเป็น 4 ตัวเลข (octet):\n```\n192.168.1.1\n```\n\n**IPv6** — 128-bit, แก้ปัญหา IPv4 หมด:\n```\n2001:db8::1\n```\n\nทุกอุปกรณ์ในเครือข่ายต้องมี IP address ไม่ซ้ำกันใน subnet เดียวกัน — DHCP แจกให้อัตโนมัติ หรือตั้ง Static IP เอง"
+    },
+    {
+      "type": "why",
+      "content": "IP เป็น foundation ของอินเทอร์เน็ต:\n\n- ทุก device ต้องมี IP เพื่อสื่อสาร\n- TCP/UDP/ICMP ทำงานบน IP (Layer 3)\n- Router ใช้ destination IP ตัดสินใจเส้นทาง (routing)\n- ร่วมกับ Subnet Mask กำหนดขอบเขตเครือข่าย"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Host สร้าง IP packet — ระบุ source IP, destination IP, TTL\n2. ตรวจสอบว่า destination อยู่ใน subnet เดียวกันหรือไม่ (ดู subnet mask)\n3. ถ้าอยู่ใน LAN → ส่งตรง (ใช้ ARP หา MAC address)\n4. ถ้าอยู่นอก LAN → ส่งไป Default Gateway (router)\n5. Router แต่ละ hop ลด TTL ลง 1 และ forward ตาม routing table\n6. TTL = 0 → packet ถูกทิ้ง (ป้องกัน loop)"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Source IP — ที่อยู่ผู้ส่ง",
+        "Destination IP — ที่อยู่ปลายทาง",
+        "Subnet Mask — กำหนดขอบเขต network (ดู Subnetting)",
+        "Default Gateway — router ทางออกจาก subnet",
+        "TTL (Time To Live) — จำกัดจำนวน hop",
+        "Public IP vs Private IP — 10.x, 172.16.x, 192.168.x เป็น private"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เมื่อ laptop เชื่อม WiFi บ้าน:\n\n1. DHCP แจก IP เช่น 192.168.1.50\n2. Subnet mask 255.255.255.0 (/24)\n3. Gateway 192.168.1.1 (router)\n4. เปิด google.com → DNS แปลงเป็น 142.250.x.x\n5. 142.250.x.x อยู่นอก subnet → ส่งไป gateway\n6. Router NAT แปลง private IP เป็น public IP แล้วออกเน็ต"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "IP ≠ MAC Address — IP เปลี่ยนได้ (DHCP), MAC ติด hardware",
+        "IP ≠ Domain Name — DNS แปลง domain เป็น IP",
+        "127.0.0.1 (localhost) ไม่ได้ออกเน็ต — วนกลับเครื่องตัวเอง",
+        "Public IP ของ router ≠ IP ของ laptop — NAT แชร์ public IP"
+      ]
+    }
+  ],
+  "related": [
+    "subnetting",
+    "tcp",
+    "udp",
+    "dns",
+    "dhcp",
+    "nat",
+    "arp"
+  ],
+  "visualization": "ip-flow"
+}

@@ -1,0 +1,60 @@
+{
+  "slug": "nat",
+  "title": "NAT",
+  "fullName": "Network Address Translation",
+  "summary": "แปลง IP ภายใน (private) เป็น IP สาธารณะ (public) — หลายเครื่องใช้ IP เดียวออกเน็ต",
+  "difficulty": "intermediate",
+  "category": "network",
+  "tags": [
+    "router",
+    "private-ip",
+    "translation"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "NAT ทำงานที่ router — แปลง private IP (192.168.x.x) ของอุปกรณ์ในบ้าน เป็น public IP เดียวที่ ISP แจก\n\nทำให้อุปกรณ์ในบ้าน 10 เครื่อง ออกเน็ตผ่าน IP เดียวได้"
+    },
+    {
+      "type": "why",
+      "content": "- ประหยัด public IP (มีจำกัด)\n- ซ่อนโครงสร้างเครือข่ายภายใน\n- Router บ้านใช้ NAT เกือบทุกที่"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Device ใน LAN (192.168.1.50) ส่ง packet ไป internet\n2. Router แทนที่ source IP เป็น public IP ของ router\n3. บันทึก mapping ใน NAT table (private IP:port ↔ public port)\n4. Response กลับมาที่ public IP → router แปลงกลับเป็น private IP\n5. ส่งต่อให้ device ที่ถูกต้อง"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Private IP — ที่อยู่ภายใน LAN (192.168.x.x)",
+        "Public IP — ที่อยู่บน internet จาก ISP",
+        "NAT Table — mapping connection",
+        "Port Forwarding — ชี้ inbound port เข้า device เฉพาะ",
+        "PAT/NAPT — หลาย private IP ใช้ public IP เดียว"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "บ้านมี 5 อุปกรณ์ แต่ ISP ให้ IP เดียว:\n\n- ทุกเครื่องได้ private IP จาก router (DHCP)\n- ออกเน็ตผ่าน NAT — internet เห็น IP เดียวของ router\n- เล่นเกม online: router ใช้ NAT table ส่ง response กลับเครื่องที่ถูก\n- เปิด port 25565 สำหรับ Minecraft server → port forwarding"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "NAT ≠ Firewall แต่ช่วยซ่อน internal network",
+        "Port forwarding คือ NAT แบบชี้ port เฉพาะเข้ามา",
+        "192.168.x.x เป็น private IP ใช้ใน LAN เท่านั้น"
+      ]
+    }
+  ],
+  "related": [
+    "ip",
+    "dhcp",
+    "firewall",
+    "proxy"
+  ],
+  "visualization": "nat-flow",
+  "prerequisites": [
+    "ip",
+    "router"
+  ]
+}

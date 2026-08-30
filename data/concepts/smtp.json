@@ -1,0 +1,58 @@
+{
+  "slug": "smtp",
+  "title": "SMTP",
+  "fullName": "Simple Mail Transfer Protocol",
+  "summary": "protocol ส่งอีเมล — จาก mail client ไป mail server และระหว่าง servers",
+  "difficulty": "intermediate",
+  "category": "network",
+  "tags": [
+    "email",
+    "mail",
+    "protocol"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "SMTP ใช้ส่ง email จาก sender ไป recipient ผ่าน mail servers\n\nคู่กับ:\n- POP3/IMAP — รับ/อ่าน email\n- SMTP — ส่ง email (port 25, 587)"
+    },
+    {
+      "type": "why",
+      "content": "มาตรฐานส่ง email บนอินเทอร์เน็ตมาตั้งแต่ปี 1982 — Gmail, Outlook ใช้ SMTP ด้านหลัง"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Mail client ส่ง SMTP ไป mail server\n2. Server ค้นหา MX record ของ domain ปลายทาง (ผ่าน DNS)\n3. ส่งต่อไป recipient mail server\n4. ผู้รับดึงด้วย IMAP/POP3"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Mail Client — ส่งอีเมล (Outlook, Gmail app)",
+        "SMTP Server — รับและส่งต่ออีเมล",
+        "MX Record — DNS บอก mail server ของ domain",
+        "Port 25/587 — SMTP ports (587 ใช้ TLS)",
+        "IMAP/POP3 — ดึงอีเมลฝั่งผู้รับ"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ส่งอีเมลจาก you@gmail.com ไป friend@company.com:\n\n1. Gmail SMTP รับอีเมลจากคุณ\n2. ถาม DNS MX ของ company.com\n3. ส่งต่อไป mail server ของ company.com\n4. friend ดึงอีเมลด้วย IMAP\n5. SPF/DKIM ช่วยป้องกัน spam และปลอม sender"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "SMTP ส่งอีเมล, IMAP/POP3 รับอีเมล",
+        "SMTP ≠ HTTP — คนละ protocol คนละ port",
+        "Port 25 มักถูก ISP บล็อก — ใช้ 587 + TLS แทน"
+      ]
+    }
+  ],
+  "related": [
+    "dns",
+    "tcp",
+    "http"
+  ],
+  "visualization": "smtp-flow",
+  "prerequisites": [
+    "tcp"
+  ]
+}

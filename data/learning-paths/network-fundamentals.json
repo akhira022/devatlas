@@ -1,0 +1,19 @@
+{
+  "slug": "network-fundamentals",
+  "title": "พื้นฐานเครือข่าย",
+  "description": "เข้าใจว่าข้อมูลวิ่งบนอินเทอร์เน็ตอย่างไร — จาก IP จนถึง HTTPS",
+  "difficulty": "beginner",
+  "icon": "globe",
+  "estimatedMinutes": 75,
+  "category": "network",
+  "steps": [
+    { "order": 1, "conceptSlug": "ip", "note": "ที่อยู่ของเครื่องบนเครือข่าย" },
+    { "order": 2, "conceptSlug": "dhcp", "note": "ได้ IP อัตโนมัติเมื่อเชื่อม Wi-Fi" },
+    { "order": 3, "conceptSlug": "dns", "note": "แปลง google.com เป็น IP" },
+    { "order": 4, "conceptSlug": "tcp", "note": "การเชื่อมต่อที่เชื่อถือได้" },
+    { "order": 5, "conceptSlug": "http", "note": "โปรโตคอลของเว็บ" },
+    { "order": 6, "conceptSlug": "https", "note": "HTTP + การเข้ารหัส" },
+    { "order": 7, "conceptSlug": "tls", "note": "TLS handshake ทำงานยังไง" }
+  ],
+  "scenarioSlug": "dns-lookup"
+}

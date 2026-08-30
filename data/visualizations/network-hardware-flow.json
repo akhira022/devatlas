@@ -1,0 +1,98 @@
+{
+  "slug": "network-hardware-flow",
+  "title": "Network Hardware Topology",
+  "description": "NIC → switch → router — เชื่อมเครื่องเข้าเครือข่าย",
+  "conceptSlug": "nic",
+  "protocol": "Ethernet",
+  "category": "hardware",
+  "nodes": [
+    {
+      "id": "pc",
+      "label": "PC",
+      "description": "เครื่อง client",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "nic",
+      "label": "NIC",
+      "description": "Network Interface Card",
+      "type": "network",
+      "position": {
+        "x": 200,
+        "y": 120
+      }
+    },
+    {
+      "id": "switch",
+      "label": "Switch",
+      "description": "เชื่อมอุปกรณ์ใน LAN",
+      "type": "network",
+      "position": {
+        "x": 400,
+        "y": 120
+      }
+    },
+    {
+      "id": "router",
+      "label": "Router",
+      "description": "gateway ออก internet",
+      "type": "network",
+      "position": {
+        "x": 600,
+        "y": 120
+      }
+    },
+    {
+      "id": "internet",
+      "label": "Internet",
+      "description": "WAN",
+      "type": "server",
+      "position": {
+        "x": 800,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "nh-1",
+      "from": "pc",
+      "to": "nic",
+      "label": "Frames",
+      "packet": "Ethernet",
+      "description": "OS ส่ง frame ผ่าน NIC",
+      "duration": 1100
+    },
+    {
+      "id": "nh-2",
+      "from": "nic",
+      "to": "switch",
+      "label": "LAN",
+      "packet": "MAC address",
+      "description": "switch forward frame ไป port ที่ถูก",
+      "duration": 1100
+    },
+    {
+      "id": "nh-3",
+      "from": "switch",
+      "to": "router",
+      "label": "Gateway",
+      "packet": "192.168.1.1",
+      "description": "traffic ข้าม subnet ไป router",
+      "duration": 1100
+    },
+    {
+      "id": "nh-4",
+      "from": "router",
+      "to": "internet",
+      "label": "NAT",
+      "packet": "public IP",
+      "description": "router แปลง private IP ออก WAN",
+      "duration": 1000
+    }
+  ]
+}

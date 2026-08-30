@@ -1,0 +1,87 @@
+{
+  "slug": "oauth-flow",
+  "title": "OAuth 2.0 Flow",
+  "description": "Authorization Code flow — ผู้ใช้ login แล้ว app ได้ access token",
+  "conceptSlug": "oauth",
+  "protocol": "OAuth 2.0",
+  "category": "security",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Client App",
+      "description": "แอปที่ต้องการเข้าถึงข้อมูลของผู้ใช้",
+      "type": "client",
+      "position": { "x": 0, "y": 120 }
+    },
+    {
+      "id": "authserver",
+      "label": "Auth Server",
+      "description": "Identity provider ที่จัดการ login และออก token",
+      "type": "server",
+      "position": { "x": 240, "y": 120 }
+    },
+    {
+      "id": "resource",
+      "label": "Resource Server",
+      "description": "API ที่ปกป้องด้วย access token",
+      "type": "server",
+      "position": { "x": 480, "y": 120 }
+    }
+  ],
+  "steps": [
+    {
+      "id": "oauth-1",
+      "from": "client",
+      "to": "authserver",
+      "label": "Authorize",
+      "packet": "GET /authorize?client_id=…",
+      "description": "Client redirect ผู้ใช้ไปหน้า login ของ Auth Server",
+      "duration": 1200
+    },
+    {
+      "id": "oauth-2",
+      "from": "authserver",
+      "to": "client",
+      "label": "Auth Code",
+      "packet": "redirect ?code=…",
+      "description": "หลัง login สำเร็จ — Auth Server ส่ง authorization code กลับ",
+      "duration": 1300
+    },
+    {
+      "id": "oauth-3",
+      "from": "client",
+      "to": "authserver",
+      "label": "Token Exchange",
+      "packet": "POST /token",
+      "description": "Client แลก authorization code เป็น access token (server-side)",
+      "duration": 1200
+    },
+    {
+      "id": "oauth-4",
+      "from": "authserver",
+      "to": "client",
+      "label": "Access Token",
+      "packet": "Bearer token + refresh",
+      "description": "Auth Server ออก access token และ refresh token",
+      "duration": 1100
+    },
+    {
+      "id": "oauth-5",
+      "from": "client",
+      "to": "resource",
+      "label": "API Call",
+      "packet": "Authorization: Bearer …",
+      "description": "Client เรียก Resource Server ด้วย access token",
+      "duration": 1200
+    },
+    {
+      "id": "oauth-6",
+      "from": "resource",
+      "to": "client",
+      "label": "Protected Data",
+      "packet": "200 OK + user data",
+      "description": "Resource Server ตรวจ token แล้วส่งข้อมูลที่อนุญาตกลับ",
+      "duration": 1200
+    }
+  ]
+}

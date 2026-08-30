@@ -1,0 +1,62 @@
+{
+  "slug": "jwt",
+  "title": "JWT",
+  "fullName": "JSON Web Token",
+  "summary": "Token สำหรับยืนยันตัวตนแบบ stateless — ใช้แทน session บน server",
+  "difficulty": "intermediate",
+  "category": "security",
+  "tags": [
+    "auth",
+    "token",
+    "security",
+    "stateless"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "JWT (JSON Web Token) คือมาตรฐานสำหรับสร้าง token ที่ใช้ยืนยันตัวตนหรือส่งข้อมูลระหว่าง parties อย่างปลอดภัย\n\nJWT ประกอบด้วย 3 ส่วน: Header.Payload.Signature คั่นด้วยจุด (.)\n\nตัวอย่าง: `eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0In0.signature`"
+    },
+    {
+      "type": "analogy",
+      "content": "JWT เหมือนตั๋วคอนเสิร์ตที่มีลายน้ำ — ถือตั๋วเข้าได้ ปลอมยากเพราะมีลายเซ็น"
+    },
+    {
+      "type": "why",
+      "content": "JWT แก้ปัญหา session-based auth ที่ต้องเก็บ state บน server:\n\n- Stateless — Server ไม่ต้องเก็บ session\n- Scalable — ใด ๆ server ก็ verify token ได้\n- Cross-domain — ใช้กับ microservices ได้ง่าย\n- Self-contained — ข้อมูล user อยู่ใน token เอง"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. User login สำเร็จ\n2. Server สร้าง JWT (sign ด้วย secret key)\n3. Client เก็บ JWT (localStorage / cookie)\n4. ทุก request ส่ง JWT ใน Authorization header\n5. Server verify signature และอ่าน payload"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Header (algorithm, type)",
+        "Payload (claims: user id, role, expiry)",
+        "Signature (verify ไม่ถูกแก้ไข)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Login API แล้วเรียก protected endpoint:\n\n1. POST /login {email, password} → ได้ JWT\n2. JWT มี 3 ส่วน: header.payload.signature (base64)\n3. เก็บ JWT ใน localStorage หรือ httpOnly cookie\n4. GET /api/profile Header: Authorization: Bearer <jwt>\n5. Server verify signature → อ่าน userId จาก payload → ตอบข้อมูล profile"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "JWT ≠ Encryption — JWT ถูก encode ไม่ใช่ encrypt อย่าเก็บข้อมูลลับใน payload",
+        "JWT หมดอายุได้ — ต้องมี refresh token mechanism",
+        "เก็บใน localStorage มีความเสี่ยง XSS — HttpOnly cookie ปลอดภัยกว่า"
+      ]
+    }
+  ],
+  "related": [
+    "authentication",
+    "authorization",
+    "api"
+  ],
+  "visualization": "jwt-flow",
+  "prerequisites": [
+    "authentication",
+    "json"
+  ]
+}

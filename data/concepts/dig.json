@@ -1,0 +1,60 @@
+{
+  "slug": "dig",
+  "title": "dig",
+  "fullName": "Domain Information Groper",
+  "summary": "ถาม DNS แบบละเอียด — ดู A, MX, CNAME, NS record พร้อม TTL",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "unix",
+  "tags": [
+    "dns",
+    "network",
+    "debug"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`dig` ส่ง DNS query แล้วแสดงผลละเอียด — นิยมกว่า `nslookup` สำหรับ debug เพราะ output ชัดเจน ใช้ใน script ได้ดี และรองรับ record type ครบ"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ndig google.com\ndig google.com +short              # แสดงแค่ IP\ndig google.com A                   # A record\ndig google.com MX                  # mail server\ndig google.com NS                  # name server\ndig google.com CNAME\ndig @8.8.8.8 google.com             # ถาม DNS server ที่ระบุ\ndig google.com +trace              # ตาม DNS recursion ทั้ง chain\ndig -x 8.8.8.8                     # reverse DNS (IP → hostname)\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "A — IPv4 address",
+        "AAAA — IPv6",
+        "MX — mail exchange",
+        "CNAME — alias",
+        "NS — name server",
+        "TTL — cache lifetime",
+        "+short — output สั้น",
+        "@server — ระบุ DNS resolver"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ตรวจว่า domain ชี้ IP ใหม่แล้วหรือยังหลังเปลี่ยน DNS:\n```\ndig myapp.com +short\ndig myapp.com @1.1.1.1 +short    # ถาม Cloudflare โดยตรง\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "dig vs nslookup — dig output ละเอียดกว่า, nslookup ง่ายกว่าสำหรับมือใหม่",
+        "ANSWER SECTION ว่าง — domain อาจไม่มี record หรือ DNS ยังไม่ propagate",
+        "dig ไม่ได้ทดสอบ HTTP — ใช้ curl หลัง resolve IP ได้แล้ว"
+      ]
+    }
+  ],
+  "related": [
+    "dns",
+    "nslookup",
+    "host",
+    "curl"
+  ],
+  "visualization": "dns-flow",
+  "prerequisites": [
+    "dns"
+  ]
+}

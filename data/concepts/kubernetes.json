@@ -1,0 +1,61 @@
+{
+  "slug": "kubernetes",
+  "title": "Kubernetes",
+  "fullName": "K8s",
+  "summary": "ระบบจัดการ containers อัตโนมัติ — scale, load balance, self-heal",
+  "difficulty": "advanced",
+  "category": "devops",
+  "tags": [
+    "orchestration",
+    "containers",
+    "scaling"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Kubernetes (K8s) คือ container orchestration platform — จัดการ Docker containers จำนวนมากบน cluster ของ servers\n\nรับผิดชอบ: scaling, load balancing, rolling updates, self-healing"
+    },
+    {
+      "type": "why",
+      "content": "เมื่อมี containers หลายสิบตัว:\n- ต้องการ auto-scale ตาม traffic\n- Container พัง → restart อัตโนมัติ\n- Zero-downtime deployment\n- Load balance traffic ระหว่าง instances\n- จัดการ secrets และ config"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. ส่ง manifest (YAML) ไป API server\n2. Scheduler เลือก node ที่เหมาะสม\n3. kubelet บน node สร้าง pod จาก container image\n4. Service ให้ stable IP/DNS สำหรับ pods\n5. Ingress จัดการ external traffic\n6. Controller รักษา desired state — ถ้า pod ตาย สร้างใหม่"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Pod (smallest unit)",
+        "Deployment (manage pods)",
+        "Service (networking)",
+        "Ingress (external access)",
+        "Namespace (isolation)",
+        "ConfigMap/Secret"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Deploy web app 3 replicas:\n\n```yaml\nreplicas: 3\nimage: myapp:v2\n```\n\n- K8s สร้าง 3 pods กระจายบน nodes\n- 1 pod crash → K8s สร้างใหม่อัตโนมัติ\n- Rolling update: deploy v3 ทีละ pod — zero downtime\n- Horizontal Pod Autoscaler เพิ่ม pods เมื่อ CPU สูง"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "K8s ≠ Docker — Docker สร้าง container, K8s จัดการ containers",
+        "Overkill สำหรับแอปเล็ก — Vercel/Railway พอสำหรับ startup",
+        "Learning curve สูงมาก"
+      ]
+    }
+  ],
+  "related": [
+    "docker",
+    "cloud-computing",
+    "deployment",
+    "server"
+  ],
+  "visualization": "kubernetes-flow",
+  "prerequisites": [
+    "docker",
+    "deployment"
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "slug": "deployment",
+  "title": "Deployment",
+  "summary": "กระบวนการนำแอปจาก development ไปใช้งานจริงบน production server",
+  "difficulty": "beginner",
+  "category": "devops",
+  "tags": [
+    "production",
+    "release",
+    "hosting"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Deployment คือการนำ code ที่พัฒนาเสร็จไปรันบน server จริงให้ user ใช้งานได้\n\nจาก `localhost:3000` → `https://myapp.com`"
+    },
+    {
+      "type": "why",
+      "content": "Code บนเครื่อง developer ยังไม่ใช่ product — ต้อง deploy ถึงจะ:\n- User เข้าถึงได้จาก internet\n- รันบน infrastructure ที่ reliable\n- มี domain name และ SSL"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Developer push code ไป Git repository\n2. CI/CD pipeline build application (compile, bundle)\n3. รัน automated tests\n4. สร้าง artifact (Docker image, static files)\n5. Deploy ไป server/cloud (rolling update, blue-green)\n6. Health check ยืนยันว่า service ทำงาน\n7. Rollback ถ้า deploy ล้มเหลว"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Build (compile/bundle)",
+        "Hosting (Vercel, AWS, Railway)",
+        "Domain + DNS",
+        "SSL Certificate (HTTPS)",
+        "Environment Variables",
+        "Monitoring"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Next.js app → `git push` → Vercel auto build → deploy ไป edge network → `dev-atlas.vercel.app` live ภายใน 2 นาที"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Deploy ≠ Release — deploy คือนำ code ขึ้น server, release คือเปิดให้ user ใช้",
+        "Staging environment ใช้ทดสอบก่อน production",
+        "Zero-downtime deployment ใช้ load balancer สลับ traffic ทีละส่วน"
+      ]
+    }
+  ],
+  "related": [
+    "ci-cd",
+    "docker",
+    "cloud-computing",
+    "dns"
+  ],
+  "visualization": "deploy-flow"
+}

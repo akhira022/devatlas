@@ -1,0 +1,58 @@
+[
+  {
+    "slug": "computer-components",
+    "name": "ชิปและหน่วยความจำ",
+    "description": "CPU, RAM, Storage, GPU และ Motherboard",
+    "icon": "cpu",
+    "order": 1,
+    "platform": "hardware"
+  },
+  {
+    "slug": "boot-and-firmware",
+    "name": "Boot & Firmware",
+    "description": "BIOS/UEFI และขั้นตอนเปิดเครื่อง",
+    "icon": "power",
+    "order": 2,
+    "platform": "hardware"
+  },
+  {
+    "slug": "networking-hardware",
+    "name": "อุปกรณ์เครือข่าย",
+    "description": "Router, Switch และ NIC",
+    "icon": "network",
+    "order": 3,
+    "platform": "hardware"
+  },
+  {
+    "slug": "embedded-boards",
+    "name": "บอร์ด Embedded",
+    "description": "Arduino, ESP32 และ Raspberry Pi",
+    "icon": "chip",
+    "order": 4,
+    "platform": "hardware"
+  },
+  {
+    "slug": "peripherals",
+    "name": "อุปกรณ์ต่อพ่วง",
+    "description": "I/O, จอภาพ และ Power Supply",
+    "icon": "plug",
+    "order": 5,
+    "platform": "hardware"
+  },
+  {
+    "slug": "server-hardware",
+    "name": "ฮาร์ดแวร์เซิร์ฟเวอร์",
+    "description": "RAID, Hypervisor, Data Center และ Rack",
+    "icon": "server",
+    "order": 6,
+    "platform": "hardware"
+  },
+  {
+    "slug": "advanced",
+    "name": "ขั้นสูง",
+    "description": "TPM, Secure Boot, FPGA, ASIC และ Edge Device",
+    "icon": "shield",
+    "order": 7,
+    "platform": "hardware"
+  }
+]

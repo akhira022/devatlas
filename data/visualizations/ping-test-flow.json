@@ -1,0 +1,19 @@
+{
+  "slug": "ping-test-flow",
+  "title": "Ping Connectivity Test",
+  "description": "ทดสอบการเชื่อมต่อและวัด latency ด้วย ping",
+  "conceptSlug": "ping",
+  "protocol": "ICMP",
+  "category": "cli",
+  "nodes": [
+    { "id": "host", "label": "Your PC", "description": "เครื่องที่รัน ping", "type": "client", "position": { "x": 0, "y": 120 } },
+    { "id": "network", "label": "Network", "description": "router, ISP", "type": "network", "position": { "x": 280, "y": 120 } },
+    { "id": "target", "label": "Target Host", "description": "google.com / 8.8.8.8", "type": "server", "position": { "x": 560, "y": 120 } }
+  ],
+  "steps": [
+    { "id": "ping-1", "from": "host", "to": "target", "label": "ICMP Echo", "packet": "ping google.com", "description": "ส่ง echo request ไปปลายทาง", "duration": 1100 },
+    { "id": "ping-2", "from": "target", "to": "host", "label": "Echo Reply", "packet": "time=12ms", "description": "ปลายทางตอบกลับ — วัด round-trip time", "duration": 1200 },
+    { "id": "ping-3", "from": "host", "to": "host", "label": "Statistics", "packet": "0% loss", "description": "สรุป packet loss และ avg latency", "duration": 1100 },
+    { "id": "ping-4", "from": "host", "to": "network", "label": "Debug", "packet": "ping router first", "description": "ถ้า ping router ไม่ผ่าน → ปัญหา LAN", "duration": 1100 }
+  ]
+}

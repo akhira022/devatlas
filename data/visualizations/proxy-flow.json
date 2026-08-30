@@ -1,0 +1,78 @@
+{
+  "slug": "proxy-flow",
+  "title": "Reverse Proxy",
+  "description": "ดู client คุยกับ proxy แทน backend โดยตรง",
+  "conceptSlug": "proxy",
+  "protocol": "HTTP Proxy",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Browser",
+      "description": "คิดว่าคุยกับ api.example.com",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "proxy",
+      "label": "Nginx Proxy",
+      "description": "Reverse proxy + SSL termination",
+      "type": "network",
+      "position": {
+        "x": 300,
+        "y": 120
+      }
+    },
+    {
+      "id": "backend",
+      "label": "Backend App",
+      "description": "Node.js ที่ port 3000 — client ไม่เห็น",
+      "type": "server",
+      "position": {
+        "x": 600,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "proxy-1",
+      "from": "client",
+      "to": "proxy",
+      "label": "HTTPS",
+      "packet": "GET /api/users",
+      "description": "Client ส่ง HTTPS ไป proxy (public IP) — SSL จบที่ proxy",
+      "duration": 1200
+    },
+    {
+      "id": "proxy-2",
+      "from": "proxy",
+      "to": "backend",
+      "label": "Forward",
+      "packet": "GET /api/users",
+      "description": "Proxy แปลงเป็น HTTP ภายใน forward ไป backend",
+      "duration": 1200
+    },
+    {
+      "id": "proxy-3",
+      "from": "backend",
+      "to": "proxy",
+      "label": "Response",
+      "packet": "200 JSON",
+      "description": "Backend ตอบ proxy — client ไม่รู้ว่ามี backend หลายตัว",
+      "duration": 1100
+    },
+    {
+      "id": "proxy-4",
+      "from": "proxy",
+      "to": "client",
+      "label": "HTTPS",
+      "packet": "200 JSON 🔒",
+      "description": "Proxy ส่ง HTTPS response กลับ client",
+      "duration": 1200
+    }
+  ]
+}

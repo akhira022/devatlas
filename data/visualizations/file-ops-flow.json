@@ -1,0 +1,87 @@
+{
+  "slug": "file-ops-flow",
+  "title": "File Operations",
+  "description": "copy, delete, chmod — จัดการไฟล์และสิทธิ์",
+  "conceptSlug": "chmod",
+  "protocol": "Shell",
+  "category": "cli",
+  "nodes": [
+    {
+      "id": "user",
+      "label": "User",
+      "description": "จัดการไฟล์",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "shell",
+      "label": "Shell",
+      "description": "คำสั่ง file ops",
+      "type": "service",
+      "position": {
+        "x": 280,
+        "y": 120
+      }
+    },
+    {
+      "id": "fs",
+      "label": "File System",
+      "description": "inode, permissions",
+      "type": "database",
+      "position": {
+        "x": 560,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "fo-1",
+      "from": "user",
+      "to": "shell",
+      "label": "copy",
+      "packet": "cp src dst",
+      "description": "คัดลอกไฟล์ไปปลายทางใหม่",
+      "duration": 1100
+    },
+    {
+      "id": "fo-2",
+      "from": "shell",
+      "to": "fs",
+      "label": "Write",
+      "packet": "สร้างไฟล์ใหม่",
+      "description": "ระบบไฟล์เขียนข้อมูลลง disk",
+      "duration": 1100
+    },
+    {
+      "id": "fo-3",
+      "from": "user",
+      "to": "shell",
+      "label": "chmod",
+      "packet": "chmod +x script.sh",
+      "description": "เปลี่ยน permission bits",
+      "duration": 1100
+    },
+    {
+      "id": "fo-4",
+      "from": "shell",
+      "to": "fs",
+      "label": "Perm",
+      "packet": "rwxr-xr-x",
+      "description": "อัปเดตสิทธิ์อ่าน/เขียน/รัน",
+      "duration": 1100
+    },
+    {
+      "id": "fo-5",
+      "from": "user",
+      "to": "fs",
+      "label": "delete",
+      "packet": "rm file.txt",
+      "description": "ลบไฟล์ออกจาก directory",
+      "duration": 1000
+    }
+  ]
+}

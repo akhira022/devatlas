@@ -1,0 +1,51 @@
+{
+  "slug": "choose-database",
+  "title": "เลือก Database แบบไหน?",
+  "description": "SQL, NoSQL หรือ Redis — ตอบคำถามสั้น ๆ แล้วได้คำแนะนำ",
+  "icon": "database",
+  "category": "database",
+  "startNodeId": "data-shape",
+  "nodes": [
+    {
+      "id": "data-shape",
+      "question": "ข้อมูลของคุณมีโครงสร้างอย่างไร?",
+      "help": "คิดถึง relation ระหว่าง entity — user มี orders หลายรายการหรือไม่",
+      "options": [
+        { "label": "มี relation ชัด (user → orders → items)", "next": "need-transactions" },
+        { "label": "เป็น document/JSON ยืดหยุ่น schema เปลี่ยนบ่อย", "next": "result:nosql" },
+        { "label": "แค่ cache/session ชั่วคราว", "next": "result:redis" }
+      ]
+    },
+    {
+      "id": "need-transactions",
+      "question": "ต้องการ transaction ที่เข้มงวด (ACID) ไหม?",
+      "help": "เช่น โอนเงิน — ต้อง debit/credit สำเร็จพร้อมกันหรือ rollback ทั้งหมด",
+      "options": [
+        { "label": "ใช่ — ข้อมูลการเงินหรือ critical business logic", "next": "result:sql" },
+        { "label": "ไม่จำเป็นมาก — eventual consistency พอ", "next": "result:nosql" }
+      ]
+    }
+  ],
+  "results": [
+    {
+      "id": "sql",
+      "title": "แนะนำ: SQL (Relational)",
+      "summary": "ใช้ PostgreSQL หรือ MySQL — เหมาะข้อมูลมี relation, schema ชัด, ต้องการ ACID transaction",
+      "conceptSlugs": ["sql", "database", "orm"],
+      "compareSlug": "sql-vs-nosql"
+    },
+    {
+      "id": "nosql",
+      "title": "แนะนำ: NoSQL",
+      "summary": "ใช้ MongoDB หรือ document store — เหมาะ schema ยืดหยุ่น, scale แนวนอน, ข้อมูล nested",
+      "conceptSlugs": ["nosql", "database"],
+      "compareSlug": "sql-vs-nosql"
+    },
+    {
+      "id": "redis",
+      "title": "แนะนำ: Redis",
+      "summary": "ใช้ Redis สำหรับ cache, session, queue, real-time — ไม่ใช่ primary database แต่เสริม SQL/NoSQL",
+      "conceptSlugs": ["redis", "database"]
+    }
+  ]
+}

@@ -1,0 +1,57 @@
+{
+  "slug": "win-copy",
+  "title": "copy",
+  "fullName": "Copy Files (CMD / PowerShell)",
+  "summary": "คัดลอกไฟล์หรือโฟลเดอร์ — CMD ใช้ copy/xcopy/robocopy, PowerShell ใช้ Copy-Item",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "navigation",
+  "platform": "windows",
+  "tags": [
+    "cmd",
+    "powershell",
+    "files"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`copy` (CMD) คัดลอกไฟล์ — สำหรับโฟลเดอร์ใช้ `xcopy` หรือ `robocopy` แทน PowerShell ใช้ `Copy-Item`"
+    },
+    {
+      "type": "why",
+      "content": "copy คัดลอกไฟล์หรือโฟลเดอร์ — สำรองข้อมูล สร้าง template หรือ deploy artifact\n\nPowerShell ใช้ `Copy-Item` ที่รองรับ recursive และ pipeline"
+    },
+    {
+      "type": "how_it_works",
+      "content": "**CMD:**\n```\ncopy file.txt backup.txt\ncopy *.log D:\\logs\\\nxcopy src D:\\backup\\src /E /I     # copy โฟลเดอร์ recursive\nrobocopy src dest /MIR             # mirror (ขั้นสูง)\n```\n\n**PowerShell:**\n```\nCopy-Item file.txt backup.txt\nCopy-Item -Recurse .\\src .\\backup\\src\nCopy-Item -Path .\\*.json -Destination .\\config\\\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "copy — ไฟล์เดี่ยว (CMD)",
+        "xcopy /E — recursive folder",
+        "robocopy — sync/mirror ขั้นสูง",
+        "Copy-Item -Recurse — PowerShell",
+        "/Y — overwrite ไม่ถาม (xcopy)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\ncopy .env.example .env\nxcopy /E /I dist backup\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "copy ธรรมดา copy โฟลเดอร์ไม่ได้ — ใช้ xcopy หรือ Copy-Item -Recurse",
+        "robocopy ทรงพลังกว่า xcopy สำหรับ backup",
+        "ย้ายไฟล์ใช้ move (CMD) หรือ Move-Item (PS) ไม่ใช่ copy"
+      ]
+    }
+  ],
+  "related": [
+    "win-del",
+    "win-mkdir",
+    "scp"
+  ],
+  "visualization": "file-ops-flow"
+}

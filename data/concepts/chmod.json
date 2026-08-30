@@ -1,0 +1,59 @@
+{
+  "slug": "chmod",
+  "title": "chmod",
+  "fullName": "Change Mode",
+  "summary": "เปลี่ยน permission ของไฟล์และโฟลเดอร์ — อ่าน เขียน execute",
+  "difficulty": "intermediate",
+  "category": "cli",
+  "subcategory": "files",
+  "platform": "unix",
+  "tags": [
+    "shell",
+    "permission",
+    "security"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`chmod` เปลี่ยน permission (rwx) ของไฟล์/โฟลเดอร์ — กำหนดว่า owner, group, others อ่าน (r), เขียน (w), หรือรัน (x) ได้หรือไม่"
+    },
+    {
+      "type": "why",
+      "content": "ไฟล์ executable และความปลอดภัยขึ้นกับ permission:\n\n- script deploy ต้อง chmod +x ก่อนรัน\n- .env ควรเป็น 600 ป้องกันคนอื่นอ่าน\n- web server ต้องอ่านไฟล์ static ได้แต่ไม่เขียน"
+    },
+    {
+      "type": "how_it_works",
+      "content": "**Symbolic mode:**\n```\nchmod +x deploy.sh        # เพิ่ม execute ให้ owner\nchmod u+x deploy.sh       # user +execute\nchmod go-w secret.txt     # group/others ห้ามเขียน\nchmod a+r public.txt      # ทุกคนอ่านได้\n```\n\n**Octal mode:**\n```\nchmod 755 script.sh       # rwxr-xr-x\nchmod 644 config.json     # rw-r--r--\nchmod 600 .env            # rw------- (เฉพาะ owner)\n```\n\n**ตัวเลข octal:** owner(4+2+1) group(4+2+1) others(4+2+1)\n- 4=read, 2=write, 1=execute"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "u — user/owner",
+        "g — group",
+        "o — others",
+        "a — all",
+        "+/- — เพิ่ม/ลบ permission",
+        "755 — rwxr-xr-x",
+        "644 — rw-r--r--"
+      ]
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "chmod 777 เปิดกว้างเกินไป — ใช้เฉพาะ debug ชั่วคราว",
+        "โฟลเดอร์ต้องมี x (execute) ถึงจะ cd เข้าได้",
+        "script ต้อง chmod +x ก่อน ./run.sh — หรือใช้ bash run.sh แทน"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เตรียม deploy script:\n\n```\nchmod +x deploy.sh\nls -l deploy.sh\n# -rwxr-xr-x  ... deploy.sh\n\nchmod 600 .env\nls -l .env\n# -rw-------  ... .env\n```"
+    }
+  ],
+  "related": [
+    "ls",
+    "mkdir",
+    "git"
+  ],
+  "visualization": "file-ops-flow"
+}

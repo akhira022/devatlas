@@ -1,0 +1,49 @@
+{
+  "slug": "git-remote",
+  "title": "remote",
+  "summary": "จัดการ remote repository — มักชื่อ origin ชี้ไป GitHub",
+  "difficulty": "beginner",
+  "category": "git-github",
+  "subcategory": "sync",
+  "tags": [
+    "git",
+    "github"
+  ],
+  "sections": [
+    {
+      "type": "why",
+      "content": "เชื่อม local repo กับ GitHub/GitLab — จำเป็นสำหรับ push/pull"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ngit remote -v\ngit remote add origin https://github.com/user/repo.git\ngit remote set-url origin <new-url>\ngit remote remove origin\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "git remote add origin <url>",
+        "git remote -v",
+        "origin — ชื่อ default",
+        "git remote set-url",
+        "หลาย remote (upstream/fork)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\ngit remote add origin git@github.com:user/app.git\ngit remote -v\ngit push -u origin main\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "origin เป็นชื่อ default ไม่ใช่ URL — เปลี่ยน URL ด้วย set-url",
+        "หลาย remote ได้ — เช่น upstream สำหรับ fork"
+      ]
+    }
+  ],
+  "related": [
+    "git-clone",
+    "git-push",
+    "git-pull"
+  ],
+  "visualization": "git-push-flow"
+}

@@ -1,0 +1,20 @@
+{
+  "slug": "linked-list-flow",
+  "title": "Linked List Insert",
+  "description": "ดูการแทรก node ใหม่ใน linked list",
+  "conceptSlug": "linked-list",
+  "protocol": "Data Structure",
+  "category": "programming",
+  "nodes": [
+    { "id": "head", "label": "Head", "description": "จุดเริ่ม list", "type": "service", "position": { "x": 0, "y": 120 } },
+    { "id": "nodeA", "label": "Node A", "description": "data + next pointer", "type": "service", "position": { "x": 240, "y": 120 } },
+    { "id": "nodeB", "label": "Node B", "description": "node ถัดไป", "type": "service", "position": { "x": 480, "y": 120 } },
+    { "id": "newNode", "label": "New Node C", "description": "node ที่จะแทรก", "type": "client", "position": { "x": 240, "y": 280 } }
+  ],
+  "steps": [
+    { "id": "ll-1", "from": "head", "to": "nodeA", "label": "Traverse", "packet": "A → B", "description": "เริ่มจาก head เดินตาม next pointer", "duration": 1100 },
+    { "id": "ll-2", "from": "newNode", "to": "nodeB", "label": "Link Next", "packet": "C.next = B", "description": "node ใหม่ชี้ไป node เดิมถัดไป", "duration": 1100 },
+    { "id": "ll-3", "from": "nodeA", "to": "newNode", "label": "Link Prev", "packet": "A.next = C", "description": "node ก่อนหน้าชี้มาที่ C", "duration": 1200 },
+    { "id": "ll-4", "from": "head", "to": "nodeB", "label": "Result", "packet": "A → C → B", "description": "list ใหม่: A ชี้ C, C ชี้ B — insert O(1) ถ้ามี pointer", "duration": 1100 }
+  ]
+}

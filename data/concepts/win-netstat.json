@@ -1,0 +1,53 @@
+{
+  "slug": "win-netstat",
+  "title": "netstat",
+  "summary": "ดู TCP/UDP connections และ port ที่ LISTEN บน Windows",
+  "difficulty": "intermediate",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "windows",
+  "tags": [
+    "network",
+    "port",
+    "windows"
+  ],
+  "sections": [
+    {
+      "type": "why",
+      "content": "netstat แสดง port ที่ listen และ connection ที่ active — หา process ที่ใช้ port ซ้ำหรือตรวจ suspicious connection\n\nDev ใช้บ่อยเมื่อ port 3000 ถูกจองอยู่แล้ว"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nnetstat -an                    # ทุก connection (ตัวเลข)\nnetstat -ano                   # + PID\nnetstat -ano | findstr :3000   # หา port 3000\nnetstat -b                     # + process name (ต้อง Admin)\n```\n\n**PowerShell:**\n```\nGet-NetTCPConnection -State Listen\nGet-NetTCPConnection -LocalPort 3000\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "-a — all connections",
+        "-n — numeric (ไม่ resolve ชื่อ)",
+        "-o — PID",
+        "LISTENING — port เปิดรอ",
+        "ESTABLISHED — connection active",
+        "findstr — กรอง output ใน CMD"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\nnetstat -ano | findstr :3000\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "netstat -b ต้องรัน Command Prompt as Administrator",
+        "0.0.0.0:3000 — ฟังทุก interface, [::] — IPv6",
+        "Get-NetTCPConnection ใช้ใน PowerShell แทนได้"
+      ]
+    }
+  ],
+  "related": [
+    "netstat",
+    "ps-test-netconnection",
+    "tcp"
+  ],
+  "visualization": "netstat-flow"
+}

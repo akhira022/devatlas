@@ -1,0 +1,58 @@
+{
+  "slug": "win-ipconfig",
+  "title": "ipconfig",
+  "summary": "ดูและจัดการ IP, subnet mask, gateway ของ network adapter บน Windows",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "windows",
+  "tags": [
+    "network",
+    "ip",
+    "windows"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`ipconfig` แสดงการตั้งค่าเครือข่ายของ Windows — IP address, subnet mask, default gateway, DNS servers เทียบเท่า `ifconfig` / `ip addr` บน Linux"
+    },
+    {
+      "type": "why",
+      "content": "ipconfig ดูการตั้งค่าเครือข่องของ Windows — IP, subnet mask, default gateway และ DNS\n\nใช้ debug ปัญหา \"ไม่มี internet\" หรือ IP conflict เป็นขั้นตอนแรก"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nipconfig\nipconfig /all              # รายละเอียดครบ (MAC, DHCP, DNS)\nipconfig /release          # คืน IP จาก DHCP\nipconfig /renew            # ขอ IP ใหม่จาก DHCP\nipconfig /flushdns         # ล้าง DNS cache\n```\n\n**PowerShell:**\n```\nGet-NetIPAddress\nGet-NetIPConfiguration\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "/all — รายละเอียดเต็ม",
+        "IPv4 Address",
+        "Default Gateway",
+        "DNS Servers",
+        "ipconfig /flushdns"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "WiFi เชื่อมต่อแต่เน็ตไม่เข้า:\n```\nipconfig /all\n# ดู Default Gateway และ DNS\nipconfig /flushdns\nipconfig /renew\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "ipconfig ≠ ifconfig — คนละ OS",
+        "169.254.x.x — APIPA ได้ IP อัตโนมัติเมื่อ DHCP ล้มเหลว",
+        "/flushdns แก้ DNS เก่าค้าง ไม่ใช่ reset network ทั้งหมด"
+      ]
+    }
+  ],
+  "related": [
+    "ifconfig",
+    "ip",
+    "subnetting",
+    "dhcp",
+    "dns"
+  ],
+  "visualization": "ip-config-flow"
+}

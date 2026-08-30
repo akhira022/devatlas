@@ -1,0 +1,68 @@
+{
+  "slug": "cors-flow",
+  "title": "CORS Preflight",
+  "description": "ดู browser ตรวจ CORS ก่อนเรียก API ข้าม domain",
+  "conceptSlug": "cors",
+  "protocol": "CORS / HTTP",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "browser",
+      "label": "Browser",
+      "description": "app.example.com เรียก api.other.com",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "api",
+      "label": "API Server",
+      "description": "api.other.com — ต้องตั้ง CORS headers",
+      "type": "server",
+      "position": {
+        "x": 400,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "cors-1",
+      "from": "browser",
+      "to": "api",
+      "label": "Preflight",
+      "packet": "OPTIONS /api",
+      "description": "Browser ส่ง OPTIONS ก่อน (preflight) — ถามว่า POST จาก origin นี้ได้ไหม",
+      "duration": 1300
+    },
+    {
+      "id": "cors-2",
+      "from": "api",
+      "to": "browser",
+      "label": "Allow",
+      "packet": "Access-Control-Allow-Origin",
+      "description": "API ตอบ Allow-Origin, Allow-Methods, Allow-Headers",
+      "duration": 1300
+    },
+    {
+      "id": "cors-3",
+      "from": "browser",
+      "to": "api",
+      "label": "POST",
+      "packet": "POST /api/data",
+      "description": "Browser อนุญาต request จริง — ส่ง POST พร้อม JSON",
+      "duration": 1200
+    },
+    {
+      "id": "cors-4",
+      "from": "api",
+      "to": "browser",
+      "label": "Response",
+      "packet": "200 + CORS headers",
+      "description": "API ตอบพร้อม CORS headers — browser ให้ JS อ่าน response ได้",
+      "duration": 1200
+    }
+  ]
+}

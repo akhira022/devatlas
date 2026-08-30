@@ -1,0 +1,57 @@
+{
+  "slug": "nosql",
+  "title": "NoSQL",
+  "summary": "Database ที่ไม่ใช้ตารางแบบ relational — ยืดหยุ่นกว่า เหมาะกับข้อมูลที่ structure ไม่แน่นอน",
+  "difficulty": "intermediate",
+  "category": "database",
+  "tags": [
+    "mongodb",
+    "flexible",
+    "document"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "NoSQL (Not Only SQL) คือ database ที่ไม่ใช้โครงสร้างตารางแบบ traditional — มีหลายประเภท:\n\n- Document (MongoDB) — เก็บเป็น JSON-like documents\n- Key-Value (Redis) — เก็บ key→value\n- Column (Cassandra) — เก็บแบบ columns\n- Graph (Neo4j) — เก็บความสัมพันธ์"
+    },
+    {
+      "type": "why",
+      "content": "ใช้เมื่อ:\n- Schema เปลี่ยนบ่อย (startup MVP)\n- ข้อมูลขนาดใหญ่มาก (big data)\n- ต้องการ horizontal scaling ง่าย\n- ข้อมูลไม่เป็น tabular (logs, events)"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Application ส่ง document/key-value query\n2. NoSQL engine ค้นหาตาม key, index หรือ aggregation pipeline\n3. ไม่บังคับ schema — เพิ่ม field ได้ยืดหยุ่น\n4. Scale แนวนอน (sharding) ง่ายกว่า SQL บางกรณี\n5. Trade-off: ยืดหยุ่นและ scale ได้ดี แต่ transaction ซับซ้อนกว่า SQL"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Document Store — MongoDB (JSON-like documents)",
+        "Key-Value Store — Redis, DynamoDB",
+        "Column Store — Cassandra",
+        "Graph Database — Neo4j",
+        "Flexible Schema — ไม่ต้องกำหนด column ล่วงหน้า"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "MongoDB เก็บ user profiles:\n\n```json\n{ \"_id\": 1, \"name\": \"Alice\", \"tags\": [\"dev\", \"music\"] }\n{ \"_id\": 2, \"name\": \"Bob\", \"company\": \"Acme\" }\n```\n\n- Document แต่ละอันมี structure ต่างกันได้\n- Query: db.users.find({ tags: \"dev\" })\n- เหมาะข้อมูลที่ structure เปลี่ยนบ่อย"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "NoSQL ≠ ไม่มี SQL — บางตัวรองรับ SQL-like query",
+        "NoSQL ไม่ได้ดีกว่า SQL เสมอ — เลือกตาม use case",
+        "MongoDB เป็น document DB ไม่ใช่ทุก NoSQL"
+      ]
+    }
+  ],
+  "related": [
+    "database",
+    "sql",
+    "redis"
+  ],
+  "visualization": "database-flow",
+  "prerequisites": [
+    "database"
+  ]
+}

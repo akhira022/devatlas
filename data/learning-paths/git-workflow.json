@@ -1,0 +1,20 @@
+{
+  "slug": "git-workflow",
+  "title": "Git Workflow สำหรับทีม",
+  "description": "จาก init จนถึง branch, merge และ push — workflow ที่ใช้จริงในทีม",
+  "difficulty": "beginner",
+  "icon": "git-branch",
+  "estimatedMinutes": 60,
+  "category": "git-github",
+  "steps": [
+    { "order": 1, "conceptSlug": "git", "note": "ภาพรวม version control" },
+    { "order": 2, "conceptSlug": "git-init", "note": "เริ่ม repo" },
+    { "order": 3, "conceptSlug": "git-add", "note": "stage ไฟล์" },
+    { "order": 4, "conceptSlug": "git-commit", "note": "บันทึก snapshot" },
+    { "order": 5, "conceptSlug": "git-branch", "note": "แยก feature" },
+    { "order": 6, "conceptSlug": "git-merge", "note": "รวมงานกลับ main" },
+    { "order": 7, "conceptSlug": "git-push", "note": "ส่งขึ้น remote" },
+    { "order": 8, "conceptSlug": "github-pr", "note": "review ก่อน merge" }
+  ],
+  "scenarioSlug": "git-feature-branch"
+}

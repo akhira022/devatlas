@@ -1,0 +1,87 @@
+{
+  "slug": "jwt-flow",
+  "title": "JWT Auth Flow",
+  "description": "Login แล้วได้ JWT — ใช้ token เรียก API ที่ต้องยืนยันตัวตน",
+  "conceptSlug": "jwt",
+  "protocol": "JWT",
+  "category": "security",
+  "nodes": [
+    {
+      "id": "client",
+      "label": "Client",
+      "description": "App หรือ Browser ที่เก็บ JWT หลัง login",
+      "type": "client",
+      "position": { "x": 0, "y": 120 }
+    },
+    {
+      "id": "api",
+      "label": "API Server",
+      "description": "ออก JWT ตอน login และ verify ทุก request",
+      "type": "server",
+      "position": { "x": 280, "y": 120 }
+    },
+    {
+      "id": "auth",
+      "label": "Auth / DB",
+      "description": "ตรวจ credentials และอ่าน user claims",
+      "type": "database",
+      "position": { "x": 560, "y": 120 }
+    }
+  ],
+  "steps": [
+    {
+      "id": "jwt-1",
+      "from": "client",
+      "to": "api",
+      "label": "Login",
+      "packet": "POST /login",
+      "description": "Client ส่ง email/password ไป API เพื่อขอ token",
+      "duration": 1200
+    },
+    {
+      "id": "jwt-2",
+      "from": "api",
+      "to": "auth",
+      "label": "Verify",
+      "packet": "check user + hash",
+      "description": "API ตรวจ credentials กับฐานข้อมูล / auth store",
+      "duration": 1100
+    },
+    {
+      "id": "jwt-3",
+      "from": "auth",
+      "to": "api",
+      "label": "OK",
+      "packet": "user claims",
+      "description": "ยืนยันว่า user ถูกต้อง — ส่ง claims (sub, role, exp) กลับ",
+      "duration": 1000
+    },
+    {
+      "id": "jwt-4",
+      "from": "api",
+      "to": "client",
+      "label": "Issue JWT",
+      "packet": "header.payload.sig",
+      "description": "API sign JWT ด้วย secret/key แล้วส่งกลับให้ Client เก็บ",
+      "duration": 1300
+    },
+    {
+      "id": "jwt-5",
+      "from": "client",
+      "to": "api",
+      "label": "API Call",
+      "packet": "Authorization: Bearer …",
+      "description": "Request ถัดไปแนบ JWT ใน header",
+      "duration": 1200
+    },
+    {
+      "id": "jwt-6",
+      "from": "api",
+      "to": "client",
+      "label": "Authorized",
+      "packet": "200 OK + data",
+      "description": "API verify signature + expiry แล้วตอบข้อมูลที่อนุญาต",
+      "duration": 1200
+    }
+  ]
+}

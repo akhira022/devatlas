@@ -1,0 +1,62 @@
+{
+  "slug": "nslookup",
+  "title": "nslookup",
+  "fullName": "Name Server Lookup",
+  "summary": "ถาม DNS ว่า domain แปลงเป็น IP อะไร — debug ปัญหา domain และ mail record",
+  "difficulty": "beginner",
+  "category": "cli",
+  "subcategory": "network",
+  "platform": "unix",
+  "tags": [
+    "dns",
+    "network",
+    "debug"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`nslookup` ส่ง DNS query ไปยัง name server — แสดง IP ของ domain, mail server (MX), หรือ record อื่น ๆ ใช้ debug เมื่อเว็บเปิดไม่ได้หรือ domain ชี้ผิด"
+    },
+    {
+      "type": "why",
+      "content": "เมื่อเว็บเปิดไม่ได้ ต้องแยกว่าปัญหาอยู่ที่ DNS หรือ server:\n\n- ตรวจว่า domain ชี้ IP ถูกต้องหรือไม่\n- debug MX record สำหรับอีเมล\n- เปรียบเทียบ DNS หลาย provider"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nnslookup google.com\nnslookup google.com 8.8.8.8     # ถาม DNS server ที่ระบุ\n\n# interactive mode\nnslookup\n> set type=MX\n> gmail.com\n> exit\n```\n\n**ทางเลือกที่นิยมกว่า:**\n```\ndig google.com\ndig google.com +short\ndig google.com MX\nhost google.com\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "A record — domain → IPv4",
+        "AAAA — domain → IPv6",
+        "MX — mail server",
+        "CNAME — alias",
+        "8.8.8.8 — Google public DNS",
+        "1.1.1.1 — Cloudflare DNS"
+      ]
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "nslookup แสดง DNS ไม่ใช่ทดสอบ HTTP — ใช้ curl หลัง resolve ได้แล้ว",
+        "dig/host มักใช้ใน script ได้ดีกว่า nslookup",
+        "DNS cache อาจทำให้เห็น IP เก่า — flush cache หรือถาม DNS โดยตรง"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เว็บใหม่ deploy แล้วเปิดไม่ได้:\n\n```\nnslookup myapp.com\n# ยังชี้ IP เก่า → รอ DNS propagate หรือแก้ record\n\nnslookup -type=MX myapp.com\n# ตรวจ mail server สำหรับอีเมล @myapp.com\n```"
+    }
+  ],
+  "related": [
+    "dns",
+    "dig",
+    "host",
+    "curl"
+  ],
+  "visualization": "dns-flow",
+  "prerequisites": [
+    "dns"
+  ]
+}

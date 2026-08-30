@@ -1,0 +1,53 @@
+{
+  "slug": "git-init",
+  "title": "init",
+  "summary": "สร้าง Git repository ใหม่ในโฟลเดอร์ปัจจุบัน",
+  "difficulty": "beginner",
+  "category": "git-github",
+  "subcategory": "fundamentals",
+  "tags": [
+    "git",
+    "repository"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`git init` สร้างโฟลเดอร์ `.git` ที่เก็บ history ทั้งหมด — เปลี่ยนโฟลเดอร์ธรรมดาเป็น Git repo"
+    },
+    {
+      "type": "why",
+      "content": "ทุกโปรเจกต์ที่ใช้ Git ต้องเริ่มจาก init หรือ clone — init เหมาะเมื่อสร้างโปรเจกต์ใหม่ตั้งแต่ต้น\n\n- เก็บ history การเปลี่ยนแปลง\n- ทำงานร่วมกับทีมผ่าน remote\n- ใช้ branch แยก feature"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\nmkdir my-project && cd my-project\ngit init\ngit init -b main              # ตั้ง default branch เป็น main\n```\n\nหลัง init ใช้ `git add` + `git commit` บันทึก commit แรก แล้ว `git remote add` เชื่อม GitHub"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        ".git/ — โฟลเดอร์ metadata",
+        "git init — สร้าง repo ว่าง",
+        "git init -b main — ตั้ง default branch",
+        "Working directory — ไฟล์ที่แก้ได้",
+        "Staging area — ไฟล์ที่ git add แล้ว"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "เริ่ม side project:\n```\nmkdir my-api && cd my-api\ngit init -b main\necho \"# My API\" > README.md\ngit add README.md && git commit -m \"Initial commit\"\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "โปรเจกต์ที่ clone มาไม่ต้อง init — มี .git อยู่แล้ว",
+        "init ในโฟลเดอร์ผิด — ลบ .git แล้ว init ใหม่ (ระวัง history หาย)"
+      ]
+    }
+  ],
+  "related": [
+    "git",
+    "git-clone",
+    "git-remote"
+  ],
+  "visualization": "git-workflow-flow"
+}

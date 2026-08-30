@@ -1,0 +1,58 @@
+{
+  "slug": "sse",
+  "title": "SSE",
+  "fullName": "Server-Sent Events",
+  "summary": "server push ข้อมูลไป client ผ่าน HTTP — one-way real-time จาก server",
+  "difficulty": "intermediate",
+  "category": "network",
+  "tags": [
+    "realtime",
+    "push",
+    "events"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "SSE ให้ server ส่ง events ไป browser ผ่าน HTTP connection เดียวที่ค้างไว้\n\nClient ใช้ EventSource API รับ stream ของ events"
+    },
+    {
+      "type": "why",
+      "content": "ง่ายกว่า WebSocket เมื่อต้องการแค่ server→client:\n- Live notifications\n- Stock prices\n- Progress updates\n- ใช้ HTTP ปกติ ไม่ต้อง upgrade protocol"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Client เปิด EventSource ไป GET /events\n2. Server ตอบ Content-Type: text/event-stream\n3. Connection ค้างไว้ — server push event เป็น text:\n   data: {\"price\": 100}\n\n4. Client รับ event ผ่าน onmessage\n5. Connection ปิดเมื่อ client ปิดหรือ timeout"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "EventSource API — browser API สำหรับ SSE",
+        "text/event-stream — content type",
+        "Unidirectional — server → client เท่านั้น",
+        "Auto Reconnect — browser reconnect เมื่อขาด",
+        "Event ID — รองรับ resume หลัง reconnect"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Dashboard ราคาหุ้น real-time:\n\n1. Browser เปิด EventSource('/api/stocks/stream')\n2. Server push ราคาใหม่ทุกวินาที\n3. JavaScript อัปเดตกราฟโดยไม่ refresh หน้า\n4. ง่ายกว่า WebSocket สำหรับ one-way push\n5. ทำงานผ่าน HTTP/2 ได้ดี"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "SSE ≠ WebSocket — SSE one-way, WebSocket two-way",
+        "SSE ใช้ HTTP/1.1 หรือ HTTP/2",
+        "Polling ง่ายกว่าแต่เปลือง request"
+      ]
+    }
+  ],
+  "related": [
+    "http",
+    "websocket",
+    "api"
+  ],
+  "visualization": "sse-flow",
+  "prerequisites": [
+    "http"
+  ]
+}

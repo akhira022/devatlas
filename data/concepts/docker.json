@@ -1,0 +1,59 @@
+{
+  "slug": "docker",
+  "title": "Docker",
+  "summary": "แพลตฟอร์ม containerization — บรรจุแอปพร้อม dependencies ใน container ที่รันได้ทุกที่",
+  "difficulty": "intermediate",
+  "category": "cloud",
+  "tags": [
+    "container",
+    "deployment",
+    "image"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Docker สร้าง container — lightweight, isolated environment ที่บรรจุ app + dependencies + OS libraries\n\n'Works on my machine' → 'Works everywhere'\n\nImage = blueprint, Container = running instance"
+    },
+    {
+      "type": "analogy",
+      "content": "Docker container เหมือนห้องในโรงแรม — แยกกัน มีของครบในห้อง ย้ายไปตึกอื่น (server) ได้"
+    },
+    {
+      "type": "why",
+      "content": "- Consistent environment ทุก stage (dev, staging, prod)\n- แยก apps ไม่ชนกัน\n- Deploy เร็ว — start container ใน seconds\n- Version control สำหรับ environment (Dockerfile)\n- Foundation ของ Kubernetes"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. เขียน Dockerfile กำหนด environment\n2. Build เป็น image\n3. Push ไป registry (Docker Hub)\n4. Pull และ run เป็น container บน server ใดก็ได้"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Image — template อ่านอย่างเดียวสำหรับสร้าง container",
+        "Container — instance ที่รัน application",
+        "Dockerfile — คำสั่ง build image",
+        "Registry — ที่เก็บ image (Docker Hub)",
+        "Volume — เก็บข้อมูลถาวรนอก container"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Deploy Node.js API:\n\n1. เขียน Dockerfile: FROM node:20, COPY code, RUN npm install\n2. docker build -t my-api .\n3. docker run -p 3000:3000 my-api\n4. API รันใน container แยกจาก host — environment เหมือนกันทุกเครื่อง\n5. Push image ไป registry → CI/CD pull และ deploy บน production"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Docker ≠ Virtual Machine — Container แชร์ OS kernel เบากว่า VM มาก",
+        "Docker ≠ Kubernetes — Docker รัน container, K8s จัดการ containers หลายตัว",
+        "Container ไม่ persistent — ข้อมูลหายเมื่อ stop (ใช้ volumes)"
+      ]
+    }
+  ],
+  "related": [
+    "kubernetes",
+    "deployment",
+    "cloud-computing",
+    "server"
+  ],
+  "visualization": "docker-flow"
+}

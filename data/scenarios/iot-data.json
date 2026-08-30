@@ -1,0 +1,41 @@
+{
+  "slug": "iot-data",
+  "title": "IoT ส่งข้อมูลอย่างไร?",
+  "description": "ดูว่า temperature sensor ส่งข้อมูลไป dashboard ผ่าน MQTT ได้อย่างไร",
+  "difficulty": "intermediate",
+  "icon": "radio",
+  "concepts": ["mqtt", "client", "server"],
+  "visualization": "mqtt-flow",
+  "steps": [
+    {
+      "order": 1,
+      "title": "Device เชื่อมต่อ",
+      "description": "ESP32 sensor เชื่อมต่อ MQTT broker ผ่านเครือข่าย",
+      "conceptSlug": "mqtt"
+    },
+    {
+      "order": 2,
+      "title": "Publish อุณหภูมิ",
+      "description": "Sensor อ่านค่า 28°C แล้ว publish ไป topic sensor/temp",
+      "conceptSlug": "mqtt"
+    },
+    {
+      "order": 3,
+      "title": "Broker รับข้อมูล",
+      "description": "MQTT broker รับ message และตรวจสอบ subscribers",
+      "conceptSlug": "server"
+    },
+    {
+      "order": 4,
+      "title": "Dashboard subscribe อยู่",
+      "description": "แอป dashboard subscribe topic sensor/temp ไว้แล้ว",
+      "conceptSlug": "client"
+    },
+    {
+      "order": 5,
+      "title": "ส่งข้อมูลถึง dashboard",
+      "description": "Broker ส่ง 28°C ไป dashboard — คุณเห็นอุณหภูมิแบบ real-time",
+      "conceptSlug": "client"
+    }
+  ]
+}

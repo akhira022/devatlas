@@ -1,0 +1,58 @@
+{
+  "slug": "git-rebase",
+  "title": "rebase",
+  "summary": "ย้าย commits ไปต่อท้าย branch อื่น — history เป็นเส้นตรง",
+  "difficulty": "intermediate",
+  "category": "git-github",
+  "subcategory": "branching",
+  "tags": [
+    "git",
+    "branch"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "`git rebase` เล่า commits ใหม่บน base อื่น — ต่างจาก merge ที่สร้าง merge commit\n\nนิยม: `git pull --rebase` และ rebase feature branch ก่อน merge"
+    },
+    {
+      "type": "why",
+      "content": "ทำ history เป็นเส้นตรง — ก่อน merge PR ให้ commit เรียงสวย"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ngit checkout feature/login\ngit rebase main\ngit rebase -i HEAD~3              # interactive — แก้/รวม commits\n```\n\nหลัง rebase branch ที่ push ไปแล้ว:\n```\ngit push --force-with-lease\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "git rebase main",
+        "git rebase -i — interactive squash",
+        "Rewrites commit history",
+        "Conflict ระหว่าง rebase",
+        "ห้าม rebase public branch ที่คนอื่นใช้"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "```\ngit switch feature/api\ngit rebase main\ngit push --force-with-lease\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "อย่า rebase commit ที่คนอื่นใช้ร่วมแล้ว — เปลี่ยน history",
+        "rebase vs merge — rebase เรียบ, merge เก็บ context การรวม",
+        "golden rule: rebase local, merge public branches"
+      ]
+    }
+  ],
+  "related": [
+    "git-merge",
+    "git-pull",
+    "git-log"
+  ],
+  "visualization": "git-merge-flow",
+  "prerequisites": [
+    "git-branch",
+    "git-commit"
+  ]
+}

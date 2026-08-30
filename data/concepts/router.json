@@ -1,0 +1,64 @@
+{
+  "slug": "router",
+  "title": "Router",
+  "summary": "อุปกรณ์เชื่อมต่อเครือข่ายต่าง subnet — ส่ง traffic ข้าม LAN/WAN",
+  "difficulty": "beginner",
+  "category": "hardware",
+  "subcategory": "networking-hardware",
+  "tags": [
+    "network",
+    "routing",
+    "wan",
+    "lan"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Router คืออุปกรณ์เครือข่ายที่ forward packet ระหว่าง network ต่างกัน — มักเป็น gateway ของบ้าน/ออฟฟิศ ออกสู่ internet\n\nทำหน้าที่ routing (เลือกเส้นทาง), NAT (แปลง private IP → public IP) และมักรวม DHCP, firewall, WiFi AP"
+    },
+    {
+      "type": "why",
+      "content": "LAN ใช้ private IP (192.168.x.x) ไม่สามารถออก internet โดยตรง — router เป็นสะพาน:\n\n- แจก IP ให้ device ผ่าน DHCP\n- NAT ให้หลายเครื่องใช้ public IP เดียว\n- แยก broadcast domain จาก ISP network"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. รับ frame จาก LAN interface\n2. ดู destination IP ในตาราง routing\n3. ถ้าปลายทางอยู่นอก LAN — แปลง source IP ด้วย NAT\n4. Forward packet ออก WAN interface\n5. รับ reply จาก internet แล้วส่งกลับ device ที่ถูกต้อง"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "WAN port",
+        "LAN ports / WiFi",
+        "Routing table",
+        "NAT",
+        "DHCP server",
+        "Firewall rules"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Dev ทำงานจาก home: router 192.168.1.1, NAT ให้ laptop ออก internet, port forward 443 → dev server"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Router ≠ Switch — router ข้าม subnet, switch ใน LAN เดียวกัน",
+        "Router บ้าน = router + switch + WiFi + firewall รวมกัน",
+        "Restart router แก้ DHCP glitch บ่อย"
+      ]
+    }
+  ],
+  "related": [
+    "switch",
+    "nic",
+    "ip",
+    "nat",
+    "dhcp",
+    "firewall"
+  ],
+  "visualization": "network-hardware-flow",
+  "prerequisites": [
+    "nic",
+    "ip"
+  ]
+}

@@ -1,0 +1,52 @@
+{
+  "slug": "git-diff",
+  "title": "diff",
+  "summary": "ดูความต่างของไฟล์ — ยังไม่ stage, staged หรือระหว่าง commit",
+  "difficulty": "beginner",
+  "category": "git-github",
+  "subcategory": "workflow",
+  "tags": [
+    "git",
+    "workflow"
+  ],
+  "sections": [
+    {
+      "type": "why",
+      "content": "review การเปลี่ยนแปลงก่อน commit หรือ merge — ลด bug จากการ commit โดยไม่ดู"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ngit diff                        # เปลี่ยนแปลงยังไม่ stage\ngit diff --staged               # เปลี่ยนแปลงที่ stage แล้ว (ก่อน commit)\ngit diff HEAD~1                 # ต่างจาก commit ก่อนหน้า\ngit diff main..feature/login    # ต่างระหว่าง branch\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "git diff — unstaged changes",
+        "git diff --staged — staged vs HEAD",
+        "git diff main..feature — เปรียบ branch",
+        "git diff HEAD~1 — กับ commit ก่อนหน้า",
+        "--stat — สรุปไฟล์ที่เปลี่ยน"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ก่อน PR:\n```\ngit diff main...feature/auth\ngit diff --staged\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "`git diff` ไม่แสดง staged — ใช้ `--staged`",
+        "diff ไฟล์ใหม่ (untracked) ไม่โผล่จนกว่าจะ add"
+      ]
+    }
+  ],
+  "related": [
+    "git-status",
+    "git-add",
+    "git-log"
+  ],
+  "visualization": "git-diff-flow",
+  "prerequisites": [
+    "git-status"
+  ]
+}

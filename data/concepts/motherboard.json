@@ -1,0 +1,62 @@
+{
+  "slug": "motherboard",
+  "title": "Motherboard",
+  "summary": "แผงวงจรหลักที่เชื่อม CPU, RAM, Storage และอุปกรณ์ทุกอย่าง",
+  "difficulty": "beginner",
+  "category": "hardware",
+  "subcategory": "computer-components",
+  "tags": [
+    "mainboard",
+    "chipset",
+    "expansion"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Motherboard (Mainboard) คือแผงวงจรพิมพ์ (PCB) หลักที่เชื่อมทุก component เข้าด้วยกัน — มี CPU socket, RAM slots, chipset, M.2/SATA connectors, PCIe slots และ I/O panel\n\nForm factor ยอดนิยม: ATX, Micro-ATX, Mini-ITX — กำหนดขนาดเคสและจำนวน expansion ที่ใส่ได้"
+    },
+    {
+      "type": "why",
+      "content": "Motherboard เป็นฐานของทุก build — เลือกผิดแล้วอาจใส่ CPU/RAM ไม่ได้หรือขยายอนาคตยาก:\n\n- กำหนด CPU socket (AM5, LGA1700) และ RAM generation (DDR4/DDR5)\n- จำนวน PCIe/M.2 slots สำหรับ GPU และ SSD\n- VRM quality ส่งผลต่อ overclock และ stability\n- I/O ports (USB-C, 2.5G LAN) ตามความต้องการใช้งาน"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. ติด CPU ลง socket — chipset จัดการ communication bus\n2. เสียบ RAM ลง DIMM slots — dual-channel ให้ bandwidth สูงขึ้น\n3. ต่อ storage ผ่าน M.2 NVMe หรือ SATA\n4. ใส่การ์ดขยายใน PCIe (GPU, NIC, capture card)\n5. PSU จ่ายไฟผ่าน 24-pin ATX + CPU 8-pin\n6. BIOS/UEFI ตั้งค่า boot order, XMP profile, fan curve"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "CPU Socket",
+        "Chipset",
+        "RAM Slots",
+        "M.2 / SATA",
+        "PCIe Slots",
+        "I/O Panel"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Build workstation สำหรับ ML:\n\n1. เลือก board รองรับ dual GPU (PCIe x16 + x16 หรือ x8/x8)\n2. ตรวจ QVL ว่า RAM 128GB kit รองรับ\n3. M.2 slot อย่างน้อย 2 ตัว — OS + dataset\n4. 2.5G Ethernet onboard สำหรับ NAS transfer"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Motherboard ≠ CPU",
+        "ATX vs Micro-ATX ขนาดต่างกัน",
+        "Board ราคาถูกอาจจำกัด power delivery"
+      ]
+    }
+  ],
+  "related": [
+    "cpu",
+    "ram",
+    "storage",
+    "gpu",
+    "nic",
+    "peripheral-io"
+  ],
+  "visualization": "motherboard-flow",
+  "prerequisites": [
+    "cpu"
+  ]
+}

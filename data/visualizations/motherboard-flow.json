@@ -1,0 +1,107 @@
+{
+  "slug": "motherboard-flow",
+  "title": "Motherboard Connections",
+  "description": "แผงวงจรหลักเชื่อม CPU, RAM, storage และ expansion",
+  "conceptSlug": "motherboard",
+  "protocol": "Hardware",
+  "category": "hardware",
+  "nodes": [
+    {
+      "id": "mb",
+      "label": "Motherboard",
+      "description": "PCB หลัก + chipset",
+      "type": "device",
+      "position": {
+        "x": 280,
+        "y": 120
+      }
+    },
+    {
+      "id": "cpu",
+      "label": "CPU",
+      "description": "socket บน board",
+      "type": "device",
+      "position": {
+        "x": 0,
+        "y": 40
+      }
+    },
+    {
+      "id": "ram",
+      "label": "RAM",
+      "description": "DIMM slots",
+      "type": "database",
+      "position": {
+        "x": 0,
+        "y": 200
+      }
+    },
+    {
+      "id": "pcie",
+      "label": "GPU / PCIe",
+      "description": "expansion card",
+      "type": "device",
+      "position": {
+        "x": 560,
+        "y": 60
+      }
+    },
+    {
+      "id": "storage",
+      "label": "M.2 / SATA",
+      "description": "SSD/HDD",
+      "type": "database",
+      "position": {
+        "x": 560,
+        "y": 180
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "mb-1",
+      "from": "cpu",
+      "to": "mb",
+      "label": "Mount",
+      "packet": "CPU socket",
+      "description": "ติด CPU ลง socket — chipset จัดการ bus",
+      "duration": 1100
+    },
+    {
+      "id": "mb-2",
+      "from": "ram",
+      "to": "mb",
+      "label": "Install",
+      "packet": "DDR5 DIMM",
+      "description": "เสียบ RAM ลง slot — memory controller บน CPU/chipset",
+      "duration": 1100
+    },
+    {
+      "id": "mb-3",
+      "from": "storage",
+      "to": "mb",
+      "label": "Connect",
+      "packet": "NVMe M.2",
+      "description": "ต่อ SSD ผ่าน M.2 หรือ SATA",
+      "duration": 1100
+    },
+    {
+      "id": "mb-4",
+      "from": "pcie",
+      "to": "mb",
+      "label": "PCIe x16",
+      "packet": "GPU slot",
+      "description": "การ์ดจอหรือ NIC ใน PCIe slot",
+      "duration": 1100
+    },
+    {
+      "id": "mb-5",
+      "from": "mb",
+      "to": "cpu",
+      "label": "Power/Data",
+      "packet": "VRM delivery",
+      "description": "board จ่ายไฟและส่งสัญญาณระหว่างทุก component",
+      "duration": 1000
+    }
+  ]
+}

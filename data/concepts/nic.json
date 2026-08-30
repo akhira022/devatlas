@@ -1,0 +1,59 @@
+{
+  "slug": "nic",
+  "title": "NIC",
+  "fullName": "Network Interface Card",
+  "summary": "ฮาร์ดแวร์เชื่อมต่อเครือข่าย — Ethernet/WiFi และ MAC address",
+  "difficulty": "intermediate",
+  "category": "hardware",
+  "subcategory": "networking-hardware",
+  "tags": [
+    "network",
+    "ethernet",
+    "mac",
+    "wifi"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "NIC (Network Interface Card) คือฮาร์ดแวร์ที่เชื่อมเครื่องเข้าเครือข่าย — อาจเป็น chip บน motherboard (onboard), การ์ด PCIe แยก หรือ WiFi module\n\nทุก NIC มี MAC address ไม่ซ้ำกัน ใช้ระบุตัวตนที่ Layer 2 (Ethernet)"
+    },
+    {
+      "type": "why",
+      "content": "NIC เป็นจุดเชื่อมระหว่าง OS กับสาย/คลื่นเครือข่าย:\n\n- Server ใช้ 10G/25G NIC สำหรับ throughput สูง\n- Bonding/teaming หลาย NIC เพิ่ม redundancy\n- Container และ VM สร้าง virtual NIC (veth, bridge) แยก network namespace"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. OS โหลด driver ควบคุม NIC\n2. NIC ส่ง/รับ Ethernet frames พร้อม MAC ของตัวเอง\n3. ARP แปลง IP → MAC ใน LAN\n4. IP layer จัดการ routing ข้าม subnet\n5. Virtual NIC ใน Docker/K8s แยก traffic ของแต่ละ container"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "MAC Address",
+        "Speed (1G/10G/25G)",
+        "Onboard vs PCIe NIC",
+        "WiFi vs Ethernet",
+        "SR-IOV (virtualization)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Server dual NIC: bond0 สำหรับ redundancy, `ip link` / `ifconfig` ดู interface, Docker สร้าง veth pair"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "MAC ≠ IP — MAC layer 2, IP layer 3",
+        "WiFi adapter ก็เป็น NIC",
+        "Virtual NIC ใน VM/container ไม่ใช่ physical card"
+      ]
+    }
+  ],
+  "related": [
+    "switch",
+    "router",
+    "ip",
+    "arp",
+    "motherboard"
+  ],
+  "visualization": "network-hardware-flow"
+}

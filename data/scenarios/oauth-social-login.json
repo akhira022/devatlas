@@ -1,0 +1,17 @@
+{
+  "slug": "oauth-social-login",
+  "title": "Login ด้วย Google ทำงานอย่างไร?",
+  "description": "ติดตาม OAuth 2.0 ตั้งแต่กดปุ่ม Sign in with Google จนได้ token",
+  "difficulty": "intermediate",
+  "icon": "lock",
+  "concepts": ["oauth", "authentication", "jwt", "api", "frontend"],
+  "visualization": "oauth-flow",
+  "steps": [
+    { "order": 1, "title": "กด Sign in with Google", "description": "User กดปุ่มบนเว็บ — frontend redirect ไป Google", "conceptSlug": "frontend" },
+    { "order": 2, "title": "ยืนยันตัวตนที่ Google", "description": "Google ให้ user login และเลือก scope ที่อนุญาต", "conceptSlug": "oauth" },
+    { "order": 3, "title": "Authorization code", "description": "Google redirect กลับมาพร้อม code ชั่วคราว", "conceptSlug": "oauth" },
+    { "order": 4, "title": "Backend แลก token", "description": "Server แลก code เป็น access token (ใช้ client secret)", "conceptSlug": "api" },
+    { "order": 5, "title": "สร้าง session/JWT", "description": "Backend สร้าง JWT ของเว็บเองหลังยืนยันตัวตน", "conceptSlug": "jwt" },
+    { "order": 6, "title": "Login สำเร็จ", "description": "User เข้าสู่ระบบ — authentication สำเร็จ", "conceptSlug": "authentication" }
+  ]
+}

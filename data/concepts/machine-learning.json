@@ -1,0 +1,55 @@
+{
+  "slug": "machine-learning",
+  "title": "Machine Learning",
+  "fullName": "ML",
+  "summary": "ให้คอมพิวเตอร์เรียนรู้จากข้อมูลโดยไม่ต้องเขียนกฎทุกอย่างเอง — หา pattern จาก data",
+  "difficulty": "intermediate",
+  "category": "ai",
+  "tags": [
+    "ml",
+    "training",
+    "model"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Machine Learning คือสาขาของ AI ที่ให้ระบบเรียนรู้จากข้อมูล (training data) แล้วทำนายหรือตัดสินใจได้เอง\n\nสามประเภทหลัก:\n- Supervised — มี label (spam/not spam)\n- Unsupervised — ไม่มี label (จัดกลุ่ม customers)\n- Reinforcement — เรียนรู้จาก reward/penalty"
+    },
+    {
+      "type": "why",
+      "content": "ใช้เมื่อเขียนกฎเองยากเกินไป:\n- แนะนำสินค้า (Netflix, Amazon)\n- ตรวจจับ fraud\n- รู้จำใบหน้า\n- พยากรณ์อากาศ\n- แปลภาษา"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. รวบรวม training data\n2. เลือก algorithm (linear regression, decision tree, neural network)\n3. Train model — ปรับ parameters ให้ accuracy สูง\n4. Evaluate บน test data\n5. Deploy model ใช้งานจริง"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Training Data — ข้อมูลสำหรับสอน model",
+        "Features — ตัวแปร input ที่ model ใช้",
+        "Model — สมการ/โครงข่ายที่เรียนรู้จาก data",
+        "Loss Function — วัดว่า model พลาดแค่ไหน",
+        "Inference — ใช้ model ทำนายข้อมูลใหม่"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "ระบบแนะนำสินค้า:\n\n1. เก็บประวัติการซื้อและ click ของ user\n2. Train model หา pattern \"คนซื้อ A มักซื้อ B\"\n3. Deploy model บน server\n4. User เปิดหน้าสินค้า A → model แนะนำ B, C\n5. Retrain เป็นระยะด้วยข้อมูลใหม่"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "ML ≠ AI — ML เป็นสาขาย่อยของ AI",
+        "Training ≠ Inference — training ใช้เวลานาน, inference ต้องเร็ว",
+        "Overfitting — model จำ training data แต่ทำนายข้อมูลใหม่ไม่ได้"
+      ]
+    }
+  ],
+  "related": [
+    "neural-network",
+    "llm",
+    "database"
+  ],
+  "visualization": "llm-flow"
+}

@@ -1,0 +1,66 @@
+[
+  {
+    "slug": "navigation",
+    "name": "Navigation & Directories",
+    "description": "ย้ายตำแหน่ง ดู path สร้างโฟลเดอร์ จัดการไฟล์พื้นฐาน",
+    "icon": "folder",
+    "order": 1,
+    "platform": "unix"
+  },
+  {
+    "slug": "files",
+    "name": "Files & Text",
+    "description": "อ่านไฟล์ ค้นหาข้อความ จัดการ permission",
+    "icon": "file-text",
+    "order": 2,
+    "platform": "unix"
+  },
+  {
+    "slug": "network",
+    "name": "Network",
+    "description": "DNS, HTTP, remote access, port debug และดูสถานะเครือข่าย",
+    "icon": "globe",
+    "order": 3,
+    "platform": "unix"
+  },
+  {
+    "slug": "npm",
+    "name": "npm & Packages",
+    "description": "ติดตั้ง dependency รัน script จัดการ Node.js packages",
+    "icon": "package",
+    "order": 4,
+    "platform": "unix"
+  },
+  {
+    "slug": "navigation",
+    "name": "Navigation & Directories",
+    "description": "ย้ายไดรฟ์ ดูรายการไฟล์ สร้างโฟลเดอร์ คัดลอกและลบ",
+    "icon": "folder",
+    "order": 1,
+    "platform": "windows"
+  },
+  {
+    "slug": "files",
+    "name": "Files & Text",
+    "description": "อ่านไฟล์ ค้นหาข้อความ หา executable ใน PATH",
+    "icon": "file-text",
+    "order": 2,
+    "platform": "windows"
+  },
+  {
+    "slug": "network",
+    "name": "Network",
+    "description": "ipconfig, ping, DNS, HTTP request และตรวจ port",
+    "icon": "globe",
+    "order": 3,
+    "platform": "windows"
+  },
+  {
+    "slug": "npm",
+    "name": "npm & Packages",
+    "description": "ติดตั้งและรัน Node.js packages บน Windows",
+    "icon": "package",
+    "order": 4,
+    "platform": "windows"
+  }
+]

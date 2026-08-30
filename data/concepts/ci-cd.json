@@ -1,0 +1,59 @@
+{
+  "slug": "ci-cd",
+  "title": "CI/CD",
+  "fullName": "Continuous Integration / Continuous Deployment",
+  "summary": "ระบบ automate การ test และ deploy โค้ด — push แล้ว test + deploy อัตโนมัติ",
+  "difficulty": "intermediate",
+  "category": "devops",
+  "tags": [
+    "automation",
+    "pipeline",
+    "deploy"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "CI/CD คือ practice และเครื่องมือที่ automate software delivery:\n\n- CI (Continuous Integration) — merge code บ่อย ๆ + run tests อัตโนมัติ\n- CD (Continuous Deployment) — deploy ไป production อัตโนมัติเมื่อ tests ผ่าน\n\nTools: GitHub Actions, GitLab CI, Jenkins, CircleCI"
+    },
+    {
+      "type": "why",
+      "content": "- จับ bug เร็ว — test ทุก commit\n- Deploy บ่อยขึ้น — ไม่รอ release ใหญ่\n- ลด human error — automate แทนทำมือ\n- Rollback ง่าย — deploy version ก่อนหน้า"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Developer push code ไป GitHub\n2. CI trigger — run tests, lint, build\n3. Tests ผ่าน → CD trigger\n4. Build Docker image\n5. Deploy ไป staging/production\n6. Health check → notify team"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "CI Pipeline — build, test อัตโนมัติทุก commit",
+        "CD Pipeline — deploy ไป staging/production",
+        "Build Agent / Runner — เครื่องที่รัน pipeline",
+        "Artifact — ผลลัพธ์จาก build (Docker image, binary)",
+        "Git Hook / Webhook — trigger pipeline เมื่อ push code"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Push ไป `main` → GitHub Actions run tests (2 นาที) → build Next.js → deploy Vercel → production อัปเดตภายใน 5 นาที"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "CI ≠ CD — CI คือ integrate & test, CD คือ deliver/deploy",
+        "GitHub Actions, GitLab CI, Jenkins เป็น CI/CD tools",
+        "CI/CD ไม่ได้แทน testing ด้วยมือ — ยังต้องเขียน test ที่ดี"
+      ]
+    }
+  ],
+  "related": [
+    "git",
+    "deployment",
+    "docker"
+  ],
+  "visualization": "deploy-flow",
+  "prerequisites": [
+    "git",
+    "deployment"
+  ]
+}

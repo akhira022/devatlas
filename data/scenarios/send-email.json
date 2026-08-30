@@ -1,0 +1,41 @@
+{
+  "slug": "send-email",
+  "title": "ส่งอีเมลทำงานยังไง?",
+  "description": "ตั้งแต่พิมพ์ข้อความใน client จนถึง SMTP server ส่งถึงปลายทาง",
+  "difficulty": "intermediate",
+  "icon": "globe",
+  "concepts": ["smtp", "tcp", "dns", "server"],
+  "visualization": "smtp-flow",
+  "steps": [
+    {
+      "order": 1,
+      "title": "เขียนอีเมล",
+      "description": "ผู้ใช้เขียนข้อความ ใส่ผู้รับ (To) และหัวข้อ (Subject) ใน mail client",
+      "conceptSlug": "client"
+    },
+    {
+      "order": 2,
+      "title": "หา mail server",
+      "description": "DNS lookup MX record ของโดเมนปลายทาง — หา SMTP server ที่รับอีเมล",
+      "conceptSlug": "dns"
+    },
+    {
+      "order": 3,
+      "title": "เชื่อมต่อ SMTP",
+      "description": "Mail client เปิด TCP connection ไป SMTP server (port 25/587)",
+      "conceptSlug": "tcp"
+    },
+    {
+      "order": 4,
+      "title": "ส่งผ่าน SMTP",
+      "description": "SMTP protocol ส่ง envelope, headers และ body ไปยัง server",
+      "conceptSlug": "smtp"
+    },
+    {
+      "order": 5,
+      "title": "ส่งต่อถึงปลายทาง",
+      "description": "SMTP server ปลายทางเก็บอีเมล — ผู้รับดึงผ่าน IMAP/POP3",
+      "conceptSlug": "server"
+    }
+  ]
+}

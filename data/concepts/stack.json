@@ -1,0 +1,51 @@
+{
+  "slug": "stack",
+  "title": "Stack",
+  "summary": "LIFO — Last In First Out แทรกและดึงจากด้านบนเท่านั้น",
+  "difficulty": "beginner",
+  "category": "programming",
+  "subcategory": "data-structure",
+  "tags": [
+    "linear",
+    "lifo"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "**Stack** ทำงานแบบ **LIFO** — ใส่ล่าสุด ออกก่อน (เหมือนแท่นจ่ายจาน)\n\nOperations:\n- `push` — ใส่ด้านบน\n- `pop` — เอาออกจากด้านบน\n- `peek` — ดูตัวบนสุดไม่เอาออก"
+    },
+    {
+      "type": "why",
+      "content": "- Undo/Redo ใน editor\n- Call stack ตอนเรียก function\n- Browser back history\n- ตรวจวงเล็บ `()[]{}` ครบหรือไม่\n- DFS บน graph"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\npush(1) push(2) push(3)\n\n| 3 | ← top\n| 2 |\n| 1 |\n\npop() → 3\n```\n\nImplement ด้วย array หรือ linked list — push/pop O(1)"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "LIFO — Last In First Out",
+        "push / pop",
+        "Call stack ใน runtime",
+        "Undo operations",
+        "O(1) push/pop"
+      ]
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Stack ≠ Queue — queue เป็น FIFO",
+        "JavaScript call stack overflow — recursion ลึกเกิน",
+        "Array.push/pop ใช้เป็น stack ได้ใน JS"
+      ]
+    }
+  ],
+  "related": [
+    "data-structure",
+    "queue",
+    "linked-list",
+    "graph-structure"
+  ],
+  "visualization": "stack-flow"
+}

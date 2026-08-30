@@ -1,0 +1,61 @@
+{
+  "slug": "secure-boot",
+  "title": "Secure Boot",
+  "summary": "UEFI ตรวจ signature ของ bootloader — ป้องกัน bootkit/malware",
+  "difficulty": "advanced",
+  "category": "hardware",
+  "subcategory": "advanced",
+  "tags": [
+    "security",
+    "uefi",
+    "boot",
+    "signature"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Secure Boot คือกลไกใน UEFI ที่ตรวจลายเซ็นดิจิทัลของ bootloader และ OS kernel ก่อนโหลด — ป้องกัน rootkit และ bootkit ที่แทรกก่อน OS ทำงาน"
+    },
+    {
+      "type": "why",
+      "content": "ถ้า malware แทรกตั้งแต่ boot ระดับ firmware — antivirus ใน OS อาจไม่เห็น:\n\n- Secure Boot อนุญาตเฉพาะ binary ที่ vendor ลงนาม\n- มาตรฐานใน Windows 11 และ enterprise laptop\n- ทำงานร่วมกับ TPM สำหรับ disk encryption"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. UEFI firmware มี public key ของ vendor (Microsoft, Linux distro)\n2. Bootloader ต้องมีลายเซ็นที่ถูกต้อง\n3. ถ้า signature ไม่ตรง — ปฏิเสธ boot\n4. ลำดับ: firmware → signed bootloader → signed kernel\n5. ปิด Secure Boot ได้ใน BIOS สำหรับ dual-boot หรือ custom kernel"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Platform Key (PK)",
+        "Key Exchange Key (KEK)",
+        "Signature database",
+        "Shim (Linux)",
+        "MOK (Machine Owner Key)"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Dual boot Ubuntu + Windows: เปิด Secure Boot → ใช้ signed shim, custom kernel module ต้อง enroll MOK"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Secure Boot ≠ TPM — ทำงานร่วมกันได้",
+        "ปิด Secure Boot เพื่อ install OS เก่า — ลด security",
+        "Not lock to Windows only — Linux รองรับ"
+      ]
+    }
+  ],
+  "related": [
+    "bios-uefi",
+    "boot-process",
+    "tpm",
+    "encryption"
+  ],
+  "visualization": "security-hardware-flow",
+  "prerequisites": [
+    "bios-uefi",
+    "tpm"
+  ]
+}

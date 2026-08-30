@@ -1,0 +1,62 @@
+{
+  "slug": "esp32",
+  "title": "ESP32",
+  "summary": "MCU ราคาถูกที่มี WiFi/BLE ในตัว — ใช้ IoT project บ่อยมาก",
+  "difficulty": "beginner",
+  "category": "hardware",
+  "subcategory": "embedded-boards",
+  "tags": [
+    "microcontroller",
+    "wifi",
+    "iot",
+    "ble"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "ESP32 คือ microcontroller จาก Espressif ที่รวม dual-core CPU, WiFi 802.11 และ Bluetooth/BLE ในชิปเดียว — โปรแกรมได้ด้วย Arduino IDE, PlatformIO หรือ ESP-IDF (native SDK)\n\nราคาถูก (หลักร้อยบาท) จึงเป็นตัวเลือกยอดนิยมสำหรับ IoT prototype และ smart home"
+    },
+    {
+      "type": "why",
+      "content": "ESP32 เหมาะโปรเจกต์ที่ต้องการ WiFi + sensor โดยไม่ต้องต่อ Raspberry Pi:\n\n- Smart home sensor ส่ง MQTT ไป Home Assistant\n- BLE beacon และ wearable prototype\n- Deep sleep ลดพลังงาน — ทำงานด้วย battery นาน\n- OTA update อัปเดต firmware ผ่าน WiFi"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. เขียน firmware (C/C++ ใน Arduino หรือ ESP-IDF)\n2. Flash ลง board ผ่าน USB\n3. ตั้งค่า WiFi credentials (WiFiManager หรือ hardcode)\n4. อ่าน sensor ผ่าน GPIO/ADC/I2C\n5. ส่งข้อมูลด้วย MQTT, HTTP หรือ WebSocket\n6. Deep sleep เมื่อไม่มีงาน — ตื่นตาม timer หรือ interrupt"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Dual-core MCU",
+        "WiFi 802.11",
+        "Bluetooth/BLE",
+        "GPIO/ADC",
+        "Deep sleep mode"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "Smart farm: soil sensor → ESP32 → MQTT → Home Assistant dashboard"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "ESP32 ≠ ESP8266 — ESP32 แรงกว่า มี BLE",
+        "3.3V only — ไม่ tolerate 5V บน pin",
+        "WiFi credential เก็บใน flash — ต้อง secure"
+      ]
+    }
+  ],
+  "related": [
+    "arduino",
+    "raspberry-pi",
+    "sensor",
+    "mqtt",
+    "edge-device-hardware"
+  ],
+  "visualization": "embedded-board-flow",
+  "prerequisites": [
+    "arduino",
+    "sensor"
+  ]
+}

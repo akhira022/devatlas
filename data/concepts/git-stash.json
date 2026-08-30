@@ -1,0 +1,52 @@
+{
+  "slug": "git-stash",
+  "title": "stash",
+  "summary": "เก็บการแก้ไขชั่วคราวโดยไม่ commit — สลับ branch หรือ pull ได้",
+  "difficulty": "intermediate",
+  "category": "git-github",
+  "subcategory": "history",
+  "tags": [
+    "git",
+    "workflow"
+  ],
+  "sections": [
+    {
+      "type": "why",
+      "content": "เก็บงานค้างชั่วคราวเมื่อต้อง switch branch ด่วน — ไม่ต้อง commit งานยังไม่เสร็จ"
+    },
+    {
+      "type": "how_it_works",
+      "content": "```\ngit stash\ngit stash push -m \"wip login\"\ngit stash list\ngit stash pop                     # นำกลับ + ลบ stash\ngit stash apply stash@{0}         # นำกลับ เก็บ stash ไว้\ngit stash drop stash@{0}\n```"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "git stash",
+        "git stash pop",
+        "git stash list",
+        "git stash apply",
+        "git stash -u — รวม untracked"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "กำลังแก้โค้ดค้าง แต่ต้อง switch ไปแก้ hotfix:\n```\ngit stash\ngit checkout main\ngit pull\n# แก้ hotfix...\ngit checkout feature/x\ngit stash pop\n```"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "stash ไม่ใช่ backup ถาวร — ลืม pop นาน ๆ อาจสับสน",
+        "untracked files ต้อง stash -u"
+      ]
+    }
+  ],
+  "related": [
+    "git-checkout",
+    "git-commit",
+    "git-branch"
+  ],
+  "visualization": "git-stash-flow",
+  "prerequisites": [
+    "git-commit"
+  ]
+}

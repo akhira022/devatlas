@@ -1,0 +1,16 @@
+{
+  "slug": "database-crud",
+  "title": "แอปบันทึกข้อมูลลง Database อย่างไร?",
+  "description": "ติดตาม CRUD ตั้งแต่ API request จนถึงข้อมูลใน PostgreSQL และ cache",
+  "difficulty": "beginner",
+  "icon": "database",
+  "concepts": ["api", "database", "sql", "orm", "redis"],
+  "visualization": "database-flow",
+  "steps": [
+    { "order": 1, "title": "Client ส่ง request", "description": "POST /api/users พร้อม JSON {name, email}", "conceptSlug": "api" },
+    { "order": 2, "title": "ORM แปลงเป็น query", "description": "Backend ใช้ ORM สร้าง INSERT statement", "conceptSlug": "orm" },
+    { "order": 3, "title": "Database บันทึก", "description": "PostgreSQL เขียน row ใหม่ลงตาราง users", "conceptSlug": "sql" },
+    { "order": 4, "title": "อัปเดต cache", "description": "เก็บ user profile ใน Redis เพื่ออ่านเร็วครั้งถัดไป", "conceptSlug": "redis" },
+    { "order": 5, "title": "ตอบกลับ client", "description": "API ส่ง 201 Created พร้อม user id", "conceptSlug": "database" }
+  ]
+}

@@ -1,0 +1,20 @@
+{
+  "slug": "cli-navigation-flow",
+  "title": "CLI Navigation Flow",
+  "description": "cd, pwd, ls — สำรวจโฟลเดอร์ใน terminal",
+  "conceptSlug": "cd",
+  "protocol": "Shell",
+  "category": "cli",
+  "nodes": [
+    { "id": "user", "label": "User", "description": "พิมพ์คำสั่งใน terminal", "type": "client", "position": { "x": 0, "y": 120 } },
+    { "id": "shell", "label": "Shell", "description": "bash / zsh / PowerShell", "type": "service", "position": { "x": 280, "y": 120 } },
+    { "id": "fs", "label": "File System", "description": "โฟลเดอร์และไฟล์", "type": "database", "position": { "x": 560, "y": 120 } }
+  ],
+  "steps": [
+    { "id": "nav-1", "from": "user", "to": "shell", "label": "pwd", "packet": "/home/dev", "description": "ดู path ปัจจุบัน — อยู่โฟลเดอร์ไหน", "duration": 1100 },
+    { "id": "nav-2", "from": "user", "to": "fs", "label": "ls", "packet": "package.json src/", "description": "แสดงรายการไฟล์ในโฟลเดอร์ปัจจุบัน", "duration": 1100 },
+    { "id": "nav-3", "from": "user", "to": "shell", "label": "cd src", "packet": "cwd → .../src", "description": "เปลี่ยน working directory", "duration": 1100 },
+    { "id": "nav-4", "from": "user", "to": "fs", "label": "ls", "packet": "components/ api.ts", "description": "ls อีกครั้งในโฟลเดอร์ใหม่", "duration": 1100 },
+    { "id": "nav-5", "from": "user", "to": "shell", "label": "cd ..", "packet": "กลับ parent", "description": "ขึ้นไปหนึ่งระดับ — pwd เปลี่ยน", "duration": 1000 }
+  ]
+}

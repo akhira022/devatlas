@@ -1,0 +1,18 @@
+{
+  "slug": "iot-starter",
+  "title": "เริ่มต้น IoT",
+  "description": "จาก sensor สู่ cloud — เข้าใจ IoT stack แบบ end-to-end",
+  "difficulty": "intermediate",
+  "icon": "radio",
+  "estimatedMinutes": 50,
+  "category": "iot",
+  "steps": [
+    { "order": 1, "conceptSlug": "sensor", "note": "แหล่งข้อมูลจากโลกจริง" },
+    { "order": 2, "conceptSlug": "esp32", "note": "board ยอดนิยมสำหรับ IoT" },
+    { "order": 3, "conceptSlug": "mqtt", "note": "โปรโตคอลส่งข้อมูล IoT" },
+    { "order": 4, "conceptSlug": "iot-gateway", "note": "ตัวกลางระหว่าง device กับ cloud" },
+    { "order": 5, "conceptSlug": "edge-computing", "note": "ประมวลผลใกล้ sensor" },
+    { "order": 6, "conceptSlug": "api", "note": "ส่งข้อมูลเข้าระบบ" }
+  ],
+  "scenarioSlug": "iot-data"
+}

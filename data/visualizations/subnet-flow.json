@@ -1,0 +1,98 @@
+{
+  "slug": "subnet-flow",
+  "title": "Subnet Calculation",
+  "description": "ดูขั้นตอนคำนวณ network, broadcast และ host range จาก IP + CIDR",
+  "conceptSlug": "subnetting",
+  "protocol": "IP / CIDR",
+  "category": "network",
+  "nodes": [
+    {
+      "id": "input",
+      "label": "Input",
+      "description": "IP 192.168.1.100/26 — ระบุ address และ prefix length",
+      "type": "client",
+      "position": {
+        "x": 0,
+        "y": 120
+      }
+    },
+    {
+      "id": "mask",
+      "label": "Subnet Mask",
+      "description": "/26 → 255.255.255.192 — 26 bit แรกเป็น network",
+      "type": "service",
+      "position": {
+        "x": 220,
+        "y": 120
+      }
+    },
+    {
+      "id": "network",
+      "label": "Network Address",
+      "description": "192.168.1.64 — IP AND Mask, host bit = 0",
+      "type": "network",
+      "position": {
+        "x": 440,
+        "y": 120
+      }
+    },
+    {
+      "id": "broadcast",
+      "label": "Broadcast",
+      "description": "192.168.1.127 — network + block size - 1",
+      "type": "network",
+      "position": {
+        "x": 660,
+        "y": 120
+      }
+    },
+    {
+      "id": "hosts",
+      "label": "Host Range",
+      "description": ".65 – .126 (62 usable hosts)",
+      "type": "device",
+      "position": {
+        "x": 880,
+        "y": 120
+      }
+    }
+  ],
+  "steps": [
+    {
+      "id": "sub-1",
+      "from": "input",
+      "to": "mask",
+      "label": "Prefix → Mask",
+      "packet": "/26 = 255.255.255.192",
+      "description": "แปลง CIDR prefix เป็น subnet mask — /26 หมายถึง 26 bit เป็น 1",
+      "duration": 1200
+    },
+    {
+      "id": "sub-2",
+      "from": "mask",
+      "to": "network",
+      "label": "AND",
+      "packet": "100 AND 192 = 64",
+      "description": "คำนวณ network address ด้วย IP AND Mask — block size = 256 - 192 = 64",
+      "duration": 1400
+    },
+    {
+      "id": "sub-3",
+      "from": "network",
+      "to": "broadcast",
+      "label": "Broadcast",
+      "packet": "64 + 64 - 1 = 127",
+      "description": "Broadcast = network + block size - 1 → 192.168.1.127",
+      "duration": 1200
+    },
+    {
+      "id": "sub-4",
+      "from": "broadcast",
+      "to": "hosts",
+      "label": "Host Range",
+      "packet": ".65 – .126 (62 hosts)",
+      "description": "Usable hosts = network+1 ถึง broadcast-1 — สูตร 2^(32-prefix) - 2 = 62",
+      "duration": 1400
+    }
+  ]
+}

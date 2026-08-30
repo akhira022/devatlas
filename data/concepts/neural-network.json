@@ -1,0 +1,54 @@
+{
+  "slug": "neural-network",
+  "title": "Neural Network",
+  "summary": "โมเดล AI ที่เลียนแบบสมอง — layers ของ nodes เรียนรู้ pattern จากข้อมูล",
+  "difficulty": "advanced",
+  "category": "ai",
+  "tags": [
+    "deep-learning",
+    "nodes",
+    "layers"
+  ],
+  "sections": [
+    {
+      "type": "what_is",
+      "content": "Neural Network ประกอบด้วย layers ของ nodes (neurons) เชื่อมกัน — แต่ละ connection มี weight ที่ปรับระหว่าง training\n\nInput Layer → Hidden Layers → Output Layer"
+    },
+    {
+      "type": "why",
+      "content": "Foundation ของ deep learning:\n- Image recognition (CNN)\n- Natural language (Transformers)\n- Speech recognition\n- Game playing (AlphaGo)\n- LLM ทั้งหมดใช้ neural networks"
+    },
+    {
+      "type": "how_it_works",
+      "content": "1. Input เข้า layer แรก\n2. แต่ละ node คำนวณ weighted sum + activation function\n3. ส่งต่อไป layer ถัดไป\n4. Output layer ให้ผลลัพธ์\n5. Backpropagation ปรับ weights ตาม error"
+    },
+    {
+      "type": "key_components",
+      "items": [
+        "Neurons (nodes)",
+        "Weights",
+        "Activation functions",
+        "Layers",
+        "Backpropagation",
+        "Loss function"
+      ]
+    },
+    {
+      "type": "real_world_example",
+      "content": "จำแนกรูปแมว vs สุนัข:\n\n1. Input: รูป 224×224 pixels\n2. Convolutional layers ดึง features (หู, จมูก, ขน)\n3. Fully connected layers รวม features\n4. Output layer: ความน่าจะเป็น [แมว: 0.92, สุนัข: 0.08]\n5. Train ด้วยรูปที่ label แล้ว — ปรับ weights ลด error"
+    },
+    {
+      "type": "common_confusion",
+      "items": [
+        "Neural Network ≠ LLM — LLM เป็น neural network ขนาดใหญ่สำหรับภาษา",
+        "Deep Learning = neural network หลาย layer",
+        "Black box — อธิบายว่าทำไมทำนายแบบนั้นได้ยาก"
+      ]
+    }
+  ],
+  "related": [
+    "machine-learning",
+    "llm"
+  ],
+  "visualization": "llm-flow"
+}
