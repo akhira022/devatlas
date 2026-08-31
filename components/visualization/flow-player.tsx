@@ -13,7 +13,9 @@ import { ExplanationPanel } from "@/components/visualization/explanation-panel";
 import { FlowControls } from "@/components/visualization/flow-controls";
 import { FlowNode, type FlowNodeData } from "@/components/visualization/flow-node";
 import { StepTimeline } from "@/components/visualization/step-timeline";
+import { useTheme } from "@/components/theme/theme-provider";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
+import { cn } from "@/lib/utils";
 import type { Visualization } from "@/types/visualization";
 
 const nodeTypes = { flow: FlowNode };
@@ -31,6 +33,7 @@ export function FlowPlayer({
 }: FlowPlayerProps) {
   const [internalStep, setInternalStep] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
+  const { theme } = useTheme();
   const prefersReducedMotion = useReducedMotion();
 
   const currentStep = externalStep ?? internalStep;
@@ -153,8 +156,10 @@ export function FlowPlayer({
         </div>
       )}
 
-      <div className="surface-subtle h-[360px]">
+      <div className="surface-subtle relative h-[360px] overflow-hidden">
         <ReactFlow
+          colorMode={theme}
+          className={cn("h-full w-full")}
           nodes={nodes}
           edges={edges}
           nodeTypes={nodeTypes}

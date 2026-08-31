@@ -14,6 +14,7 @@ import {
 } from "lucide-react";
 
 import { getAllCategories } from "@/lib/content/get-concepts";
+import { SidebarScrollArea } from "@/components/layout/sidebar-scroll-area";
 import { cn } from "@/lib/utils";
 
 const iconMap = {
@@ -41,11 +42,11 @@ export function Sidebar({ className, mobile }: SidebarProps) {
   return (
     <aside
       className={cn(
-        "flex w-60 shrink-0 flex-col border-r border-border/60 bg-muted/40 dark:bg-card/50",
+        "flex w-60 min-h-0 shrink-0 flex-col overflow-hidden border-r border-border/60 bg-muted/40 dark:bg-card/50",
         className,
       )}
     >
-      <div className="p-4">
+      <SidebarScrollArea>
         {!mobile && (
           <p className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
             Categories
@@ -71,9 +72,9 @@ export function Sidebar({ className, mobile }: SidebarProps) {
             );
           })}
         </nav>
-      </div>
+      </SidebarScrollArea>
 
-      <div className="mt-auto border-t border-border/60 p-4">
+      <div data-sidebar-footer className="shrink-0 border-t border-border/60 p-4">
         <p className="mb-3 text-xs font-medium uppercase tracking-wider text-muted-foreground">
           ลิงก์ด่วน
         </p>

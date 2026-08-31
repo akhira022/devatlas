@@ -226,6 +226,37 @@
   }
 }
 
+/* React Flow — theme sync (outside @layer so it wins over xyflow defaults) */
+.react-flow {
+  --xy-controls-button-background-color: var(--card);
+  --xy-controls-button-background-color-hover: var(--accent);
+  --xy-controls-button-color: var(--foreground);
+  --xy-controls-button-color-hover: var(--accent-foreground);
+  --xy-controls-button-border-color: var(--border);
+  --xy-controls-box-shadow: none;
+  --xy-minimap-background-color: color-mix(in oklch, var(--card) 85%, transparent);
+  --xy-minimap-mask-background-color: color-mix(in oklch, var(--background) 65%, transparent);
+  --xy-minimap-node-background-color: var(--muted);
+  --xy-background-color: transparent;
+}
+
+.react-flow__controls {
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.react-flow__controls-button svg {
+  fill: currentColor;
+}
+
+.react-flow.dark .react-flow__controls-button,
+.dark.react-flow .react-flow__controls-button {
+  background: var(--xy-controls-button-background-color, var(--card));
+  color: var(--xy-controls-button-color, var(--foreground));
+  border-color: var(--xy-controls-button-border-color, var(--border));
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

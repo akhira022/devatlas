@@ -15,6 +15,7 @@ import "@xyflow/react/dist/style.css";
 import { ConceptListPanel } from "@/components/graph/concept-list-panel";
 import { ConceptNode, type ConceptNodeData } from "@/components/graph/concept-node";
 import { GraphPanel } from "@/components/graph/graph-panel";
+import { useTheme } from "@/components/theme/theme-provider";
 import { buildGraphData, getConnectedNodeIds } from "@/lib/graph/build-graph";
 import { getAllCategories } from "@/lib/content/get-concepts";
 import { useReducedMotion } from "@/lib/use-reduced-motion";
@@ -35,6 +36,7 @@ export function KnowledgeGraph({
   graphData,
 }: KnowledgeGraphProps) {
   const router = useRouter();
+  const { theme } = useTheme();
   const categories = getAllCategories();
   const prefersReducedMotion = useReducedMotion();
   const [categoryFilter, setCategoryFilter] = useState<string | null>(
@@ -173,12 +175,14 @@ export function KnowledgeGraph({
       </div>
 
       <div className="grid gap-4 lg:grid-cols-[1fr_280px]">
-        <div className="surface-subtle h-[500px]">
+        <div className="surface-subtle relative h-[500px] overflow-hidden">
           <p className="sr-only">
             กราฟความรู้แบบโต้ตอบ — ใช้รายการ Concept ด้านล่างเพื่อเลือกด้วยคีย์บอร์ด
           </p>
           <ReactFlow
             key={categoryFilter ?? "all"}
+            colorMode={theme}
+            className="h-full w-full"
             nodes={nodes}
             edges={edges}
             nodeTypes={nodeTypes}
@@ -191,12 +195,7 @@ export function KnowledgeGraph({
           >
             <Background gap={20} size={1} color="var(--border)" />
             <Controls />
-            <MiniMap
-              nodeStrokeWidth={3}
-              pannable
-              zoomable
-              className="!bg-card/80"
-            />
+            <MiniMap nodeStrokeWidth={3} pannable zoomable />
           </ReactFlow>
         </div>
 

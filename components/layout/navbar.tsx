@@ -33,9 +33,9 @@ export function Navbar() {
               </Button>
             }
           />
-          <SheetContent side="left" className="w-72 p-0">
+          <SheetContent side="left" className="w-72 overflow-hidden p-0">
             <SheetTitle className="sr-only">เมนูนำทาง</SheetTitle>
-            <Sidebar className="h-full border-0" mobile />
+            <Sidebar className="h-full min-h-0 border-0" mobile />
           </SheetContent>
         </Sheet>
 

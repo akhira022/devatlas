@@ -44,7 +44,8 @@ function getSnapshot(): Theme {
 }
 
 function getServerSnapshot(): Theme {
-  return "dark";
+  // Match theme-init-script default before hydration; client snapshot reads <html class> after paint.
+  return "light";
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
