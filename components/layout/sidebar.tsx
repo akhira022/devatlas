@@ -109,6 +109,12 @@ export function Sidebar({ className, mobile }: SidebarProps) {
           >
             Knowledge Graph
           </Link>
+          <Link
+            href="/cheatsheet"
+            className="block rounded-md px-2.5 py-2 text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+          >
+            สรุปภาพ (Cheat Sheet)
+          </Link>
         </nav>
       </div>
     </aside>

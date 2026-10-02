@@ -4,6 +4,7 @@ import { Hero } from "@/components/home/hero";
 import { LearningPathPreview } from "@/components/home/learning-path-preview";
 import { PopularConcepts } from "@/components/home/popular-concepts";
 import { ScenarioPreview } from "@/components/home/scenario-preview";
+import { VisualCheatsheets } from "@/components/home/visual-cheatsheets";
 
 export default function HomePage() {
   return (
@@ -11,6 +12,7 @@ export default function HomePage() {
       <Hero />
       <CategoryGrid />
       <LearningPathPreview />
+      <VisualCheatsheets />
       <PopularConcepts />
       <ScenarioPreview />
       <FeaturedVisualization />

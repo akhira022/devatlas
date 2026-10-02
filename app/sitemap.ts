@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 
+import { getCheatsheetSlugs } from "@/lib/cheatsheet";
 import { getAllCategories, getConceptSlugs } from "@/lib/content/get-concepts";
 import { getComparisonSlugs } from "@/lib/content/get-comparisons";
 import { getDecisionTreeSlugs } from "@/lib/content/get-decision-trees";
@@ -20,6 +21,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/visualize",
     "/scenarios",
     "/graph",
+    "/cheatsheet",
+    "/git-simulator",
+    ...getCheatsheetSlugs().map((slug) => `/cheatsheet/${slug}`),
   ].map((path) => ({
     url: `${BASE_URL}${path}`,
     changeFrequency: "weekly",

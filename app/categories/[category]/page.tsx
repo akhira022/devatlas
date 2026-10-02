@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Play } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 
 import { CategoryStartHere } from "@/components/category/category-start-here";
 import { GitCategoryView } from "@/components/git/git-category-view";
@@ -103,6 +103,34 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
           <p className="mt-1 text-sm text-muted-foreground">{concepts.length} concepts</p>
         )}
       </div>
+
+      {categorySlug === "network" && (
+        <Link
+          href="/cheatsheet/network"
+          className="mb-6 flex items-center justify-between gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/5 px-4 py-3 text-sm transition-colors hover:border-emerald-500/60"
+        >
+          <span>
+            <span className="font-semibold">Cheat Sheet: 20 แนวคิด Networking</span>
+            <span className="ml-2 text-muted-foreground">สรุปทั้งหมดในจอเดียว</span>
+          </span>
+          <ArrowRight className="size-4 shrink-0 text-emerald-500" aria-hidden="true" />
+        </Link>
+      )}
+
+      {categorySlug === "git-github" && (
+        <Link
+          href="/git-simulator"
+          className="mb-8 flex items-center justify-between gap-3 rounded-xl border border-sky-500/30 bg-sky-500/5 px-4 py-3 text-sm transition-colors hover:border-sky-500/60"
+        >
+          <span>
+            <span className="font-semibold">Git Simulator: 10 คำสั่งที่ใช้บ่อย</span>
+            <span className="ml-2 text-muted-foreground">
+              กดทีละคำสั่ง ดู staging, local repo และ remote เปลี่ยน
+            </span>
+          </span>
+          <ArrowRight className="size-4 shrink-0 text-sky-500" aria-hidden="true" />
+        </Link>
+      )}
 
       {categorySlug === "network" && <ProtocolPulseGrid />}
 
