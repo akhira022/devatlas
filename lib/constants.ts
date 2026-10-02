@@ -11,6 +11,7 @@ export const NAV_LINKS = [
   { href: "/compare", label: "เปรียบเทียบ" },
   { href: "/visualize", label: "ภาพเคลื่อนไหว" },
   { href: "/cheatsheet", label: "สรุปภาพ" },
+  { href: "/tools/network", label: "คำนวณ" },
   { href: "/scenarios", label: "สถานการณ์" },
   { href: "/graph", label: "กราฟ" },
 ] as const;

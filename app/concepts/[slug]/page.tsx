@@ -86,6 +86,19 @@ export default async function ConceptPage({ params }: ConceptPageProps) {
         </div>
       )}
 
+      {(slug === "subnetting" || slug === "ip" || slug === "nat") && (
+        <div className="mt-8">
+          <Button
+            variant="outline"
+            className="w-full justify-between border-sky-500/40 bg-sky-500/5 sm:w-auto"
+            render={<Link href="/tools/network" />}
+          >
+            เปิดเครื่องคิดเลข Network
+            <ArrowRight className="size-4" />
+          </Button>
+        </div>
+      )}
+
       <div className="mt-10 space-y-5">
         {concept.sections.map((section, index) =>
           isCommand ? (

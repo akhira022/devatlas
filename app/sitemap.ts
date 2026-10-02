@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/graph",
     "/cheatsheet",
     "/git-simulator",
+    "/tools/network",
     ...getCheatsheetSlugs().map((slug) => `/cheatsheet/${slug}`),
   ].map((path) => ({
     url: `${BASE_URL}${path}`,

@@ -115,6 +115,12 @@ export function Sidebar({ className, mobile }: SidebarProps) {
           >
             สรุปภาพ (Cheat Sheet)
           </Link>
+          <Link
+            href="/tools/network"
+            className="block rounded-md px-2.5 py-2 text-muted-foreground hover:bg-accent hover:text-accent-foreground"
+          >
+            เครื่องคิดเลข Network
+          </Link>
         </nav>
       </div>
     </aside>

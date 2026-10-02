@@ -105,16 +105,30 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
       </div>
 
       {categorySlug === "network" && (
-        <Link
-          href="/cheatsheet/network"
-          className="mb-6 flex items-center justify-between gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/5 px-4 py-3 text-sm transition-colors hover:border-emerald-500/60"
-        >
-          <span>
-            <span className="font-semibold">Cheat Sheet: 20 แนวคิด Networking</span>
-            <span className="ml-2 text-muted-foreground">สรุปทั้งหมดในจอเดียว</span>
-          </span>
-          <ArrowRight className="size-4 shrink-0 text-emerald-500" aria-hidden="true" />
-        </Link>
+        <div className="mb-6 space-y-3">
+          <Link
+            href="/tools/network"
+            className="flex items-center justify-between gap-3 rounded-xl border border-sky-500/30 bg-sky-500/5 px-4 py-3 text-sm transition-colors hover:border-sky-500/60"
+          >
+            <span>
+              <span className="font-semibold">เครื่องคิดเลข Network</span>
+              <span className="ml-2 text-muted-foreground">
+                Subnet, CIDR, VLSM, IPv6 — คำนวณทันที
+              </span>
+            </span>
+            <ArrowRight className="size-4 shrink-0 text-sky-500" aria-hidden="true" />
+          </Link>
+          <Link
+            href="/cheatsheet/network"
+            className="flex items-center justify-between gap-3 rounded-xl border border-emerald-500/30 bg-emerald-500/5 px-4 py-3 text-sm transition-colors hover:border-emerald-500/60"
+          >
+            <span>
+              <span className="font-semibold">Cheat Sheet: 20 แนวคิด Networking</span>
+              <span className="ml-2 text-muted-foreground">สรุปทั้งหมดในจอเดียว</span>
+            </span>
+            <ArrowRight className="size-4 shrink-0 text-emerald-500" aria-hidden="true" />
+          </Link>
+        </div>
       )}
 
       {categorySlug === "git-github" && (
