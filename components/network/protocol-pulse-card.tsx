@@ -7,6 +7,7 @@ import { Lock, Mail } from "lucide-react";
 import {
   ACCENT_COLORS,
   type ProtocolPulse,
+  type ProtocolPulseAccent,
   type ProtocolPulseScene,
 } from "@/lib/network/protocol-pulses";
 import { cn } from "@/lib/utils";
@@ -893,14 +894,51 @@ function PulseScene({
   }
 }
 
+interface PulseTrackProps {
+  accent: ProtocolPulseAccent;
+  scene: ProtocolPulseScene;
+  leftLabel?: string;
+  rightLabel?: string;
+  className?: string;
+}
+
+export function PulseTrack({ accent: accentName, scene, leftLabel, rightLabel, className }: PulseTrackProps) {
+  const prefersReducedMotion = useReducedMotion();
+  const reduced = Boolean(prefersReducedMotion);
+  const accent = ACCENT_COLORS[accentName];
+
+  return (
+    <div
+      className={cn(
+        "flex items-center gap-1 rounded-lg border border-border/50 bg-muted/40 px-2 py-3 dark:bg-[#0b1220]/55",
+        className,
+      )}
+    >
+      <Endpoint label={leftLabel ?? "Client"} color={accent.solid} />
+      <div className="relative mx-1 h-14 min-w-0 flex-1">
+        <div
+          className="absolute top-1/2 right-0 left-0 h-px -translate-y-1/2"
+          style={{ backgroundColor: `${accent.solid}33` }}
+        />
+        <PulseScene
+          scene={scene}
+          color={accent.solid}
+          soft={accent.soft}
+          glow={accent.glow}
+          reduced={reduced}
+        />
+      </div>
+      <Endpoint label={rightLabel ?? "Server"} color={accent.solid} />
+    </div>
+  );
+}
+
 interface ProtocolPulseCardProps {
   pulse: ProtocolPulse;
   className?: string;
 }
 
 export function ProtocolPulseCard({ pulse, className }: ProtocolPulseCardProps) {
-  const prefersReducedMotion = useReducedMotion();
-  const reduced = Boolean(prefersReducedMotion);
   const accent = ACCENT_COLORS[pulse.accent];
 
   return (
@@ -923,23 +961,12 @@ export function ProtocolPulseCard({ pulse, className }: ProtocolPulseCardProps) 
         />
       </div>
 
-      <div className="flex items-center gap-1 rounded-lg border border-border/50 bg-muted/40 px-2 py-3 dark:bg-[#0b1220]/55">
-        <Endpoint label={pulse.leftLabel ?? "Client"} color={accent.solid} />
-        <div className="relative mx-1 h-14 min-w-0 flex-1">
-          <div
-            className="absolute top-1/2 right-0 left-0 h-px -translate-y-1/2"
-            style={{ backgroundColor: `${accent.solid}33` }}
-          />
-          <PulseScene
-            scene={pulse.scene}
-            color={accent.solid}
-            soft={accent.soft}
-            glow={accent.glow}
-            reduced={reduced}
-          />
-        </div>
-        <Endpoint label={pulse.rightLabel ?? "Server"} color={accent.solid} />
-      </div>
+      <PulseTrack
+        accent={pulse.accent}
+        scene={pulse.scene}
+        leftLabel={pulse.leftLabel}
+        rightLabel={pulse.rightLabel}
+      />
     </Link>
   );
 }
