@@ -3,10 +3,12 @@
 import { Plus, Trash2 } from "lucide-react";
 import { useMemo, useState } from "react";
 
+import { CalcStepsPanel } from "@/components/netcalc/calc-steps-panel";
 import { ErrorBanner, ResultRow } from "@/components/netcalc/result-row";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { explainVlsmAllocation, type CalcStep } from "@/lib/netcalc/explain";
 import { allocateVlsm, type VlsmRequirement } from "@/lib/netcalc/vlsm";
 
 type Row = VlsmRequirement & { id: string };
@@ -31,6 +33,38 @@ export function VlsmTab() {
       ),
     [base, rows],
   );
+
+  const steps = useMemo(() => {
+    if (!outcome.ok) return [] as CalcStep[];
+
+    const intro: CalcStep = {
+      id: "vlsm-order",
+      title: "1. เรียงแผนกจาก host มาก → น้อย",
+      formula: "VLSM จัดวงใหญ่ก่อน เพื่อลดเศษพื้นที่",
+      inputs: rows.map((row) => `${row.name}: ขอ ${row.hosts} hosts`),
+      work: [
+        `ฐาน = ${outcome.base}`,
+        `ลำดับที่จัดจริง: ${outcome.allocations.map((a) => a.name).join(" → ")}`,
+      ],
+      result: outcome.allocations.map((a) => a.name).join(" → "),
+      tip: "อย่าจัดวงเล็กก่อนวงใหญ่ — จะเหลือช่องว่างใช้ยาก",
+    };
+
+    const allocationSteps = outcome.allocations.flatMap((allocation, index) => {
+      const previous =
+        index === 0
+          ? null
+          : `${outcome.allocations[index - 1]!.network}/${outcome.allocations[index - 1]!.prefix}`;
+      return explainVlsmAllocation(
+        allocation.name,
+        allocation.requestedHosts,
+        allocation,
+        previous,
+      );
+    });
+
+    return [intro, ...allocationSteps];
+  }, [outcome, rows]);
 
   return (
     <div className="space-y-4">
@@ -96,7 +130,9 @@ export function VlsmTab() {
             type="button"
             variant="outline"
             size="sm"
-            onClick={() => setRows((current) => [...current, newRow(`Dept ${current.length + 1}`, 10)])}
+            onClick={() =>
+              setRows((current) => [...current, newRow(`Dept ${current.length + 1}`, 10)])
+            }
           >
             <Plus className="size-4" />
             เพิ่มแผนก
@@ -144,6 +180,12 @@ export function VlsmTab() {
               </CardContent>
             </Card>
           ))}
+
+          <CalcStepsPanel
+            steps={steps}
+            title="วิธีจัด VLSM ทีละขั้น"
+            description="เรียงแผนก → หา prefix ที่พอ → วางบล็อก — เปิดคำตอบทีละขั้นเพื่อซ้อม"
+          />
         </div>
       )}
     </div>

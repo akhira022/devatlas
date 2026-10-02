@@ -2,9 +2,11 @@
 
 import { useMemo, useState } from "react";
 
+import { CalcStepsPanel } from "@/components/netcalc/calc-steps-panel";
 import { ErrorBanner, ResultRow } from "@/components/netcalc/result-row";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { explainSubnetFromResult } from "@/lib/netcalc/explain";
 import {
   calculateSubnet,
   maskToPrefix,
@@ -44,6 +46,11 @@ export function Ipv4SubnetTab() {
 
     return { ok: true as const, subnet: calculateSubnet(parsed.ip, prefix) };
   }, [cidr, maskOverride]);
+
+  const steps = useMemo(
+    () => (outcome.ok ? explainSubnetFromResult(outcome.subnet) : []),
+    [outcome],
+  );
 
   return (
     <div className="space-y-4">
@@ -88,14 +95,8 @@ export function Ipv4SubnetTab() {
               <dl>
                 <ResultRow label="Network" value={outcome.subnet.network} />
                 <ResultRow label="Broadcast" value={outcome.subnet.broadcast} />
-                <ResultRow
-                  label="First host"
-                  value={outcome.subnet.firstHost ?? "—"}
-                />
-                <ResultRow
-                  label="Last host"
-                  value={outcome.subnet.lastHost ?? "—"}
-                />
+                <ResultRow label="First host" value={outcome.subnet.firstHost ?? "—"} />
+                <ResultRow label="Last host" value={outcome.subnet.lastHost ?? "—"} />
                 <ResultRow
                   label="Usable hosts"
                   value={String(outcome.subnet.usableHosts)}
@@ -116,6 +117,8 @@ export function Ipv4SubnetTab() {
               )}
             </CardContent>
           </Card>
+
+          <CalcStepsPanel steps={steps} />
 
           <Card>
             <CardHeader>
