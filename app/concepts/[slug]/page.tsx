@@ -10,6 +10,7 @@ import { ConceptHeader } from "@/components/concept/concept-header";
 import { ConceptQuizBlock } from "@/components/concept/concept-quiz";
 import { ConceptSectionBlock } from "@/components/concept/concept-section";
 import { ConceptVisualization } from "@/components/concept/concept-visualization";
+import { IpAddressGuide } from "@/components/concept/ip-address-guide";
 import { PrerequisitesBanner } from "@/components/concept/prerequisites-banner";
 import { RelatedConcepts } from "@/components/concept/related-concepts";
 import { Button } from "@/components/ui/button";
@@ -71,7 +72,11 @@ export default async function ConceptPage({ params }: ConceptPageProps) {
     );
 
   return (
-    <div className={`container px-4 py-10 ${isCommand ? "max-w-4xl" : "max-w-3xl"}`}>
+    <div
+      className={`container px-4 py-10 ${
+        isCommand || slug === "ip" ? "max-w-4xl" : "max-w-3xl"
+      }`}
+    >
       {header}
 
       {concept.prerequisites && concept.prerequisites.length > 0 && (
@@ -83,6 +88,12 @@ export default async function ConceptPage({ params }: ConceptPageProps) {
       {visualization && (
         <div className="mt-8">
           <ConceptVisualization visualization={visualization} />
+        </div>
+      )}
+
+      {slug === "ip" && (
+        <div className="mt-8">
+          <IpAddressGuide />
         </div>
       )}
 

@@ -2,18 +2,20 @@
   "slug": "ip",
   "title": "IP",
   "fullName": "Internet Protocol",
-  "summary": "โปรโตคอลชั้น Network ที่ส่ง packet ข้ามเครือข่าย — ทุกอุปกรณ์มี IP address",
+  "summary": "โปรโตคอลชั้น Network ที่ส่ง packet ข้ามเครือข่าย — ทุกอุปกรณ์มี IP address เหมือนบ้านเลขที่",
   "difficulty": "beginner",
   "category": "network",
   "tags": [
     "address",
     "routing",
-    "packet"
+    "packet",
+    "ipv4",
+    "ipv6"
   ],
   "sections": [
     {
       "type": "what_is",
-      "content": "IP (Internet Protocol) กำหนดวิธีส่ง packet จาก source ไป destination ผ่าน router หลายตัว\n\n**IPv4** — 32-bit, เขียนเป็น 4 ตัวเลข (octet):\n```\n192.168.1.1\n```\n\n**IPv6** — 128-bit, แก้ปัญหา IPv4 หมด:\n```\n2001:db8::1\n```\n\nทุกอุปกรณ์ในเครือข่ายต้องมี IP address ไม่ซ้ำกันใน subnet เดียวกัน — DHCP แจกให้อัตโนมัติ หรือตั้ง Static IP เอง"
+      "content": "IP (Internet Protocol) กำหนดวิธีส่ง packet จาก source ไป destination ผ่าน router หลายตัว\n\n**IPv4** — 32-bit, เขียนเป็น 4 octet คั่นด้วยจุด (ค่า 0–255):\n```\n192.168.1.10\n```\n\n**IPv6** — 128-bit, แก้ปัญหา IPv4 address หมด:\n```\n2001:db8::1\n```\n\nทุกอุปกรณ์ในเครือข่ายต้องมี IP address ไม่ซ้ำกันใน subnet เดียวกัน — DHCP แจกให้อัตโนมัติ (dynamic) หรือตั้ง Static IP เอง\n\nดู Visual Guide ด้านบนสำหรับรูปแบบ Public/Private และตารางเทียบ IPv4 กับ IPv6"
     },
     {
       "type": "why",

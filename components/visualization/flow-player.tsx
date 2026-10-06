@@ -3,11 +3,13 @@
 import { useEffect, useMemo, useState } from "react";
 import {
   Background,
+  Controls,
   ReactFlow,
   type Edge,
   type Node,
 } from "@xyflow/react";
 import "@xyflow/react/dist/style.css";
+import { Hand } from "lucide-react";
 
 import { ExplanationPanel } from "@/components/visualization/explanation-panel";
 import { FlowControls } from "@/components/visualization/flow-controls";
@@ -156,7 +158,11 @@ export function FlowPlayer({
         </div>
       )}
 
-      <div className="surface-subtle relative h-[360px] overflow-hidden">
+      <div className="surface-subtle relative h-[min(55vh,420px)] min-h-[280px] overflow-hidden sm:h-[360px]">
+        <p className="pointer-events-none absolute top-2 left-2 z-10 flex items-center gap-1.5 rounded-md border border-border/60 bg-card/90 px-2 py-1 text-[11px] text-muted-foreground backdrop-blur-sm">
+          <Hand className="size-3" aria-hidden="true" />
+          ลาก / pinch เพื่อเลื่อน-ซูมพรีวิว
+        </p>
         <ReactFlow
           colorMode={theme}
           className={cn("h-full w-full")}
@@ -164,15 +170,21 @@ export function FlowPlayer({
           edges={edges}
           nodeTypes={nodeTypes}
           fitView
-          fitViewOptions={{ padding: 0.2 }}
+          fitViewOptions={{ padding: 0.25 }}
           nodesDraggable={false}
           nodesConnectable={false}
           elementsSelectable={false}
-          panOnDrag={false}
+          panOnDrag
+          panOnScroll={false}
           zoomOnScroll={false}
+          zoomOnPinch
+          zoomOnDoubleClick
+          minZoom={0.35}
+          maxZoom={2}
           proOptions={{ hideAttribution: true }}
         >
           <Background gap={24} size={1} color="var(--border)" />
+          <Controls showInteractive={false} position="bottom-right" />
         </ReactFlow>
       </div>
 
