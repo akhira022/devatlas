@@ -1,3 +1,4 @@
+import { RichContent } from "@/components/cli/rich-content";
 import type { ConceptSection } from "@/types/concept";
 
 const sectionMeta: Record<
@@ -28,9 +29,10 @@ export function ConceptSectionBlock({ section }: ConceptSectionBlockProps) {
       </h2>
 
       {section.content && (
-        <div className="prose-content space-y-3 whitespace-pre-line">
-          {section.content}
-        </div>
+        <RichContent
+          content={section.content}
+          className="prose-content text-[0.9375rem] leading-relaxed"
+        />
       )}
 
       {section.items && section.items.length > 0 && (
@@ -38,7 +40,7 @@ export function ConceptSectionBlock({ section }: ConceptSectionBlockProps) {
           {section.items.map((item) => (
             <li key={item} className="prose-content flex gap-2.5">
               <span className="text-primary">•</span>
-              <span>{item}</span>
+              <RichContent content={item} className="min-w-0 flex-1" />
             </li>
           ))}
         </ul>
