@@ -62,18 +62,18 @@ function SectionHeading({
 
 function OctetFormatDiagram({ reduced }: { reduced: boolean }) {
   return (
-    <div className="w-full min-w-[22rem] px-2 py-4">
+    <div className="w-[min(100vw-3rem,28rem)] px-2 py-4">
       <div className="grid grid-cols-4 gap-2">
         {OCTETS.map((octet, index) => (
           <motion.div
             key={octet.label}
-            className="flex flex-col items-center gap-1.5"
+            className="flex min-w-0 flex-col items-center gap-1.5"
             initial={reduced ? false : { opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: index * 0.08, duration: 0.35 }}
           >
             <span className="text-[11px] font-medium text-muted-foreground">{octet.label}</span>
-            <span className="flex h-12 w-full items-center justify-center rounded-lg border border-sky-500/40 bg-sky-500/10 font-mono text-lg font-semibold text-sky-700 dark:text-sky-300">
+            <span className="flex h-12 w-full items-center justify-center rounded-lg border border-sky-500/40 bg-sky-500/10 font-mono text-base font-semibold text-sky-700 sm:text-lg dark:text-sky-300">
               {octet.value}
             </span>
             <span className="text-[10px] text-muted-foreground">8 bits</span>
@@ -96,19 +96,19 @@ function OctetFormatDiagram({ reduced }: { reduced: boolean }) {
 
 function BinaryExampleDiagram({ reduced }: { reduced: boolean }) {
   return (
-    <div className="w-full min-w-[24rem] px-2 py-4">
-      <div className="grid grid-cols-4 gap-3">
+    <div className="w-[min(100vw-3rem,30rem)] px-2 py-4">
+      <div className="grid grid-cols-4 gap-2 sm:gap-3">
         {OCTETS.map((octet, index) => (
           <motion.div
             key={`bin-${octet.value}`}
-            className="flex flex-col items-center gap-1"
+            className="flex min-w-0 flex-col items-center gap-1"
             initial={reduced ? false : { opacity: 0, scale: 0.94 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1 + index * 0.07, duration: 0.3 }}
           >
-            <span className="font-mono text-xl font-bold text-foreground">{octet.value}</span>
+            <span className="font-mono text-lg font-bold text-foreground sm:text-xl">{octet.value}</span>
             <span className="text-[10px] text-muted-foreground">↓</span>
-            <span className="rounded-md border border-border/60 bg-muted/60 px-1.5 py-1 font-mono text-[11px] tracking-tight text-muted-foreground">
+            <span className="rounded-md border border-border/60 bg-muted/60 px-1 py-1 font-mono text-[10px] tracking-tight text-muted-foreground sm:px-1.5 sm:text-[11px]">
               {octet.binary}
             </span>
             <span className="text-[10px] text-muted-foreground">(0–255)</span>
@@ -157,20 +157,18 @@ export function IpAddressGuide() {
           IPv4 ยาว 32-bit เขียนแบบ dotted-decimal — เลื่อนหรือ pinch ในพรีวิวได้ถ้าจอแคบ
         </p>
 
-        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_14rem]">
-          <ZoomablePreview label="รูปแบบ IPv4" className="min-w-0">
-            <OctetFormatDiagram reduced={reduced} />
-          </ZoomablePreview>
+        <ZoomablePreview label="รูปแบบ IPv4" className="min-w-0">
+          <OctetFormatDiagram reduced={reduced} />
+        </ZoomablePreview>
 
-          <ul className="space-y-2 rounded-xl border border-rose-500/25 bg-rose-500/5 p-4 text-sm">
-            {RULES.map((rule) => (
-              <li key={rule} className="flex gap-2 leading-snug text-rose-900 dark:text-rose-100">
-                <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-rose-500" aria-hidden="true" />
-                <span>{rule}</span>
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul className="grid gap-2 rounded-xl border border-rose-500/25 bg-rose-500/5 p-4 text-sm sm:grid-cols-2">
+          {RULES.map((rule) => (
+            <li key={rule} className="flex gap-2 leading-snug text-rose-900 dark:text-rose-100">
+              <span className="mt-1.5 size-1.5 shrink-0 rounded-full bg-rose-500" aria-hidden="true" />
+              <span>{rule}</span>
+            </li>
+          ))}
+        </ul>
       </section>
 
       <section className="surface-muted space-y-4 p-5 sm:p-6">

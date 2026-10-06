@@ -193,12 +193,17 @@ export function ZoomablePreview({
   const zoomPercent = Math.round(scale * 100);
 
   return (
-    <div className={cn("surface-subtle overflow-hidden", className)}>
+    <div
+      className={cn(
+        "surface-subtle max-w-full min-w-0 overflow-hidden [contain:paint]",
+        className,
+      )}
+    >
       <div className="flex items-center justify-between gap-2 border-b border-border/50 px-3 py-2">
-        <p className="text-xs text-muted-foreground">
+        <p className="min-w-0 truncate text-xs text-muted-foreground">
           {label} · ลาก / pinch เพื่อเลื่อน-ซูม
         </p>
-        <div className="flex items-center gap-1">
+        <div className="flex shrink-0 items-center gap-1">
           <Button
             type="button"
             variant="ghost"
@@ -235,7 +240,7 @@ export function ZoomablePreview({
 
       <div
         ref={viewportRef}
-        className="relative h-56 touch-none select-none overflow-hidden sm:h-64"
+        className="relative h-56 max-w-full touch-none select-none overflow-hidden overscroll-contain sm:h-64"
         onPointerDown={onPointerDown}
         onPointerMove={onPointerMove}
         onPointerUp={endPointer}
@@ -246,11 +251,11 @@ export function ZoomablePreview({
       >
         <div
           className={cn(
-            "flex h-full w-full origin-center items-center justify-center will-change-transform",
+            "absolute top-1/2 left-1/2 w-max max-w-none will-change-transform",
             contentClassName,
           )}
           style={{
-            transform: `translate(${translate.x}px, ${translate.y}px) scale(${scale})`,
+            transform: `translate(calc(-50% + ${translate.x}px), calc(-50% + ${translate.y}px)) scale(${scale})`,
           }}
         >
           {children}
